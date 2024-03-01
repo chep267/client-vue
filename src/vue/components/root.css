@@ -1,0 +1,25 @@
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2023.
+ *
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { overflow-y: auto }
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+:root {
+  --v-theme-background: '';
+  --v-theme-info: '';
+}
