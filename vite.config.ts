@@ -27,10 +27,9 @@ function resolveAlias() {
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-    process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+    process.env = Object.assign({}, process.env, loadEnv(mode, process.cwd()));
     const isDevMode = process.env.VITE_APP_MODE === 'dev';
-    const portENV = Number(process.env.VITE_APP_PORT);
-    const port = isNaN(portENV) ? 8080 : portENV;
+    const port = Number(process.env.VITE_APP_PORT) || 8080;
 
     return defineConfig({
         plugins: [basicSsl(), vue(), vuetify(), visualizer()],
@@ -45,7 +44,6 @@ export default ({ mode }) => {
             target: 'esnext',
             sourcemap: isDevMode,
             rollupOptions: {
-                treeshake: true,
                 output: {
                     manualChunks: {
                         'start-screen': ['./src/modules/module-auth/screens/StartScreen.vue'],

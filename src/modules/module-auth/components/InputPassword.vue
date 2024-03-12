@@ -5,7 +5,7 @@
  *
  */
 
-import { onMounted, ref } from 'vue';
+import { ref, watch } from 'vue';
 
 /** icons */
 import { mdiEye, mdiEyeOff, mdiLockOutline } from '@mdi/js';
@@ -24,13 +24,12 @@ const props = defineProps<{
 const visible = ref(false);
 const inputRef = ref(null);
 
-onMounted(() => {
+watch(inputRef, () => {
     props.setRef?.(inputRef.value);
 });
 
 const onSeen = () => {
-    const fnCallback = () => (visible.value = !visible.value);
-    focusInput({ elem: inputRef.value, fnCallback });
+    focusInput({ elem: inputRef.value, fnCallback: () => (visible.value = !visible.value) });
 };
 </script>
 

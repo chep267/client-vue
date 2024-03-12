@@ -5,7 +5,7 @@
  *
  */
 
-import { ref, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 
 /** icons */
 import { mdiAccount } from '@mdi/js';
@@ -21,7 +21,7 @@ const props = defineProps<{
 
 const inputRef = ref(null);
 
-onMounted(() => {
+watch(inputRef, () => {
     props.setRef?.(inputRef.value);
 });
 </script>
