@@ -27,7 +27,7 @@ function resolveAlias() {
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
-    process.env = Object.assign({}, process.env, loadEnv(mode, process.cwd()));
+    process.env = Object.assign(process.env, loadEnv(mode, process.cwd()));
     const isDevMode = process.env.VITE_APP_MODE === 'dev';
     const port = Number(process.env.VITE_APP_PORT) || 8080;
 
