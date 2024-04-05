@@ -10,8 +10,8 @@ const RegexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).
 
 const RegexPhone = /^\+?[1-9][0-9]{7,14}$/i;
 
-export const Regex = {
+export const Regex = Object.freeze({
     email: RegexEmail,
     password: RegexPassword,
     phone: RegexPhone,
-};
+});

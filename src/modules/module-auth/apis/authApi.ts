@@ -54,9 +54,23 @@ const apiRegister = async (payload: TypeApiAuth['Register']['Payload']): Promise
     return res;
 };
 
+const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<TypeApiAuth['Recover']['Response']> => {
+    const { timer = AppTimer.pendingApi, email } = payload;
+    const callApi = () => {
+        return baseApi<TypeApiAuth['Recover']['Response']>({
+            method: 'post',
+            url: AuthApi.recover,
+            data: { email },
+        });
+    };
+    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    return res;
+};
+
 export const authApi = {
     signin: apiSignin,
     signout: apiSignout,
     restart: apiRestart,
     register: apiRegister,
+    recover: apiRecover,
 };

@@ -5,6 +5,7 @@
  *
  */
 
+import { computed } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 
 /** constants */
@@ -19,39 +20,36 @@ export type TypeAuthBreadcrumbsItem = {
 
 const route = useRoute();
 
-const breadcrumbs: TypeAuthBreadcrumbsItem[] = [
-    {
-        title: 'module.auth.form.title.signin',
-        append: '/',
-        path: AuthScreenPath.signin,
-    },
-    {
-        title: 'module.auth.form.title.register',
-        append: route.path.startsWith(AuthScreenPath.recover) ? '' : '/',
-        path: AuthScreenPath.register,
-    },
-    {
-        title: 'module.auth.form.title.recover',
-        path: AuthScreenPath.recover,
-    },
-];
+const breadcrumbs = computed(() => {
+    const signin = genBreadcrumb('signin', '/');
+    const register = genBreadcrumb('register');
+    const recover = genBreadcrumb('recover');
+    if (route.path.startsWith(AuthScreenPath.signin)) {
+        register.append = '/';
+        return [register, recover];
+    }
+    if (route.path.startsWith(AuthScreenPath.register)) {
+        return [signin, recover];
+    }
+    return [signin, register];
+});
 
-if (route.path.startsWith(AuthScreenPath.signin)) {
-    breadcrumbs.shift();
-} else if (route.path.startsWith(AuthScreenPath.register)) {
-    breadcrumbs.splice(1, 1);
-} else if (route.path.startsWith(AuthScreenPath.recover)) {
-    breadcrumbs.pop();
-}
+const genBreadcrumb = (type: 'signin' | 'register' | 'recover', append?: string): TypeAuthBreadcrumbsItem => {
+    return {
+        title: `module.auth.form.title.${type}`,
+        append,
+        path: AuthScreenPath[type],
+    };
+};
 </script>
 
 <template>
     <div class="flex flex-row w-full text-router">
         <template v-for="item in breadcrumbs" :key="item.path">
-            <router-link class="text-router text-router-hover" :to="item.path">
+            <router-link class="text-router hover:underline" :to="item.path">
                 {{ $t(item.title) }}
             </router-link>
-            <span v-if="item.append" class="text-router">&nbsp;&nbsp;{{ item.append || '/' }}&nbsp;&nbsp;</span>
+            <span v-if="item.append" class="text-router px-1">{{ item.append }}</span>
             <template v-else />
         </template>
     </div>
@@ -60,8 +58,5 @@ if (route.path.startsWith(AuthScreenPath.signin)) {
 <style scoped>
 .text-router {
     color: rgb(var(--v-theme-info));
-}
-.text-router-hover:hover {
-    text-decoration: underline;
 }
 </style>

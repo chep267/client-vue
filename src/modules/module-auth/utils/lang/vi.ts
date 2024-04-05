@@ -35,5 +35,7 @@ export const vi = Object.freeze({
     'module.auth.notify.signin.error': 'Tài khoản hoặc mật khẩu không chính xác!',
     'module.auth.notify.register.success': 'Tài khoản đăng kí thành công!',
     'module.auth.notify.register.error': 'Tài khoản đã tồn tại!',
+    'module.auth.notify.recover.success': 'Tài khoản xác thực thành công!',
+    'module.auth.notify.recover.error': 'Tài khoản không tồn tại!',
     'module.auth.notify.server.error': 'Máy chủ không phản hồi, vui lòng thử lại sau.',
 });

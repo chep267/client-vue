@@ -42,7 +42,14 @@ const inputEmailRef = ref<HTMLInputElement | null>(null);
 const inputPasswordRef = ref<HTMLInputElement | null>(null);
 
 const onSubmit = handleSubmit(
-    (data) => SIGN_IN.mutate(data),
+    (data) =>
+        SIGN_IN.mutate(data, {
+            onError: () => {
+                email.setErrors('module.auth.notify.signin.error');
+                password.setErrors('module.auth.notify.signin.error');
+                focusInput({ elem: inputEmailRef.value });
+            },
+        }),
     ({ errors }) => {
         focusInput({ elem: errors.email ? inputEmailRef.value : inputPasswordRef.value });
     }

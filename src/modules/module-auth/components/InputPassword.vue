@@ -29,7 +29,8 @@ watch(inputRef, () => {
 });
 
 const onSeen = () => {
-    focusInput({ elem: inputRef.value, fnCallback: () => (visible.value = !visible.value) });
+    visible.value = !visible.value;
+    focusInput({ elem: inputRef.value });
 };
 </script>
 

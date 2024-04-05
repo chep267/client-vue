@@ -25,4 +25,8 @@ export interface TypeApiAuth {
         Payload: TypeCallApiPayload<{ email: TypeUser['email']; password: string }>;
         Response: TypeResponseApi;
     };
+    Recover: {
+        Payload: TypeCallApiPayload<{ email: TypeUser['email'] }>;
+        Response: TypeResponseApi;
+    };
 }

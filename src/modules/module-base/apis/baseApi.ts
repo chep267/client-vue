@@ -54,7 +54,7 @@ axiosClient.interceptors.response.use(
     },
     async (error: AxiosError) => {
         /** khoan, dừng khoảng chừng là 600ms */
-        await debounce(600);
+        await debounce(AppTimer.pendingApi);
         if (error.response?.status === 401) {
             Cookies.remove(AppKey.uid);
         }

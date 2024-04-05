@@ -12,7 +12,7 @@ const color = theme.global.name.value === 'dark' ? '#ffa726' : '#038cf5';
 </script>
 
 <template>
-    <div class="position-fixed w-screen h-screen top-0 left-0 z-10">
+    <div class="fixed w-screen h-screen top-0 left-0 z-10">
         <div class="start-elem">
             <span class="text-start">start</span>
             <span class="text-loading" />

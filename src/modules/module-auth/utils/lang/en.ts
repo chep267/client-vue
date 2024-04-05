@@ -34,5 +34,7 @@ export const en = Object.freeze({
     'module.auth.notify.signin.error': 'Account or password is incorrect!',
     'module.auth.notify.register.success': 'Account registered successfully!',
     'module.auth.notify.register.error': 'Account already exists!',
+    'module.auth.notify.recover.success': 'Account recovered successfully!',
+    'module.auth.notify.recover.error': "Account doesn't exists!",
     'module.auth.notify.server.error': 'The server is not responding, please try again later.',
 });

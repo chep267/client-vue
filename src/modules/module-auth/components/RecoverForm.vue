@@ -19,25 +19,28 @@ import { focusInput } from '@module-base/utils/focusInput.ts';
 import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
 
 /** hooks */
-import { useSignin } from '@module-auth/hooks/useSignin.ts';
+import { useRecover } from '@module-auth/hooks/useRecover.ts';
 
 const { handleSubmit } = useForm({
     initialValues: {
-        email: '',
+        email: 'dong.nguyenthanh@powergatesoftware.com',
         password: 'Midom@2024',
     },
     validationSchema: authFormSchema,
 });
 const email = useField('email');
-const SIGN_IN = useSignin();
+const RECOVER = useRecover();
 
 const inputEmailRef = ref<HTMLInputElement | null>(null);
 
 const onSubmit = handleSubmit(
-    (data) => {
-        console.log('register: ', data);
-        // call register
-    },
+    (data) =>
+        RECOVER.mutate(data, {
+            onError: () => {
+                email.setErrors('module.auth.notify.recover.error');
+                focusInput({ elem: inputEmailRef.value });
+            },
+        }),
     () => {
         focusInput({ elem: inputEmailRef.value });
     }
@@ -56,7 +59,7 @@ const onSubmit = handleSubmit(
             :error-messages="email.errorMessage.value ? $t(email.errorMessage.value) : null" />
         <auth-form-breadcrumbs />
         <div class="flex w-full justify-end">
-            <auth-form-button-submit :text="$t('module.auth.button.recover')" :loading="SIGN_IN.isPending.value" />
+            <auth-form-button-submit :text="$t('module.auth.button.recover')" :loading="RECOVER.isPending.value" />
         </div>
     </v-form>
 </template>
