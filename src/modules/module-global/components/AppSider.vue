@@ -37,9 +37,6 @@ const siderState = ref<TypeSiderState>(getState());
 
 const { isAuthentication } = storeToRefs(authStore);
 
-const toggleSider = () => {
-    openSider.value = !openSider.value;
-};
 const onResize = () => {
     siderState.value = getState();
 };
@@ -58,7 +55,10 @@ onUnmounted(() => {
         :rail="!openSider || siderState === 'collapse'"
         :permanent="siderState !== 'hidden'"
         :app="true">
-        <app-sider-button-collapse :open-sider="openSider" :disabled="siderState !== 'expand'" :toggle-sider="toggleSider" />
+        <app-sider-button-collapse
+            :open-sider="openSider"
+            :disabled="siderState !== 'expand'"
+            @toggle-sider="openSider = !openSider" />
         <v-divider v-once />
         <app-sider-menu-app :disabled-tooltip="openSider" />
     </v-navigation-drawer>

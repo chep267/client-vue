@@ -10,10 +10,13 @@ import AppLogo from '@module-global/components/AppLogo.vue';
 import AppName from '@module-global/components/AppName.vue';
 import AppHeaderButtonSetting from '@module-global/components/AppHeaderButtonSetting.vue';
 import ButtonDev from '@module-global/components/ButtonDev.vue';
+
+/** constants */
+import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 </script>
 
 <template>
-    <v-app-bar class="appbar" :elevation="5" :app="true">
+    <v-app-bar :class="`py-0 md:p-[${ScreenSize.header_padding}px]`" :elevation="5" :app="true">
         <template #prepend>
             <app-logo />
         </template>

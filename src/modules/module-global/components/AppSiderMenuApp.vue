@@ -20,8 +20,6 @@ defineProps<{
 
 const { push } = useRouter();
 
-const navigate = (path: string) => push(path);
-
 const ListApp = [
     {
         id: ScreenPath.feed,
@@ -50,7 +48,7 @@ const selected = ref<string[]>([ScreenPath.defaultPath]);
                     :prepend-icon="menu.icon"
                     :title="$t(menu.title)"
                     :color="selected.includes(menu.id) ? 'info' : undefined"
-                    @click="() => navigate(menu.path)" />
+                    @click="push(menu.path)" />
             </template>
         </v-tooltip>
     </v-list>

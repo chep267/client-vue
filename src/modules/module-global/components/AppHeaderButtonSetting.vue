@@ -11,11 +11,10 @@ import { ref } from 'vue';
 import AppHeaderMenuSetting from '@module-global/components/AppHeaderMenuSetting.vue';
 
 const menu = ref(false);
-const onCloseMenu = () => (menu.value = false);
 </script>
 
 <template>
-    <v-menu v-model="menu" :close-on-content-click="false">
+    <v-menu id="header-menu-setting" v-model="menu" :close-on-content-click="false" :offset="14">
         <template #activator="{ props: MenuProps }">
             <v-tooltip :text="$t('module.global.components.menu.setting.tooltip')" location="bottom">
                 <template #activator="{ props: ToolTipProps }">
@@ -23,6 +22,6 @@ const onCloseMenu = () => (menu.value = false);
                 </template>
             </v-tooltip>
         </template>
-        <app-header-menu-setting :on-close-menu="onCloseMenu" />
+        <app-header-menu-setting @close-menu="menu = false" />
     </v-menu>
 </template>

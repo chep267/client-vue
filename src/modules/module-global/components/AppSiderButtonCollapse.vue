@@ -11,7 +11,10 @@ import { mdiChevronTripleLeft, mdiChevronTripleRight } from '@mdi/js';
 defineProps<{
     disabled?: boolean;
     openSider?: boolean;
-    toggleSider?(): void;
+}>();
+
+const emit = defineEmits<{
+    (e: 'toggleSider'): void;
 }>();
 </script>
 
@@ -22,7 +25,7 @@ defineProps<{
                 v-bind="props"
                 class="flex align-center justify-center w-full min-w-0 rounded-none"
                 :disabled="disabled"
-                @click="toggleSider">
+                @click="emit('toggleSider')">
                 <v-icon v-if="openSider" :icon="mdiChevronTripleLeft" color="info" size="24" />
                 <v-icon v-else :icon="mdiChevronTripleRight" color="info" size="24" />
             </v-btn>
