@@ -16,7 +16,7 @@ import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 </script>
 
 <template>
-    <v-app-bar :class="`py-0 md:p-[${ScreenSize.header_padding}px]`" :elevation="5" :app="true">
+    <v-app-bar :class="`!py-0 md:p-[${ScreenSize.header_padding}px]`" :elevation="5" :app="true">
         <template #prepend>
             <app-logo />
         </template>
