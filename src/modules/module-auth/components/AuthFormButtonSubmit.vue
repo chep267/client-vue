@@ -5,12 +5,16 @@
  *
  */
 
-defineProps<{
-    loading?: boolean;
-    text?: string;
-}>();
+import { type ExtractPropTypes } from 'vue';
+
+/** components */
+import { VBtn } from 'vuetify/components/VBtn';
+
+interface ButtonProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VBtn>> {}
+
+defineProps<ButtonProps>();
 </script>
 
 <template>
-    <v-btn width="50%" size="large" color="primary" type="submit" :text="text" :loading="loading" />
+    <v-btn width="50%" size="large" color="primary" type="submit" />
 </template>

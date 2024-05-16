@@ -16,7 +16,7 @@ const theme = useTheme();
 
 <template>
     <span :class="{ 'text-4xl z-10': true, 'form-title': theme.global.name.value === 'light' }">
-        {{ text ? $t(text) : '' }}
+        {{ text }}
     </span>
 </template>
 

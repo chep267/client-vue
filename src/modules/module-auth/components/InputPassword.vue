@@ -25,7 +25,7 @@ const emit = defineEmits<{
 }>();
 
 const visible = ref(false);
-const inputRef = ref(null);
+const inputRef = ref<HTMLInputElement | null>(null);
 
 watch(inputRef, () => emit('setRef', inputRef.value));
 
@@ -37,9 +37,9 @@ const onSeen = () => {
 <template>
     <v-text-field
         ref="inputRef"
-        :label="$t('module.auth.input.label.password')"
-        :type="visible ? 'text' : 'password'"
         variant="outlined"
+        :type="visible ? 'text' : 'password'"
+        :label="$t('module.auth.input.label.password')"
         :autocomplete="undefined"
         :spellcheck="false"
         :prepend-inner-icon="mdiLockOutline"

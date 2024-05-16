@@ -28,7 +28,7 @@ const { handleSubmit } = useForm({
     },
     validationSchema: authFormSchema,
 });
-const email = useField('email');
+const fieldEmail = useField('email');
 const RECOVER = useRecover();
 
 const inputEmailRef = ref<HTMLInputElement | null>(null);
@@ -37,7 +37,7 @@ const onSubmit = handleSubmit(
     (data) =>
         RECOVER.mutate(data, {
             onError: () => {
-                email.setErrors('module.auth.notify.recover.error');
+                fieldEmail.setErrors('module.auth.notify.recover.error');
                 focusInput({ elem: inputEmailRef.value });
             },
         }),
@@ -48,15 +48,15 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <auth-form-title text="module.auth.form.title.recover" />
+    <auth-form-title :text="$t('module.auth.form.title.recover')" />
     <v-form
         class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10 auth-form"
         @submit.prevent="onSubmit">
         <input-email
-            v-model="email.value.value"
+            v-model="fieldEmail.value.value"
             :autofocus="true"
             :set-ref="(elem: HTMLInputElement | null) => (inputEmailRef = elem)"
-            :error-messages="email.errorMessage.value ? $t(email.errorMessage.value) : null" />
+            :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null" />
         <auth-form-breadcrumbs />
         <div class="flex w-full justify-end">
             <auth-form-button-submit :text="$t('module.auth.button.recover')" :loading="RECOVER.isPending.value" />

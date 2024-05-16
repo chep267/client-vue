@@ -21,7 +21,7 @@ const emit = defineEmits<{
     (e: 'setRef', id: HTMLInputElement | null): void;
 }>();
 
-const inputRef = ref(null);
+const inputRef = ref<HTMLInputElement | null>(null);
 
 watch(inputRef, () => emit('setRef', inputRef.value));
 </script>
@@ -29,9 +29,9 @@ watch(inputRef, () => emit('setRef', inputRef.value));
 <template>
     <v-text-field
         ref="inputRef"
-        :label="$t('module.auth.input.label.email')"
         type="text"
         variant="outlined"
+        :label="$t('module.auth.input.label.email')"
         :autocomplete="false"
         :spellcheck="false"
         :prepend-inner-icon="mdiAccount" />

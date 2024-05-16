@@ -34,8 +34,8 @@ const { handleSubmit } = useForm({
     },
     validationSchema: authFormSchema,
 });
-const email = useField('email');
-const password = useField('password');
+const fieldEmail = useField('email');
+const fieldPassword = useField('password');
 const SIGN_IN = useSignin();
 
 const inputEmailRef = ref<HTMLInputElement | null>(null);
@@ -45,8 +45,8 @@ const onSubmit = handleSubmit(
     (data) => {
         SIGN_IN.mutate(data, {
             onError: () => {
-                email.setErrors('module.auth.notify.signin.error');
-                password.setErrors('module.auth.notify.signin.error');
+                fieldEmail.setErrors('module.auth.notify.signin.error');
+                fieldPassword.setErrors('module.auth.notify.signin.error');
                 focusInput({ elem: inputEmailRef.value });
             },
         });
@@ -58,18 +58,18 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <auth-form-title text="module.auth.form.title.signin" />
+    <auth-form-title :text="$t('module.auth.form.title.signin')" />
     <v-form
         class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10 auth-form"
         @submit.prevent="onSubmit">
         <input-email
-            v-model="email.value.value"
+            v-model="fieldEmail.value.value"
             :autofocus="true"
-            :error-messages="email.errorMessage.value ? $t(email.errorMessage.value) : null"
+            :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null"
             @set-ref="(elem) => (inputEmailRef = elem)" />
         <input-password
-            v-model="password.value.value"
-            :error-messages="password.errorMessage.value ? $t(password.errorMessage.value) : null"
+            v-model="fieldPassword.value.value"
+            :error-messages="fieldPassword.errorMessage.value ? $t(fieldPassword.errorMessage.value) : null"
             @set-ref="(elem) => (inputPasswordRef = elem)" />
         <auth-form-breadcrumbs />
         <div class="flex w-full justify-end">

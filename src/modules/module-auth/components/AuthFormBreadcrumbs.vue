@@ -5,39 +5,44 @@
  *
  */
 
-import { computed } from 'vue';
+import { computed, type VueElement } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 
 /** constants */
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
 
 /** types */
-export type TypeAuthBreadcrumbsItem = {
+interface BreadcrumbsProps {
+    append?: string | VueElement;
+}
+interface TypeAuthBreadcrumbsItem {
     title: string;
     path: string;
-    append?: string;
-};
+}
+
+withDefaults(defineProps<BreadcrumbsProps>(), {
+    append: '/',
+});
 
 const route = useRoute();
 
 const breadcrumbs = computed(() => {
-    const signin = genBreadcrumb('signin', '/');
+    const signin = genBreadcrumb('signin');
     const register = genBreadcrumb('register');
     const recover = genBreadcrumb('recover');
-    if (route.path.startsWith(AuthScreenPath.signin)) {
-        register.append = '/';
-        return [register, recover];
+    switch (true) {
+        case route.path.startsWith(AuthScreenPath.signin):
+            return [register, recover];
+        case route.path.startsWith(AuthScreenPath.register):
+            return [signin, recover];
+        default:
+            return [signin, register];
     }
-    if (route.path.startsWith(AuthScreenPath.register)) {
-        return [signin, recover];
-    }
-    return [signin, register];
 });
 
-const genBreadcrumb = (type: 'signin' | 'register' | 'recover', append?: string): TypeAuthBreadcrumbsItem => {
+const genBreadcrumb = (type: 'signin' | 'register' | 'recover'): TypeAuthBreadcrumbsItem => {
     return {
         title: `module.auth.form.title.${type}`,
-        append,
         path: AuthScreenPath[type],
     };
 };
@@ -45,12 +50,11 @@ const genBreadcrumb = (type: 'signin' | 'register' | 'recover', append?: string)
 
 <template>
     <div class="flex flex-row w-full text-router">
-        <template v-for="item in breadcrumbs" :key="item.path">
+        <template v-for="(item, index) in breadcrumbs" :key="item.path">
+            <span v-if="index > 0" class="text-router px-1">{{ append }}</span>
             <router-link class="text-router hover:underline" :to="item.path">
                 {{ $t(item.title) }}
             </router-link>
-            <span v-if="item.append" class="text-router px-1">{{ item.append }}</span>
-            <template v-else />
         </template>
     </div>
 </template>

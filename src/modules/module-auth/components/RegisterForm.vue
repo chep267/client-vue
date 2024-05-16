@@ -29,8 +29,8 @@ const { handleSubmit } = useForm({
     },
     validationSchema: authFormSchema,
 });
-const email = useField('email');
-const password = useField('password');
+const fieldEmail = useField('email');
+const fieldPassword = useField('password');
 const REGISTER = useRegister();
 
 const inputEmailRef = ref<HTMLInputElement | null>(null);
@@ -40,7 +40,7 @@ const onSubmit = handleSubmit(
     (data) =>
         REGISTER.mutate(data, {
             onError: () => {
-                email.setErrors('module.auth.notify.register.error');
+                fieldEmail.setErrors('module.auth.notify.register.error');
                 focusInput({ elem: inputEmailRef.value });
             },
         }),
@@ -51,19 +51,19 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <auth-form-title text="module.auth.form.title.register" />
+    <auth-form-title :text="$t('module.auth.form.title.register')" />
     <v-form
         class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10 auth-form"
         @submit.prevent="onSubmit">
         <input-email
-            v-model="email.value.value"
+            v-model="fieldEmail.value.value"
             :autofocus="true"
             :set-ref="(elem: HTMLInputElement | null) => (inputEmailRef = elem)"
-            :error-messages="email.errorMessage.value ? $t(email.errorMessage.value) : null" />
+            :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null" />
         <input-password
-            v-model="password.value.value"
+            v-model="fieldPassword.value.value"
             :set-ref="(elem: HTMLInputElement | null) => (inputPasswordRef = elem)"
-            :error-messages="password.errorMessage.value ? $t(password.errorMessage.value) : null" />
+            :error-messages="fieldPassword.errorMessage.value ? $t(fieldPassword.errorMessage.value) : null" />
         <auth-form-breadcrumbs />
         <div class="flex w-full justify-end">
             <auth-form-button-submit :text="$t('module.auth.button.register')" :loading="REGISTER.isPending.value" />
