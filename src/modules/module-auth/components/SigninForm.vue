@@ -42,14 +42,15 @@ const inputEmailRef = ref<HTMLInputElement | null>(null);
 const inputPasswordRef = ref<HTMLInputElement | null>(null);
 
 const onSubmit = handleSubmit(
-    (data) =>
+    (data) => {
         SIGN_IN.mutate(data, {
             onError: () => {
                 email.setErrors('module.auth.notify.signin.error');
                 password.setErrors('module.auth.notify.signin.error');
                 focusInput({ elem: inputEmailRef.value });
             },
-        }),
+        });
+    },
     ({ errors }) => {
         focusInput({ elem: errors.email ? inputEmailRef.value : inputPasswordRef.value });
     }
@@ -64,12 +65,12 @@ const onSubmit = handleSubmit(
         <input-email
             v-model="email.value.value"
             :autofocus="true"
-            :set-ref="(elem: HTMLInputElement | null) => (inputEmailRef = elem)"
-            :error-messages="email.errorMessage.value ? $t(email.errorMessage.value) : null" />
+            :error-messages="email.errorMessage.value ? $t(email.errorMessage.value) : null"
+            @set-ref="(elem) => (inputEmailRef = elem)" />
         <input-password
             v-model="password.value.value"
-            :set-ref="(elem: HTMLInputElement | null) => (inputPasswordRef = elem)"
-            :error-messages="password.errorMessage.value ? $t(password.errorMessage.value) : null" />
+            :error-messages="password.errorMessage.value ? $t(password.errorMessage.value) : null"
+            @set-ref="(elem) => (inputPasswordRef = elem)" />
         <auth-form-breadcrumbs />
         <div class="flex w-full justify-end">
             <auth-form-button-submit :text="$t('module.auth.button.signin')" :loading="SIGN_IN.isPending.value" />

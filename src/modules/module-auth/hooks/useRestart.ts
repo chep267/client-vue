@@ -37,7 +37,7 @@ export function useRestart() {
         onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
             await authStore.signin(response.data);
             await push(authStore.prePath);
-            debounce(response.data.token.exp, () => RESTART.mutate({})).then();
+            await debounce(response.data.token.exp, () => RESTART.mutate({}));
         },
         onError: async (error: AxiosError) => {
             let messageIntl = '';

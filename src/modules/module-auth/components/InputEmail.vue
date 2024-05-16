@@ -5,25 +5,25 @@
  *
  */
 
-import { ref, watch } from 'vue';
+import { type ExtractPropTypes, ref, watch } from 'vue';
+
+/** components */
+import { VTextField } from 'vuetify/components/VTextField';
 
 /** icons */
 import { mdiAccount } from '@mdi/js';
 
-/** type */
-import type { VTextField } from 'vuetify/components/VTextField';
+interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}
 
-const props = defineProps<{
-    autofocus?: boolean;
-    errorMessages: VTextField['errorMessages'];
-    setRef?(elem: HTMLInputElement | null): void;
+defineProps<InputProps>();
+
+const emit = defineEmits<{
+    (e: 'setRef', id: HTMLInputElement | null): void;
 }>();
 
 const inputRef = ref(null);
 
-watch(inputRef, () => {
-    props.setRef?.(inputRef.value);
-});
+watch(inputRef, () => emit('setRef', inputRef.value));
 </script>
 
 <template>
@@ -34,7 +34,5 @@ watch(inputRef, () => {
         variant="outlined"
         :autocomplete="false"
         :spellcheck="false"
-        :autofocus="autofocus"
-        :prepend-inner-icon="mdiAccount"
-        :error-messages="errorMessages" />
+        :prepend-inner-icon="mdiAccount" />
 </template>

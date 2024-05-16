@@ -5,7 +5,7 @@
  *
  */
 
-import { ref, watch } from 'vue';
+import { type ExtractPropTypes, ref, watch } from 'vue';
 
 /** icons */
 import { mdiEye, mdiEyeOff, mdiLockOutline } from '@mdi/js';
@@ -16,21 +16,21 @@ import { focusInput } from '@module-base/utils/focusInput.ts';
 /** type */
 import type { VTextField } from 'vuetify/components/VTextField';
 
-const props = defineProps<{
-    errorMessages: VTextField['errorMessages'];
-    setRef?(elem: HTMLInputElement | null): void;
+interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}
+
+defineProps<InputProps>();
+
+const emit = defineEmits<{
+    (e: 'setRef', id: HTMLInputElement | null): void;
 }>();
 
 const visible = ref(false);
 const inputRef = ref(null);
 
-watch(inputRef, () => {
-    props.setRef?.(inputRef.value);
-});
+watch(inputRef, () => emit('setRef', inputRef.value));
 
 const onSeen = () => {
-    visible.value = !visible.value;
-    focusInput({ elem: inputRef.value });
+    focusInput({ elem: inputRef.value, fnCallback: () => (visible.value = !visible.value) });
 };
 </script>
 
@@ -40,10 +40,9 @@ const onSeen = () => {
         :label="$t('module.auth.input.label.password')"
         :type="visible ? 'text' : 'password'"
         variant="outlined"
-        :autocomplete="false"
+        :autocomplete="undefined"
         :spellcheck="false"
         :prepend-inner-icon="mdiLockOutline"
         :append-inner-icon="visible ? mdiEyeOff : mdiEye"
-        :error-messages="errorMessages"
         @click:append-inner="onSeen" />
 </template>
