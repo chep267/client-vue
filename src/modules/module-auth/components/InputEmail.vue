@@ -14,14 +14,15 @@ import { VTextField } from 'vuetify/components/VTextField';
 import { mdiAccount } from '@mdi/js';
 
 interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}
+type TypeElem = HTMLInputElement | null;
 
 defineProps<InputProps>();
 
 const emit = defineEmits<{
-    (e: 'setRef', id: HTMLInputElement | null): void;
+    (e: 'setRef', elem: TypeElem): void;
 }>();
 
-const inputRef = ref<HTMLInputElement | null>(null);
+const inputRef = ref<TypeElem>(null);
 
 watch(inputRef, () => emit('setRef', inputRef.value));
 </script>

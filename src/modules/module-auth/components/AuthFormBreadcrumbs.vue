@@ -12,15 +12,11 @@ import { useRoute, RouterLink } from 'vue-router';
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
 
 /** types */
-interface BreadcrumbsProps {
+interface AuthBreadcrumbsProps {
     append?: string | VueElement;
 }
-interface TypeAuthBreadcrumbsItem {
-    title: string;
-    path: string;
-}
 
-withDefaults(defineProps<BreadcrumbsProps>(), {
+withDefaults(defineProps<AuthBreadcrumbsProps>(), {
     append: '/',
 });
 
@@ -40,7 +36,7 @@ const breadcrumbs = computed(() => {
     }
 });
 
-const genBreadcrumb = (type: 'signin' | 'register' | 'recover'): TypeAuthBreadcrumbsItem => {
+const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
     return {
         title: `module.auth.form.title.${type}`,
         path: AuthScreenPath[type],

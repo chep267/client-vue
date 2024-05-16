@@ -17,15 +17,16 @@ import { focusInput } from '@module-base/utils/focusInput.ts';
 import type { VTextField } from 'vuetify/components/VTextField';
 
 interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}
+type TypeElem = HTMLInputElement | null;
 
 defineProps<InputProps>();
 
 const emit = defineEmits<{
-    (e: 'setRef', id: HTMLInputElement | null): void;
+    (e: 'setRef', elem: TypeElem): void;
 }>();
 
+const inputRef = ref<TypeElem>(null);
 const visible = ref(false);
-const inputRef = ref<HTMLInputElement | null>(null);
 
 watch(inputRef, () => emit('setRef', inputRef.value));
 
