@@ -7,7 +7,7 @@
 export const ScreenPath = Object.freeze({
     home: '/',
     start: '/start',
-    defaultPath: '/messenger',
+    defaultPath: '/feed',
     feed: '/feed',
     messenger: '/messenger',
     notFound: '/not-found',

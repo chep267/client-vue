@@ -92,6 +92,6 @@ routers.beforeEach((to) => {
         return { path: ScreenPath.home };
     }
     if (to.path === ScreenPath.home) {
-        return { path: ScreenPath.feed };
+        return { path: ScreenPath.defaultPath };
     }
 });
