@@ -16,51 +16,36 @@ import AppSiderButtonCollapse from '@module-global/components/AppSiderButtonColl
 import AppSiderMenuApp from '@module-global/components/AppSiderMenuApp.vue';
 
 /** store */
+import { useSiderStore, SiderState } from '@module-base/hooks/useSiderStore.ts';
 import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 
-type TypeSiderState = 'hidden' | 'collapse' | 'expand';
-
-const getState = (): TypeSiderState => {
-    switch (true) {
-        case window.innerWidth < 600:
-            return 'hidden';
-        case window.innerWidth < 900:
-            return 'collapse';
-        default:
-            return 'expand';
-    }
-};
-
 const authStore = useAuthStore();
+const siderStore = useSiderStore();
 const openSider = ref(true);
-const siderState = ref<TypeSiderState>(getState());
 
 const { isAuthentication } = storeToRefs(authStore);
+const { siderState } = storeToRefs(siderStore);
 
-const onResize = () => {
-    siderState.value = getState();
-};
 onMounted(() => {
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', siderStore.updateState);
 });
 onUnmounted(() => {
-    window.removeEventListener('resize', onResize);
+    window.removeEventListener('resize', siderStore.updateState);
 });
 </script>
 
 <template>
     <v-navigation-drawer
         v-if="isAuthentication"
-        :width="ScreenSize.app_bar_max_width"
-        :rail="!openSider || siderState === 'collapse'"
-        :permanent="siderState !== 'hidden'"
+        :width="ScreenSize.AppBarExpandWidth"
+        :rail="!openSider || siderState === SiderState.collapse"
+        :permanent="siderState !== SiderState.hidden"
         :app="true">
         <app-sider-button-collapse
             :open-sider="openSider"
-            :disabled="siderState !== 'expand'"
+            :disabled="siderState !== SiderState.expand"
             @toggle-sider="openSider = !openSider" />
         <v-divider v-once />
-        <app-sider-menu-app :disabled-tooltip="openSider" />
+        <app-sider-menu-app :disabled-tooltip="openSider && siderState !== SiderState.collapse" />
     </v-navigation-drawer>
-    <template v-else />
 </template>

@@ -16,7 +16,7 @@ import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 </script>
 
 <template>
-    <v-app-bar :class="`!py-0 md:p-[${ScreenSize.header_padding}px]`" :elevation="5" :app="true">
+    <v-app-bar class="app-bar" :elevation="5" :app="true" :height="ScreenSize.HeaderHeight">
         <template #prepend>
             <app-logo />
         </template>
@@ -30,7 +30,7 @@ import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
     </v-app-bar>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .v-theme--light {
     color: rgb(var(--v-theme-info));
 }

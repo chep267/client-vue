@@ -19,5 +19,5 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div>{{ text }}</div>
+    <div class="h-[1500px]">{{ text }}</div>
 </template>
