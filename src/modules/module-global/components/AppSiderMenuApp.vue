@@ -5,50 +5,35 @@
  *
  */
 
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-/** icons */
-import { mdiHome, mdiFacebookMessenger } from '@mdi/js';
+import { computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { ListApp } from '@module-global/constants/ListApp.ts';
 
 defineProps<{
     disabledTooltip?: boolean;
 }>();
 
+const route = useRoute();
 const { push } = useRouter();
 
-const ListApp = [
-    {
-        id: ScreenPath.feed,
-        path: ScreenPath.feed,
-        title: 'module.global.components.sider.app.feed',
-        icon: mdiHome,
-    },
-    {
-        id: ScreenPath.messenger,
-        path: ScreenPath.messenger,
-        title: 'module.global.components.sider.app.messenger',
-        icon: mdiFacebookMessenger,
-    },
-];
-
-const selected = ref<string[]>([ScreenPath.defaultPath]);
+const selectedIds = computed(() => {
+    return [route.path];
+});
 </script>
 
 <template>
-    <v-list v-model:selected="selected">
-        <v-tooltip v-for="menu in ListApp" :key="menu.id" :text="$t(menu.title)" :disabled="disabledTooltip">
+    <v-list v-model:selected="selectedIds">
+        <v-tooltip v-for="app in ListApp" :key="app.id" :text="$t(app.title)" :disabled="disabledTooltip">
             <template #activator="{ props }">
                 <v-list-item
                     v-bind="props"
-                    :value="menu.id"
-                    :prepend-icon="menu.icon"
-                    :title="$t(menu.title)"
-                    :color="selected.includes(menu.id) ? 'info' : undefined"
-                    @click="push(menu.path)" />
+                    :value="app.id"
+                    :prepend-icon="app.icon"
+                    :title="$t(app.title)"
+                    :color="selectedIds.includes(app.id) ? 'info' : undefined"
+                    @click="push(app.path)" />
             </template>
         </v-tooltip>
     </v-list>
