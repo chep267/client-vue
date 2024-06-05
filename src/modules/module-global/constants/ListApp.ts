@@ -10,7 +10,14 @@ import { mdiFacebookMessenger, mdiHome } from '@mdi/js';
 /** constants */
 import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
 
-export const ListApp = Object.freeze([
+export type TypeListAppItem = {
+    id: string;
+    path: string;
+    title: string;
+    icon: string;
+};
+
+export const ListApp: Readonly<TypeListAppItem[]> = Object.freeze([
     {
         id: ScreenPath.feed,
         path: ScreenPath.feed,

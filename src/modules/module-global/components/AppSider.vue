@@ -5,7 +5,7 @@
  *
  */
 
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
@@ -26,11 +26,12 @@ const openSider = ref(true);
 const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
 
-onMounted(() => {
-    window.addEventListener('resize', siderStore.updateState);
-});
-onUnmounted(() => {
-    window.removeEventListener('resize', siderStore.updateState);
+watch(isAuthentication, () => {
+    if (isAuthentication.value) {
+        window.addEventListener('resize', siderStore.updateState);
+    } else {
+        window.removeEventListener('resize', siderStore.updateState);
+    }
 });
 </script>
 

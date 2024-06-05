@@ -16,7 +16,7 @@ import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 </script>
 
 <template>
-    <v-app-bar class="app-bar" :elevation="5" :app="true" :height="ScreenSize.HeaderHeight">
+    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight">
         <template #prepend>
             <app-logo />
         </template>

@@ -18,13 +18,11 @@ defineProps<{
 const route = useRoute();
 const { push } = useRouter();
 
-const selectedIds = computed(() => {
-    return [route.path];
-});
+const tabs = computed(() => [ListApp.find(({ path }) => route.path.includes(path))?.path || '']);
 </script>
 
 <template>
-    <v-list v-model:selected="selectedIds">
+    <v-list v-model:selected="tabs">
         <v-tooltip v-for="app in ListApp" :key="app.id" :text="$t(app.title)" :disabled="disabledTooltip">
             <template #activator="{ props }">
                 <v-list-item
@@ -32,7 +30,7 @@ const selectedIds = computed(() => {
                     :value="app.id"
                     :prepend-icon="app.icon"
                     :title="$t(app.title)"
-                    :color="selectedIds.includes(app.id) ? 'info' : undefined"
+                    :color="tabs.includes(app.path) ? 'primary' : undefined"
                     @click="push(app.path)" />
             </template>
         </v-tooltip>
