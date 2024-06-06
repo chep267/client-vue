@@ -8,7 +8,7 @@
 import { ref } from 'vue';
 
 /** components */
-import AppHeaderMenuSetting from '@module-global/components/AppHeaderMenuSetting.vue';
+import AppHeaderMenuSetting from '@module-global/components/AppHeader/AppHeaderMenuSetting.vue';
 
 const menu = ref(false);
 </script>
@@ -18,7 +18,7 @@ const menu = ref(false);
         <template #activator="{ props: MenuProps }">
             <v-tooltip :text="$t('module.global.components.menu.setting.tooltip')" location="bottom">
                 <template #activator="{ props: ToolTipProps }">
-                    <v-app-bar-nav-icon v-once v-bind="{ ...MenuProps, ...ToolTipProps }" />
+                    <v-app-bar-nav-icon v-bind="{ ...MenuProps, ...ToolTipProps }" :color="menu ? 'primary' : undefined" />
                 </template>
             </v-tooltip>
         </template>

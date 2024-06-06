@@ -6,7 +6,7 @@
  */
 
 /** components */
-import AppSiderMini from '@module-global/components/AppSiderMini.vue';
+import AppSiderMini from '@module-global/components/AppSider/AppSiderMini.vue';
 </script>
 
 <template>

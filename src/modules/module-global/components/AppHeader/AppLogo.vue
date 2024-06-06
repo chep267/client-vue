@@ -6,7 +6,9 @@
  */
 
 import { RouterLink } from 'vue-router';
-import Logo from '@src/vue/assets/favicon.svg';
+
+/** logo */
+import Logo from '@root/assets/favicon.svg';
 </script>
 
 <template>

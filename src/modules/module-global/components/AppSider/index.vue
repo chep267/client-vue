@@ -12,8 +12,8 @@ import { storeToRefs } from 'pinia';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** components */
-import AppSiderButtonCollapse from '@module-global/components/AppSiderButtonCollapse.vue';
-import AppSiderMenuApp from '@module-global/components/AppSiderMenuApp.vue';
+import AppSiderButtonCollapse from '@module-global/components/AppSider/AppSiderButtonCollapse.vue';
+import AppSiderMenuApp from '@module-global/components/AppSider/AppSiderMenuApp.vue';
 
 /** store */
 import { useSiderStore, SiderState } from '@module-base/hooks/useSiderStore.ts';

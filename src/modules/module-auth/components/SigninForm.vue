@@ -30,7 +30,7 @@ const cookies = useCookies();
 const { handleSubmit } = useForm({
     initialValues: {
         email: cookies.get<string>(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
-        password: 'Midom@2023',
+        password: 'Midom@2024',
     },
     validationSchema: authFormSchema,
 });

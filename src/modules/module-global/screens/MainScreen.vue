@@ -7,8 +7,8 @@
 
 /** components */
 import NotifyProvider from '@module-base/components/NotifyProvider.vue';
-import AppHeader from '@module-global/components/AppHeader.vue';
-import AppSider from '@module-global/components/AppSider.vue';
+import AppHeader from '@module-global/components/AppHeader/index.vue';
+import AppSider from '@module-global/components/AppSider/index.vue';
 import AppMain from '@module-global/components/AppMain.vue';
 </script>
 
