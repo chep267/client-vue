@@ -26,8 +26,8 @@ const emit = defineEmits<{
                 class="flex align-center justify-center w-full min-w-0 rounded-none"
                 :disabled="disabled"
                 @click="emit('toggleSider')">
-                <v-icon v-if="openSider" :icon="mdiChevronTripleLeft" :color="disabled ? 'disabled' : 'info'" size="24" />
-                <v-icon v-else :icon="mdiChevronTripleRight" :color="disabled ? 'disabled' : 'info'" size="24" />
+                <v-icon v-if="openSider" :icon="mdiChevronTripleLeft" :color="disabled ? 'disabled' : 'primary'" size="24" />
+                <v-icon v-else :icon="mdiChevronTripleRight" :color="disabled ? 'disabled' : 'primary'" size="24" />
             </v-btn>
         </template>
     </v-tooltip>
