@@ -6,9 +6,10 @@
  */
 
 import { useTheme } from 'vuetify';
+import colors from 'vuetify/util/colors';
 
 const theme = useTheme();
-const color = theme.global.name.value === 'dark' ? '#ffa726' : '#038cf5';
+const color = theme.global.name.value === 'dark' ? colors.amber.base : colors.blue.base;
 </script>
 
 <template>
@@ -20,7 +21,7 @@ const color = theme.global.name.value === 'dark' ? '#ffa726' : '#038cf5';
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 @keyframes animate-loading-element {
     0% {
         transform: rotate(45deg);
@@ -49,20 +50,20 @@ const color = theme.global.name.value === 'dark' ? '#ffa726' : '#038cf5';
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     background-color: transparent;
-}
-.start-elem:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-top: 3px solid v-bind(color);
-    border-right: 3px solid v-bind(color);
-    border-left: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    border-radius: 50%;
-    animation: animate-start-element 2s linear infinite;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-top: 3px solid v-bind(color);
+        border-right: 3px solid v-bind(color);
+        border-left: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        border-radius: 50%;
+        animation: animate-start-element 2s linear infinite;
+    }
 }
 .text-start {
     font-family: sans-serif;
@@ -83,16 +84,16 @@ const color = theme.global.name.value === 'dark' ? '#ffa726' : '#038cf5';
     background: transparent;
     transform-origin: left;
     animation: animate-loading-element 2s linear infinite;
-}
-.text-loading:before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: v-bind(color);
-    top: -6px;
-    right: -8px;
-    box-shadow: 0 0 20px v-bind(color);
+    &:before {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: v-bind(color);
+        top: -6px;
+        right: -8px;
+        box-shadow: 0 0 20px v-bind(color);
+    }
 }
 </style>

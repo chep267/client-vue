@@ -45,5 +45,5 @@ const onSeen = () => {
         :spellcheck="false"
         :prepend-inner-icon="mdiLockOutline"
         :append-inner-icon="visible ? mdiEyeOff : mdiEye"
-        @click:append-inner="onSeen" />
+        @click:append-inner.stop="onSeen" />
 </template>

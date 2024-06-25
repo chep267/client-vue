@@ -18,14 +18,14 @@ import ButtonDev from '@module-global/components/AppHeader/ButtonDev.vue';
 <template>
     <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight">
         <template #prepend>
-            <app-logo />
+            <AppLogo />
         </template>
-        <v-app-bar-title>
-            <app-name />
+        <v-app-bar-title v-once>
+            <AppName />
         </v-app-bar-title>
         <template #append>
-            <button-dev />
-            <app-header-button-setting />
+            <ButtonDev />
+            <AppHeaderButtonSetting />
         </template>
     </v-app-bar>
 </template>

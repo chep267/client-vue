@@ -21,10 +21,10 @@ import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 
 const authStore = useAuthStore();
 const siderStore = useSiderStore();
-const openSider = ref(true);
 
 const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
+const openSider = ref(true);
 
 watch(isAuthentication, () => {
     if (isAuthentication.value) {
@@ -42,11 +42,11 @@ watch(isAuthentication, () => {
         :rail="!openSider || siderState === SiderState.collapse"
         :permanent="siderState !== SiderState.hidden"
         :app="true">
-        <app-sider-button-collapse
+        <AppSiderButtonCollapse
             :open-sider="openSider"
             :disabled="siderState !== SiderState.expand"
             @toggle-sider="openSider = !openSider" />
         <v-divider v-once />
-        <app-sider-menu-app :disabled-tooltip="openSider && siderState !== SiderState.collapse" />
+        <AppSiderMenuApp :disabled-tooltip="openSider && siderState !== SiderState.collapse" />
     </v-navigation-drawer>
 </template>

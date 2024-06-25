@@ -10,18 +10,20 @@ import { ref } from 'vue';
 /** components */
 import AppHeaderMenuSetting from '@module-global/components/AppHeader/AppHeaderMenuSetting.vue';
 
-const menu = ref(false);
+const isOpenMenu = ref(false);
 </script>
 
 <template>
-    <v-menu id="header-menu-setting" v-model="menu" :close-on-content-click="false" :offset="14">
+    <v-menu id="header-menu-setting" v-model="isOpenMenu" :close-on-content-click="false" :offset="10">
         <template #activator="{ props: MenuProps }">
             <v-tooltip :text="$t('module.global.components.menu.setting.tooltip')" location="bottom">
                 <template #activator="{ props: ToolTipProps }">
-                    <v-app-bar-nav-icon v-bind="{ ...MenuProps, ...ToolTipProps }" :color="menu ? 'primary' : undefined" />
+                    <v-app-bar-nav-icon
+                        v-bind="{ ...MenuProps, ...ToolTipProps }"
+                        :color="isOpenMenu ? 'primary' : undefined" />
                 </template>
             </v-tooltip>
         </template>
-        <app-header-menu-setting @close-menu="menu = false" />
+        <AppHeaderMenuSetting @close-menu="isOpenMenu = false" />
     </v-menu>
 </template>

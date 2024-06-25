@@ -31,7 +31,7 @@ const tabs = computed(() => [ListApp.find(({ path }) => route.path.includes(path
                     :prepend-icon="app.icon"
                     :title="$t(app.title)"
                     :color="tabs.includes(app.path) ? 'primary' : undefined"
-                    @click="push(app.path)" />
+                    @click.stop="push(app.path)" />
             </template>
         </v-tooltip>
     </v-list>

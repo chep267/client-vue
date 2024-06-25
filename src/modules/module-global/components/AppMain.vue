@@ -11,7 +11,7 @@ import AppSiderMini from '@module-global/components/AppSider/AppSiderMini.vue';
 
 <template>
     <v-main class="relative">
-        <app-sider-mini />
+        <AppSiderMini />
         <v-container class="w-full h-full" :fluid="true">
             <router-view />
         </v-container>

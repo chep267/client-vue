@@ -17,9 +17,9 @@ import './root.css';
 </script>
 
 <template>
-    <language-provider>
-        <theme-provider>
-            <main-screen />
-        </theme-provider>
-    </language-provider>
+    <LanguageProvider>
+        <ThemeProvider>
+            <MainScreen />
+        </ThemeProvider>
+    </LanguageProvider>
 </template>

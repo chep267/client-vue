@@ -13,7 +13,7 @@ defineProps<{
     openSider?: boolean;
 }>();
 
-const emit = defineEmits<{
+defineEmits<{
     (e: 'toggleSider'): void;
 }>();
 </script>
@@ -25,9 +25,11 @@ const emit = defineEmits<{
                 v-bind="props"
                 class="flex align-center justify-center w-full min-w-0 rounded-none"
                 :disabled="disabled"
-                @click="emit('toggleSider')">
-                <v-icon v-if="openSider" :icon="mdiChevronTripleLeft" :color="disabled ? 'disabled' : 'primary'" size="24" />
-                <v-icon v-else :icon="mdiChevronTripleRight" :color="disabled ? 'disabled' : 'primary'" size="24" />
+                @click.stop="$emit('toggleSider')">
+                <v-icon
+                    :icon="openSider ? mdiChevronTripleLeft : mdiChevronTripleRight"
+                    :color="disabled ? 'disabled' : 'primary'"
+                    size="24" />
             </v-btn>
         </template>
     </v-tooltip>

@@ -5,6 +5,7 @@
  *
  */
 
+import { computed } from 'vue';
 import { useTheme, useLocale } from 'vuetify';
 import { storeToRefs } from 'pinia';
 import { useCookies } from '@vueuse/integrations/useCookies';
@@ -14,12 +15,18 @@ import { mdiPalette, mdiWeatherNight, mdiWhiteBalanceSunny, mdiGoogleTranslate, 
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
+import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+
+/** utils */
+import { setI18nLanguage } from '@module-language/utils/i18n.ts';
 
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 import { useSignout } from '@module-auth/hooks/useSignout.ts';
-import { setI18nLanguage } from '@module-language/utils/i18n.ts';
-import { computed } from 'vue';
+
+/** types */
+import type { TypeLocale } from '@module-language/models';
+import type { TypeTheme } from '@module-theme/models';
 
 type TypeMenuData = {
     id: string;
@@ -32,17 +39,17 @@ type TypeMenuData = {
     subMenu?: TypeMenuData[];
 };
 
-const theme = useTheme();
-const locale = useLocale();
-const authStore = useAuthStore();
-const cookies = useCookies();
-const SIGN_OUT = useSignout();
-
-const { isAuthentication } = storeToRefs(authStore);
-
 const emit = defineEmits<{
     (e: 'closeMenu'): void;
 }>();
+
+const theme = useTheme();
+const locale = useLocale();
+const cookies = useCookies();
+const authStore = useAuthStore();
+const SIGN_OUT = useSignout();
+
+const { isAuthentication } = storeToRefs(authStore);
 
 const menuBase: TypeMenuData[] = [
     {
@@ -106,11 +113,11 @@ const menuAuth = computed<TypeMenuData[]>(() => {
     ];
 });
 
-const setTheme = (value: 'dark' | 'light') => {
+const setTheme = (value: TypeTheme) => {
     theme.global.name.value = value;
     cookies.set(AppKey.theme, value);
 };
-const setLocale = async (value: 'vi' | 'en') => {
+const setLocale = async (value: TypeLocale) => {
     cookies.set(AppKey.locale, value);
     await setI18nLanguage(value);
     locale.current.value = value;
@@ -126,13 +133,13 @@ const signout = () => {
 </script>
 
 <template>
-    <v-card class="mx-auto" width="267">
+    <v-card class="mx-auto" :width="ScreenSize.AppBarExpandWidth">
         <v-list>
             <v-list-group v-for="menu in menuBase.concat(menuAuth)" :key="menu.id" :value="menu.id">
                 <template #activator="{ props: vListProps }">
                     <v-list-item v-show="!menu.hidden" v-bind="vListProps" :title="$t(menu.title)">
                         <template #prepend>
-                            <v-icon :icon="menu.icon" :color="menu.iconColor"></v-icon>
+                            <v-icon :icon="menu.icon" :color="menu.iconColor" />
                         </template>
                     </v-list-item>
                 </template>
@@ -142,10 +149,10 @@ const signout = () => {
                     :key="subMenu.id"
                     :title="$t(subMenu.title)"
                     :value="subMenu.id"
-                    @click="subMenu.onClick">
+                    @click.stop="subMenu.onClick">
                     <template #prepend>
                         <v-btn v-if="subMenu.loading" :loading="true" variant="text" />
-                        <v-icon v-else :icon="subMenu.icon" :color="subMenu.iconColor"></v-icon>
+                        <v-icon v-else :icon="subMenu.icon" :color="subMenu.iconColor" />
                     </template>
                 </v-list-item>
             </v-list-group>

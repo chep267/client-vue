@@ -10,5 +10,5 @@ import { VLocaleProvider } from 'vuetify/components/VLocaleProvider';
 </script>
 
 <template>
-    <v-locale-provider><slot /></v-locale-provider>
+    <VLocaleProvider><slot /></VLocaleProvider>
 </template>

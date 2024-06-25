@@ -10,5 +10,5 @@ import { VThemeProvider } from 'vuetify/components/VThemeProvider';
 </script>
 
 <template>
-    <v-theme-provider><slot /></v-theme-provider>
+    <VThemeProvider><slot /></VThemeProvider>
 </template>

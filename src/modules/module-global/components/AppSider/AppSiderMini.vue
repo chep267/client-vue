@@ -23,13 +23,15 @@ const siderStore = useSiderStore();
 
 const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
-const headerHeight = `${ScreenSize.HeaderHeight}px`;
 
 const tab = computed(() => ListApp.find(({ path }) => route.path.includes(path))?.path || '');
 </script>
 
 <template>
-    <v-card v-if="isAuthentication && siderState === SiderState.hidden" class="sticky app-bar-mini">
+    <v-card
+        v-if="isAuthentication && siderState === SiderState.hidden"
+        class="sticky overscroll-contain"
+        :style="`top: ${ScreenSize.HeaderHeight}px;`">
         <v-tabs :v-model="tab" slider-color="primary" align-tabs="center" show-arrows center-active grow>
             <v-tooltip v-for="app in ListApp" :key="app.id" :text="$t(app.title)" location="bottom">
                 <template #activator="{ props }">
@@ -41,10 +43,3 @@ const tab = computed(() => ListApp.find(({ path }) => route.path.includes(path))
         </v-tabs>
     </v-card>
 </template>
-
-<style scoped lang="scss">
-.app-bar-mini {
-    top: v-bind(headerHeight);
-    overscroll-behavior: contain;
-}
-</style>
