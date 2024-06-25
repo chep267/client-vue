@@ -37,13 +37,14 @@ const inputEmailRef = ref<HTMLInputElement | null>(null);
 const inputPasswordRef = ref<HTMLInputElement | null>(null);
 
 const onSubmit = handleSubmit(
-    (data) =>
+    (data) => {
         REGISTER.mutate(data, {
             onError: () => {
                 fieldEmail.setErrors('module.auth.notify.register.error');
                 focusInput({ elem: inputEmailRef.value });
             },
-        }),
+        });
+    },
     ({ errors }) => {
         focusInput({ elem: errors.email ? inputEmailRef.value : inputPasswordRef.value });
     }
@@ -51,22 +52,22 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <auth-form-title :text="$t('module.auth.form.title.register')" />
+    <AuthFormTitle :text="$t('module.auth.form.title.register')" />
     <v-form
-        class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10 auth-form"
+        class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
         @submit.prevent="onSubmit">
-        <input-email
+        <InputEmail
             v-model="fieldEmail.value.value"
             :autofocus="true"
-            :set-ref="(elem: HTMLInputElement | null) => (inputEmailRef = elem)"
-            :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null" />
-        <input-password
+            :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null"
+            @set-ref="(elem: HTMLInputElement | null) => (inputEmailRef = elem)" />
+        <InputPassword
             v-model="fieldPassword.value.value"
-            :set-ref="(elem: HTMLInputElement | null) => (inputPasswordRef = elem)"
-            :error-messages="fieldPassword.errorMessage.value ? $t(fieldPassword.errorMessage.value) : null" />
-        <auth-form-breadcrumbs />
+            :error-messages="fieldPassword.errorMessage.value ? $t(fieldPassword.errorMessage.value) : null"
+            @set-ref="(elem: HTMLInputElement | null) => (inputPasswordRef = elem)" />
+        <AuthFormBreadcrumbs />
         <div class="flex w-full justify-end">
-            <auth-form-button-submit :text="$t('module.auth.button.register')" :loading="REGISTER.isPending.value" />
+            <AuthFormButtonSubmit :text="$t('module.auth.button.register')" :loading="REGISTER.isPending.value" />
         </div>
     </v-form>
 </template>

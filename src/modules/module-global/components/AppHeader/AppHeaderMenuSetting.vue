@@ -39,7 +39,7 @@ type TypeMenuData = {
     subMenu?: TypeMenuData[];
 };
 
-const emit = defineEmits<{
+const emits = defineEmits<{
     (e: 'closeMenu'): void;
 }>();
 
@@ -126,7 +126,7 @@ const signout = () => {
     SIGN_OUT.mutate(
         {},
         {
-            onSettled: () => emit('closeMenu'),
+            onSettled: () => emits('closeMenu'),
         }
     );
 };

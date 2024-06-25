@@ -58,22 +58,22 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <auth-form-title :text="$t('module.auth.form.title.signin')" />
+    <AuthFormTitle :text="$t('module.auth.form.title.signin')" />
     <v-form
-        class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10 auth-form"
+        class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
         @submit.prevent="onSubmit">
-        <input-email
+        <InputEmail
             v-model="fieldEmail.value.value"
             :autofocus="true"
             :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null"
             @set-ref="(elem) => (inputEmailRef = elem)" />
-        <input-password
+        <InputPassword
             v-model="fieldPassword.value.value"
             :error-messages="fieldPassword.errorMessage.value ? $t(fieldPassword.errorMessage.value) : null"
             @set-ref="(elem) => (inputPasswordRef = elem)" />
-        <auth-form-breadcrumbs />
+        <AuthFormBreadcrumbs />
         <div class="flex w-full justify-end">
-            <auth-form-button-submit :text="$t('module.auth.button.signin')" :loading="SIGN_IN.isPending.value" />
+            <AuthFormButtonSubmit :text="$t('module.auth.button.signin')" :loading="SIGN_IN.isPending.value" />
         </div>
     </v-form>
 </template>

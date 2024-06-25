@@ -48,9 +48,9 @@ const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
     <div class="flex flex-row w-full text-router">
         <template v-for="(item, index) in breadcrumbs" :key="item.path">
             <span v-if="index > 0" class="text-router px-1">{{ append }}</span>
-            <router-link class="text-router hover:underline" :to="item.path">
+            <RouterLink class="text-router hover:underline" :to="item.path">
                 {{ $t(item.title) }}
-            </router-link>
+            </RouterLink>
         </template>
     </div>
 </template>

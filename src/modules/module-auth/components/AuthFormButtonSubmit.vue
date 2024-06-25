@@ -5,16 +5,28 @@
  *
  */
 
-import { type ExtractPropTypes } from 'vue';
-
-/** components */
 import { VBtn } from 'vuetify/components/VBtn';
 
-interface ButtonProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VBtn>> {}
+/** types */
+import type { ExtractPropTypes } from 'vue';
 
-defineProps<ButtonProps>();
+interface ButtonProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VBtn>> {
+    type: string;
+    width: string | number;
+    color: string;
+    size: string;
+    text: string;
+    loading: boolean;
+}
+
+const props = withDefaults(defineProps<ButtonProps>(), {
+    type: 'submit',
+    width: '50%',
+    size: 'large',
+    color: 'primary',
+});
 </script>
 
 <template>
-    <v-btn width="50%" size="large" color="primary" type="submit" />
+    <v-btn v-bind="props" />
 </template>

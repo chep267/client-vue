@@ -18,13 +18,13 @@ type TypeElem = HTMLInputElement | null;
 
 defineProps<InputProps>();
 
-const emit = defineEmits<{
+const emits = defineEmits<{
     (e: 'setRef', elem: TypeElem): void;
 }>();
 
 const inputRef = ref<TypeElem>(null);
 
-watch(inputRef, () => emit('setRef', inputRef.value));
+watch(inputRef, () => emits('setRef', inputRef.value));
 </script>
 
 <template>

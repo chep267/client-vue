@@ -21,14 +21,14 @@ type TypeElem = HTMLInputElement | null;
 
 defineProps<InputProps>();
 
-const emit = defineEmits<{
+const emits = defineEmits<{
     (e: 'setRef', elem: TypeElem): void;
 }>();
 
 const inputRef = ref<TypeElem>(null);
 const visible = ref(false);
 
-watch(inputRef, () => emit('setRef', inputRef.value));
+watch(inputRef, () => emits('setRef', inputRef.value));
 
 const onSeen = () => {
     focusInput({ elem: inputRef.value, fnCallback: () => (visible.value = !visible.value) });
