@@ -5,15 +5,9 @@
  *
  */
 
+/** libs */
 import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
-
-/** components */
-import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
-import InputEmail from '@module-auth/components/InputEmail.vue';
-import InputPassword from '@module-auth/components/InputPassword.vue';
-import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
-import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput.ts';
@@ -21,6 +15,13 @@ import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
 
 /** hooks */
 import { useRegister } from '@module-auth/hooks/useRegister.ts';
+
+/** components */
+import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
+import InputEmail from '@module-auth/components/InputEmail.vue';
+import InputPassword from '@module-auth/components/InputPassword.vue';
+import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
+import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 const { handleSubmit } = useForm({
     initialValues: {

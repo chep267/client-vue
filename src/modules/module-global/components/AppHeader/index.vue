@@ -13,6 +13,7 @@ import AppLogo from '@module-global/components/AppHeader/AppLogo.vue';
 import AppName from '@module-global/components/AppHeader/AppName.vue';
 import AppHeaderButtonSetting from '@module-global/components/AppHeader/AppHeaderButtonSetting.vue';
 import ButtonDev from '@module-global/components/AppHeader/ButtonDev.vue';
+import Timer from '@module-global/components/AppHeader/Timer.vue';
 </script>
 
 <template>
@@ -20,8 +21,11 @@ import ButtonDev from '@module-global/components/AppHeader/ButtonDev.vue';
         <template #prepend>
             <AppLogo />
         </template>
-        <v-app-bar-title v-once>
-            <AppName />
+        <v-app-bar-title>
+            <div class="flex flex-row items-center gap-10">
+                <AppName />
+                <Timer />
+            </div>
         </v-app-bar-title>
         <template #append>
             <ButtonDev />

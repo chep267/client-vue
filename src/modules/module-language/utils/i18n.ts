@@ -4,12 +4,14 @@
  *
  */
 
+/** libs */
 import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
+import { localeObject } from '@module-language/constants/localeObject.ts';
 
 /** utils */
 import { getDeviceLanguage } from './getDeviceLanguage.ts';
@@ -20,13 +22,15 @@ import type { TypeLocale } from '@module-language/models';
 
 const cookies = useCookies();
 
-export const defaultLocale = cookies.get(AppKey.locale) || getDeviceLanguage() || 'en';
+export const defaultLocale = cookies.get(AppKey.locale) || getDeviceLanguage() || localeObject.en;
 
 export const i18n = createI18n({
     legacy: false,
     locale: defaultLocale,
-    fallbackLocale: 'en', // set fallback locale
-    messages: undefined, // set locale messages
+    globalInjection: true,
+    fallbackLocale: localeObject.en,
+    availableLocales: [localeObject.vi, localeObject.en],
+    messages: {},
 });
 
 async function loadLocaleMessages(locale: TypeLocale) {

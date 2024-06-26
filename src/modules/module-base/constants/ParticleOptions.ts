@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import colors from 'vuetify/util/colors';
 
 export const optionsLight = {

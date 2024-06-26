@@ -10,6 +10,7 @@ export const en = Object.freeze({
     'module.global.components.sider.tooltip.expand': 'Expand',
     'module.global.components.sider.app.feed': 'New feed',
     'module.global.components.sider.app.messenger': 'Messenger',
+    'module.global.components.sider.app.calendar': 'Calendar',
 
     'module.global.components.menu.setting.tooltip': 'Setting',
     'module.global.components.menu.setting.other': 'Other setting',

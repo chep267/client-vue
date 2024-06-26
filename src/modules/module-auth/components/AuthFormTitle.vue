@@ -5,6 +5,7 @@
  *
  */
 
+/** libs */
 import { useTheme } from 'vuetify';
 
 defineProps<{

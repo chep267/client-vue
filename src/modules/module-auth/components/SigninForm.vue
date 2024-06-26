@@ -5,16 +5,10 @@
  *
  */
 
+/** libs */
 import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
 import { useCookies } from '@vueuse/integrations/useCookies';
-
-/** components */
-import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
-import InputEmail from '@module-auth/components/InputEmail.vue';
-import InputPassword from '@module-auth/components/InputPassword.vue';
-import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
-import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
@@ -25,6 +19,13 @@ import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
 
 /** hooks */
 import { useSignin } from '@module-auth/hooks/useSignin.ts';
+
+/** components */
+import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
+import InputEmail from '@module-auth/components/InputEmail.vue';
+import InputPassword from '@module-auth/components/InputPassword.vue';
+import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
+import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 const cookies = useCookies();
 const { handleSubmit } = useForm({

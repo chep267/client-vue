@@ -4,6 +4,7 @@
  *
  */
 
+/** types */
 import type { UserInfo } from 'firebase/compat';
 
 export type TypeAuthStore = {

@@ -22,6 +22,9 @@ const AuthScreen = () => import(/* webpackChunkName: "auth-screen" */ '@module-a
 const FeedScreen = () => import(/* webpackChunkName: "feed-screen" */ '@module-global/screens/FeedScreen.vue');
 const MessengerScreen = () => import(/* webpackChunkName: "messenger-screen" */ '@module-global/screens/MessengerScreen.vue');
 
+const CalendarScreen = () =>
+    import(/* webpackChunkName: "calendar-screen" */ '@module-calendar/screens/CalendarScreen/index.vue');
+
 const routes = [
     /** authentication */
     {
@@ -53,6 +56,10 @@ const routes = [
     {
         path: ScreenPath.messenger,
         component: MessengerScreen,
+    },
+    {
+        path: ScreenPath.calendar,
+        component: CalendarScreen,
     },
     {
         path: ScreenPath.notFound,

@@ -5,7 +5,7 @@
  *
  */
 
-/** icons */
+/** libs */
 import { mdiBell } from '@mdi/js';
 
 /** hooks */

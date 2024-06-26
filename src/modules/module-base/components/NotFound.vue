@@ -5,6 +5,7 @@
  *
  */
 
+/** types */
 import type { SVGAttributes } from 'vue';
 
 const props = defineProps</* @vue-ignore */ SVGAttributes>();

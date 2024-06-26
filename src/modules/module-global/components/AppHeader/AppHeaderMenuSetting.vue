@@ -5,6 +5,7 @@
  *
  */
 
+/** libs */
 import { computed } from 'vue';
 import { useTheme, useLocale } from 'vuetify';
 import { storeToRefs } from 'pinia';
@@ -15,6 +16,7 @@ import { mdiPalette, mdiWeatherNight, mdiWhiteBalanceSunny, mdiGoogleTranslate, 
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
+import { localeObject } from '@module-language/constants/localeObject.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** utils */
@@ -87,7 +89,7 @@ const menuBase: TypeMenuData[] = [
                 id: 'module.language.en',
                 title: 'module.language.en',
                 icon: 'flag:en',
-                onClick: () => setLocale('en'),
+                onClick: () => setLocale(localeObject.en),
             },
         ],
     },

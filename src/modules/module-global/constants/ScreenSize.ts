@@ -6,8 +6,9 @@
 
 export const ScreenSize = Object.freeze({
     HeaderHeight: 64,
+    AppBarMiniHeight: 48,
     AppBarCollapseWidth: 56,
     AppBarExpandWidth: 267,
     AppbarHiddenBreakpoint: 600,
-    AppbarCollapseBreakpoint: 900,
+    AppbarCollapseBreakpoint: 1030, // 900,
 });

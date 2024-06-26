@@ -5,7 +5,7 @@
  *
  */
 
-/** components */
+/** libs */
 import { VLocaleProvider } from 'vuetify/components/VLocaleProvider';
 </script>
 

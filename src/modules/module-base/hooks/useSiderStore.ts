@@ -4,9 +4,10 @@
  *
  */
 
+/** libs */
 import { defineStore } from 'pinia';
 
-/** types */
+/** constants */
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 type TypeSiderStore = {

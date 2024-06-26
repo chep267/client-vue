@@ -10,6 +10,7 @@ export const vi = Object.freeze({
     'module.global.components.sider.tooltip.expand': 'Mở rộng',
     'module.global.components.sider.app.feed': 'Bảng tin',
     'module.global.components.sider.app.messenger': 'Trò chuyện',
+    'module.global.components.sider.app.calendar': 'Lịch',
 
     'module.global.components.menu.setting.tooltip': 'Cài đặt',
     'module.global.components.menu.setting.other': 'Cài đặt khác',

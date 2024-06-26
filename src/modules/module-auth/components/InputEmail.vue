@@ -5,14 +5,12 @@
  *
  */
 
+/** libs */
 import { type ExtractPropTypes, ref, watch } from 'vue';
-
-/** components */
 import { VTextField } from 'vuetify/components/VTextField';
-
-/** icons */
 import { mdiAccount } from '@mdi/js';
 
+/** types */
 interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}
 type TypeElem = HTMLInputElement | null;
 

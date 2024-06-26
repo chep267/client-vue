@@ -5,13 +5,14 @@
  *
  */
 
+/** libs */
 import { onMounted } from 'vue';
-
-/** components */
-import StartLoading from '@module-base/components/StartLoading.vue';
 
 /** hooks */
 import { useRestart } from '@module-auth/hooks/useRestart.ts';
+
+/** components */
+import StartLoading from '@module-base/components/StartLoading.vue';
 
 const RESTART = useRestart();
 

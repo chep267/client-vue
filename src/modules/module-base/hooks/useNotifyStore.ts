@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import { defineStore } from 'pinia';
 
 /** types */

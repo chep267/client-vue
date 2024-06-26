@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import Particles from '@tsparticles/vue3';
@@ -15,7 +16,7 @@ import { i18n } from '@module-language/utils/i18n.ts';
 import { vueComponents } from '@root/utils/vueComponents.ts';
 import { routers } from '@root/utils/routers.ts';
 
-/** App */
+/** components */
 import App from '@root/components/App.vue';
 
 const pinia = createPinia();

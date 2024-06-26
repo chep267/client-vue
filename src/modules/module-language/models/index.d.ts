@@ -6,4 +6,3 @@
 
 /** types */
 export * from './data.d.ts';
-export * from './component.d.ts';

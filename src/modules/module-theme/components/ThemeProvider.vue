@@ -5,7 +5,7 @@
  *
  */
 
-/** components */
+/** libs */
 import { VThemeProvider } from 'vuetify/components/VThemeProvider';
 </script>
 

@@ -5,19 +5,20 @@
  *
  */
 
+/** libs */
 import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
+/** hooks */
+import { useSiderStore, SiderState } from '@module-base/hooks/useSiderStore.ts';
+import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
+
 /** components */
 import AppSiderButtonCollapse from '@module-global/components/AppSider/AppSiderButtonCollapse.vue';
 import AppSiderMenuApp from '@module-global/components/AppSider/AppSiderMenuApp.vue';
-
-/** store */
-import { useSiderStore, SiderState } from '@module-base/hooks/useSiderStore.ts';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 
 const authStore = useAuthStore();
 const siderStore = useSiderStore();
