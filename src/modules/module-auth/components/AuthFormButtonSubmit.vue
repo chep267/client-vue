@@ -12,12 +12,12 @@ import { VBtn } from 'vuetify/components/VBtn';
 import type { ExtractPropTypes } from 'vue';
 
 interface ButtonProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VBtn>> {
-    type: string;
-    width: string | number;
-    color: string;
-    size: string;
     text: string;
-    loading: boolean;
+    type?: string;
+    width?: string | number;
+    color?: string;
+    size?: string;
+    loading?: boolean;
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {

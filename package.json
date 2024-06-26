@@ -17,7 +17,7 @@
         "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss|*.vue)\"",
         "predeploy": "pnpm run build",
         "deploy": "gh-pages -d dist",
-        "update": "ncu -u && npm i --legacy-peer-deps",
+        "update": "ncu -u && pnpm i",
         "analyze": "source-map-explorer 'dist/assets/*.js'"
     },
     "dependencies": {

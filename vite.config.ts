@@ -4,6 +4,8 @@
  *
  */
 
+
+/** libs */
 import { resolve } from 'node:path';
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -29,7 +31,7 @@ function resolveAlias() {
 export default ({ mode }) => {
     process.env = Object.assign(process.env, loadEnv(mode, process.cwd()));
     const isDevMode = process.env.VITE_APP_MODE === 'dev';
-    const port = Number(process.env.VITE_APP_PORT) || 8080;
+    const port = Number(process.env.VITE_APP_PORT) || 3000;
 
     return defineConfig({
         plugins: [basicSsl(), vue(), vuetify(), visualizer()],
