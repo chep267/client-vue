@@ -5,7 +5,6 @@
  */
 
 export const en = Object.freeze({
-    // title
     'module.global.components.sider.tooltip.collapse': 'Collapse',
     'module.global.components.sider.tooltip.expand': 'Expand',
     'module.global.components.sider.app.feed': 'New feed',

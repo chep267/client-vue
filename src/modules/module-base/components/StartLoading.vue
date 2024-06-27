@@ -9,8 +9,11 @@
 import { useTheme } from 'vuetify';
 import colors from 'vuetify/util/colors';
 
+/** constants */
+import { themeObject } from '@module-theme/constants/themeObject.ts';
+
 const theme = useTheme();
-const color = theme.global.name.value === 'dark' ? colors.amber.base : colors.blue.base;
+const color = theme.global.name.value === themeObject.dark ? colors.amber.base : colors.blue.base;
 </script>
 
 <template>

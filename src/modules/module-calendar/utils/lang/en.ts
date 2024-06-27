@@ -5,6 +5,7 @@
  */
 
 export const en = Object.freeze({
+    'module.calendar.title': 'Calendar',
     'module.calendar.router.name': 'Calendar',
     'module.calendar.text.today': 'Today',
     'module.calendar.text.solar': 'Solar calendar',
@@ -18,7 +19,7 @@ export const en = Object.freeze({
     'module.calendar.setting.display': 'Calendar display',
     'module.calendar.setting.display.default': 'Default',
     'module.calendar.setting.display.mon': 'Monday',
-    'module.calendar.setting.display.sat': 'Weekend',
+    'module.calendar.setting.display.week': 'Weekend',
     'module.calendar.setting.display.only.month': 'Only month',
     'module.calendar.setting.display.both.month': 'Both months',
 });

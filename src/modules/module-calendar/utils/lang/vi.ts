@@ -5,6 +5,7 @@
  */
 
 export const vi = Object.freeze({
+    'module.calendar.title': 'Lịch',
     'module.calendar.router.name': 'Lịch',
     'module.calendar.text.today': 'Hôm nay',
     'module.calendar.text.solar': 'Dương lịch',
@@ -19,7 +20,7 @@ export const vi = Object.freeze({
     'module.calendar.setting.display': 'Hiển thị lịch',
     'module.calendar.setting.display.default': 'Mặc định',
     'module.calendar.setting.display.mon': 'Đầu tuần',
-    'module.calendar.setting.display.sat': 'Cuối tuần',
+    'module.calendar.setting.display.week': 'Cuối tuần',
     'module.calendar.setting.display.only.month': 'Trong tháng',
     'module.calendar.setting.display.both.month': 'Ngoài tháng',
 });

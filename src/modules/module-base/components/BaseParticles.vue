@@ -10,11 +10,12 @@ import { useTheme } from 'vuetify';
 
 /** constants */
 import { optionsLight, optionsDark } from '@module-base/constants/ParticleOptions.ts';
+import { themeObject } from '@module-theme/constants/themeObject.ts';
 
 const theme = useTheme();
 </script>
 
 <template>
-    <vue-particles v-if="theme.global.name.value === 'dark'" id="ts-particles-dark" :options="optionsDark" />
+    <vue-particles v-if="theme.global.name.value === themeObject.dark" id="ts-particles-dark" :options="optionsDark" />
     <vue-particles v-else id="ts-particles-light" :options="optionsLight" />
 </template>

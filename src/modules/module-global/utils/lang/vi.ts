@@ -5,7 +5,6 @@
  */
 
 export const vi = Object.freeze({
-    // title
     'module.global.components.sider.tooltip.collapse': 'Thu nhỏ',
     'module.global.components.sider.tooltip.expand': 'Mở rộng',
     'module.global.components.sider.app.feed': 'Bảng tin',

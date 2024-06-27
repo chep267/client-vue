@@ -8,121 +8,161 @@
 /** libs */
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useLocale, useTheme } from 'vuetify';
+import { VDataTableVirtual } from 'vuetify/components';
+import dayjs, { type Dayjs } from 'dayjs';
 
 /** constants */
+import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** hooks */
 import { SiderState, useSiderStore } from '@module-base/hooks/useSiderStore.ts';
+import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
+import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices.ts';
 
+const theme = useTheme();
+const locale = useLocale();
 const siderStore = useSiderStore();
+const calendarStore = useCalendarStore();
+
 const { siderState } = storeToRefs(siderStore);
+const { display, day } = storeToRefs(calendarStore);
 
 const tableHeight = computed(() => {
     const headerHeight = ScreenSize.HeaderHeight;
     const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
-    const calendarTitleHeight = ScreenSize.HeaderHeight;
+    const calendarTitleHeight = ScreenSize.CalendarTitleHeight;
     const paddingHeight = 2 * 16;
     const borderHeight = 2;
     return `calc(100vh - ${headerHeight + appBarMiniHeight + calendarTitleHeight + paddingHeight + borderHeight}px)`;
 });
 
-const headers = [
-    { title: 'Boat Type', align: 'start', key: 'name' },
-    { title: 'Speed (knots)', align: 'end', key: 'speed' },
-    { title: 'Length (m)', align: 'end', key: 'length' },
-    { title: 'Price ($)', align: 'end', key: 'price' },
-    { title: 'Year', align: 'end', key: 'year' },
-];
+const data = computed(() => {
+    const matrixCalendar = genMatrixCalendarDayJS(day.value, display.value);
+    const output = reverseMatrix(matrixCalendar);
+    return output.map((item) => item);
+});
 
-const boats = [
-    {
-        name: 'Speedster',
-        speed: 35,
-        length: 22,
-        price: 300000,
-        year: 2021,
-    },
-    {
-        name: 'OceanMaster',
-        speed: 25,
-        length: 35,
-        price: 500000,
-        year: 2020,
-    },
-    {
-        name: 'Voyager',
-        speed: 20,
-        length: 45,
-        price: 700000,
-        year: 2019,
-    },
-    {
-        name: 'WaveRunner',
-        speed: 40,
-        length: 19,
-        price: 250000,
-        year: 2022,
-    },
-    {
-        name: 'SeaBreeze',
-        speed: 28,
-        length: 31,
-        price: 450000,
-        year: 2018,
-    },
-    {
-        name: 'HarborGuard',
-        speed: 18,
-        length: 50,
-        price: 800000,
-        year: 2017,
-    },
-    {
-        name: 'SlickFin',
-        speed: 33,
-        length: 24,
-        price: 350000,
-        year: 2021,
-    },
-    {
-        name: 'StormBreaker',
-        speed: 22,
-        length: 38,
-        price: 600000,
-        year: 2020,
-    },
-    {
-        name: 'WindSail',
-        speed: 15,
-        length: 55,
-        price: 900000,
-        year: 2019,
-    },
-    {
-        name: 'FastTide',
-        speed: 37,
-        length: 20,
-        price: 280000,
-        year: 2022,
-    },
-];
-
-const virtualBoats = computed(() => {
-    return [...Array(10000).keys()].map((i) => {
-        const boat = { ...boats[i % boats.length] };
-        boat.name = `${boat.name} #${i}`;
-        return boat;
+const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
+    let output: number[];
+    switch (display.value) {
+        case CalendarDisplay.weekend:
+            output = [6, 0, 1, 2, 3, 4, 5];
+            break;
+        case CalendarDisplay.monday:
+            output = [1, 2, 3, 4, 5, 6, 0];
+            break;
+        case CalendarDisplay.sunday:
+        default:
+            output = [0, 1, 2, 3, 4, 5, 6];
+            break;
+    }
+    return output.map((day) => {
+        const isWeekend = day === 0 || day === 6;
+        return {
+            key: `${day}`,
+            title: dayjs().day(day).locale(locale.current.value).format('ddd'),
+            align: 'center',
+            sortable: false,
+            value: (item) => (item[day] as Dayjs).date(),
+            headerProps: {
+                class: isWeekend ? 'text-red' : '',
+            },
+            cellProps: {
+                class: isWeekend ? 'text-red' : '',
+            },
+        };
     });
 });
 </script>
 
 <template>
-    <!--    <TableBase />-->
     <v-data-table-virtual
+        :class="{ 'rounded-0 table-scroll': true, 'table-scroll-dark': theme.global.name.value === themeObject.dark }"
         fixed-header
         :headers="headers"
-        :items="virtualBoats"
-        :height="tableHeight"
-        item-value="name"></v-data-table-virtual>
+        :items="data"
+        :hover="true"
+        :item-height="100"
+        :height="tableHeight" />
 </template>
+
+<style scoped lang="scss">
+.table {
+    &:deep(.v-table__wrapper) {
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+        &::-webkit-scrollbar-track {
+            //background-color: transparent;
+            //border-radius: 10px;
+
+            background: #202020;
+            border-left: 1px solid #2c2c2c;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #3e3e3e;
+            border: solid 3px #202020;
+            border-radius: 7px;
+
+            //background-color: transparent;
+            //border-radius: 10px;
+        }
+        &:hover {
+            &::-webkit-scrollbar-track {
+                background-color: gray;
+            }
+            &::-webkit-scrollbar-thumb {
+                //background-color: var(--v-theme-info);
+                background: white;
+            }
+        }
+    }
+}
+
+.table-scroll {
+    &:deep(.v-table__wrapper) {
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #e6e6e6;
+        }
+        &::-webkit-scrollbar-thumb {
+            min-height: 50px;
+            background: #b0b0b0;
+            border: solid 2px #e6e6e6;
+            border-radius: 7px;
+        }
+        &:hover {
+            &::-webkit-scrollbar-thumb {
+                background: var(--v-theme-grey-darken-2, #616161);
+            }
+        }
+    }
+}
+
+.table-scroll-dark {
+    &:deep(.v-table__wrapper) {
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #202020;
+            border-left: 1px solid #2c2c2c;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #3e3e3e;
+            border: solid 3px #202020;
+            border-radius: 7px;
+        }
+        &:hover {
+            &::-webkit-scrollbar-thumb {
+                background: grey;
+            }
+        }
+    }
+}
+</style>

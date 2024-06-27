@@ -4,12 +4,17 @@
  *
  */
 
+/** constants */
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
+
 /** types */
 import { type Dayjs } from 'dayjs';
 
 export type TypeCalendarStore = {
     today: Dayjs;
-    display: 'sun' | 'mon' | 'week';
+    display: keyof typeof CalendarDisplay;
     day: Dayjs;
     isOnlyMonth: boolean;
 };
+
+export type { Dayjs };

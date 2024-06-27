@@ -11,4 +11,5 @@ export const ScreenSize = Object.freeze({
     AppBarExpandWidth: 267,
     AppbarHiddenBreakpoint: 600,
     AppbarCollapseBreakpoint: 1030, // 900,
+    CalendarTitleHeight: 100,
 });

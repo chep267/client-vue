@@ -11,15 +11,18 @@ import { defineStore } from 'pinia';
 /** lang */
 import 'dayjs/locale/vi';
 
+/** constants */
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
+
 /** types */
-import type { TypeCalendarStore } from '@module-calendar/models/data';
+import type { TypeCalendarStore } from '@module-calendar/models';
 
 export const useCalendarStore = defineStore('calendar-store', {
     state: (): TypeCalendarStore => {
         const today = dayjs();
         return {
             today,
-            display: 'sun',
+            display: CalendarDisplay.sunday,
             day: today,
             isOnlyMonth: false,
         };

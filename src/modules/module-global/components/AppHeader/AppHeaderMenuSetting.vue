@@ -12,11 +12,26 @@ import { storeToRefs } from 'pinia';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** icons */
-import { mdiPalette, mdiWeatherNight, mdiWhiteBalanceSunny, mdiGoogleTranslate, mdiCogOutline, mdiLogout } from '@mdi/js';
+import {
+    mdiPalette,
+    mdiWeatherNight,
+    mdiWhiteBalanceSunny,
+    mdiGoogleTranslate,
+    mdiCogOutline,
+    mdiLogout,
+    mdiCalendar,
+    mdiCalendarWeek,
+    mdiCalendarWeekBegin,
+    mdiCalendarWeekend,
+    mdiCalendarMonth,
+    mdiCalendarPlus,
+} from '@mdi/js';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
 import { localeObject } from '@module-language/constants/localeObject.ts';
+import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** utils */
@@ -25,6 +40,7 @@ import { setI18nLanguage } from '@module-language/utils/i18n.ts';
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 import { useSignout } from '@module-auth/hooks/useSignout.ts';
+import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
 
 /** types */
 import type { TypeLocale } from '@module-language/models';
@@ -49,9 +65,44 @@ const theme = useTheme();
 const locale = useLocale();
 const cookies = useCookies();
 const authStore = useAuthStore();
+const calendarStore = useCalendarStore();
 const SIGN_OUT = useSignout();
 
 const { isAuthentication } = storeToRefs(authStore);
+const { display, isOnlyMonth } = storeToRefs(calendarStore);
+
+const calendarSubMenu: TypeMenuData['subMenu'] = [
+    {
+        id: 'module.calendar.setting.display.default',
+        title: 'module.calendar.setting.display.default',
+        icon: mdiCalendarWeek,
+        onClick: () => calendarStore.setDisplay(CalendarDisplay.sunday),
+    },
+    {
+        id: 'module.calendar.setting.display.mon',
+        title: 'module.calendar.setting.display.mon',
+        icon: mdiCalendarWeekBegin,
+        onClick: () => calendarStore.setDisplay(CalendarDisplay.monday),
+    },
+    {
+        id: 'module.calendar.setting.display.week',
+        title: 'module.calendar.setting.display.week',
+        icon: mdiCalendarWeekend,
+        onClick: () => calendarStore.setDisplay(CalendarDisplay.weekend),
+    },
+    {
+        id: 'module.calendar.setting.display.only.month',
+        title: 'module.calendar.setting.display.only.month',
+        icon: mdiCalendarMonth,
+        onClick: () => calendarStore.changeOnlyMonth(true),
+    },
+    {
+        id: 'module.calendar.setting.display.both.month',
+        title: 'module.calendar.setting.display.both.month',
+        icon: mdiCalendarPlus,
+        onClick: () => calendarStore.changeOnlyMonth(false),
+    },
+];
 
 const menuBase: TypeMenuData[] = [
     {
@@ -63,14 +114,14 @@ const menuBase: TypeMenuData[] = [
                 id: 'module.theme.dark',
                 title: 'module.theme.dark',
                 icon: mdiWeatherNight,
-                onClick: () => setTheme('dark'),
+                onClick: () => setTheme(themeObject.dark),
             },
             {
                 id: 'module.theme.light',
                 title: 'module.theme.light',
                 icon: mdiWhiteBalanceSunny,
                 iconColor: 'warning',
-                onClick: () => setTheme('light'),
+                onClick: () => setTheme(themeObject.light),
             },
         ],
     },
@@ -96,7 +147,20 @@ const menuBase: TypeMenuData[] = [
 ];
 
 const menuAuth = computed<TypeMenuData[]>(() => {
+    const menuOnlyMonth = calendarSubMenu[isOnlyMonth.value ? 4 : 3];
+    const _calendarSubMenu =
+        display.value === CalendarDisplay.sunday
+            ? [calendarSubMenu[1], calendarSubMenu[2], menuOnlyMonth]
+            : display.value === CalendarDisplay.monday
+              ? [calendarSubMenu[0], calendarSubMenu[2], menuOnlyMonth]
+              : [calendarSubMenu[0], calendarSubMenu[1], menuOnlyMonth];
     return [
+        {
+            id: 'calendar',
+            title: 'module.calendar.title',
+            icon: mdiCalendar,
+            subMenu: _calendarSubMenu,
+        },
         {
             id: 'others',
             title: 'module.global.components.menu.setting.other',

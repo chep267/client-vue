@@ -17,6 +17,7 @@ import { customSVGs } from '@module-base/icons';
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
 import { localeObject } from '@module-language/constants/localeObject.ts';
+import { themeObject } from '@module-theme/constants/themeObject.ts';
 
 /** messages */
 import { en, vi } from 'vuetify/locale';
@@ -36,7 +37,7 @@ export const vueComponents = createVuetify({
     },
     directives,
     theme: {
-        defaultTheme: cookies.get(AppKey.theme) || 'dark',
+        defaultTheme: cookies.get(AppKey.theme) || themeObject.dark,
     },
     icons: {
         defaultSet: 'mdi',
