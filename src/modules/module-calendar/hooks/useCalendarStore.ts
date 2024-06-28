@@ -27,15 +27,6 @@ export const useCalendarStore = defineStore('calendar-store', {
             isOnlyMonth: false,
         };
     },
-    getters: {
-        isToday(state) {
-            return (
-                state.day.year() === state.today.year() &&
-                state.day.month() === state.today.month() &&
-                state.day.date() === state.today.date()
-            );
-        },
-    },
     actions: {
         setDay(day: TypeCalendarStore['today']) {
             this.day = day;
@@ -43,12 +34,18 @@ export const useCalendarStore = defineStore('calendar-store', {
         setDisplay(display: TypeCalendarStore['display']) {
             this.display = display;
         },
-        isWeekend(day: TypeCalendarStore['today']) {
-            const thisDay = day.day();
+        setOnlyMonth(value: boolean) {
+            this.isOnlyMonth = value;
+        },
+        isWeekend(day: TypeCalendarStore['today'] | number) {
+            const thisDay = typeof day === 'number' ? day : day.day();
             return thisDay === 0 || thisDay == 6;
         },
-        changeOnlyMonth(value: boolean) {
-            this.isOnlyMonth = value;
+        isToMonth(day: TypeCalendarStore['today']) {
+            return this.day.year() === day.year() && this.day.month() === day.month();
+        },
+        isToday(day: TypeCalendarStore['today']) {
+            return this.today.year() === day.year() && this.today.month() === day.month() && this.today.date() === day.date();
         },
     },
 });

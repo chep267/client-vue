@@ -94,13 +94,13 @@ const calendarSubMenu: TypeMenuData['subMenu'] = [
         id: 'module.calendar.setting.display.only.month',
         title: 'module.calendar.setting.display.only.month',
         icon: mdiCalendarMonth,
-        onClick: () => calendarStore.changeOnlyMonth(true),
+        onClick: () => calendarStore.setOnlyMonth(true),
     },
     {
         id: 'module.calendar.setting.display.both.month',
         title: 'module.calendar.setting.display.both.month',
         icon: mdiCalendarPlus,
-        onClick: () => calendarStore.changeOnlyMonth(false),
+        onClick: () => calendarStore.setOnlyMonth(false),
     },
 ];
 

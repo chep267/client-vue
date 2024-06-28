@@ -8,21 +8,21 @@
 /** libs */
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useLocale, useTheme } from 'vuetify';
+import { useLocale } from 'vuetify';
 import { VDataTableVirtual } from 'vuetify/components';
 import dayjs, { type Dayjs } from 'dayjs';
 
 /** constants */
-import { themeObject } from '@module-theme/constants/themeObject.ts';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+
+/** utils */
+import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices.ts';
 
 /** hooks */
 import { SiderState, useSiderStore } from '@module-base/hooks/useSiderStore.ts';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
-import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices.ts';
 
-const theme = useTheme();
 const locale = useLocale();
 const siderStore = useSiderStore();
 const calendarStore = useCalendarStore();
@@ -60,7 +60,7 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
             break;
     }
     return output.map((day) => {
-        const isWeekend = day === 0 || day === 6;
+        const isWeekend = calendarStore.isWeekend(day);
         return {
             key: `${day}`,
             title: dayjs().day(day).locale(locale.current.value).format('ddd'),
@@ -70,8 +70,19 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
             headerProps: {
                 class: isWeekend ? 'text-red' : '',
             },
-            cellProps: {
-                class: isWeekend ? 'text-red' : '',
+            cellProps: (data) => {
+                const thisDay = data.item[day] as Dayjs;
+                const isToMonth = calendarStore.isToMonth(thisDay);
+                const isToDay = calendarStore.isToday(thisDay);
+                return {
+                    class: {
+                        'calendar-item': true,
+                        'text-blue': isToDay,
+                        'text-red': isWeekend,
+                        'calendar-item-diff-month': !isToMonth,
+                    },
+                    onclick: () => console.log('aaa'),
+                };
             },
         };
     });
@@ -80,89 +91,52 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
 
 <template>
     <v-data-table-virtual
-        :class="{ 'rounded-0 table-scroll': true, 'table-scroll-dark': theme.global.name.value === themeObject.dark }"
+        class="rounded-0 table-scroll"
         fixed-header
         :headers="headers"
         :items="data"
-        :hover="true"
         :item-height="100"
         :height="tableHeight" />
 </template>
 
 <style scoped lang="scss">
-.table {
-    &:deep(.v-table__wrapper) {
-        &::-webkit-scrollbar {
-            width: 15px;
-        }
-        &::-webkit-scrollbar-track {
-            //background-color: transparent;
-            //border-radius: 10px;
-
-            background: #202020;
-            border-left: 1px solid #2c2c2c;
-        }
-        &::-webkit-scrollbar-thumb {
-            background: #3e3e3e;
-            border: solid 3px #202020;
-            border-radius: 7px;
-
-            //background-color: transparent;
-            //border-radius: 10px;
-        }
-        &:hover {
-            &::-webkit-scrollbar-track {
-                background-color: gray;
-            }
-            &::-webkit-scrollbar-thumb {
-                //background-color: var(--v-theme-info);
-                background: white;
-            }
-        }
+.table-scroll:deep(.v-table__wrapper) {
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background: rgba(var(--v-border-color), var(--v-border-opacity));
+    }
+    &::-webkit-scrollbar-thumb {
+        min-height: 50px;
+        background: rgba(var(--v-border-color), 0.1);
+        border-radius: 7px;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+        background: rgba(var(--v-border-color), 0.3);
     }
 }
 
-.table-scroll {
-    &:deep(.v-table__wrapper) {
-        &::-webkit-scrollbar {
-            width: 12px;
-        }
-        &::-webkit-scrollbar-track {
-            background: #e6e6e6;
-        }
-        &::-webkit-scrollbar-thumb {
-            min-height: 50px;
-            background: #b0b0b0;
-            border: solid 2px #e6e6e6;
-            border-radius: 7px;
-        }
-        &:hover {
-            &::-webkit-scrollbar-thumb {
-                background: var(--v-theme-grey-darken-2, #616161);
-            }
-        }
+:deep(.calendar-item) {
+    position: relative;
+    &:before {
+        position: absolute;
+        content: '';
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        background-color: grey;
+        border-radius: 9999px;
+        width: 40px;
+        height: 40px;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 0;
+    }
+    &:hover:before {
+        opacity: 0.1;
     }
 }
-
-.table-scroll-dark {
-    &:deep(.v-table__wrapper) {
-        &::-webkit-scrollbar {
-            width: 15px;
-        }
-        &::-webkit-scrollbar-track {
-            background: #202020;
-            border-left: 1px solid #2c2c2c;
-        }
-        &::-webkit-scrollbar-thumb {
-            background: #3e3e3e;
-            border: solid 3px #202020;
-            border-radius: 7px;
-        }
-        &:hover {
-            &::-webkit-scrollbar-thumb {
-                background: grey;
-            }
-        }
-    }
+:deep(.calendar-item-diff-month) {
+    color: rgba(var(--v-theme-on-surface), 0.3) !important;
 }
 </style>

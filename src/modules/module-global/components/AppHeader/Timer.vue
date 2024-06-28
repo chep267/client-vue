@@ -18,7 +18,9 @@ const calendarStore = useCalendarStore();
 <template>
     <div class="flex flex-row justify-center items-center gap-2">
         <div class="w-2 h-2 dot rounded-full" />
-        <span class="text-sm">{{ calendarStore.today.locale(locale.current.value).format('dddd, DD/MM/YYYY') }}</span>
+        <span class="text-sm capitalize">
+            {{ calendarStore.today.locale(locale.current.value).format('dddd, DD/MM/YYYY') }}
+        </span>
         <div class="w-2 h-2 dot rounded-full" />
     </div>
 </template>

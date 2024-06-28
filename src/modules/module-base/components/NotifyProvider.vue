@@ -24,8 +24,7 @@ const { open, message, messageIntl, location, duration, color } = storeToRefs(no
         :location="location"
         :timeout="duration"
         :color="color"
-        elevation="24"
-        variant="tonal">
+        elevation="24">
         <span v-if="messageIntl">{{ $t(messageIntl) }}</span>
         <span v-else>{{ message }}</span>
     </v-snackbar>
