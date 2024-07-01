@@ -28,10 +28,12 @@ const siderStore = useSiderStore();
 const calendarStore = useCalendarStore();
 
 const { siderState } = storeToRefs(siderStore);
-const { day, isToday } = storeToRefs(calendarStore);
+const { day } = storeToRefs(calendarStore);
 const sizeIcon = 24;
 
 const miniMode = computed(() => siderState.value !== SiderState.expand);
+
+const isToday = computed(() => calendarStore.isToday(day.value));
 
 const titleCalendar = computed(() => {
     const month = day.value.format(locale.current.value === localeObject.en ? 'MMMM' : 'MM');

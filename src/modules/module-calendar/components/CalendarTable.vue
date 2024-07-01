@@ -10,7 +10,7 @@ import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useLocale } from 'vuetify';
 import { VDataTableVirtual } from 'vuetify/components';
-import dayjs, { type Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 
 /** constants */
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
@@ -23,12 +23,19 @@ import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/Ca
 import { SiderState, useSiderStore } from '@module-base/hooks/useSiderStore.ts';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
 
+/** types */
+import type { Dayjs } from '@module-calendar/models';
+
+const emits = defineEmits<{
+    (e: 'onSelectDay', day: Dayjs): void;
+}>();
+
 const locale = useLocale();
 const siderStore = useSiderStore();
 const calendarStore = useCalendarStore();
 
 const { siderState } = storeToRefs(siderStore);
-const { display, day } = storeToRefs(calendarStore);
+const { display, day, isOnlyMonth } = storeToRefs(calendarStore);
 
 const tableHeight = computed(() => {
     const headerHeight = ScreenSize.HeaderHeight;
@@ -68,20 +75,22 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
             sortable: false,
             value: (item) => (item[day] as Dayjs).date(),
             headerProps: {
-                class: isWeekend ? 'text-red' : '',
+                class: { 'text-red': isWeekend },
             },
             cellProps: (data) => {
                 const thisDay = data.item[day] as Dayjs;
                 const isToMonth = calendarStore.isToMonth(thisDay);
                 const isToDay = calendarStore.isToday(thisDay);
+                const hideDiffMonth = isOnlyMonth.value && !isToMonth;
                 return {
                     class: {
                         'calendar-item': true,
-                        'text-blue': isToDay,
+                        'calendar-item-today': isToDay,
                         'text-red': isWeekend,
                         'calendar-item-diff-month': !isToMonth,
+                        invisible: hideDiffMonth,
                     },
-                    onclick: () => console.log('aaa'),
+                    onclick: () => emits('onSelectDay', thisDay),
                 };
             },
         };
@@ -95,7 +104,6 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
         fixed-header
         :headers="headers"
         :items="data"
-        :item-height="100"
         :height="tableHeight" />
 </template>
 
@@ -119,23 +127,35 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
 
 :deep(.calendar-item) {
     position: relative;
+    height: 70px !important;
+    font-size: 1rem;
     &:before {
         position: absolute;
         content: '';
         top: calc(50% - 20px);
         left: calc(50% - 20px);
-        background-color: grey;
         border-radius: 9999px;
         width: 40px;
         height: 40px;
-        opacity: 0;
-        cursor: pointer;
+        background-color: transparent;
         z-index: 0;
+        cursor: pointer;
     }
-    &:hover:before {
-        opacity: 0.1;
+    &:hover {
+        font-weight: bold;
+        &:before {
+            background-color: rgba(var(--v-theme-on-surface), 0.1);
+        }
     }
 }
+
+:deep(.calendar-item-today) {
+    color: rgba(var(--v-theme-info));
+    &:before {
+        border: 1px solid rgba(var(--v-theme-info));
+    }
+}
+
 :deep(.calendar-item-diff-month) {
     color: rgba(var(--v-theme-on-surface), 0.3) !important;
 }
