@@ -68,7 +68,7 @@ watch(
         <v-card
             :class="{
                 'flex flex-column overflow-auto': true,
-                'max-sm:w-[calc(100vw-10px)]': true, // mobile
+                'max-sm:w-[calc(100vw-32px)]': true, // mobile
                 'sm:w-[600px]': true, // tablet
                 'lg:w-[750px]': true, // pc
             }"

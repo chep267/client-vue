@@ -79,15 +79,15 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
             },
             cellProps: (data) => {
                 const thisDay = data.item[day] as Dayjs;
-                const isToMonth = calendarStore.isToMonth(thisDay);
                 const isToDay = calendarStore.isToday(thisDay);
+                const isToMonth = calendarStore.isToMonth(thisDay);
                 const hideDiffMonth = isOnlyMonth.value && !isToMonth;
                 return {
                     class: {
                         'calendar-item': true,
                         'calendar-item-today': isToDay,
                         'text-red': isWeekend,
-                        'calendar-item-diff-month': !isToMonth,
+                        'calendar-item-diff-month': !isToDay && !isToMonth,
                         invisible: hideDiffMonth,
                     },
                     onclick: () => emits('onSelectDay', thisDay),
@@ -111,6 +111,7 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
 .table-scroll:deep(.v-table__wrapper) {
     &::-webkit-scrollbar {
         width: 10px;
+        height: 10px;
     }
     &::-webkit-scrollbar-track {
         background: rgba(var(--v-border-color), var(--v-border-opacity));

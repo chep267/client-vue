@@ -65,7 +65,11 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
                     <v-icon :icon="mdiChevronDoubleLeft" color="primary" :size="sizeIcon" />
                 </v-btn>
             </div>
-            <div class="flex justify-center truncate min-w-[270px]">
+            <div
+                :class="{
+                    'line-clamp-2 text-center': true,
+                    'sm:min-w-[270px]': true, // tablet
+                }">
                 <span class="text text-2xl">{{ titleCalendar }}</span>
             </div>
             <div class="flex gap-1">

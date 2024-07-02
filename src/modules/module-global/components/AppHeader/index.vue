@@ -24,7 +24,7 @@ import Timer from '@module-global/components/AppHeader/Timer.vue';
         <v-app-bar-title>
             <div class="flex flex-row items-center gap-10">
                 <AppName />
-                <Timer />
+                <Timer :class="'max-sm:invisible'" />
             </div>
         </v-app-bar-title>
         <template #append>
