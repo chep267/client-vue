@@ -5,7 +5,7 @@
  */
 
 export const en = Object.freeze({
-    'module.language.title': 'Language',
-    'module.language.vi': 'Vietnamese',
-    'module.language.en': 'English',
+    'module.language.text.title': 'Language',
+    'module.language.text.vi': 'Vietnamese',
+    'module.language.text.en': 'English',
 });

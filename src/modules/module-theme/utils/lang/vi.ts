@@ -5,7 +5,7 @@
  */
 
 export const vi = Object.freeze({
-    'module.theme.title': 'Giao diện',
-    'module.theme.dark': 'Tối',
-    'module.theme.light': 'Sáng',
+    'module.theme.text.title': 'Giao diện',
+    'module.theme.text.dark': 'Tối',
+    'module.theme.text.light': 'Sáng',
 });

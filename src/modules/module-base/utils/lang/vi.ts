@@ -4,8 +4,4 @@
  *
  */
 
-export const vi = Object.freeze({
-    'module.base.title': 'Giao diện',
-    'module.base.dark': 'Tối',
-    'module.base.light': 'Sáng',
-});
+export const vi = Object.freeze({});

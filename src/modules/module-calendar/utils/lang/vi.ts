@@ -5,8 +5,7 @@
  */
 
 export const vi = Object.freeze({
-    'module.calendar.title': 'Lịch',
-    'module.calendar.router.name': 'Lịch',
+    'module.calendar.text.title': 'Lịch',
     'module.calendar.text.today': 'Hôm nay',
     'module.calendar.text.solar': 'Dương lịch',
     'module.calendar.text.lunar': 'Âm lịch',

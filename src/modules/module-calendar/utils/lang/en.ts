@@ -5,8 +5,7 @@
  */
 
 export const en = Object.freeze({
-    'module.calendar.title': 'Calendar',
-    'module.calendar.router.name': 'Calendar',
+    'module.calendar.text.title': 'Calendar',
     'module.calendar.text.today': 'Today',
     'module.calendar.text.solar': 'Solar calendar',
     'module.calendar.text.lunar': 'Lunar calendar',

@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import { en as vuetifyEn } from 'vuetify/locale';
 
 /** utils */

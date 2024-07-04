@@ -11,9 +11,6 @@ import { useMutation } from '@tanstack/vue-query';
 /** apis */
 import { authApi } from '@module-auth/apis/authApi.ts';
 
-/** constants */
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
-
 /** utils */
 import { debounce } from '@module-base/utils/debounce.ts';
 
@@ -34,7 +31,7 @@ export function useSignin() {
         mutationFn: authApi.signin,
         onSuccess: async (response: TypeApiAuth['Signin']['Response'], data) => {
             await authStore.signin(response.data);
-            await push(ScreenPath.home);
+            await push('/');
             debounce(response.data.token.exp, () => SIGN_IN.mutate(data)).then();
         },
         onError: (error: AxiosError) => {

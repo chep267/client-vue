@@ -51,6 +51,7 @@ type TypeMenuData = {
     title: string;
     icon: string;
     iconColor?: string;
+    iconSize?: string | number;
     loading?: boolean;
     hidden?: boolean;
     onClick?(): void;
@@ -107,18 +108,18 @@ const calendarSubMenu: TypeMenuData['subMenu'] = [
 const menuBase: TypeMenuData[] = [
     {
         id: 'themes',
-        title: 'module.theme.title',
+        title: 'module.theme.text.title',
         icon: mdiPalette,
         subMenu: [
             {
-                id: 'module.theme.dark',
-                title: 'module.theme.dark',
+                id: 'module.theme.text.dark',
+                title: 'module.theme.text.dark',
                 icon: mdiWeatherNight,
                 onClick: () => setTheme(themeObject.dark),
             },
             {
-                id: 'module.theme.light',
-                title: 'module.theme.light',
+                id: 'module.theme.text.light',
+                title: 'module.theme.text.light',
                 icon: mdiWhiteBalanceSunny,
                 iconColor: 'warning',
                 onClick: () => setTheme(themeObject.light),
@@ -127,19 +128,21 @@ const menuBase: TypeMenuData[] = [
     },
     {
         id: 'languages',
-        title: 'module.language.title',
+        title: 'module.language.text.title',
         icon: mdiGoogleTranslate,
         subMenu: [
             {
-                id: 'module.language.vi',
-                title: 'module.language.vi',
+                id: 'module.language.text.vi',
+                title: 'module.language.text.vi',
                 icon: 'flag:vi',
+                iconSize: 20,
                 onClick: () => setLocale('vi'),
             },
             {
-                id: 'module.language.en',
-                title: 'module.language.en',
+                id: 'module.language.text.en',
+                title: 'module.language.text.en',
                 icon: 'flag:en',
+                iconSize: 20,
                 onClick: () => setLocale(localeObject.en),
             },
         ],
@@ -157,7 +160,7 @@ const menuAuth = computed<TypeMenuData[]>(() => {
     return [
         {
             id: 'calendar',
-            title: 'module.calendar.title',
+            title: 'module.calendar.text.title',
             icon: mdiCalendar,
             subMenu: _calendarSubMenu,
         },
@@ -218,7 +221,7 @@ const signout = () => {
                     @click.stop="subMenu.onClick">
                     <template #prepend>
                         <v-btn v-if="subMenu.loading" :loading="true" variant="text" />
-                        <v-icon v-else :icon="subMenu.icon" :color="subMenu.iconColor" />
+                        <v-icon v-else :icon="subMenu.icon" :color="subMenu.iconColor" :size="subMenu.iconSize" />
                     </template>
                 </v-list-item>
             </v-list-group>

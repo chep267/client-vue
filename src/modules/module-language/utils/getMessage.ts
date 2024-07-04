@@ -4,6 +4,9 @@
  *
  */
 
+/** constants */
+import { localeObject } from '@module-language/constants/localeObject.ts';
+
 /** types */
 import type { TypeLocale, TypeMessages } from '@module-language/models';
 
@@ -13,12 +16,13 @@ async function loadMessages(locale: TypeLocale): Promise<TypeMessages> {
     // dynamic import syntax tells webpack to split this module into its own chunk
     let module, messages;
     switch (locale) {
-        case 'vi':
-            module = await import(/* @vite-ignore */ `@lang/vi.ts`);
+        case localeObject.vi:
+            module = await import(/* @vite-ignore */ '@lang/vi.ts');
             messages = module.vi;
             break;
+        case localeObject.en:
         default:
-            module = await import(/* @vite-ignore */ `@lang/en.ts`);
+            module = await import(/* @vite-ignore */ '@lang/en.ts');
             messages = module.en;
             break;
     }

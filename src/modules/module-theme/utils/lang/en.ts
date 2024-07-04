@@ -5,7 +5,7 @@
  */
 
 export const en = Object.freeze({
-    'module.theme.title': 'Theme',
-    'module.theme.dark': 'Dark',
-    'module.theme.light': 'Light',
+    'module.theme.text.title': 'Theme',
+    'module.theme.text.dark': 'Dark',
+    'module.theme.text.light': 'Light',
 });

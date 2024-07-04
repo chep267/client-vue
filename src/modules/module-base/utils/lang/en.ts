@@ -4,8 +4,4 @@
  *
  */
 
-export const en = Object.freeze({
-    'module.base.title': 'Theme',
-    'module.base.dark': 'Dark',
-    'module.base.light': 'Light',
-});
+export const en = Object.freeze({});
