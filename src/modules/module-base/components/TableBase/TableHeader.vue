@@ -6,7 +6,7 @@
  */
 
 /** types */
-import type { TableHeaderProps } from '@module-base/models';
+import type { TableHeaderProps } from '@module-base/types';
 
 withDefaults(defineProps<TableHeaderProps>(), {});
 </script>

@@ -12,7 +12,7 @@ import { useCookies } from '@vueuse/integrations/useCookies';
 import { AppKey } from '@module-base/constants/AppKey.ts';
 
 /** types */
-import type { TypeApiAuth, TypeAuthStore } from '@module-auth/models';
+import type { TypeApiAuth, TypeAuthStore } from '@module-auth/types';
 
 const cookies = useCookies();
 

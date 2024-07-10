@@ -18,7 +18,7 @@ import { getDeviceLanguage } from './getDeviceLanguage.ts';
 import { getMessage } from './getMessage.ts';
 
 /** types */
-import type { TypeLocale } from '@module-language/models';
+import type { TypeLocale } from '@module-language/types';
 
 const cookies = useCookies();
 

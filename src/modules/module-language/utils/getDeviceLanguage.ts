@@ -8,7 +8,7 @@
 import { localeObject } from '@module-language/constants/localeObject.ts';
 
 /** types */
-import type { TypeLocale } from '@module-language/models';
+import type { TypeLocale } from '@module-language/types';
 
 export const getDeviceLanguage = (): TypeLocale => {
     const deviceLanguage = navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;

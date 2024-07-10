@@ -17,7 +17,7 @@ import TableHeader from '@module-base/components/TableBase/TableHeader.vue';
 import TableBody from '@module-base/components/TableBase/TableBody.vue';
 
 /** types */
-import type { TableBaseProps } from '@module-base/models';
+import type { TableBaseProps } from '@module-base/types';
 
 withDefaults(defineProps<TableBaseProps<T>>(), {});
 </script>

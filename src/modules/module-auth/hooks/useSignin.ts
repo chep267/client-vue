@@ -20,7 +20,7 @@ import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 
 /** types */
 import type { AxiosError } from 'axios';
-import type { TypeApiAuth } from '@module-auth/models';
+import type { TypeApiAuth } from '@module-auth/types';
 
 export function useSignin() {
     const notifyStore = useNotifyStore();

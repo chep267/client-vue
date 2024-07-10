@@ -12,9 +12,10 @@ import { useRoute } from 'vue-router';
 /** constants */
 import { ListApp } from '@module-global/constants/ListApp.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { SiderState } from '@module-global/constants/SiderState.ts';
 
 /** store */
-import { useSiderStore, SiderState } from '@module-base/hooks/useSiderStore.ts';
+import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
 import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 
 const route = useRoute();

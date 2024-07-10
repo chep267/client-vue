@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { TypeLocale } from '@module-language/models';
+import type { TypeLocale } from '@module-language/types';
 
 export const localeObject = Object.freeze<Record<TypeLocale, TypeLocale>>({
     vi: 'vi',

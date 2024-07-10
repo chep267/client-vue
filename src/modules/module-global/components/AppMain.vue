@@ -11,9 +11,10 @@ import { storeToRefs } from 'pinia';
 
 /** constants */
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { SiderState } from '@module-global/constants/SiderState.ts';
 
 /** hooks */
-import { SiderState, useSiderStore } from '@module-base/hooks/useSiderStore.ts';
+import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSider/AppSiderMini.vue';

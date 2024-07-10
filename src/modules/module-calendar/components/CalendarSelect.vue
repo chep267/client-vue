@@ -17,10 +17,11 @@ import { mdiChevronTripleLeft, mdiChevronTripleRight, mdiChevronDoubleLeft, mdiC
 /** constants */
 import { localeObject } from '@module-language/constants/localeObject.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { SiderState } from '@module-global/constants/SiderState.ts';
 
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
-import { SiderState, useSiderStore } from '@module-base/hooks/useSiderStore.ts';
+import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
 
 const locale = useLocale();
 const { t } = useI18n();

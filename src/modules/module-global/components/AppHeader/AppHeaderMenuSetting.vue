@@ -43,8 +43,8 @@ import { useSignout } from '@module-auth/hooks/useSignout.ts';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
 
 /** types */
-import type { TypeLocale } from '@module-language/models';
-import type { TypeTheme } from '@module-theme/models';
+import type { TypeLocale } from '@module-language/types';
+import type { TypeTheme } from '@module-theme/types';
 
 type TypeMenuData = {
     id: string;
@@ -94,7 +94,7 @@ const calendarSubMenu: TypeMenuData['subMenu'] = [
     {
         id: 'module.calendar.setting.display.only.month',
         title: 'module.calendar.setting.display.only.month',
-        icon: mdiCalendarMonth,
+        icon: mdiCalendar,
         onClick: () => calendarStore.setOnlyMonth(true),
     },
     {
@@ -161,7 +161,7 @@ const menuAuth = computed<TypeMenuData[]>(() => {
         {
             id: 'calendar',
             title: 'module.calendar.text.title',
-            icon: mdiCalendar,
+            icon: mdiCalendarMonth,
             subMenu: _calendarSubMenu,
         },
         {

@@ -15,7 +15,7 @@ import 'dayjs/locale/vi';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 
 /** types */
-import type { TypeCalendarStore } from '@module-calendar/models';
+import type { TypeCalendarStore } from '@module-calendar/types';
 
 export const useCalendarStore = defineStore('calendar-store', {
     state: (): TypeCalendarStore => {

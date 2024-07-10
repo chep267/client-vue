@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { TypeTheme } from '@module-theme/models';
+import type { TypeTheme } from '@module-theme/types';
 
 export const themeObject = Object.freeze<Record<TypeTheme, TypeTheme>>({
     dark: 'dark',

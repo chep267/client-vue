@@ -6,7 +6,7 @@
  */
 
 /** types */
-import type { TableBodyProps } from '@module-base/models';
+import type { TableBodyProps } from '@module-base/types';
 
 withDefaults(defineProps<TableBodyProps>(), {
     data: [],

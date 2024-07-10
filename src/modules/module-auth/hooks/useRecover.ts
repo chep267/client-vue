@@ -14,7 +14,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
 
 /** types */
-import type { AxiosError } from '@module-base/models';
+import type { AxiosError } from '@module-base/types';
 
 export function useRecover() {
     const notifyStore = useNotifyStore();

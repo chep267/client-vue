@@ -17,7 +17,7 @@ import { AppTimer } from '@module-base/constants/AppTimer.ts';
 import { debounce } from '@module-base/utils/debounce.ts';
 
 /** types */
-import type { AxiosError, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults } from '@module-base/models';
+import type { AxiosError, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults } from '@module-base/types';
 
 /** for default api */
 const axiosDefaultConfig: CreateAxiosDefaults = {

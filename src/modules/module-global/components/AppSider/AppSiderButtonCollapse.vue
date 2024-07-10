@@ -5,7 +5,7 @@
  *
  */
 
-/** icons */
+/** libs */
 import { mdiChevronTripleLeft, mdiChevronTripleRight } from '@mdi/js';
 
 defineProps<{

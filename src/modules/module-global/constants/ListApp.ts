@@ -5,7 +5,7 @@
  */
 
 /** icons */
-import { mdiFacebookMessenger, mdiHome, mdiCalendar } from '@mdi/js';
+import { mdiFacebookMessenger, mdiHome, mdiCalendarMonth } from '@mdi/js';
 
 /** constants */
 import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
@@ -34,6 +34,6 @@ export const ListApp: Readonly<TypeListAppItem[]> = Object.freeze([
         id: ScreenPath.calendar,
         path: ScreenPath.calendar,
         title: 'module.global.components.sider.app.calendar',
-        icon: mdiCalendar,
+        icon: mdiCalendarMonth,
     },
 ]);

@@ -15,16 +15,17 @@ import dayjs from 'dayjs';
 /** constants */
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { SiderState } from '@module-global/constants/SiderState.ts';
 
 /** utils */
 import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices.ts';
 
 /** hooks */
-import { SiderState, useSiderStore } from '@module-base/hooks/useSiderStore.ts';
+import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
 
 /** types */
-import type { Dayjs } from '@module-calendar/models';
+import type { Dayjs } from '@module-calendar/types';
 
 const emits = defineEmits<{
     (e: 'onSelectDay', day: Dayjs): void;

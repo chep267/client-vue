@@ -8,18 +8,9 @@
 import { defineStore } from 'pinia';
 
 /** types */
-import type { VSnackbar } from 'vuetify/components/VSnackbar';
+import type { TypeNotifyStore } from '@module-base/types';
 
-type TypeNotifyStore = {
-    open?: boolean;
-    message?: string;
-    messageIntl?: string;
-    duration?: number;
-    location?: VSnackbar['location'];
-    color: string;
-};
-
-const defaultNotify: TypeNotifyStore = Object.freeze({
+const defaultNotify = Object.freeze<TypeNotifyStore>({
     open: false,
     message: 'On develop!',
     messageIntl: '',

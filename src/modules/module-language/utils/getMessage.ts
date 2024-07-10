@@ -8,7 +8,7 @@
 import { localeObject } from '@module-language/constants/localeObject.ts';
 
 /** types */
-import type { TypeLocale, TypeMessages } from '@module-language/models';
+import type { TypeLocale, TypeMessages } from '@module-language/types';
 
 const messagesCache = {} as Record<TypeLocale, TypeMessages>;
 

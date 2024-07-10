@@ -5,8 +5,8 @@
  */
 
 /** types */
-import type { TypeCallApiPayload, TypeResponseApi } from '@module-base/models';
-import type { TypeUser } from '@module-user/models';
+import type { TypeCallApiPayload, TypeResponseApi } from '@module-base/types';
+import type { TypeUser } from '@module-user/types';
 
 export interface TypeApiAuth {
     Signin: {

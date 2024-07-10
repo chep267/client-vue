@@ -8,7 +8,7 @@
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 
 /** types */
-import type { TypeCalendarStore, Dayjs } from '@module-calendar/models';
+import type { TypeCalendarStore, Dayjs } from '@module-calendar/types';
 
 export function genMatrixCalendar(time: Dayjs, display: TypeCalendarStore['display']) {
     const matrixCalendar: number[][] = Array.from({ length: 7 }, () => []);
