@@ -6,11 +6,12 @@
  */
 
 /** libs */
-import { computed } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 /** constants */
 import { ListApp } from '@module-global/constants/ListApp.ts';
+import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
 
 defineProps<{
     disabledTooltip?: boolean;
@@ -19,7 +20,11 @@ defineProps<{
 const route = useRoute();
 const { push } = useRouter();
 
-const tabs = computed(() => [ListApp.find(({ path }) => route.path.includes(path))?.path || '']);
+const tabs = ref<string[]>([ScreenPath.defaultPath]);
+
+watch(route, () => {
+    tabs.value = [ListApp.find(({ path }) => route.path.includes(path))?.path || ScreenPath.defaultPath];
+});
 </script>
 
 <template>
@@ -31,7 +36,7 @@ const tabs = computed(() => [ListApp.find(({ path }) => route.path.includes(path
                     :value="app.id"
                     :prepend-icon="app.icon"
                     :title="$t(app.title)"
-                    :color="tabs.includes(app.path) ? 'primary' : undefined"
+                    color="primary"
                     @click.stop="push(app.path)" />
             </template>
         </v-tooltip>

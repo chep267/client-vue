@@ -4,8 +4,11 @@
  *
  */
 
-export enum CalendarDisplay {
-    sunday = 'sunday',
-    monday = 'monday',
-    weekend = 'weekend',
-}
+/** types */
+import type { TypeCalendarDisplay } from '@module-calendar/types';
+
+export const CalendarDisplay = Object.freeze<Record<TypeCalendarDisplay, TypeCalendarDisplay>>({
+    sunday: 'sunday',
+    monday: 'monday',
+    weekend: 'weekend',
+});

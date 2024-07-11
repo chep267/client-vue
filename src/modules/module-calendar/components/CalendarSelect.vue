@@ -53,7 +53,7 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
 <template>
     <div
         :class="{ 'relative flex flex-row justify-between w-full p-3 gap-2': true, 'px-1': miniMode }"
-        :style="`height: ${ScreenSize.CalendarTitleHeight}px`">
+        :style="`height: ${ScreenSize.CalendarSelectHeight}px`">
         <v-btn :disabled="isToday" :class="{ text: !isToday, hidden: miniMode }" @click.stop="onChangeDay('today')">
             {{ t('module.calendar.text.today') }}
         </v-btn>

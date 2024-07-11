@@ -41,7 +41,7 @@ export const useCalendarStore = defineStore('calendar-store', {
             const thisDay = typeof day === 'number' ? day : day.day();
             return thisDay === 0 || thisDay == 6;
         },
-        isToMonth(day: TypeCalendarStore['today']) {
+        isInMonth(day: TypeCalendarStore['today']) {
             return this.day.year() === day.year() && this.day.month() === day.month();
         },
         isToday(day: TypeCalendarStore['today']) {

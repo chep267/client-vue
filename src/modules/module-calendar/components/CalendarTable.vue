@@ -41,10 +41,10 @@ const { display, day, isOnlyMonth } = storeToRefs(calendarStore);
 const tableHeight = computed(() => {
     const headerHeight = ScreenSize.HeaderHeight;
     const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
-    const calendarTitleHeight = ScreenSize.CalendarTitleHeight;
+    const calendarSelectHeight = ScreenSize.CalendarSelectHeight;
     const paddingHeight = 2 * 16;
     const borderHeight = 2;
-    return `calc(100vh - ${headerHeight + appBarMiniHeight + calendarTitleHeight + paddingHeight + borderHeight}px)`;
+    return `calc(100vh - ${headerHeight + appBarMiniHeight + calendarSelectHeight + paddingHeight + borderHeight}px)`;
 });
 
 const data = computed(() => {
@@ -81,14 +81,14 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
             cellProps: (data) => {
                 const thisDay = data.item[day] as Dayjs;
                 const isToDay = calendarStore.isToday(thisDay);
-                const isToMonth = calendarStore.isToMonth(thisDay);
-                const hideDiffMonth = isOnlyMonth.value && !isToMonth;
+                const isInMonth = calendarStore.isInMonth(thisDay);
+                const hideDiffMonth = isOnlyMonth.value && !isInMonth;
                 return {
                     class: {
                         'calendar-item': true,
                         'calendar-item-today': isToDay,
                         'text-red': isWeekend,
-                        'calendar-item-diff-month': !isToDay && !isToMonth,
+                        'calendar-item-diff-month': !isToDay && !isInMonth,
                         invisible: hideDiffMonth,
                     },
                     onclick: () => emits('onSelectDay', thisDay),
