@@ -23,3 +23,9 @@ html { overflow-y: auto }
   --v-theme-background: '';
   --v-theme-info: '';
 }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

@@ -32,7 +32,7 @@ const { siderState } = storeToRefs(siderStore);
 const { day } = storeToRefs(calendarStore);
 const sizeIcon = 24;
 
-const miniMode = computed(() => siderState.value !== SiderState.expand);
+const miniMode = computed(() => siderState.value === SiderState.hidden || siderState.value === SiderState.force);
 
 const isToday = computed(() => calendarStore.isToday(day.value));
 
@@ -52,17 +52,20 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
 
 <template>
     <div
-        :class="{ 'relative flex flex-row justify-between w-full p-3 gap-2': true, 'px-1': miniMode }"
+        :class="{
+            'relative flex flex-row justify-between w-full p-3 gap-2': true,
+            'px-1 !flex-col-reverse': miniMode,
+        }"
         :style="`height: ${ScreenSize.CalendarSelectHeight}px`">
-        <v-btn :disabled="isToday" :class="{ text: !isToday, hidden: miniMode }" @click.stop="onChangeDay('today')">
+        <v-btn :disabled="isToday" :class="{ 'w-fit': true, 'primary-text': !isToday }" @click.stop="onChangeDay('today')">
             {{ t('module.calendar.text.today') }}
         </v-btn>
         <div :class="{ 'flex flex-row justify-between gap-2': true, 'flex-1': miniMode }">
             <div class="flex gap-1">
-                <v-btn :class="{ buttonMini: miniMode }" @click.stop="onChangeDay('prev', 'year')">
+                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'year')">
                     <v-icon :icon="mdiChevronTripleLeft" color="primary" :size="sizeIcon" />
                 </v-btn>
-                <v-btn :class="{ buttonMini: miniMode }" @click.stop="onChangeDay('prev', 'month')">
+                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'month')">
                     <v-icon :icon="mdiChevronDoubleLeft" color="primary" :size="sizeIcon" />
                 </v-btn>
             </div>
@@ -71,13 +74,13 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
                     'line-clamp-2 text-center': true,
                     'sm:min-w-[270px]': true, // tablet
                 }">
-                <span class="text text-2xl">{{ titleCalendar }}</span>
+                <span class="primary-text text-2xl">{{ titleCalendar }}</span>
             </div>
             <div class="flex gap-1">
-                <v-btn :class="{ buttonMini: miniMode }" @click.stop="onChangeDay('next', 'month')">
+                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'month')">
                     <v-icon :icon="mdiChevronDoubleRight" color="primary" :size="sizeIcon" />
                 </v-btn>
-                <v-btn :class="{ buttonMini: miniMode }" @click.stop="onChangeDay('next', 'year')">
+                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'year')">
                     <v-icon :icon="mdiChevronTripleRight" color="primary" :size="sizeIcon" />
                 </v-btn>
             </div>
@@ -86,10 +89,10 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
 </template>
 
 <style scoped>
-.text {
+.primary-text {
     color: rgb(var(--v-theme-info));
 }
-.buttonMini {
+.button-mini {
     min-width: 34px;
     padding: 0;
 }
