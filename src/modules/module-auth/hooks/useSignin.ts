@@ -11,6 +11,9 @@ import { useMutation } from '@tanstack/vue-query';
 /** apis */
 import { authApi } from '@module-auth/apis/authApi.ts';
 
+/** constants */
+import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+
 /** utils */
 import { debounce } from '@module-base/utils/debounce.ts';
 
@@ -37,7 +40,6 @@ export function useSignin() {
         onError: (error: AxiosError) => {
             let messageIntl = '';
             const code = Number(error?.response?.status);
-
             switch (true) {
                 case !code || code >= 500:
                     messageIntl = 'module.auth.notify.server.error';
@@ -48,7 +50,7 @@ export function useSignin() {
                 default:
                     break;
             }
-            notifyStore.show({ color: 'red', messageIntl });
+            notifyStore.show({ color: NotifyColor.error, messageIntl });
         },
     });
 

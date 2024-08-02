@@ -14,6 +14,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
+import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
 
 /** utils */
@@ -54,7 +55,7 @@ export function useRestart() {
                 default:
                     break;
             }
-            notifyStore.show({ color: 'red', messageIntl });
+            notifyStore.show({ color: NotifyColor.error, messageIntl });
             await push(AuthScreenPath.signin);
         },
     });

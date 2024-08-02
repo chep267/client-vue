@@ -12,11 +12,12 @@ import { useMutation } from '@tanstack/vue-query';
 import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
+import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
 import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
 
 /** hooks */
-import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
+import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
 
 export function useSignout() {
     const { push } = useRouter();
@@ -30,7 +31,7 @@ export function useSignout() {
             await push(ScreenPath.start);
         },
         onError: () => {
-            notifyStore.show({ color: 'red', messageIntl: 'module.auth.notify.server.error' });
+            notifyStore.show({ color: NotifyColor.error, messageIntl: 'module.auth.notify.server.error' });
         },
     });
 }

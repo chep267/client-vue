@@ -10,6 +10,9 @@ import { useMutation } from '@tanstack/vue-query';
 /** apis */
 import { authApi } from '@module-auth/apis/authApi.ts';
 
+/** constants */
+import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
 
@@ -22,7 +25,7 @@ export function useRecover() {
     return useMutation({
         mutationFn: authApi.recover,
         onSuccess: () => {
-            notifyStore.show({ color: 'success', messageIntl: 'module.auth.notify.recover.success' });
+            notifyStore.show({ color: NotifyColor.success, messageIntl: 'module.auth.notify.recover.success' });
         },
         onError: (error: AxiosError) => {
             let messageIntl = '';
@@ -38,7 +41,7 @@ export function useRecover() {
                 default:
                     break;
             }
-            notifyStore.show({ color: 'red', messageIntl });
+            notifyStore.show({ color: NotifyColor.error, messageIntl });
         },
     });
 }

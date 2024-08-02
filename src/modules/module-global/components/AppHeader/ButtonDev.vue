@@ -8,6 +8,9 @@
 /** libs */
 import { mdiBell } from '@mdi/js';
 
+/** constants */
+import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
 
@@ -15,5 +18,5 @@ const notifyStore = useNotifyStore();
 </script>
 
 <template>
-    <v-btn v-once :icon="mdiBell" @click.stop="notifyStore.show({ color: 'warning' })" />
+    <v-btn v-once :icon="mdiBell" @click.stop="notifyStore.show({ color: NotifyColor.warning })" />
 </template>

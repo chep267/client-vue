@@ -7,6 +7,9 @@
 /** libs */
 import { defineStore } from 'pinia';
 
+/** constants */
+import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+
 /** types */
 import type { TypeNotifyStore } from '@module-base/types';
 
@@ -16,7 +19,7 @@ const defaultNotify = Object.freeze<TypeNotifyStore>({
     messageIntl: '',
     duration: 2000,
     location: 'top right',
-    color: '',
+    color: NotifyColor.default,
 });
 
 export const useNotifyStore = defineStore('notify-store', {

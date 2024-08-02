@@ -26,6 +26,7 @@ import InputEmail from '@module-auth/components/InputEmail.vue';
 import InputPassword from '@module-auth/components/InputPassword.vue';
 import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
+import type { AxiosError } from 'axios';
 
 const cookies = useCookies();
 const { handleSubmit } = useForm({
@@ -45,9 +46,21 @@ const inputPasswordRef = ref<HTMLInputElement | null>(null);
 const onSubmit = handleSubmit(
     (data) => {
         SIGN_IN.mutate(data, {
-            onError: () => {
-                fieldEmail.setErrors('module.auth.notify.signin.error');
-                fieldPassword.setErrors('module.auth.notify.signin.error');
+            onError: (error: AxiosError) => {
+                const code = Number(error?.response?.status);
+                let messageIntl = '';
+                switch (true) {
+                    case !code || code >= 500:
+                        messageIntl = 'module.auth.notify.server.error';
+                        break;
+                    case code >= 400:
+                        messageIntl = 'module.auth.notify.signin.error';
+                        break;
+                    default:
+                        break;
+                }
+                fieldEmail.setErrors(messageIntl);
+                fieldPassword.setErrors(messageIntl);
                 focusInput({ elem: inputEmailRef.value });
             },
         });
