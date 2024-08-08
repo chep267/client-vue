@@ -12,6 +12,7 @@ import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput.ts';
@@ -48,15 +49,13 @@ const onSubmit = handleSubmit(
         SIGN_IN.mutate(data, {
             onError: (error: AxiosError) => {
                 const code = Number(error?.response?.status);
-                let messageIntl = '';
+                let messageIntl;
                 switch (true) {
-                    case !code || code >= 500:
-                        messageIntl = 'module.auth.notify.server.error';
-                        break;
-                    case code >= 400:
-                        messageIntl = 'module.auth.notify.signin.error';
+                    case code >= 400 && code < 500:
+                        messageIntl = AuthLanguage.notify.signin.error;
                         break;
                     default:
+                        messageIntl = AuthLanguage.notify.server.error;
                         break;
                 }
                 fieldEmail.setErrors(messageIntl);
@@ -72,7 +71,7 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <AuthFormTitle :text="$t('module.auth.form.title.signin')" />
+    <AuthFormTitle :text="$t(AuthLanguage.component.title.signin)" />
     <v-form
         class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
         @submit.prevent="onSubmit">
@@ -87,7 +86,7 @@ const onSubmit = handleSubmit(
             @set-ref="(elem) => (inputPasswordRef = elem)" />
         <AuthFormBreadcrumbs />
         <div class="flex w-full justify-end">
-            <AuthFormButtonSubmit :text="$t('module.auth.button.signin')" :loading="SIGN_IN.isPending.value" />
+            <AuthFormButtonSubmit :text="$t(AuthLanguage.component.button.signin)" :loading="SIGN_IN.isPending.value" />
         </div>
     </v-form>
 </template>

@@ -12,6 +12,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
 import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
@@ -25,20 +26,17 @@ export function useRegister() {
     return useMutation({
         mutationFn: authApi.register,
         onSuccess: () => {
-            notifyStore.show({ color: NotifyColor.success, messageIntl: 'module.auth.notify.register.success' });
+            notifyStore.show({ color: NotifyColor.success, messageIntl: AuthLanguage.notify.register.success });
         },
         onError: (error: AxiosError) => {
-            let messageIntl = '';
             const code = Number(error?.response?.status);
-
+            let messageIntl;
             switch (true) {
-                case !code || code >= 500:
-                    messageIntl = 'module.auth.notify.server.error';
-                    break;
-                case code >= 400:
-                    messageIntl = 'module.auth.notify.register.error';
+                case code >= 400 && code < 500:
+                    messageIntl = AuthLanguage.notify.register.error;
                     break;
                 default:
+                    messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
             notifyStore.show({ color: NotifyColor.error, messageIntl });

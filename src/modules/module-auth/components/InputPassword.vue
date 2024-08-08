@@ -10,6 +10,9 @@ import { type ExtractPropTypes, ref, watch } from 'vue';
 import { VTextField } from 'vuetify/components/VTextField';
 import { mdiEye, mdiEyeOff, mdiLockOutline } from '@mdi/js';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput.ts';
 
@@ -38,7 +41,7 @@ const onSeen = () => {
         ref="inputRef"
         variant="outlined"
         :type="visible ? 'text' : 'password'"
-        :label="$t('module.auth.input.label.password')"
+        :label="$t(AuthLanguage.component.label.password)"
         :autocomplete="undefined"
         :spellcheck="false"
         :prepend-inner-icon="mdiLockOutline"

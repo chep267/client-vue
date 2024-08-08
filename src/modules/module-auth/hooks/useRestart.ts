@@ -16,6 +16,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 import { AppKey } from '@module-base/constants/AppKey.ts';
 import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** utils */
 import { debounce } from '@module-base/utils/debounce.ts';
@@ -42,17 +43,15 @@ export function useRestart() {
             await debounce(response.data.token.exp, () => RESTART.mutate({}));
         },
         onError: async (error: AxiosError) => {
-            let messageIntl = '';
-            const code = Number(error?.response?.status);
             cookies.remove(AppKey.uid);
+            const code = Number(error?.response?.status);
+            let messageIntl;
             switch (true) {
-                case !code || code >= 500:
-                    messageIntl = 'module.auth.notify.server.error';
-                    break;
-                case code >= 400:
-                    messageIntl = 'module.auth.notify.refresh.error';
+                case code >= 400 && code < 500:
+                    messageIntl = AuthLanguage.notify.refresh.error;
                     break;
                 default:
+                    messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
             notifyStore.show({ color: NotifyColor.error, messageIntl });

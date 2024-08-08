@@ -4,37 +4,41 @@
  *
  */
 
-export const en = Object.freeze({
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
+export const en = {
     // title
-    'module.auth.form.title.signin': 'Sign in',
-    'module.auth.form.title.register': 'Register',
-    'module.auth.form.title.recover': 'Recover',
-    'module.auth.form.title.verifyOTP': 'Verify code',
-    'module.auth.form.title.signout': 'Sign out',
+    [AuthLanguage.component.title.signin]: 'Sign in',
+    [AuthLanguage.component.title.register]: 'Register',
+    [AuthLanguage.component.title.recover]: 'Recover',
+    [AuthLanguage.component.title.verifyOTP]: 'Verify code',
+    [AuthLanguage.component.title.signout]: 'Sign out',
 
     // label
-    'module.auth.input.label.email': 'Email',
-    'module.auth.input.label.password': 'Password',
-    'module.auth.input.label.confirm.password': 'Re-enter the password',
+    [AuthLanguage.component.label.email]: 'Email',
+    [AuthLanguage.component.label.password]: 'Password',
+    [AuthLanguage.component.label.confirmPassword]: 'Re-enter the password',
 
     // status
-    'module.auth.status.email.empty': 'Email is empty!',
-    'module.auth.status.password.empty': 'Password is empty!',
-    'module.auth.status.email.invalid': 'Email is invalid!',
-    'module.auth.status.password.invalid': '8 characters minimum, 1 lower case, 1 upper case, 1 number, 1 special character!',
+    [AuthLanguage.status.email.empty]: 'Email is empty!',
+    [AuthLanguage.status.password.empty]: 'Password is empty!',
+    [AuthLanguage.status.email.invalid]: 'Email is invalid!',
+    [AuthLanguage.status.password.invalid]:
+        '8 characters minimum, 1 lower case, 1 upper case, 1 number, 1 special character!',
 
     // button
-    'module.auth.button.signin': 'Sign in',
-    'module.auth.button.register': 'Register',
-    'module.auth.button.recover': 'Confirm',
-    'module.auth.button.clear': 'Refresh',
+    [AuthLanguage.component.button.signin]: 'Sign in',
+    [AuthLanguage.component.button.register]: 'Register',
+    [AuthLanguage.component.button.recover]: 'Confirm',
+    [AuthLanguage.component.button.clear]: 'Refresh',
 
     // notify
-    'module.auth.notify.refresh.error': 'This session has expired!!',
-    'module.auth.notify.signin.error': 'Account or password is incorrect!',
-    'module.auth.notify.register.success': 'Account registered successfully!',
-    'module.auth.notify.register.error': 'Account already exists!',
-    'module.auth.notify.recover.success': 'Account recovered successfully!',
-    'module.auth.notify.recover.error': "Account doesn't exists!",
-    'module.auth.notify.server.error': 'The server is not responding, please try again later.',
-});
+    [AuthLanguage.notify.refresh.error]: 'This session has expired!',
+    [AuthLanguage.notify.signin.error]: 'Account or password is incorrect!',
+    [AuthLanguage.notify.register.success]: 'Account registered successfully!',
+    [AuthLanguage.notify.register.error]: 'Account already exists!',
+    [AuthLanguage.notify.recover.success]: 'Account recovered successfully!',
+    [AuthLanguage.notify.recover.error]: "Account doesn't exists!",
+    [AuthLanguage.notify.server.error]: 'The server is not responding, please try again later.',
+} as const;

@@ -6,18 +6,19 @@
 
 /** constants */
 import { Regex } from '@module-auth/constants/Regex.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 export const authFormSchema = {
     email(value?: string) {
         if (!value || !value.trim()) {
-            return 'module.auth.status.email.empty';
+            return AuthLanguage.status.email.empty;
         }
-        return !Regex.email.test(value) ? 'module.auth.status.email.invalid' : true;
+        return !Regex.email.test(value) ? AuthLanguage.status.email.invalid : true;
     },
     password(value?: string) {
         if (!value || !value.trim()) {
-            return 'module.auth.status.password.empty';
+            return AuthLanguage.status.password.empty;
         }
-        return !Regex.password.test(value) ? 'module.auth.status.password.invalid' : true;
+        return !Regex.password.test(value) ? AuthLanguage.status.password.invalid : true;
     },
 };

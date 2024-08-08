@@ -11,6 +11,7 @@ import { useRoute, RouterLink } from 'vue-router';
 
 /** constants */
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** types */
 interface AuthBreadcrumbsProps {
@@ -39,7 +40,7 @@ const breadcrumbs = computed(() => {
 
 const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
     return {
-        title: `module.auth.form.title.${type}`,
+        title: AuthLanguage.component.title[type],
         path: AuthScreenPath[type],
     };
 };

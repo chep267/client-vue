@@ -8,7 +8,6 @@
 import type { UserInfo } from 'firebase/compat';
 
 export type TypeAuthStore = {
-    state: 'start' | 'signed' | 'signin';
     prePath: string;
     user: null | UserInfo;
 };

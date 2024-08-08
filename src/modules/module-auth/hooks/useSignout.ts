@@ -14,6 +14,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 /** constants */
 import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
 import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
@@ -31,7 +32,7 @@ export function useSignout() {
             await push(ScreenPath.start);
         },
         onError: () => {
-            notifyStore.show({ color: NotifyColor.error, messageIntl: 'module.auth.notify.server.error' });
+            notifyStore.show({ color: NotifyColor.error, messageIntl: AuthLanguage.notify.server.error });
         },
     });
 }

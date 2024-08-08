@@ -12,6 +12,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
 import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
@@ -25,21 +26,17 @@ export function useRecover() {
     return useMutation({
         mutationFn: authApi.recover,
         onSuccess: () => {
-            notifyStore.show({ color: NotifyColor.success, messageIntl: 'module.auth.notify.recover.success' });
+            notifyStore.show({ color: NotifyColor.success, messageIntl: AuthLanguage.notify.recover.success });
         },
         onError: (error: AxiosError) => {
-            let messageIntl = '';
             const code = Number(error?.response?.status);
-
+            let messageIntl;
             switch (true) {
-                case !code || code >= 500:
-                    messageIntl = 'module.auth.notify.server.error';
-                    break;
-                case code >= 400:
-                    messageIntl = 'module.auth.notify.recover.error';
+                case code >= 400 && code < 500:
+                    messageIntl = AuthLanguage.notify.recover.error;
                     break;
                 default:
-                    break;
+                    messageIntl = AuthLanguage.notify.server.error;
             }
             notifyStore.show({ color: NotifyColor.error, messageIntl });
         },

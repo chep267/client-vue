@@ -4,38 +4,41 @@
  *
  */
 
-export const vi = Object.freeze({
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
+export const vi = {
     // title
-    'module.auth.form.title.signin': 'Đăng nhập',
-    'module.auth.form.title.register': 'Đăng kí',
-    'module.auth.form.title.recover': 'Quên mật khẩu',
-    'module.auth.form.title.verifyOTP': 'Mã xác thực',
-    'module.auth.form.title.signout': 'Đăng xuất',
+    [AuthLanguage.component.title.signin]: 'Đăng nhập',
+    [AuthLanguage.component.title.register]: 'Đăng kí',
+    [AuthLanguage.component.title.recover]: 'Quên mật khẩu',
+    [AuthLanguage.component.title.verifyOTP]: 'Mã xác thực',
+    [AuthLanguage.component.title.signout]: 'Đăng xuất',
 
     // label
-    'module.auth.input.label.email': 'Email',
-    'module.auth.input.label.password': 'Mật khẩu',
-    'module.auth.input.label.confirm.password': 'Xác nhận mật khẩu',
+    [AuthLanguage.component.label.email]: 'Email',
+    [AuthLanguage.component.label.password]: 'Mật khẩu',
+    [AuthLanguage.component.label.confirmPassword]: 'Xác nhận mật khẩu',
 
     // status
-    'module.auth.status.email.empty': 'Email trống!',
-    'module.auth.status.password.empty': 'Mật khẩu trống!',
-    'module.auth.status.email.invalid': 'Email không hợp lệ!',
-    'module.auth.status.password.invalid':
+    [AuthLanguage.status.email.empty]: 'Email trống!',
+    [AuthLanguage.status.password.empty]: 'Mật khẩu trống!',
+    [AuthLanguage.status.email.invalid]: 'Email không hợp lệ!',
+    [AuthLanguage.status.password.invalid]:
         'Tối thiểu 8 kí tự, bao gồm ít nhất 1 chữ thường, 1 chữ hoa, 1 số, 1 kí tự đặc biệt',
 
     // button
-    'module.auth.button.signin': 'Đăng nhập',
-    'module.auth.button.register': 'Đăng kí',
-    'module.auth.button.recover': 'Xác thực',
-    'module.auth.button.clear': 'Làm mới',
+    [AuthLanguage.component.button.signin]: 'Đăng nhập',
+    [AuthLanguage.component.button.register]: 'Đăng kí',
+    [AuthLanguage.component.button.recover]: 'Xác thực',
+    [AuthLanguage.component.button.clear]: 'Làm mới',
 
     // notify
-    'module.auth.notify.refresh.error': 'Phiên đăng nhập đã hết hạn!',
-    'module.auth.notify.signin.error': 'Tài khoản hoặc mật khẩu không chính xác!',
-    'module.auth.notify.register.success': 'Tài khoản đăng kí thành công!',
-    'module.auth.notify.register.error': 'Tài khoản đã tồn tại!',
-    'module.auth.notify.recover.success': 'Tài khoản xác thực thành công!',
-    'module.auth.notify.recover.error': 'Tài khoản không tồn tại!',
-    'module.auth.notify.server.error': 'Máy chủ không phản hồi, vui lòng thử lại sau.',
-});
+    [AuthLanguage.notify.refresh.error]: 'Phiên đăng nhập đã hết hạn!',
+    [AuthLanguage.notify.signin.error]: 'Tài khoản hoặc mật khẩu không chính xác!',
+    [AuthLanguage.notify.register.success]: 'Tài khoản đăng kí thành công!',
+    [AuthLanguage.notify.register.error]: 'Tài khoản đã tồn tại!',
+    [AuthLanguage.notify.recover.success]: 'Tài khoản xác thực thành công!',
+    [AuthLanguage.notify.recover.error]: 'Tài khoản không tồn tại!',
+    [AuthLanguage.notify.server.error]: 'Máy chủ không phản hồi, vui lòng thử lại sau.',
+} as const;

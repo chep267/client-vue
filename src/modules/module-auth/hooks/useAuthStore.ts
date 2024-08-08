@@ -18,11 +18,9 @@ const cookies = useCookies();
 
 export const useAuthStore = defineStore('auth-store', {
     state: (): TypeAuthStore => {
-        const uid = cookies.get(AppKey.uid);
         return {
             prePath: '/',
             user: null,
-            state: uid ? 'start' : 'signin',
         };
     },
     getters: {

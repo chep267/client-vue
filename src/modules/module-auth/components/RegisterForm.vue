@@ -9,6 +9,9 @@
 import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput.ts';
 import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
@@ -41,7 +44,7 @@ const onSubmit = handleSubmit(
     (data) => {
         REGISTER.mutate(data, {
             onError: () => {
-                fieldEmail.setErrors('module.auth.notify.register.error');
+                fieldEmail.setErrors(AuthLanguage.notify.register.error);
                 focusInput({ elem: inputEmailRef.value });
             },
         });
@@ -53,7 +56,7 @@ const onSubmit = handleSubmit(
 </script>
 
 <template>
-    <AuthFormTitle :text="$t('module.auth.form.title.register')" />
+    <AuthFormTitle :text="$t(AuthLanguage.component.title.register)" />
     <v-form
         class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
         @submit.prevent="onSubmit">
@@ -68,7 +71,7 @@ const onSubmit = handleSubmit(
             @set-ref="(elem: HTMLInputElement | null) => (inputPasswordRef = elem)" />
         <AuthFormBreadcrumbs />
         <div class="flex w-full justify-end">
-            <AuthFormButtonSubmit :text="$t('module.auth.button.register')" :loading="REGISTER.isPending.value" />
+            <AuthFormButtonSubmit :text="$t(AuthLanguage.component.button.register)" :loading="REGISTER.isPending.value" />
         </div>
     </v-form>
 </template>

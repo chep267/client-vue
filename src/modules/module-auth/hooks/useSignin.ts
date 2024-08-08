@@ -13,6 +13,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
 import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** utils */
 import { debounce } from '@module-base/utils/debounce.ts';
@@ -38,16 +39,14 @@ export function useSignin() {
             debounce(response.data.token.exp, () => SIGN_IN.mutate(data)).then();
         },
         onError: (error: AxiosError) => {
-            let messageIntl = '';
             const code = Number(error?.response?.status);
+            let messageIntl;
             switch (true) {
-                case !code || code >= 500:
-                    messageIntl = 'module.auth.notify.server.error';
-                    break;
-                case code >= 400:
-                    messageIntl = 'module.auth.notify.signin.error';
+                case code >= 400 && code < 500:
+                    messageIntl = AuthLanguage.notify.signin.error;
                     break;
                 default:
+                    messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
             notifyStore.show({ color: NotifyColor.error, messageIntl });

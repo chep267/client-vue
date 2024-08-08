@@ -10,6 +10,9 @@ import { type ExtractPropTypes, ref, watch } from 'vue';
 import { VTextField } from 'vuetify/components/VTextField';
 import { mdiAccount } from '@mdi/js';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** types */
 interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}
 type TypeElem = HTMLInputElement | null;
@@ -30,7 +33,7 @@ watch(inputRef, () => emits('setRef', inputRef.value));
         ref="inputRef"
         type="text"
         variant="outlined"
-        :label="$t('module.auth.input.label.email')"
+        :label="$t(AuthLanguage.component.label.email)"
         :autocomplete="false"
         :spellcheck="false"
         :prepend-inner-icon="mdiAccount" />
