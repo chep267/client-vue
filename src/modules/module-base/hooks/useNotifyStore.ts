@@ -13,14 +13,14 @@ import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
 /** types */
 import type { TypeNotifyStore } from '@module-base/types';
 
-const defaultNotify = Object.freeze<TypeNotifyStore>({
+const defaultNotify: Readonly<TypeNotifyStore> = {
     open: false,
     message: 'On develop!',
     messageIntl: '',
     duration: 2000,
     location: 'top right',
     color: NotifyColor.default,
-});
+};
 
 export const useNotifyStore = defineStore('notify-store', {
     state: (): TypeNotifyStore => ({ ...defaultNotify }),

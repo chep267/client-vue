@@ -4,4 +4,4 @@
  *
  */
 
-export const en = Object.freeze({});
+export const en = {} as const;

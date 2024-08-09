@@ -4,8 +4,11 @@
  *
  */
 
-export const vi = Object.freeze({
-    'module.theme.text.title': 'Giao diện',
-    'module.theme.text.dark': 'Tối',
-    'module.theme.text.light': 'Sáng',
-});
+/** constants */
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
+
+export const vi = {
+    [ThemeLanguage.component.label.router]: 'Giao diện',
+    [ThemeLanguage.component.label.dark]: 'Tối',
+    [ThemeLanguage.component.label.light]: 'Sáng',
+} as const;

@@ -4,7 +4,7 @@
  *
  */
 
-export const ScreenSize = Object.freeze({
+export const ScreenSize = {
     HeaderHeight: 64,
     AppBarMiniHeight: 48,
     AppBarCollapseWidth: 56,
@@ -12,4 +12,4 @@ export const ScreenSize = Object.freeze({
     AppbarHiddenBreakpoint: 600,
     AppbarCollapseBreakpoint: 1030, // 900,
     CalendarSelectHeight: 100,
-});
+} as const;

@@ -4,10 +4,10 @@
  *
  */
 
-export const AuthApi = Object.freeze({
+export const AuthApi = {
     signin: '/auth/signin',
     signout: '/auth/signout',
     restart: '/auth/restart',
     register: '/auth/register',
     recover: '/auth/recover',
-});
+} as const;

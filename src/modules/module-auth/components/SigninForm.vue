@@ -27,6 +27,8 @@ import InputEmail from '@module-auth/components/InputEmail.vue';
 import InputPassword from '@module-auth/components/InputPassword.vue';
 import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
+
+/** type */
 import type { AxiosError } from 'axios';
 
 const cookies = useCookies();

@@ -4,21 +4,24 @@
  *
  */
 
-export const en = Object.freeze({
-    'module.calendar.text.title': 'Calendar',
-    'module.calendar.text.today': 'Today',
-    'module.calendar.text.solar': 'Solar calendar',
-    'module.calendar.text.lunar': 'Lunar calendar',
-    'module.calendar.text.day': 'Day',
-    'module.calendar.text.month': 'Month',
-    'module.calendar.text.year': 'Year',
-    'module.calendar.component.calendar.title.text': '{month}, {year}',
-    'module.calendar.component.calendarInfo.title.solar.text': 'Solar calendar, ngày {day} tháng {month} năm {year}',
-    'module.calendar.component.calendarInfo.title.lunar.text': 'Lunar calendar, ngày {day} tháng {month} năm {year}',
-    'module.calendar.setting.display': 'Calendar display',
-    'module.calendar.setting.display.default': 'Default',
-    'module.calendar.setting.display.mon': 'Monday',
-    'module.calendar.setting.display.week': 'Weekend',
-    'module.calendar.setting.display.only.month': 'Only month',
-    'module.calendar.setting.display.both.month': 'Both months',
-});
+/** constants */
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+
+export const en = {
+    [CalendarLanguage.component.label.router]: 'Calendar',
+    [CalendarLanguage.component.label.today]: 'Today',
+    [CalendarLanguage.component.label.solar]: 'Solar calendar',
+    [CalendarLanguage.component.label.lunar]: 'Lunar calendar',
+    [CalendarLanguage.component.label.day]: 'Day',
+    [CalendarLanguage.component.label.month]: 'Month',
+    [CalendarLanguage.component.label.year]: 'Year',
+    [CalendarLanguage.component.label.calendarInfo.title]: '{month}, {year}',
+    [CalendarLanguage.component.label.calendarInfo.solar]: 'Solar calendar, ngày {day} tháng {month} năm {year}',
+    [CalendarLanguage.component.label.calendarInfo.lunar]: 'Lunar calendar, ngày {day} tháng {month} năm {year}',
+    [CalendarLanguage.component.label.display.title]: 'Calendar display',
+    [CalendarLanguage.component.label.display.default]: 'Default',
+    [CalendarLanguage.component.label.display.monday]: 'Monday',
+    [CalendarLanguage.component.label.display.weekend]: 'Weekend',
+    [CalendarLanguage.component.label.display.onlyMonth]: 'Only month',
+    [CalendarLanguage.component.label.display.bothMonth]: 'Both months',
+} as const;

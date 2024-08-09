@@ -7,9 +7,9 @@
 /** types */
 import type { TypeSiderState } from '@module-global/types';
 
-export const SiderState = Object.freeze<Record<TypeSiderState, TypeSiderState>>({
+export const SiderState: Readonly<Record<TypeSiderState, TypeSiderState>> = {
     collapse: 'collapse',
     expand: 'expand',
     hidden: 'hidden',
     force: 'force',
-});
+};

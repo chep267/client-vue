@@ -11,6 +11,13 @@ import { storeToRefs } from 'pinia';
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
 
+/** types */
+import type { VSnackbar } from 'vuetify/components/VSnackbar';
+
+defineProps<{
+    class?: string;
+}>();
+
 const notifyStore = useNotifyStore();
 const { open, message, messageIntl, location, duration, color } = storeToRefs(notifyStore);
 </script>
@@ -19,7 +26,7 @@ const { open, message, messageIntl, location, duration, color } = storeToRefs(no
     <v-snackbar
         v-model="open"
         v-memo="[open]"
-        class="top-16"
+        :class="$props.class"
         :multi-line="true"
         :location="location"
         :timeout="duration"

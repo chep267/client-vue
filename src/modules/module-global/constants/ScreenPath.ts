@@ -4,7 +4,7 @@
  *
  */
 
-export const ScreenPath = Object.freeze({
+export const ScreenPath = {
     home: '/',
     start: '/start',
     defaultPath: '/calendar',
@@ -12,4 +12,4 @@ export const ScreenPath = Object.freeze({
     messenger: '/messenger',
     calendar: '/calendar',
     notFound: '/not-found',
-});
+} as const;

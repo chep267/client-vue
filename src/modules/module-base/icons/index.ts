@@ -14,10 +14,10 @@ import FlagEn from './FlagEn.vue';
 /** types */
 import type { IconSet, IconProps } from 'vuetify';
 
-const customSvgNameToComponent = Object.freeze({
+const customSvgNameToComponent = {
     vi: FlagVi,
     en: FlagEn,
-});
+} as const;
 
 /** aliases */
 export const customSVGs: IconSet = {

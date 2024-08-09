@@ -12,6 +12,7 @@ import { useI18n } from 'vue-i18n';
 
 /** constants */
 import { localeObject } from '@module-language/constants/localeObject.ts';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
 
 /** utils */
 import VietnameseDate from '@module-calendar/utils/Lunar';
@@ -49,7 +50,7 @@ const titleCalendar = computed(() => {
     }
     const month = props.day.format(locale.current.value === localeObject.en ? 'MMMM' : 'MM');
     const year = props.day.format('YYYY');
-    return t('module.calendar.component.calendar.title.text', { month, year });
+    return t(CalendarLanguage.component.label.calendarInfo.title, { month, year });
 });
 
 const isToday = computed(() => (!props.day ? false : calendarStore.isToday(props.day)));
@@ -73,7 +74,7 @@ watch(
                 'lg:w-[750px]': true, // pc
             }"
             height="70vh">
-            <div v-if="day" class="solar flex flex-column flex-1 justify-space-between items-center min-h-96">
+            <div v-if="day" class="flex flex-column flex-1 justify-space-between items-center min-h-96">
                 <div class="flex w-full justify-end p-5">
                     <span
                         :class="{
@@ -107,17 +108,17 @@ watch(
             </div>
             <div v-if="lunarDay" class="lunar flex h-40 min-h-40 truncate">
                 <div class="flex flex-column flex-1 justify-space-between items-center p-2">
-                    <span class="text-xl">{{ $t('module.calendar.text.day') }}</span>
+                    <span class="text-xl">{{ $t(CalendarLanguage.component.label.day) }}</span>
                     <span class="text-3xl">{{ lunarDay.day }}</span>
                     <span class="text-xl">{{ `${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}` }}</span>
                 </div>
                 <div class="flex flex-column flex-1 justify-space-between items-center p-2">
-                    <span class="text-xl">{{ $t('module.calendar.text.month') }}</span>
+                    <span class="text-xl">{{ $t(CalendarLanguage.component.label.month) }}</span>
                     <span class="text-3xl">{{ lunarDay.month }}</span>
                     <span class="text-xl">{{ `${lunarDay.celestialStemOfMonth} ${lunarDay.terrestrialBranchOfMonth}` }}</span>
                 </div>
                 <div class="flex flex-column flex-1 justify-space-between items-center p-2">
-                    <span class="text-xl">{{ $t('module.calendar.text.year') }}</span>
+                    <span class="text-xl">{{ $t(CalendarLanguage.component.label.year) }}</span>
                     <span class="text-3xl">{{ lunarDay.year }}</span>
                     <span class="text-xl">{{ `${lunarDay.celestialStemOfYear} ${lunarDay.terrestrialBranchOfYear}` }}</span>
                 </div>
@@ -127,10 +128,6 @@ watch(
 </template>
 
 <style scoped lang="scss">
-.solar {
-    display: flex;
-}
-
 .lunar {
     border-top: 1px solid rgba(var(--v-theme-on-surface), 0.3);
     & > div:nth-child(2) {

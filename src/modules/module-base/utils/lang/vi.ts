@@ -4,4 +4,4 @@
  *
  */
 
-export const vi = Object.freeze({});
+export const vi = {} as const;

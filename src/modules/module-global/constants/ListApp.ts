@@ -9,6 +9,7 @@ import { mdiFacebookMessenger, mdiHome, mdiCalendarMonth } from '@mdi/js';
 
 /** constants */
 import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
 
 export type TypeListAppItem = {
     id: string;
@@ -17,23 +18,23 @@ export type TypeListAppItem = {
     icon: string;
 };
 
-export const ListApp: Readonly<TypeListAppItem[]> = Object.freeze([
+export const ListApp: Readonly<TypeListAppItem[]> = [
     {
         id: ScreenPath.feed,
         path: ScreenPath.feed,
-        title: 'module.global.components.sider.app.feed',
+        title: GlobalLanguage.component.label.feed,
         icon: mdiHome,
     },
     {
         id: ScreenPath.messenger,
         path: ScreenPath.messenger,
-        title: 'module.global.components.sider.app.messenger',
+        title: GlobalLanguage.component.label.messenger,
         icon: mdiFacebookMessenger,
     },
     {
         id: ScreenPath.calendar,
         path: ScreenPath.calendar,
-        title: 'module.global.components.sider.app.calendar',
+        title: GlobalLanguage.component.label.calendar,
         icon: mdiCalendarMonth,
     },
-]);
+];

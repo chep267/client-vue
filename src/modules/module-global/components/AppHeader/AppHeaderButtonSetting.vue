@@ -8,6 +8,9 @@
 /** libs */
 import { ref } from 'vue';
 
+/** constants */
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+
 /** components */
 import AppHeaderMenuSetting from '@module-global/components/AppHeader/AppHeaderMenuSetting.vue';
 
@@ -17,7 +20,7 @@ const isOpenMenu = ref(false);
 <template>
     <v-menu id="header-menu-setting" v-model="isOpenMenu" :close-on-content-click="false" :offset="10">
         <template #activator="{ props: MenuProps }">
-            <v-tooltip :text="$t('module.global.components.menu.setting.tooltip')" location="bottom">
+            <v-tooltip :text="$t(GlobalLanguage.component.label.setting)" location="bottom">
                 <template #activator="{ props: ToolTipProps }">
                     <v-app-bar-nav-icon
                         v-bind="{ ...MenuProps, ...ToolTipProps }"

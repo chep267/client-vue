@@ -4,10 +4,10 @@
  *
  */
 
-export const AppTimer = Object.freeze({
+export const AppTimer = {
     timeoutApi: 0,
     pendingApi: 600,
     searching: 300,
     notifyDuration: 2000,
     countdownError: 99,
-});
+} as const;

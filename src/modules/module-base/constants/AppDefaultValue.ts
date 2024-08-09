@@ -4,8 +4,8 @@
  *
  */
 
-export const AppDefaultValue = Object.freeze({
-    emptyArray: Object.freeze([]) as [],
-    emptyFunction: Object.freeze(() => {}),
-    emptyObject: Object.freeze<Record<any, any>>({}),
-});
+export const AppDefaultValue = {
+    emptyArray: [] as [],
+    emptyFunction: () => {},
+    emptyObject: {} as Record<any, any>,
+} as const;

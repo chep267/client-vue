@@ -30,9 +30,13 @@ import {
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
 import { localeObject } from '@module-language/constants/localeObject.ts';
+import { LangLanguage } from '@module-language/constants/LangLanguage.ts';
 import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
 
 /** utils */
 import { setI18nLanguage } from '@module-language/utils/i18n.ts';
@@ -74,32 +78,32 @@ const { display, isOnlyMonth } = storeToRefs(calendarStore);
 
 const calendarSubMenu: TypeMenuData['subMenu'] = [
     {
-        id: 'module.calendar.setting.display.default',
-        title: 'module.calendar.setting.display.default',
+        id: 'default',
+        title: CalendarLanguage.component.label.display.default,
         icon: mdiCalendarWeek,
         onClick: () => calendarStore.setDisplay(CalendarDisplay.sunday),
     },
     {
-        id: 'module.calendar.setting.display.mon',
-        title: 'module.calendar.setting.display.mon',
+        id: 'monday',
+        title: CalendarLanguage.component.label.display.monday,
         icon: mdiCalendarWeekBegin,
         onClick: () => calendarStore.setDisplay(CalendarDisplay.monday),
     },
     {
-        id: 'module.calendar.setting.display.week',
-        title: 'module.calendar.setting.display.week',
+        id: 'weekend',
+        title: CalendarLanguage.component.label.display.weekend,
         icon: mdiCalendarWeekend,
         onClick: () => calendarStore.setDisplay(CalendarDisplay.weekend),
     },
     {
-        id: 'module.calendar.setting.display.only.month',
-        title: 'module.calendar.setting.display.only.month',
+        id: 'onlyMonth',
+        title: CalendarLanguage.component.label.display.onlyMonth,
         icon: mdiCalendar,
         onClick: () => calendarStore.setOnlyMonth(true),
     },
     {
-        id: 'module.calendar.setting.display.both.month',
-        title: 'module.calendar.setting.display.both.month',
+        id: 'bothMonth',
+        title: CalendarLanguage.component.label.display.bothMonth,
         icon: mdiCalendarPlus,
         onClick: () => calendarStore.setOnlyMonth(false),
     },
@@ -108,18 +112,18 @@ const calendarSubMenu: TypeMenuData['subMenu'] = [
 const menuBase: TypeMenuData[] = [
     {
         id: 'themes',
-        title: 'module.theme.text.title',
+        title: ThemeLanguage.component.label.router,
         icon: mdiPalette,
         subMenu: [
             {
-                id: 'module.theme.text.dark',
-                title: 'module.theme.text.dark',
+                id: themeObject.dark,
+                title: ThemeLanguage.component.label.dark,
                 icon: mdiWeatherNight,
                 onClick: () => setTheme(themeObject.dark),
             },
             {
-                id: 'module.theme.text.light',
-                title: 'module.theme.text.light',
+                id: themeObject.light,
+                title: ThemeLanguage.component.label.light,
                 icon: mdiWhiteBalanceSunny,
                 iconColor: 'warning',
                 onClick: () => setTheme(themeObject.light),
@@ -128,19 +132,19 @@ const menuBase: TypeMenuData[] = [
     },
     {
         id: 'languages',
-        title: 'module.language.text.title',
+        title: LangLanguage.component.label.router,
         icon: mdiGoogleTranslate,
         subMenu: [
             {
-                id: 'module.language.text.vi',
-                title: 'module.language.text.vi',
+                id: localeObject.vi,
+                title: LangLanguage.component.label.vi,
                 icon: 'flag:vi',
                 iconSize: 20,
-                onClick: () => setLocale('vi'),
+                onClick: () => setLocale(localeObject.vi),
             },
             {
-                id: 'module.language.text.en',
-                title: 'module.language.text.en',
+                id: localeObject.en,
+                title: LangLanguage.component.label.en,
                 icon: 'flag:en',
                 iconSize: 20,
                 onClick: () => setLocale(localeObject.en),
@@ -160,19 +164,19 @@ const menuAuth = computed<TypeMenuData[]>(() => {
     return [
         {
             id: 'calendar',
-            title: 'module.calendar.text.title',
+            title: CalendarLanguage.component.label.router,
             icon: mdiCalendarMonth,
             subMenu: _calendarSubMenu,
         },
         {
             id: 'others',
-            title: 'module.global.components.menu.setting.other',
+            title: GlobalLanguage.component.label.otherSetting,
             icon: mdiCogOutline,
             hidden: !isAuthentication.value,
             subMenu: [
                 {
                     id: 'signout',
-                    title: 'module.global.components.menu.setting.signout',
+                    title: GlobalLanguage.component.label.signout,
                     icon: mdiLogout,
                     loading: SIGN_OUT.isPending.value,
                     onClick: signout,

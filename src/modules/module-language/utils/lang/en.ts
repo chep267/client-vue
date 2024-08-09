@@ -4,8 +4,11 @@
  *
  */
 
-export const en = Object.freeze({
-    'module.language.text.title': 'Language',
-    'module.language.text.vi': 'Vietnamese',
-    'module.language.text.en': 'English',
-});
+/** constants */
+import { LangLanguage } from '@module-language/constants/LangLanguage.ts';
+
+export const en = {
+    [LangLanguage.component.label.router]: 'Language',
+    [LangLanguage.component.label.vi]: 'Vietnamese',
+    [LangLanguage.component.label.en]: 'English',
+} as const;

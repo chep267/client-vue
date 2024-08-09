@@ -7,4 +7,4 @@
 export const AppEnv = {
     appName: import.meta.env.VITE_APP_NAME,
     apiHost: import.meta.env.VITE_APP_API_HOST,
-};
+} as const;

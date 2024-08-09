@@ -4,8 +4,8 @@
  *
  */
 
-export const AuthScreenPath = Object.freeze({
+export const AuthScreenPath = {
     signin: '/signin',
     register: '/register',
     recover: '/recover',
-});
+} as const;

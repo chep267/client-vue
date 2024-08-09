@@ -349,7 +349,7 @@ export const optionsLight = {
     smooth: true,
     zLayers: 100,
     name: 'Among Us',
-};
+} as const;
 
 export const optionsDark = {
     autoPlay: true,
@@ -693,4 +693,4 @@ export const optionsDark = {
     smooth: true,
     zLayers: 100,
     name: 'Among Us',
-};
+} as const;

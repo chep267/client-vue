@@ -4,9 +4,9 @@
  *
  */
 
-export const AppKey = Object.freeze({
+export const AppKey = {
     uid: 'local_uid',
     email: 'local_email',
     theme: 'local_theme',
     locale: 'local_locale',
-});
+} as const;

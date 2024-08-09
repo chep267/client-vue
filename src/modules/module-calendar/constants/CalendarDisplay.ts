@@ -7,8 +7,8 @@
 /** types */
 import type { TypeCalendarDisplay } from '@module-calendar/types';
 
-export const CalendarDisplay = Object.freeze<Record<TypeCalendarDisplay, TypeCalendarDisplay>>({
+export const CalendarDisplay: Readonly<Record<TypeCalendarDisplay, TypeCalendarDisplay>> = {
     sunday: 'sunday',
     monday: 'monday',
     weekend: 'weekend',
-});
+};

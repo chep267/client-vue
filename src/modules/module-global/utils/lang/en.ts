@@ -4,14 +4,16 @@
  *
  */
 
-export const en = Object.freeze({
-    'module.global.components.sider.tooltip.collapse': 'Collapse',
-    'module.global.components.sider.tooltip.expand': 'Expand',
-    'module.global.components.sider.app.feed': 'New feed',
-    'module.global.components.sider.app.messenger': 'Messenger',
-    'module.global.components.sider.app.calendar': 'Calendar',
+/** constants */
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
 
-    'module.global.components.menu.setting.tooltip': 'Setting',
-    'module.global.components.menu.setting.other': 'Other setting',
-    'module.global.components.menu.setting.signout': 'Sign out',
-});
+export const en = {
+    [GlobalLanguage.component.label.collapse]: 'Collapse',
+    [GlobalLanguage.component.label.expand]: 'Expand',
+    [GlobalLanguage.component.label.feed]: 'New feed',
+    [GlobalLanguage.component.label.messenger]: 'Messenger',
+    [GlobalLanguage.component.label.calendar]: 'Calendar',
+    [GlobalLanguage.component.label.setting]: 'Setting',
+    [GlobalLanguage.component.label.otherSetting]: 'Other setting',
+    [GlobalLanguage.component.label.signout]: 'Sign out',
+} as const;

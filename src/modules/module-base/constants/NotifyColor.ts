@@ -4,9 +4,9 @@
  *
  */
 
-export const NotifyColor = Object.freeze({
+export const NotifyColor = {
     default: '',
     error: 'red',
     warning: 'warning',
     success: 'success',
-});
+} as const;

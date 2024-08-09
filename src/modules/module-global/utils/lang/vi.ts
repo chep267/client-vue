@@ -4,14 +4,16 @@
  *
  */
 
-export const vi = Object.freeze({
-    'module.global.components.sider.tooltip.collapse': 'Thu nhỏ',
-    'module.global.components.sider.tooltip.expand': 'Mở rộng',
-    'module.global.components.sider.app.feed': 'Bảng tin',
-    'module.global.components.sider.app.messenger': 'Trò chuyện',
-    'module.global.components.sider.app.calendar': 'Lịch',
+/** constants */
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
 
-    'module.global.components.menu.setting.tooltip': 'Cài đặt',
-    'module.global.components.menu.setting.other': 'Cài đặt khác',
-    'module.global.components.menu.setting.signout': 'Đăng xuất',
-});
+export const vi = {
+    [GlobalLanguage.component.label.collapse]: 'Thu nhỏ',
+    [GlobalLanguage.component.label.expand]: 'Mở rộng',
+    [GlobalLanguage.component.label.feed]: 'Bảng tin',
+    [GlobalLanguage.component.label.messenger]: 'Trò chuyện',
+    [GlobalLanguage.component.label.calendar]: 'Lịch',
+    [GlobalLanguage.component.label.setting]: 'Cài đặt',
+    [GlobalLanguage.component.label.otherSetting]: 'Cài đặt khác',
+    [GlobalLanguage.component.label.signout]: 'Đăng xuất',
+} as const;

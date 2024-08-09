@@ -4,22 +4,24 @@
  *
  */
 
-export const vi = Object.freeze({
-    'module.calendar.text.title': 'Lịch',
-    'module.calendar.text.today': 'Hôm nay',
-    'module.calendar.text.solar': 'Dương lịch',
-    'module.calendar.text.lunar': 'Âm lịch',
-    'module.calendar.text.day': 'Ngày',
-    'module.calendar.text.month': 'Tháng',
-    'module.calendar.text.year': 'Năm',
+/** constants */
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
 
-    'module.calendar.component.calendar.title.text': 'Tháng {month} năm {year}',
-    'module.calendar.component.calendarInfo.title.solar.text': 'Dương lịch, ngày {day} tháng {month} năm {year}',
-    'module.calendar.component.calendarInfo.title.lunar.text': 'Âm lịch, ngày {day} tháng {month} năm {year}',
-    'module.calendar.setting.display': 'Hiển thị lịch',
-    'module.calendar.setting.display.default': 'Mặc định',
-    'module.calendar.setting.display.mon': 'Đầu tuần',
-    'module.calendar.setting.display.week': 'Cuối tuần',
-    'module.calendar.setting.display.only.month': 'Trong tháng',
-    'module.calendar.setting.display.both.month': 'Ngoài tháng',
-});
+export const vi = {
+    [CalendarLanguage.component.label.router]: 'Lịch',
+    [CalendarLanguage.component.label.today]: 'Hôm nay',
+    [CalendarLanguage.component.label.solar]: 'Dương lịch',
+    [CalendarLanguage.component.label.lunar]: 'Âm lịch',
+    [CalendarLanguage.component.label.day]: 'Ngày',
+    [CalendarLanguage.component.label.month]: 'Tháng',
+    [CalendarLanguage.component.label.year]: 'Năm',
+    [CalendarLanguage.component.label.calendarInfo.title]: 'Tháng {month} năm {year}',
+    [CalendarLanguage.component.label.calendarInfo.solar]: 'Dương lịch, ngày {day} tháng {month} năm {year}',
+    [CalendarLanguage.component.label.calendarInfo.lunar]: 'Âm lịch, ngày {day} tháng {month} năm {year}',
+    [CalendarLanguage.component.label.display.title]: 'Hiển thị lịch',
+    [CalendarLanguage.component.label.display.default]: 'Mặc định',
+    [CalendarLanguage.component.label.display.monday]: 'Đầu tuần',
+    [CalendarLanguage.component.label.display.weekend]: 'Cuối tuần',
+    [CalendarLanguage.component.label.display.onlyMonth]: 'Trong tháng',
+    [CalendarLanguage.component.label.display.bothMonth]: 'Ngoài tháng',
+} as const;

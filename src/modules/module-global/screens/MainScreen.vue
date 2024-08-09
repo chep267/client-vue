@@ -13,7 +13,7 @@ import AppMain from '@module-global/components/AppMain.vue';
 </script>
 
 <template>
-    <NotifyProvider>
+    <NotifyProvider class="top-16">
         <v-app class="w-screen h-screen">
             <AppHeader />
             <AppSider />

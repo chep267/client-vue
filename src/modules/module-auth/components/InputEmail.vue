@@ -38,3 +38,9 @@ watch(inputRef, () => emits('setRef', inputRef.value));
         :spellcheck="false"
         :prepend-inner-icon="mdiAccount" />
 </template>
+
+<style lang="scss" scoped>
+:deep(.v-messages__message) {
+    text-align: right;
+}
+</style>

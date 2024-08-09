@@ -5,9 +5,11 @@
  */
 
 export const LangLanguage = {
-    label: {
-        router: 'module.language.router.label',
-        vi: 'module.language.vi.label',
-        en: 'module.language.en.label',
+    component: {
+        label: {
+            router: 'module.language.component.label.router',
+            vi: 'module.language.component.label.vi',
+            en: 'module.language.component.label.en',
+        },
     },
 } as const;

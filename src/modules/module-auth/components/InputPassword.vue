@@ -48,3 +48,9 @@ const onSeen = () => {
         :append-inner-icon="visible ? mdiEyeOff : mdiEye"
         @click:append-inner.stop="onSeen" />
 </template>
+
+<style lang="scss" scoped>
+:deep(.v-messages__message) {
+    text-align: right;
+}
+</style>

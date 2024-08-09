@@ -8,6 +8,9 @@
 /** libs */
 import { mdiChevronTripleLeft, mdiChevronTripleRight } from '@mdi/js';
 
+/** constants */
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+
 defineProps<{
     disabled?: boolean;
     openSider?: boolean;
@@ -19,7 +22,7 @@ defineEmits<{
 </script>
 
 <template>
-    <v-tooltip :text="$t(`module.global.components.sider.tooltip.${openSider ? 'collapse' : 'expand'}`)" location="right">
+    <v-tooltip :text="$t(GlobalLanguage.component.label[openSider ? 'collapse' : 'expand'])" location="right">
         <template #activator="{ props }">
             <v-btn
                 v-bind="props"

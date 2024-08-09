@@ -22,6 +22,7 @@ import { SiderState } from '@module-global/constants/SiderState.ts';
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
 import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
 
 const locale = useLocale();
 const { t } = useI18n();
@@ -39,7 +40,7 @@ const isToday = computed(() => calendarStore.isToday(day.value));
 const titleCalendar = computed(() => {
     const month = day.value.format(locale.current.value === localeObject.en ? 'MMMM' : 'MM');
     const year = day.value.format('YYYY');
-    return t('module.calendar.component.calendar.title.text', { month, year });
+    return t(CalendarLanguage.component.label.calendarInfo.title, { month, year });
 });
 
 const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') => {
@@ -58,7 +59,7 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
         }"
         :style="`height: ${ScreenSize.CalendarSelectHeight}px`">
         <v-btn :disabled="isToday" :class="{ 'w-fit': true, 'primary-text': !isToday }" @click.stop="onChangeDay('today')">
-            {{ t('module.calendar.text.today') }}
+            {{ $t(CalendarLanguage.component.label.today) }}
         </v-btn>
         <div :class="{ 'flex flex-row justify-between gap-2': true, 'flex-1': miniMode }">
             <div class="flex gap-1">
