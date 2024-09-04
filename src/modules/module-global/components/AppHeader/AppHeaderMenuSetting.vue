@@ -222,7 +222,8 @@ const signout = () => {
                     :key="subMenu.id"
                     :title="$t(subMenu.title)"
                     :value="subMenu.id"
-                    @click.stop="subMenu.onClick">
+                    @click.stop="subMenu.onClick"
+                >
                     <template #prepend>
                         <v-btn v-if="subMenu.loading" :loading="true" variant="text" />
                         <v-icon v-else :icon="subMenu.icon" :color="subMenu.iconColor" :size="subMenu.iconSize" />

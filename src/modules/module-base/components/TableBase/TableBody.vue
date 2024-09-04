@@ -23,7 +23,8 @@ defineEmits<{
             <td
                 v-for="(cell, indexCell) in rows"
                 :key="`${item.id}-${cell.id}`"
-                @click.stop="$emit('onClick', { item, indexRow, indexCell })">
+                @click.stop="$emit('onClick', { item, indexRow, indexCell })"
+            >
                 {{ cell.render(item, indexRow, indexCell) }}
             </td>
         </tr>

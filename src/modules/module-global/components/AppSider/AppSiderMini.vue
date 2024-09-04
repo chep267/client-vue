@@ -32,7 +32,8 @@ const tab = computed(() => ListApp.find(({ path }) => route.path.includes(path))
     <v-card
         v-if="isAuthentication && siderState === SiderState.hidden"
         class="sticky overscroll-contain z-10"
-        :style="`top: ${ScreenSize.HeaderHeight}px`">
+        :style="`top: ${ScreenSize.HeaderHeight}px`"
+    >
         <v-tabs
             :v-model="tab"
             slider-color="primary"
@@ -40,7 +41,8 @@ const tab = computed(() => ListApp.find(({ path }) => route.path.includes(path))
             show-arrows
             center-active
             grow
-            :style="`top: ${ScreenSize.HeaderHeight}px; height: ${ScreenSize.AppBarMiniHeight}px`">
+            :style="`top: ${ScreenSize.HeaderHeight}px; height: ${ScreenSize.AppBarMiniHeight}px`"
+        >
             <v-tooltip v-for="app in ListApp" :key="app.id" :text="$t(app.title)" location="bottom">
                 <template #activator="{ props }">
                     <v-tab v-bind="props" :to="app.path" :value="app.id">

@@ -28,7 +28,8 @@ defineEmits<{
                 v-bind="props"
                 class="flex align-center justify-center w-full min-w-0 rounded-none"
                 :disabled="disabled"
-                @click.stop="$emit('toggleSider')">
+                @click.stop="$emit('toggleSider')"
+            >
                 <v-icon
                     :icon="openSider ? mdiChevronTripleLeft : mdiChevronTripleRight"
                     :color="disabled ? 'disabled' : 'primary'"

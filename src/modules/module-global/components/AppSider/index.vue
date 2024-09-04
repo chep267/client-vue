@@ -43,7 +43,8 @@ onUnmounted(() => {
         :rail="siderState === SiderState.force || siderState === SiderState.collapse"
         :rail-width="ScreenSize.AppBarCollapseWidth"
         :permanent="siderState !== SiderState.hidden"
-        :app="true">
+        :app="true"
+    >
         <AppSiderButtonCollapse
             :open-sider="siderState === SiderState.expand"
             :disabled="siderState === SiderState.force"

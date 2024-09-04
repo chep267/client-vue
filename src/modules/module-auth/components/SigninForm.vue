@@ -76,7 +76,8 @@ const onSubmit = handleSubmit(
     <AuthFormTitle :text="$t(AuthLanguage.component.title.signin)" />
     <v-form
         class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
-        @submit.prevent="onSubmit">
+        @submit.prevent="onSubmit"
+    >
         <InputEmail
             v-model="fieldEmail.value.value"
             :autofocus="true"

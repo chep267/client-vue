@@ -13,5 +13,7 @@ import { AppName } from '@module-global/constants/AppName.ts';
 </script>
 
 <template>
-    <RouterLink v-once to="/">{{ AppName }}</RouterLink>
+    <RouterLink v-once to="/">
+        {{ AppName }}
+    </RouterLink>
 </template>
