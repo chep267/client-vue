@@ -15,7 +15,7 @@ withDefaults(defineProps<TableHeaderProps>(), {});
     <thead>
         <tr>
             <th v-for="item in rows" :key="item.id" class="text-left">
-                Name
+                <span>Name</span>
             </th>
         </tr>
     </thead>

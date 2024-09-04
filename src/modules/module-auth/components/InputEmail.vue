@@ -36,7 +36,8 @@ watch(inputRef, () => emits('setRef', inputRef.value));
         :label="$t(AuthLanguage.component.label.email)"
         :autocomplete="false"
         :spellcheck="false"
-        :prepend-inner-icon="mdiAccount" />
+        :prepend-inner-icon="mdiAccount"
+    />
 </template>
 
 <style lang="scss" scoped>

@@ -65,11 +65,13 @@ const onSubmit = handleSubmit(
             v-model="fieldEmail.value.value"
             :autofocus="true"
             :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null"
-            @set-ref="(elem: HTMLInputElement | null) => (inputEmailRef = elem)" />
+            @set-ref="(elem: HTMLInputElement | null) => (inputEmailRef = elem)"
+        />
         <InputPassword
             v-model="fieldPassword.value.value"
             :error-messages="fieldPassword.errorMessage.value ? $t(fieldPassword.errorMessage.value) : null"
-            @set-ref="(elem: HTMLInputElement | null) => (inputPasswordRef = elem)" />
+            @set-ref="(elem: HTMLInputElement | null) => (inputPasswordRef = elem)"
+        />
         <AuthFormBreadcrumbs />
         <div class="flex w-full justify-end">
             <AuthFormButtonSubmit :text="$t(AuthLanguage.component.button.register)" :loading="REGISTER.isPending.value" />

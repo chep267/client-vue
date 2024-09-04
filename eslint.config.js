@@ -37,7 +37,7 @@ export default ts.config(js.configs.recommended, ...ts.configs.recommended, ...e
                 multiline: 'always',
                 selfClosingTag: {
                     singleline: 'never',
-                    multiline: 'never',
+                    multiline: 'always',
                 },
             },
         ],
@@ -45,6 +45,18 @@ export default ts.config(js.configs.recommended, ...ts.configs.recommended, ...e
             'error',
             {
                 ignores: ['index'],
+            },
+        ],
+        'vue/html-self-closing': [
+            'error',
+            {
+                html: {
+                    void: 'always',
+                    normal: 'always',
+                    component: 'always',
+                },
+                svg: 'always',
+                math: 'always',
             },
         ],
     },

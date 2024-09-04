@@ -48,7 +48,8 @@ onUnmounted(() => {
         <AppSiderButtonCollapse
             :open-sider="siderState === SiderState.expand"
             :disabled="siderState === SiderState.force"
-            @toggle-sider="siderStore.toggleSiderState" />
+            @toggle-sider="siderStore.toggleSiderState"
+        />
         <v-divider v-once />
         <AppSiderMenuApp :disabled-tooltip="openSider && siderState !== SiderState.collapse" />
     </v-navigation-drawer>

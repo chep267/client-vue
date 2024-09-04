@@ -83,7 +83,9 @@ watch(
                             'calendar-item-today': isToday,
                             'text-red': isWeekend,
                         }"
-                    >{{ titleCalendar }}</span>
+                    >
+                        {{ titleCalendar }}
+                    </span>
                 </div>
                 <div class="flex flex-column flex-1 justify-center items-center">
                     <span
@@ -92,7 +94,9 @@ watch(
                             'calendar-item-today': isToday,
                             'text-red': isWeekend,
                         }"
-                    >{{ day.date() }}</span>
+                    >
+                        {{ day.date() }}
+                    </span>
                 </div>
                 <div class="flex flex-column justify-center items-center h-32">
                     <span
@@ -101,7 +105,9 @@ watch(
                             'calendar-item-today': isToday,
                             'text-red': isWeekend,
                         }"
-                    >{{ day.locale(locale.current.value).format('dddd') }}</span>
+                    >
+                        {{ day.locale(locale.current.value).format('dddd') }}
+                    </span>
                 </div>
             </div>
             <div v-if="lunarDay" class="lunar flex h-40 min-h-40 truncate">

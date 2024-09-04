@@ -42,11 +42,12 @@ const onSeen = () => {
         variant="outlined"
         :type="visible ? 'text' : 'password'"
         :label="$t(AuthLanguage.component.label.password)"
-        :autocomplete="undefined"
+        autocapitalize="off"
         :spellcheck="false"
         :prepend-inner-icon="mdiLockOutline"
         :append-inner-icon="visible ? mdiEyeOff : mdiEye"
-        @click:append-inner.stop="onSeen" />
+        @click:append-inner.stop="onSeen"
+    />
 </template>
 
 <style lang="scss" scoped>

@@ -24,7 +24,8 @@ const isOpenMenu = ref(false);
                 <template #activator="{ props: ToolTipProps }">
                     <v-app-bar-nav-icon
                         v-bind="{ ...MenuProps, ...ToolTipProps }"
-                        :color="isOpenMenu ? 'primary' : undefined" />
+                        :color="isOpenMenu ? 'primary' : undefined"
+                    />
                 </template>
             </v-tooltip>
         </template>

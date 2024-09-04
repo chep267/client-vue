@@ -37,7 +37,8 @@ watch(route, () => {
                     :prepend-icon="app.icon"
                     :title="$t(app.title)"
                     color="primary"
-                    @click.stop="push(app.path)" />
+                    @click.stop="push(app.path)"
+                />
             </template>
         </v-tooltip>
     </v-list>

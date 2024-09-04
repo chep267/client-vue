@@ -7,6 +7,7 @@
 
 /** libs */
 import { useRoute } from 'vue-router';
+import { configure } from 'vee-validate';
 
 /** constants */
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
@@ -18,6 +19,13 @@ import RegisterForm from '@module-auth/components/RegisterForm.vue';
 import RecoverForm from '@module-auth/components/RecoverForm.vue';
 
 const route = useRoute();
+
+configure({
+    bails: false,
+    validateOnChange: false,
+    validateOnInput: false,
+    validateOnModelUpdate: false,
+});
 </script>
 
 <template>

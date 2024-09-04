@@ -105,7 +105,8 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
         fixed-header
         :headers="headers"
         :items="data"
-        :height="tableHeight" />
+        :height="tableHeight"
+    />
 </template>
 
 <style scoped lang="scss">

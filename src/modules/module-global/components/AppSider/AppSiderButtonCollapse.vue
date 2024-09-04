@@ -33,7 +33,8 @@ defineEmits<{
                 <v-icon
                     :icon="openSider ? mdiChevronTripleLeft : mdiChevronTripleRight"
                     :color="disabled ? 'disabled' : 'primary'"
-                    size="24" />
+                    size="24"
+                />
             </v-btn>
         </template>
     </v-tooltip>
