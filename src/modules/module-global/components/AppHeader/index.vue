@@ -24,7 +24,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
         <v-app-bar-title>
             <div class="flex flex-row items-center gap-10">
                 <AppName />
-                <AppTimer :class="'max-sm:invisible'" />
+                <AppTimer class="max-sm:invisible" />
             </div>
         </v-app-bar-title>
         <template #append>
