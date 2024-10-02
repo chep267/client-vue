@@ -29,8 +29,4 @@ export const CalendarLanguage = {
             },
         },
     },
-
-    // 'module.calendar.component.calendar.title.text': '{month}, {year}',
-    // 'module.calendar.component.calendarInfo.title.solar.text': 'Solar calendar, ngày {day} tháng {month} năm {year}',
-    // 'module.calendar.component.calendarInfo.title.lunar.text': 'Lunar calendar, ngày {day} tháng {month} năm {year}',
 } as const;

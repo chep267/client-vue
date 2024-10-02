@@ -4,7 +4,6 @@
  *
  */
 
-
 /** libs */
 import { resolve } from 'node:path';
 import { defineConfig, loadEnv } from 'vite';
@@ -64,6 +63,13 @@ export default ({ mode }) => {
             legalComments: 'none',
             treeShaking: true,
             format: 'esm',
+        },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler', // or "modern"
+                },
+            },
         },
     });
 };
