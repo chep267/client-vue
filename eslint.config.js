@@ -4,18 +4,24 @@
  *
  */
 
-import js from '@eslint/js';
+/** libs */
+import eslint from '@eslint/js';
+import tsEslint from 'typescript-eslint';
 import eslintPluginVue from 'eslint-plugin-vue';
-import ts from 'typescript-eslint';
+import pluginPrettier from 'eslint-plugin-prettier';
 
-export default ts.config(js.configs.recommended, ...ts.configs.recommended, ...eslintPluginVue.configs['flat/recommended'], {
+export default tsEslint.config({
+    ignores: ['dist/*', 'node_modules/*'],
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx,vue}'],
+    extends: [eslint.configs.recommended, ...tsEslint.configs.recommended, ...eslintPluginVue.configs['flat/recommended']],
+    plugins: {
+        prettier: pluginPrettier,
+    },
     languageOptions: {
         parserOptions: {
             parser: '@typescript-eslint/parser',
         },
     },
-    ignores: ['dist/*', 'node_modules/*'],
     rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-empty-object-type': 'off',
