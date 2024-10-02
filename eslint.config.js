@@ -15,6 +15,7 @@ export default ts.config(js.configs.recommended, ...ts.configs.recommended, ...e
             parser: '@typescript-eslint/parser',
         },
     },
+    ignores: ['dist/*', 'node_modules/*'],
     rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-empty-object-type': 'off',
