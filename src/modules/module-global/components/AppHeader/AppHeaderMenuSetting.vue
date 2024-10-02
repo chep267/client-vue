@@ -92,28 +92,32 @@ const calendarSubMenu: TypeMenuData['subMenu'] = [
         title: CalendarLanguage.component.label.display.monday,
         icon: {
             name: mdiCalendarWeekBegin,
-        },onClick: () => calendarStore.setDisplay(CalendarDisplay.monday),
+        },
+        onClick: () => calendarStore.setDisplay(CalendarDisplay.monday),
     },
     {
         id: 'weekend',
         title: CalendarLanguage.component.label.display.weekend,
         icon: {
             name: mdiCalendarWeekend,
-        },onClick: () => calendarStore.setDisplay(CalendarDisplay.weekend),
+        },
+        onClick: () => calendarStore.setDisplay(CalendarDisplay.weekend),
     },
     {
         id: 'onlyMonth',
         title: CalendarLanguage.component.label.display.onlyMonth,
         icon: {
             name: mdiCalendarMonth,
-        },onClick: () => calendarStore.setOnlyMonth(true),
+        },
+        onClick: () => calendarStore.setOnlyMonth(true),
     },
     {
         id: 'bothMonth',
         title: CalendarLanguage.component.label.display.bothMonth,
         icon: {
             name: mdiCalendarPlus,
-        },onClick: () => calendarStore.setOnlyMonth(false),
+        },
+        onClick: () => calendarStore.setOnlyMonth(false),
     },
 ];
 
@@ -130,7 +134,8 @@ const menuBase: TypeMenuData[] = [
                 title: ThemeLanguage.component.label.dark,
                 icon: {
                     name: mdiWeatherNight,
-                }, onClick: () => setTheme(themeObject.dark),
+                },
+                onClick: () => setTheme(themeObject.dark),
             },
             {
                 id: themeObject.light,
@@ -138,7 +143,8 @@ const menuBase: TypeMenuData[] = [
                 icon: {
                     name: mdiWhiteBalanceSunny,
                     color: 'warning',
-                },onClick: () => setTheme(themeObject.light),
+                },
+                onClick: () => setTheme(themeObject.light),
             },
         ],
     },
@@ -147,14 +153,16 @@ const menuBase: TypeMenuData[] = [
         title: LangLanguage.component.label.router,
         icon: {
             name: mdiGoogleTranslate,
-        },subMenu: [
+        },
+        subMenu: [
             {
                 id: localeObject.vi,
                 title: LangLanguage.component.label.vi,
                 icon: {
                     name: 'flag:vi',
                     size: 20,
-                },onClick: () => setLocale(localeObject.vi),
+                },
+                onClick: () => setLocale(localeObject.vi),
             },
             {
                 id: localeObject.en,
@@ -162,7 +170,8 @@ const menuBase: TypeMenuData[] = [
                 icon: {
                     name: 'flag:en',
                     size: 20,
-                },onClick: () => setLocale(localeObject.en),
+                },
+                onClick: () => setLocale(localeObject.en),
             },
         ],
     },
@@ -189,7 +198,9 @@ const menuAuth = computed<TypeMenuData[]>(() => {
         {
             id: 'others',
             title: GlobalLanguage.component.label.otherSetting,
-            icon: mdiCogOutline,
+            icon: {
+                name: mdiCogOutline,
+            },
             hidden: !isAuthentication.value,
             subMenu: [
                 {
@@ -197,7 +208,8 @@ const menuAuth = computed<TypeMenuData[]>(() => {
                     title: GlobalLanguage.component.label.signout,
                     icon: {
                         name: mdiLogout,
-                    },loading: SIGN_OUT.isPending.value,
+                    },
+                    loading: SIGN_OUT.isPending.value,
                     onClick: signout,
                 },
             ],
