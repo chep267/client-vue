@@ -10,8 +10,8 @@ import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 /** constants */
-import { ListApp } from '@module-global/constants/ListApp.ts';
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { ListApp } from '@module-global/constants/ListApp';
+import { ScreenPath } from '@module-global/constants/ScreenPath';
 
 defineProps<{
     disabledTooltip?: boolean;

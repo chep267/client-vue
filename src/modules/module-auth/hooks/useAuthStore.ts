@@ -9,7 +9,7 @@ import { defineStore } from 'pinia';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AppKey } from '@module-base/constants/AppKey';
 
 /** types */
 import type { TypeApiAuth, TypeAuthStore } from '@module-auth/types';

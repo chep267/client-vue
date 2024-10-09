@@ -9,7 +9,7 @@
 import { mdiChevronTripleLeft, mdiChevronTripleRight } from '@mdi/js';
 
 /** constants */
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 defineProps<{
     disabled?: boolean;

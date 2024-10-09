@@ -9,10 +9,10 @@
 import { mdiBell } from '@mdi/js';
 
 /** constants */
-import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+import { NotifyColor } from '@module-base/constants/NotifyColor';
 
 /** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
+import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 
 const notifyStore = useNotifyStore();
 </script>

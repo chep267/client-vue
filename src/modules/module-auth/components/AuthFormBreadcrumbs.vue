@@ -10,8 +10,8 @@ import { computed, type VueElement } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
 interface AuthBreadcrumbsProps {

@@ -10,20 +10,20 @@ import { useMutation } from '@tanstack/vue-query';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** apis */
-import { authApi } from '@module-auth/apis/authApi.ts';
+import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
-import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AppKey } from '@module-base/constants/AppKey';
+import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+import { debounce } from '@module-base/utils/debounce';
 
 /** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
+import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
+import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 /** types */
 import type { AxiosError } from 'axios';

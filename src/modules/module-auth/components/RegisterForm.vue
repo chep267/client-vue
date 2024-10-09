@@ -10,14 +10,14 @@ import { ref } from 'vue';
 import { useField, useForm } from 'vee-validate';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
-import { focusInput } from '@module-base/utils/focusInput.ts';
-import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
+import { focusInput } from '@module-base/utils/focusInput';
+import { authFormSchema } from '@module-auth/utils/authFormSchema';
 
 /** hooks */
-import { useRegister } from '@module-auth/hooks/useRegister.ts';
+import { useRegister } from '@module-auth/hooks/useRegister';
 
 /** components */
 import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';

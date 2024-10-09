@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 export const en = {
     [GlobalLanguage.component.label.collapse]: 'Collapse',

@@ -15,14 +15,14 @@ import { useI18n } from 'vue-i18n';
 import { mdiChevronTripleLeft, mdiChevronTripleRight, mdiChevronDoubleLeft, mdiChevronDoubleRight } from '@mdi/js';
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { SiderState } from '@module-global/constants/SiderState.ts';
+import { localeObject } from '@module-language/constants/localeObject';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 
 /** hooks */
-import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
-import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
-import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
+import { useSiderStore } from '@module-global/hooks/useSiderStore';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 const locale = useLocale();
 const { t } = useI18n();

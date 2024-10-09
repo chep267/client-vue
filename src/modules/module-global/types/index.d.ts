@@ -4,4 +4,4 @@
  *
  */
 
-export * from './hooks.d.ts';
+export * from './hooks.d';

@@ -9,7 +9,7 @@
 import { useLocale } from 'vuetify';
 
 /** hooks */
-import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
+import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 const locale = useLocale();
 const calendarStore = useCalendarStore();

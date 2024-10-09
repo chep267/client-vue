@@ -10,7 +10,7 @@ import { useRoute } from 'vue-router';
 import { configure } from 'vee-validate';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 
 /** components */
 import BaseParticles from '@module-base/components/BaseParticles.vue';

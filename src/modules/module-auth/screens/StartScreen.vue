@@ -9,7 +9,7 @@
 import { onMounted } from 'vue';
 
 /** hooks */
-import { useRestart } from '@module-auth/hooks/useRestart.ts';
+import { useRestart } from '@module-auth/hooks/useRestart';
 
 /** components */
 import StartLoading from '@module-base/components/StartLoading.vue';

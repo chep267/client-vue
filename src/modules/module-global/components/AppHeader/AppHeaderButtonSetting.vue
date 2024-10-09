@@ -9,7 +9,7 @@
 import { ref } from 'vue';
 
 /** constants */
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
 import AppHeaderMenuSetting from '@module-global/components/AppHeader/AppHeaderMenuSetting.vue';

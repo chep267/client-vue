@@ -5,14 +5,14 @@
  */
 
 /** apis */
-import { baseApi } from '@module-base/apis/baseApi.ts';
+import { baseApi } from '@module-base/apis/baseApi';
 
 /** constants */
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
-import { AuthApi } from '@module-auth/constants/AuthApi.ts';
+import { AppTimer } from '@module-base/constants/AppTimer';
+import { AuthApi } from '@module-auth/constants/AuthApi';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+import { debounce } from '@module-base/utils/debounce';
 
 /** types */
 import type { TypeApiAuth } from '@module-auth/types';

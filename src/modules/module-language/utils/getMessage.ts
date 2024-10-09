@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject.ts';
+import { localeObject } from '@module-language/constants/localeObject';
 
 /** types */
 import type { TypeLocale, TypeMessages } from '@module-language/types';

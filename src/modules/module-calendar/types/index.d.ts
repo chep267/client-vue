@@ -5,4 +5,4 @@
  */
 
 /** types */
-export * from './data.d.ts';
+export * from './data.d';

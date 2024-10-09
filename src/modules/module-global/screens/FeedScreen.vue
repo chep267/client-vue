@@ -6,8 +6,8 @@
  */
 
 import { onMounted, ref } from 'vue';
-import { baseApi } from '@module-base/apis/baseApi.ts';
-import { debounce } from '@module-base/utils/debounce.ts';
+import { baseApi } from '@module-base/apis/baseApi';
+import { debounce } from '@module-base/utils/debounce';
 
 const text = ref('fetching...');
 const callApi = () => baseApi({ method: 'post', url: '/app/feed' });

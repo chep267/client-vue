@@ -11,10 +11,10 @@ import { VTextField } from 'vuetify/components/VTextField';
 import { mdiEye, mdiEyeOff, mdiLockOutline } from '@mdi/js';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
-import { focusInput } from '@module-base/utils/focusInput.ts';
+import { focusInput } from '@module-base/utils/focusInput';
 
 /** type */
 interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}

@@ -12,7 +12,7 @@ import { defineStore } from 'pinia';
 import 'dayjs/locale/vi';
 
 /** constants */
-import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 
 /** types */
 import type { TypeCalendarStore } from '@module-calendar/types';

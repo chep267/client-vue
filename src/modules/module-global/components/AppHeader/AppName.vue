@@ -9,7 +9,7 @@
 import { RouterLink } from 'vue-router';
 
 /** constants */
-import { AppName } from '@module-global/constants/AppName.ts';
+import { AppName } from '@module-global/constants/AppName';
 </script>
 
 <template>

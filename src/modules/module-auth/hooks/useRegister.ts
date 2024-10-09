@@ -8,14 +8,14 @@
 import { useMutation } from '@tanstack/vue-query';
 
 /** apis */
-import { authApi } from '@module-auth/apis/authApi.ts';
+import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
+import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 
 /** types */
 import type { AxiosError } from '@module-base/types';

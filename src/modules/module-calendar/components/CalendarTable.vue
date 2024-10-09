@@ -13,16 +13,16 @@ import { VDataTableVirtual } from 'vuetify/components';
 import dayjs from 'dayjs';
 
 /** constants */
-import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { SiderState } from '@module-global/constants/SiderState.ts';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 
 /** utils */
-import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices.ts';
+import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices';
 
 /** hooks */
-import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
-import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
+import { useSiderStore } from '@module-global/hooks/useSiderStore';
+import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
 import type { Dayjs } from '@module-calendar/types';

@@ -8,7 +8,7 @@
 import { defineStore } from 'pinia';
 
 /** constants */
-import { NotifyColor } from '@module-base/constants/NotifyColor.ts';
+import { NotifyColor } from '@module-base/constants/NotifyColor';
 
 /** types */
 import type { TypeNotifyStore } from '@module-base/types';

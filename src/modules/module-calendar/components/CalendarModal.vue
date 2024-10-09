@@ -11,14 +11,14 @@ import { useLocale } from 'vuetify';
 import { useI18n } from 'vue-i18n';
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject.ts';
-import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+import { localeObject } from '@module-language/constants/localeObject';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
 import VietnameseDate from '@module-calendar/utils/Lunar';
 
 /** hooks */
-import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
+import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
 import type { Dayjs } from '@module-calendar/types';

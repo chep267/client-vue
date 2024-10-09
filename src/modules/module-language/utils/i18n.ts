@@ -10,12 +10,12 @@ import { createI18n } from 'vue-i18n';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
-import { localeObject } from '@module-language/constants/localeObject.ts';
+import { AppKey } from '@module-base/constants/AppKey';
+import { localeObject } from '@module-language/constants/localeObject';
 
 /** utils */
-import { getDeviceLanguage } from './getDeviceLanguage.ts';
-import { getMessage } from './getMessage.ts';
+import { getDeviceLanguage } from './getDeviceLanguage';
+import { getMessage } from './getMessage';
 
 /** types */
 import type { TypeLocale } from '@module-language/types';

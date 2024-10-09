@@ -10,12 +10,12 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { SiderState } from '@module-global/constants/SiderState.ts';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 
 /** hooks */
-import { useSiderStore } from '@module-global/hooks/useSiderStore.ts';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
+import { useSiderStore } from '@module-global/hooks/useSiderStore';
+import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 /** components */
 import AppSiderButtonCollapse from '@module-global/components/AppSider/AppSiderButtonCollapse.vue';

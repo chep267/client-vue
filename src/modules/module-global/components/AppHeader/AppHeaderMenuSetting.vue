@@ -28,23 +28,23 @@ import {
 } from '@mdi/js';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
-import { localeObject } from '@module-language/constants/localeObject.ts';
-import { LangLanguage } from '@module-language/constants/LangLanguage.ts';
-import { themeObject } from '@module-theme/constants/themeObject.ts';
-import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
-import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
-import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+import { AppKey } from '@module-base/constants/AppKey';
+import { localeObject } from '@module-language/constants/localeObject';
+import { LangLanguage } from '@module-language/constants/LangLanguage';
+import { themeObject } from '@module-theme/constants/themeObject';
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
-import { setI18nLanguage } from '@module-language/utils/i18n.ts';
+import { setI18nLanguage } from '@module-language/utils/i18n';
 
 /** hooks */
-import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
-import { useSignout } from '@module-auth/hooks/useSignout.ts';
-import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore.ts';
+import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+import { useSignout } from '@module-auth/hooks/useSignout';
+import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
 import type { TypeLocale } from '@module-language/types';

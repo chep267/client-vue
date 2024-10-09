@@ -9,7 +9,7 @@
 import { storeToRefs } from 'pinia';
 
 /** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore.ts';
+import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 
 /** types */
 import type { VSnackbar } from 'vuetify/components/VSnackbar';

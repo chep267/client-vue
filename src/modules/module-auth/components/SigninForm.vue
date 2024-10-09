@@ -11,15 +11,15 @@ import { useField, useForm } from 'vee-validate';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AppKey } from '@module-base/constants/AppKey';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
-import { focusInput } from '@module-base/utils/focusInput.ts';
-import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
+import { focusInput } from '@module-base/utils/focusInput';
+import { authFormSchema } from '@module-auth/utils/authFormSchema';
 
 /** hooks */
-import { useSignin } from '@module-auth/hooks/useSignin.ts';
+import { useSignin } from '@module-auth/hooks/useSignin';
 
 /** components */
 import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';

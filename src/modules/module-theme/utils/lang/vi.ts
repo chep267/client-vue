@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
 
 export const vi = {
     [ThemeLanguage.component.label.router]: 'Giao diện',

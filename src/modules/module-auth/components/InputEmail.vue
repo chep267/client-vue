@@ -11,7 +11,7 @@ import { VTextField } from 'vuetify/components/VTextField';
 import { mdiAccount } from '@mdi/js';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
 interface InputProps extends /* @vue-ignore */ Partial<ExtractPropTypes<VTextField>> {}

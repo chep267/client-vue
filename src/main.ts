@@ -12,9 +12,9 @@ import { loadSlim } from '@tsparticles/slim';
 import { VueQueryPlugin } from '@tanstack/vue-query';
 
 /** utils */
-import { i18n } from '@module-language/utils/i18n.ts';
-import { vueComponents } from '@root/utils/vueComponents.ts';
-import { routers } from '@root/utils/routers.ts';
+import { i18n } from '@module-language/utils/i18n';
+import { vueComponents } from '@root/utils/vueComponents';
+import { routers } from '@root/utils/routers';
 
 /** components */
 import App from '@root/components/App.vue';

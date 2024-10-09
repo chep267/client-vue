@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 export const vi = {
     [CalendarLanguage.component.label.router]: 'Lịch',

@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { LangLanguage } from '@module-language/constants/LangLanguage.ts';
+import { LangLanguage } from '@module-language/constants/LangLanguage';
 
 export const vi = {
     [LangLanguage.component.label.router]: 'Ngôn ngữ',

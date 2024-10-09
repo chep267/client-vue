@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 
 /** types */
 import type { TypeCalendarStore, Dayjs } from '@module-calendar/types';

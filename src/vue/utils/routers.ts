@@ -8,12 +8,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AppKey } from '@module-base/constants/AppKey';
+import { ScreenPath } from '@module-global/constants/ScreenPath';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 
 /** store */
-import { useAuthStore } from '@module-auth/hooks/useAuthStore.ts';
+import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 /** screens */
 const StartScreen = () => import(/* webpackChunkName: "start-screen" */ '@module-auth/screens/StartScreen.vue');

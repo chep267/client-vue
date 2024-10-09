@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
 
 export const en = {
     [ThemeLanguage.component.label.router]: 'Theme',

@@ -4,4 +4,4 @@
  *
  */
 
-export { setI18nLanguage } from './i18n.ts';
+export { setI18nLanguage } from './i18n';

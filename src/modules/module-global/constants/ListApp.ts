@@ -8,8 +8,8 @@
 import { mdiFacebookMessenger, mdiHome, mdiCalendarMonth } from '@mdi/js';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { ScreenPath } from '@module-global/constants/ScreenPath';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 export type TypeListAppItem = {
     id: string;
