@@ -1,70 +1,69 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
-/** libs */
-import eslint from '@eslint/js';
-import tsEslint from 'typescript-eslint';
-import eslintPluginVue from 'eslint-plugin-vue';
-import pluginPrettier from 'eslint-plugin-prettier';
+import pluginVue from 'eslint-plugin-vue';
+import vueTsEslintConfig from '@vue/eslint-config-typescript';
+import pluginVitest from '@vitest/eslint-plugin';
+import skipFormatting from '@vue/eslint-config-prettier/skip-formatting';
 
-export default tsEslint.config({
-    ignores: ['dist/*', 'node_modules/*'],
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx,vue}'],
-    extends: [eslint.configs.recommended, ...tsEslint.configs.recommended, ...eslintPluginVue.configs['flat/recommended']],
-    plugins: {
-        prettier: pluginPrettier,
+export default [
+    {
+        name: 'app/files-to-lint',
+        files: ['**/*.{ts,mts,tsx,vue}'],
     },
-    languageOptions: {
-        parserOptions: {
-            parser: '@typescript-eslint/parser',
-        },
+
+    {
+        name: 'app/files-to-ignore',
+        ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
     },
-    rules: {
-        '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-empty-object-type': 'off',
-        'vue/max-attributes-per-line': 'off',
-        'vue/html-indent': [
-            'error',
-            4,
-            {
-                attribute: 1,
-                baseIndent: 1,
-                closeBracket: 0,
-                alignAttributesVertically: true,
-                ignores: [],
-            },
-        ],
-        'vue/html-closing-bracket-newline': [
-            'error',
-            {
-                singleline: 'never',
-                multiline: 'always',
-                selfClosingTag: {
+
+    ...pluginVue.configs['flat/essential'],
+    ...vueTsEslintConfig(),
+
+    {
+        ...pluginVitest.configs.recommended,
+        files: ['src/**/__tests__/*'],
+    },
+    skipFormatting,
+    {
+        rules: {
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-empty-object-type': 'off',
+            'vue/max-attributes-per-line': 'off',
+            'vue/singleline-html-element-content-newline': 'off',
+            'vue/html-indent': 'off',
+            'vue/html-closing-bracket-newline': [
+                'error',
+                {
                     singleline: 'never',
                     multiline: 'always',
+                    selfClosingTag: {
+                        singleline: 'never',
+                        multiline: 'always',
+                    },
                 },
-            },
-        ],
-        'vue/multi-word-component-names': [
-            'error',
-            {
-                ignores: ['index'],
-            },
-        ],
-        'vue/html-self-closing': [
-            'error',
-            {
-                html: {
-                    void: 'always',
-                    normal: 'always',
-                    component: 'always',
+            ],
+            'vue/multi-word-component-names': [
+                'error',
+                {
+                    ignores: ['index'],
                 },
-                svg: 'always',
-                math: 'always',
-            },
-        ],
+            ],
+            'vue/html-self-closing': [
+                'error',
+                {
+                    html: {
+                        void: 'always',
+                        normal: 'always',
+                        component: 'always',
+                    },
+                    svg: 'always',
+                    math: 'always',
+                },
+            ],
+        },
     },
-});
+];

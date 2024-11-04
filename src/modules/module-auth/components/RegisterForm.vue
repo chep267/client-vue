@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
@@ -41,7 +41,7 @@ const inputEmailRef = ref<HTMLInputElement | null>(null);
 const inputPasswordRef = ref<HTMLInputElement | null>(null);
 
 const onSubmit = handleSubmit(
-    (data) => {
+    data => {
         REGISTER.mutate(data, {
             onError: () => {
                 fieldEmail.setErrors(AuthLanguage.notify.register.error);

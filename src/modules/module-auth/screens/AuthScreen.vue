@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
@@ -25,6 +25,7 @@ configure({
     validateOnChange: false,
     validateOnInput: false,
     validateOnModelUpdate: false,
+    validateOnBlur: true,
 });
 </script>
 

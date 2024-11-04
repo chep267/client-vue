@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
@@ -38,7 +38,7 @@ const RECOVER = useRecover();
 const inputEmailRef = ref<HTMLInputElement | null>(null);
 
 const onSubmit = handleSubmit(
-    (data) => {
+    data => {
         RECOVER.mutate(data, {
             onError: () => {
                 fieldEmail.setErrors(AuthLanguage.notify.recover.error);

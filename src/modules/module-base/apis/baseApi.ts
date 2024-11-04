@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
@@ -41,8 +41,8 @@ const axiosClientCDN = axios.create(axiosDefaultFormDataConfig);
 
 /** Add a request interceptor */
 axiosClient.interceptors.request.use(
-    (config) => config,
-    (error) => Promise.reject(error)
+    config => config,
+    error => Promise.reject(error)
 );
 
 /** Add a response interceptor */

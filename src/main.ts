@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
@@ -27,7 +27,7 @@ const app = createApp(App)
     .use(i18n)
     .use(routers)
     .use(Particles, {
-        init: async (engine) => {
+        init: async engine => {
             // await loadFull(engine); // you can load the full tsParticles library from "tsparticles" if you need it
             await loadSlim(engine); // or you can load the slim version from "@tsparticles/slim" if you don't need Shapes or Animations
         },

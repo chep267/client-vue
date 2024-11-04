@@ -1,5 +1,8 @@
 {
-    "arrowParens": "always",
+    "$schema": "https://json.schemastore.org/prettierrc",
+    "semi": true,
+    "singleQuote": true,
+    "arrowParens": "avoid",
     "bracketSameLine": false,
     "bracketSpacing": true,
     "embeddedLanguageFormatting": "auto",
@@ -10,8 +13,6 @@
     "proseWrap": "preserve",
     "quoteProps": "as-needed",
     "requirePragma": false,
-    "semi": true,
-    "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "es5",
     "vueIndentScriptAndStyle": false,

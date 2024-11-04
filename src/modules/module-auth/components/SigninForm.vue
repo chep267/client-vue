@@ -1,97 +1,139 @@
 <script setup lang="ts">
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
 /** libs */
 import { ref } from 'vue';
-import { useField, useForm } from 'vee-validate';
+import {
+    Field,
+    Form,
+    type RuleExpression,
+    type SubmissionHandler,
+    type InvalidSubmissionHandler,
+    type GenericValidateFunction,
+} from 'vee-validate';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+import { Regex } from '@module-auth/constants/Regex';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput';
-import { authFormSchema } from '@module-auth/utils/authFormSchema';
 
 /** hooks */
 import { useSignin } from '@module-auth/hooks/useSignin';
 
 /** components */
 import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
-import InputEmail from '@module-auth/components/InputEmail.vue';
-import InputPassword from '@module-auth/components/InputPassword.vue';
 import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
+import InputText from '@module-base/components/InputText.vue';
+import InputPassword from '@module-auth/components/InputPassword.vue';
 
 /** type */
 import type { AxiosError } from 'axios';
+import type { TypeInputElem } from '@module-base/types';
 
+type TypeFormFieldsName = 'email' | 'password';
+type TypeFormData = {
+    [Key in TypeFormFieldsName]: string;
+};
+
+const FormFieldsName: Readonly<{ [Key in TypeFormFieldsName]: Key }> = {
+    email: 'email',
+    password: 'password',
+};
 const cookies = useCookies();
-const { handleSubmit } = useForm({
-    initialValues: {
-        email: cookies.get<string>(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
-        password: 'Midom@2024',
-    },
-    validationSchema: authFormSchema,
+const hookSignIn = useSignin();
+
+const formFieldsRef = ref<Record<TypeFormFieldsName, TypeInputElem>>({
+    [FormFieldsName.email]: null,
+    [FormFieldsName.password]: null,
 });
-const fieldEmail = useField('email');
-const fieldPassword = useField('password');
-const SIGN_IN = useSignin();
 
-const inputEmailRef = ref<HTMLInputElement | null>(null);
-const inputPasswordRef = ref<HTMLInputElement | null>(null);
+const initialValues: TypeFormData = {
+    [FormFieldsName.email]: cookies.get<string>(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
+    [FormFieldsName.password]: 'Midom@2024',
+};
 
-const onSubmit = handleSubmit(
-    (data) => {
-        SIGN_IN.mutate(data, {
-            onError: (error: AxiosError) => {
-                const code = Number(error?.response?.status);
-                let messageIntl;
-                switch (true) {
-                    case code >= 400 && code < 500:
-                        messageIntl = AuthLanguage.notify.signin.error;
-                        break;
-                    default:
-                        messageIntl = AuthLanguage.notify.server.error;
-                        break;
-                }
-                fieldEmail.setErrors(messageIntl);
-                fieldPassword.setErrors(messageIntl);
-                focusInput({ elem: inputEmailRef.value });
-            },
-        });
-    },
-    ({ errors }) => {
-        focusInput({ elem: errors.email ? inputEmailRef.value : inputPasswordRef.value });
+const validateEmail: RuleExpression<TypeFormData['email']> = email => {
+    if (!email?.trim()) {
+        return AuthLanguage.status.email.empty;
     }
-);
+    return !Regex.email.test(email) ? AuthLanguage.status.email.invalid : true;
+};
+const validatePassword: RuleExpression<TypeFormData['password']> = password => {
+    if (!password?.trim()) {
+        return AuthLanguage.status.password.empty;
+    }
+    return !Regex.password.test(password) ? AuthLanguage.status.password.invalid : true;
+};
+const onSubmit: SubmissionHandler<TypeFormData, TypeFormData, unknown> = (data, { setFieldError }) => {
+    hookSignIn.mutate(data, {
+        onError: (error: AxiosError) => {
+            const code = Number(error?.response?.status);
+            let messageIntl: string;
+            switch (true) {
+                case code >= 400 && code < 500:
+                    messageIntl = AuthLanguage.notify.signin.error;
+                    break;
+                default:
+                    messageIntl = AuthLanguage.notify.server.error;
+                    break;
+            }
+            setFieldError(FormFieldsName.email, messageIntl);
+            setFieldError(FormFieldsName.password, messageIntl);
+            focusInput({ elem: formFieldsRef.value[FormFieldsName.email] });
+        },
+    });
+};
+const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
+    const listFieldsCheck: TypeFormFieldsName[] = [FormFieldsName.email, FormFieldsName.password];
+    const field = listFieldsCheck.find(field => field in errors);
+    if (field) {
+        focusInput({ elem: formFieldsRef.value[field] });
+    }
+};
 </script>
 
 <template>
     <AuthFormTitle :text="$t(AuthLanguage.component.title.signin)" />
-    <v-form
+    <Form
+        v-slot="{ isSubmitting, isValidating }"
+        as="v-form"
         class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
-        @submit.prevent="onSubmit"
+        :initial-values="initialValues"
+        :on-submit="onSubmit"
+        :on-invalid-submit="onSubmitError"
     >
-        <InputEmail
-            v-model="fieldEmail.value.value"
-            :autofocus="true"
-            :error-messages="fieldEmail.errorMessage.value ? $t(fieldEmail.errorMessage.value) : null"
-            @set-ref="(elem) => (inputEmailRef = elem)"
-        />
-        <InputPassword
-            v-model="fieldPassword.value.value"
-            :error-messages="fieldPassword.errorMessage.value ? $t(fieldPassword.errorMessage.value) : null"
-            @set-ref="(elem) => (inputPasswordRef = elem)"
-        />
+        <Field :name="FormFieldsName.email" v-slot="{ field, errorMessage, setErrors }" :rules="validateEmail">
+            <InputText
+                v-bind="field"
+                :autofocus="true"
+                :error-messages="errorMessage ? $t(errorMessage) : undefined"
+                @set-ref="formFieldsRef[FormFieldsName.email] = $event"
+                @input="() => setErrors('')"
+            />
+        </Field>
+        <Field :name="FormFieldsName.password" v-slot="{ field, errorMessage, setErrors }" :rules="validatePassword">
+            <InputPassword
+                v-bind="field"
+                :error-messages="errorMessage ? $t(errorMessage) : undefined"
+                @set-ref="formFieldsRef[FormFieldsName.password] = $event"
+                @input="() => setErrors('')"
+            />
+        </Field>
         <AuthFormBreadcrumbs />
         <div class="flex w-full justify-end">
-            <AuthFormButtonSubmit :text="$t(AuthLanguage.component.button.signin)" :loading="SIGN_IN.isPending.value" />
+            <AuthFormButtonSubmit
+                :text="$t(AuthLanguage.component.button.signin)"
+                :loading="isValidating || isSubmitting || hookSignIn.isPending.value"
+            />
         </div>
-    </v-form>
+    </Form>
 </template>

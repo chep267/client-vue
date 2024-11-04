@@ -1,11 +1,12 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
+/** libs */
 import { createRouter, createWebHistory } from 'vue-router';
-import { useCookies } from '@vueuse/integrations/useCookies';
+import Cookies from 'js-cookie';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
@@ -28,40 +29,49 @@ const CalendarScreen = () =>
 const routes = [
     /** authentication */
     {
+        name: AuthScreenPath.signin,
         path: AuthScreenPath.signin,
         component: AuthScreen,
     },
     {
+        name: AuthScreenPath.register,
         path: AuthScreenPath.register,
         component: AuthScreen,
     },
     {
+        name: AuthScreenPath.recover,
         path: AuthScreenPath.recover,
         component: AuthScreen,
     },
 
     /** main */
     {
+        name: ScreenPath.home,
         path: ScreenPath.home,
         component: FeedScreen,
     },
     {
+        name: ScreenPath.start,
         path: ScreenPath.start,
         component: StartScreen,
     },
     {
+        name: ScreenPath.feed,
         path: ScreenPath.feed,
         component: FeedScreen,
     },
     {
+        name: ScreenPath.messenger,
         path: ScreenPath.messenger,
         component: MessengerScreen,
     },
     {
+        name: ScreenPath.calendar,
         path: ScreenPath.calendar,
         component: CalendarScreen,
     },
     {
+        name: ScreenPath.notFound,
         path: ScreenPath.notFound,
         component: NotFoundScreen,
     },
@@ -77,10 +87,9 @@ export const routers = createRouter({
 });
 
 const AuthPath = Object.values(AuthScreenPath);
-const cookies = useCookies();
 
-routers.beforeEach((to) => {
-    const uid = cookies.get(AppKey.uid);
+routers.beforeEach(to => {
+    const uid = Cookies.get(AppKey.uid) as string;
     const authStore = useAuthStore();
 
     if (!authStore.isAuthentication) {
@@ -89,12 +98,12 @@ routers.beforeEach((to) => {
             authStore.setPath(to.path);
             return { path: ScreenPath.start };
         }
-        if (!uid && !AuthPath.some((path) => to.path.startsWith(path))) {
+        if (!uid && !AuthPath.some(path => to.path.startsWith(path))) {
             // redirect to /signin => call signin
             return { path: AuthScreenPath.signin };
         }
     }
-    if (authStore.isAuthentication && AuthPath.some((path) => to.path.startsWith(path))) {
+    if (authStore.isAuthentication && AuthPath.some(path => to.path.startsWith(path))) {
         // redirect to / => home!!
         return { path: ScreenPath.home };
     }
