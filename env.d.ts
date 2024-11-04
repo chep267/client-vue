@@ -1,4 +1,7 @@
 /// <reference types="vite/client" />
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="node_modules/vue-i18n/dist/vue-i18n.d.ts" />
+
 /**
  *
  * @author dongntd267@gmail.com on 26/07/2024.
@@ -8,8 +11,10 @@
 /** types */
 import type { TypeLocale } from '@module-language/types';
 import type { TypeTheme } from '@module-theme/types';
+import type { Composer } from 'vue-i18n';
 
 declare module '*.vue';
+declare module 'vue-i18n';
 
 interface ImportMetaEnv {
     readonly VITE_APP_MODE: 'dev' | 'build';
@@ -35,5 +40,11 @@ declare module 'vue-router' {
         requiresAuth?: boolean;
         hasHeader?: boolean;
         hasFooter?: boolean;
+    }
+}
+
+declare module '@vue/runtime-core' {
+    interface ComponentCustomProperties {
+        $t: Composer['t'];
     }
 }

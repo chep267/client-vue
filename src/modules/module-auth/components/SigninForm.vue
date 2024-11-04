@@ -7,14 +7,7 @@
 
 /** libs */
 import { ref } from 'vue';
-import {
-    Field,
-    Form,
-    type RuleExpression,
-    type SubmissionHandler,
-    type InvalidSubmissionHandler,
-    type GenericValidateFunction,
-} from 'vee-validate';
+import { Field, Form, type RuleExpression, type SubmissionHandler, type InvalidSubmissionHandler } from 'vee-validate';
 import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
@@ -36,8 +29,7 @@ import InputText from '@module-base/components/InputText.vue';
 import InputPassword from '@module-auth/components/InputPassword.vue';
 
 /** type */
-import type { AxiosError } from 'axios';
-import type { TypeInputElem } from '@module-base/types';
+import type { TypeInputElem, AxiosError } from '@module-base/types';
 
 type TypeFormFieldsName = 'email' | 'password';
 type TypeFormData = {
@@ -61,20 +53,22 @@ const initialValues: TypeFormData = {
     [FormFieldsName.password]: 'Midom@2024',
 };
 
-const validateEmail: RuleExpression<TypeFormData['email']> = email => {
-    if (!email?.trim()) {
+const validateEmail: RuleExpression<unknown> = email => {
+    const value = email as TypeFormData['email'];
+    if (!value?.trim()) {
         return AuthLanguage.status.email.empty;
     }
-    return !Regex.email.test(email) ? AuthLanguage.status.email.invalid : true;
+    return !Regex.email.test(value) ? AuthLanguage.status.email.invalid : true;
 };
-const validatePassword: RuleExpression<TypeFormData['password']> = password => {
-    if (!password?.trim()) {
+const validatePassword: RuleExpression<unknown> = password => {
+    const value = password as TypeFormData['password'];
+    if (!value?.trim()) {
         return AuthLanguage.status.password.empty;
     }
-    return !Regex.password.test(password) ? AuthLanguage.status.password.invalid : true;
+    return !Regex.password.test(value) ? AuthLanguage.status.password.invalid : true;
 };
-const onSubmit: SubmissionHandler<TypeFormData, TypeFormData, unknown> = (data, { setFieldError }) => {
-    hookSignIn.mutate(data, {
+const onSubmit: SubmissionHandler = (data, { setFieldError }) => {
+    hookSignIn.mutate(data as TypeFormData, {
         onError: (error: AxiosError) => {
             const code = Number(error?.response?.status);
             let messageIntl: string;
@@ -115,7 +109,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
             <InputText
                 v-bind="field"
                 :autofocus="true"
-                :error-messages="errorMessage ? $t(errorMessage) : undefined"
+                :error-messages="errorMessage ? $t(errorMessage) : null"
                 @set-ref="formFieldsRef[FormFieldsName.email] = $event"
                 @input="() => setErrors('')"
             />
@@ -123,7 +117,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         <Field :name="FormFieldsName.password" v-slot="{ field, errorMessage, setErrors }" :rules="validatePassword">
             <InputPassword
                 v-bind="field"
-                :error-messages="errorMessage ? $t(errorMessage) : undefined"
+                :error-messages="errorMessage ? $t(errorMessage) : null"
                 @set-ref="formFieldsRef[FormFieldsName.password] = $event"
                 @input="() => setErrors('')"
             />
