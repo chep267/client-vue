@@ -6,18 +6,33 @@
  */
 
 /** libs */
+import { computed } from 'vue';
 import { useTheme } from 'vuetify';
+import { useRoute } from 'vue-router';
 
-defineProps<{
-    text?: string;
-}>();
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 
+const route = useRoute();
 const theme = useTheme();
+
+const title = computed(() => {
+    switch (route.path) {
+        case AuthScreenPath.register:
+            return AuthLanguage.component.title.register;
+        case AuthScreenPath.recover:
+            return AuthLanguage.component.title.recover;
+        case AuthScreenPath.signin:
+        default:
+            return AuthLanguage.component.title.signin;
+    }
+});
 </script>
 
 <template>
     <span :class="{ 'text-4xl z-10': true, 'form-title': theme.global.name.value === 'light' }">
-        {{ text }}
+        {{ $t(title) }}
     </span>
 </template>
 

@@ -12,8 +12,8 @@ import { useCookies } from '@vueuse/integrations/useCookies';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { Regex } from '@module-base/constants/Regex';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
-import { Regex } from '@module-auth/constants/Regex';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput';
@@ -22,11 +22,10 @@ import { focusInput } from '@module-base/utils/focusInput';
 import { useSignin } from '@module-auth/hooks/useSignin';
 
 /** components */
-import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
+import InputText from '@module-base/components/InputText.vue';
+import InputPassword from '@module-base/components/InputPassword.vue';
 import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
-import InputText from '@module-base/components/InputText.vue';
-import InputPassword from '@module-auth/components/InputPassword.vue';
 
 /** type */
 import type { TypeInputElem, AxiosError } from '@module-base/types';
@@ -54,14 +53,14 @@ const initialValues: TypeFormData = {
 };
 
 const validateEmail: RuleExpression<unknown> = email => {
-    const value = email as TypeFormData['email'];
+    const value = email as TypeFormData[typeof FormFieldsName.email];
     if (!value?.trim()) {
         return AuthLanguage.status.email.empty;
     }
     return !Regex.email.test(value) ? AuthLanguage.status.email.invalid : true;
 };
 const validatePassword: RuleExpression<unknown> = password => {
-    const value = password as TypeFormData['password'];
+    const value = password as TypeFormData[typeof FormFieldsName.password];
     if (!value?.trim()) {
         return AuthLanguage.status.password.empty;
     }
@@ -96,7 +95,6 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
 </script>
 
 <template>
-    <AuthFormTitle :text="$t(AuthLanguage.component.title.signin)" />
     <Form
         v-slot="{ isSubmitting, isValidating }"
         as="v-form"
@@ -111,7 +109,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
                 :autofocus="true"
                 :error-messages="errorMessage ? $t(errorMessage) : null"
                 @set-ref="formFieldsRef[FormFieldsName.email] = $event"
-                @input="() => setErrors('')"
+                @input="setErrors('')"
             />
         </Field>
         <Field :name="FormFieldsName.password" v-slot="{ field, errorMessage, setErrors }" :rules="validatePassword">
@@ -119,7 +117,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
                 v-bind="field"
                 :error-messages="errorMessage ? $t(errorMessage) : null"
                 @set-ref="formFieldsRef[FormFieldsName.password] = $event"
-                @input="() => setErrors('')"
+                @input="setErrors('')"
             />
         </Field>
         <AuthFormBreadcrumbs />

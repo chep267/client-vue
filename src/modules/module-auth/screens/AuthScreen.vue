@@ -6,19 +6,12 @@
  */
 
 /** libs */
-import { useRoute } from 'vue-router';
 import { configure } from 'vee-validate';
-
-/** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 
 /** components */
 import BaseParticles from '@module-base/components/BaseParticles.vue';
-import SigninForm from '@module-auth/components/SigninForm.vue';
-import RegisterForm from '@module-auth/components/RegisterForm.vue';
-import RecoverForm from '@module-auth/components/RecoverForm.vue';
-
-const route = useRoute();
+import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
+import AuthFormContent from '@module-auth/components/AuthFormContent.vue';
 
 configure({
     bails: false,
@@ -31,9 +24,8 @@ configure({
 
 <template>
     <div class="flex flex-col justify-center items-center w-full h-full gap-y-10 auth-form">
-        <SigninForm v-if="route.path === AuthScreenPath.signin" />
-        <RegisterForm v-else-if="route.path === AuthScreenPath.register" />
-        <RecoverForm v-else-if="route.path === AuthScreenPath.recover" />
+        <AuthFormTitle />
+        <AuthFormContent />
         <BaseParticles />
     </div>
 </template>

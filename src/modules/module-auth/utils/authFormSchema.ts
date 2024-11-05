@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { Regex } from '@module-auth/constants/Regex';
+import { Regex } from '@module-base/constants/Regex';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 export const authFormSchema = {
