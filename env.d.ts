@@ -13,9 +13,6 @@ import type { TypeLocale } from '@module-language/types';
 import type { TypeTheme } from '@module-theme/types';
 import type { Composer } from 'vue-i18n';
 
-declare module '*.vue';
-declare module 'vue-i18n';
-
 interface ImportMetaEnv {
     readonly VITE_APP_MODE: 'dev' | 'build';
     readonly VITE_APP_TITLE: string;
@@ -34,9 +31,7 @@ interface ImportMeta {
 
 declare module 'vue-router' {
     interface RouteMeta {
-        // is optional
         isAdmin?: boolean;
-        // must be declared by every route
         requiresAuth?: boolean;
         hasHeader?: boolean;
         hasFooter?: boolean;
