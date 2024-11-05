@@ -31,12 +31,12 @@ const onSeen = () => {
 
 <template>
     <input-text
+        v-bind="attrs"
         :type="visible ? 'text' : 'password'"
         autocapitalize="off"
         autocomplete="off"
         :append-inner-icon="visible ? mdiEyeOff : mdiEye"
         @click:append-inner.stop="onSeen"
         @set-ref="setRef"
-        v-bind="attrs"
     />
 </template>
