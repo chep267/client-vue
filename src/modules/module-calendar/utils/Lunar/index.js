@@ -1,3 +1,9 @@
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2024.
+ *
+ */
+
 export class VietnameseDateException extends Error {
     constructor(message) {
         super(message);
@@ -192,9 +198,8 @@ function ConvertLunar2Solar(lunarYear, lunarMonth, lunarDay, lunarLeap = false, 
     }
     const k = Int(0.5 + (a11 - 2415021.076998695) / 29.530588853);
     const monthStart = GetNewMoonDay(k + off, timeZone);
-    const jd = monthStart + lunarDay - 1;
     //return { solarDateTime: JdToDate(jd), juliusDayNumber: jd };
-    return jd;
+    return monthStart + lunarDay - 1;
 }
 const CelestialStems = ['Giáp', 'Ất', 'Bính', 'Đinh', 'Mậu', 'Kỷ', 'Canh', 'Tân', 'Nhâm', 'Quý'];
 const TerrestrialBranches = ['Tý', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tỵ', 'Ngọ', 'Mùi', 'Thân', 'Dậu', 'Tuất', 'Hợi'];
@@ -209,33 +214,33 @@ const PropitiousHours = [
     [0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1],
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MinorSolarTerms = [
-    'Xuân Phân',
-    'Thanh Minh',
-    'Cốc Vũ',
-    'Lập Hạ',
-    'Tiểu Mãn',
-    'Mang Chủng',
-    'Hạ Chí',
-    'Tiểu Thử',
-    'Đại Thử',
-    'Lập Thu',
-    'Xử Thử',
-    'Bạch Lộ',
-    'Thu Phân',
-    'Hàn Lộ',
-    'Sương Giáng',
-    'Lập Đông',
-    'Tiểu Tuyết',
-    'Đại Tuyết',
-    'Đông Chí',
-    'Tiểu Hàn',
-    'Đại Hàn',
-    'Lập Xuân',
-    'Vũ Thủy',
-    'Kinh Trập',
-];
+// const MinorSolarTerms = [
+//     'Xuân Phân',
+//     'Thanh Minh',
+//     'Cốc Vũ',
+//     'Lập Hạ',
+//     'Tiểu Mãn',
+//     'Mang Chủng',
+//     'Hạ Chí',
+//     'Tiểu Thử',
+//     'Đại Thử',
+//     'Lập Thu',
+//     'Xử Thử',
+//     'Bạch Lộ',
+//     'Thu Phân',
+//     'Hàn Lộ',
+//     'Sương Giáng',
+//     'Lập Đông',
+//     'Tiểu Tuyết',
+//     'Đại Tuyết',
+//     'Đông Chí',
+//     'Tiểu Hàn',
+//     'Đại Hàn',
+//     'Lập Xuân',
+//     'Vũ Thủy',
+//     'Kinh Trập',
+// ];
+
 /**
  * Vietnamese lunar date - Ngày âm lịch
  */

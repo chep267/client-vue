@@ -106,6 +106,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         <Field :name="FormFieldsName.email" v-slot="{ field, errorMessage, setErrors }" :rules="validateEmail">
             <InputText
                 v-bind="field"
+                :label="$t(AuthLanguage.component.label.email)"
                 :autofocus="true"
                 :error-messages="errorMessage ? $t(errorMessage) : null"
                 @set-ref="formFieldsRef[FormFieldsName.email] = $event"
@@ -115,6 +116,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         <Field :name="FormFieldsName.password" v-slot="{ field, errorMessage, setErrors }" :rules="validatePassword">
             <InputPassword
                 v-bind="field"
+                :label="$t(AuthLanguage.component.label.password)"
                 :error-messages="errorMessage ? $t(errorMessage) : null"
                 @set-ref="formFieldsRef[FormFieldsName.password] = $event"
                 @input="setErrors('')"
