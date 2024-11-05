@@ -91,7 +91,7 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .primary-text {
     color: rgb(var(--v-theme-info));
 }

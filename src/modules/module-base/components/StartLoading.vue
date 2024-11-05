@@ -4,16 +4,6 @@
  * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
-
-/** libs */
-import { useTheme } from 'vuetify';
-import colors from 'vuetify/util/colors';
-
-/** constants */
-import { themeObject } from '@module-theme/constants/themeObject';
-
-const theme = useTheme();
-const color = theme.global.name.value === themeObject.dark ? colors.amber.base : colors.blue.base;
 </script>
 
 <template>
@@ -61,8 +51,8 @@ const color = theme.global.name.value === themeObject.dark ? colors.amber.base :
         left: 0;
         width: 100%;
         height: 100%;
-        border-top: 3px solid v-bind(color);
-        border-right: 3px solid v-bind(color);
+        border-top: 3px solid rgb(var(--v-start-loading-color));
+        border-right: 3px solid rgb(var(--v-start-loading-color));
         border-left: 3px solid transparent;
         border-bottom: 3px solid transparent;
         border-radius: 50%;
@@ -75,8 +65,8 @@ const color = theme.global.name.value === themeObject.dark ? colors.amber.base :
     line-height: 150px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    text-shadow: 0 0 10px v-bind(color);
-    color: v-bind(color);
+    text-shadow: 0 0 10px rgb(var(--v-start-loading-color));
+    color: rgb(var(--v-start-loading-color));
 }
 .text-loading {
     display: block;
@@ -94,10 +84,10 @@ const color = theme.global.name.value === themeObject.dark ? colors.amber.base :
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        background: v-bind(color);
+        background: rgb(var(--v-start-loading-color));
         top: -6px;
         right: -8px;
-        box-shadow: 0 0 20px v-bind(color);
+        box-shadow: 0 0 20px rgb(var(--v-start-loading-color));
     }
 }
 </style>

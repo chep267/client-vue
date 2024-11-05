@@ -30,7 +30,7 @@ configure({
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .auth-form:deep(.v-form) {
     background-color: rgb(var(--v-theme-background));
 }

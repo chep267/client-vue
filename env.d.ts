@@ -9,9 +9,9 @@
  */
 
 /** types */
+import type { Composer } from 'vue-i18n';
 import type { TypeLocale } from '@module-language/types';
 import type { TypeTheme } from '@module-theme/types';
-import type { Composer } from 'vue-i18n';
 
 interface ImportMetaEnv {
     readonly VITE_APP_MODE: 'dev' | 'build';

@@ -121,10 +121,10 @@ export function genMatrixCalendarDayJS(time: Dayjs, display: TypeCalendarStore['
 }
 
 export function reverseMatrix<T extends unknown[][]>(matrix: T) {
-    const output: any[][] = [];
-    for (let j = 0; j < matrix[0].length; ++j) {
+    const output = [] as unknown[][];
+    for (let j = 0, m = matrix[0].length; j < m; ++j) {
         output.push([]);
-        for (let i = 0; i < matrix.length; ++i) {
+        for (let i = 0, n = matrix.length; i < n; ++i) {
             output[j].push(matrix[i][j]);
         }
     }

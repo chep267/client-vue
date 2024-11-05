@@ -18,7 +18,7 @@ import tsPaths from './tsconfig.app.json' with { type: 'json' };
 /** Resolve tsconfig.json paths to alias key */
 function resolveAlias() {
     const paths = tsPaths.compilerOptions.paths;
-    const alias = {};
+    const alias = {} as Record<string, string>;
     for (const [key, value] of Object.entries(paths)) {
         const aKey = key.replace('/*', '');
         alias[aKey] = resolve(__dirname, value[0].replace('/*', ''));

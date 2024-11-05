@@ -10,8 +10,8 @@ import Cookies from 'js-cookie';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { ScreenPath } from '@module-global/constants/ScreenPath';
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { ScreenPath } from '@module-global/constants/ScreenPath';
 
 /** store */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';

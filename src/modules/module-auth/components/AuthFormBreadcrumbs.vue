@@ -57,7 +57,7 @@ const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .text-router {
     color: rgb(var(--v-theme-info));
 }

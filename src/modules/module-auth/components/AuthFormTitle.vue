@@ -7,7 +7,6 @@
 
 /** libs */
 import { computed } from 'vue';
-import { useTheme } from 'vuetify';
 import { useRoute } from 'vue-router';
 
 /** constants */
@@ -15,7 +14,6 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 
 const route = useRoute();
-const theme = useTheme();
 
 const title = computed(() => {
     switch (route.path) {
@@ -31,13 +29,13 @@ const title = computed(() => {
 </script>
 
 <template>
-    <span :class="{ 'text-4xl z-10': true, 'form-title': theme.global.name.value === 'light' }">
+    <span class="text-4xl z-10 form-title">
         {{ $t(title) }}
     </span>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .form-title {
-    color: rgb(var(--v-theme-info));
+    color: rgb(var(--v-form-title-color));
 }
 </style>

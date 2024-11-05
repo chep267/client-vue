@@ -5,6 +5,7 @@
  */
 
 import { createVuetify } from 'vuetify';
+import colors from 'vuetify/util/colors';
 import * as directives from 'vuetify/directives';
 import * as components from 'vuetify/components';
 import * as labsComponents from 'vuetify/labs/components';
@@ -38,6 +39,20 @@ export const vueComponents = createVuetify({
     directives,
     theme: {
         defaultTheme: cookies.get(AppKey.theme) || themeObject.dark,
+        themes: {
+            light: {
+                variables: {
+                    'form-title-color': colors.blue.base,
+                    'start-loading-color': colors.blue.base,
+                },
+            },
+            dark: {
+                variables: {
+                    'form-title-color': colors.shades.white,
+                    'start-loading-color': colors.amber.base,
+                },
+            },
+        },
     },
     icons: {
         defaultSet: 'mdi',
