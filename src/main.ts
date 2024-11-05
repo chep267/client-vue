@@ -13,8 +13,8 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 
 /** utils */
 import { i18n } from '@module-language/utils/i18n';
-import { vueComponents } from '@root/utils/vueComponents';
-import { routers } from '@root/utils/routers';
+import { vueComponents } from '@root/vuetify';
+import { routers } from '@root/router';
 
 /** components */
 import App from '@root/components/App.vue';

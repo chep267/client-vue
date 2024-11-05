@@ -98,7 +98,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
     <Form
         v-slot="{ isSubmitting, isValidating }"
         as="v-form"
-        class="flex flex-col w-10/12 md:max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
+        class="flex flex-col w-full max-w-xl gap-y-2 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
         :initial-values="initialValues"
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
