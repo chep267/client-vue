@@ -10,4 +10,4 @@ import type { TypeLocale } from '@module-language/types';
 export const localeObject: Readonly<Record<TypeLocale, TypeLocale>> = {
     vi: 'vi',
     en: 'en',
-} as const;
+};

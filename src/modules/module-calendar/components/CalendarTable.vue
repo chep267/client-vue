@@ -8,9 +8,9 @@
 /** libs */
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useLocale } from 'vuetify';
 import { VDataTableVirtual } from 'vuetify/components';
 import dayjs from 'dayjs';
+import { useI18n } from 'vue-i18n';
 
 /** constants */
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
@@ -28,10 +28,10 @@ import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 import type { Dayjs } from '@module-calendar/types';
 
 const emits = defineEmits<{
-    (e: 'onSelectDay', day: Dayjs): void;
+    (e: 'on-select-day', day: Dayjs): void;
 }>();
 
-const locale = useLocale();
+const { locale } = useI18n();
 const siderStore = useSiderStore();
 const calendarStore = useCalendarStore();
 
@@ -71,7 +71,7 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
         const isWeekend = calendarStore.isWeekend(day);
         return {
             key: `${day}`,
-            title: dayjs().day(day).locale(locale.current.value).format('ddd'),
+            title: dayjs().day(day).locale(locale.value).format('ddd'),
             align: 'center',
             sortable: false,
             value: item => (item[day] as Dayjs).date(),
@@ -91,7 +91,7 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
                         'calendar-item-diff-month': !isToDay && !isInMonth,
                         invisible: hideDiffMonth,
                     },
-                    onclick: () => emits('onSelectDay', thisDay),
+                    onclick: () => emits('on-select-day', thisDay),
                 };
             },
         };

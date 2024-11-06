@@ -13,7 +13,7 @@ import type { TypeLocale, TypeMessages } from '@module-language/types';
 const messagesCache = {} as Record<TypeLocale, TypeMessages>;
 
 async function loadMessages(locale: TypeLocale): Promise<TypeMessages> {
-    let module, messages;
+    let module: Record<'vi', TypeMessages> | Record<'en', TypeMessages>, messages: TypeMessages;
     switch (locale) {
         case localeObject.vi:
             module = await import(/* @vite-ignore */ '@lang/vi.ts');

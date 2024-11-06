@@ -7,7 +7,6 @@
 
 /** libs */
 import { computed } from 'vue';
-import { useLocale } from 'vuetify';
 import { storeToRefs } from 'pinia';
 import { useI18n } from 'vue-i18n';
 
@@ -24,8 +23,7 @@ import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 import { useSiderStore } from '@module-global/hooks/useSiderStore';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
-const locale = useLocale();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const siderStore = useSiderStore();
 const calendarStore = useCalendarStore();
 
@@ -38,7 +36,7 @@ const miniMode = computed(() => siderState.value === SiderState.hidden || siderS
 const isToday = computed(() => calendarStore.isToday(day.value));
 
 const titleCalendar = computed(() => {
-    const month = day.value.format(locale.current.value === localeObject.en ? 'MMMM' : 'MM');
+    const month = day.value.format(locale.value === localeObject.en ? 'MMMM' : 'MM');
     const year = day.value.format('YYYY');
     return t(CalendarLanguage.component.label.calendarInfo.title, { month, year });
 });

@@ -22,7 +22,6 @@ const NotFoundScreen = () => import(/* webpackChunkName: "not-found-screen" */ '
 const AuthScreen = () => import(/* webpackChunkName: "auth-screen" */ '@module-auth/screens/AuthScreen.vue');
 const FeedScreen = () => import(/* webpackChunkName: "feed-screen" */ '@module-global/screens/FeedScreen.vue');
 const MessengerScreen = () => import(/* webpackChunkName: "messenger-screen" */ '@module-global/screens/MessengerScreen.vue');
-
 const CalendarScreen = () =>
     import(/* webpackChunkName: "calendar-screen" */ '@module-calendar/screens/CalendarScreen/index.vue');
 

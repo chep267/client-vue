@@ -4,11 +4,8 @@
  * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
-
-/** libs */
-import { VThemeProvider } from 'vuetify/components/VThemeProvider';
 </script>
 
 <template>
-    <VThemeProvider><slot /></VThemeProvider>
+    <v-theme-provider><slot /></v-theme-provider>
 </template>

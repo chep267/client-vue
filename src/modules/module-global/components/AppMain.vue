@@ -33,7 +33,7 @@ const containerHeight = computed(() => {
 
 <template>
     <v-main>
-        <AppSiderMini />
+        <AppSiderMini v-if="isAuthentication && siderState === SiderState.hidden" />
         <v-container :style="`height: ${containerHeight}`" :fluid="true">
             <router-view />
         </v-container>

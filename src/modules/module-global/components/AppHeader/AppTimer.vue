@@ -6,12 +6,12 @@
  */
 
 /** libs */
-import { useLocale } from 'vuetify';
+import { useI18n } from 'vue-i18n';
 
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
-const locale = useLocale();
+const { locale } = useI18n();
 const calendarStore = useCalendarStore();
 </script>
 
@@ -19,7 +19,7 @@ const calendarStore = useCalendarStore();
     <div class="flex flex-row justify-center items-center gap-2">
         <div class="w-2 h-2 dot rounded-full" />
         <span class="text-sm capitalize">
-            {{ calendarStore.today.locale(locale.current.value).format('dddd, DD/MM/YYYY') }}
+            {{ calendarStore.today.locale(locale).format('dddd, DD/MM/YYYY') }}
         </span>
         <div class="w-2 h-2 dot rounded-full" />
     </div>

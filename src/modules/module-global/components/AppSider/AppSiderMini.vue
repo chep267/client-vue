@@ -6,24 +6,13 @@
  */
 
 import { computed } from 'vue';
-import { storeToRefs } from 'pinia';
 import { useRoute } from 'vue-router';
 
 /** constants */
 import { ListApp } from '@module-global/constants/ListApp';
 import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
-
-/** store */
-import { useSiderStore } from '@module-global/hooks/useSiderStore';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 const route = useRoute();
-const authStore = useAuthStore();
-const siderStore = useSiderStore();
-
-const { isAuthentication } = storeToRefs(authStore);
-const { siderState } = storeToRefs(siderStore);
 
 const tab = computed(() => {
     const tab = ListApp.find(({ path }) => route.path.includes(path));
@@ -32,13 +21,9 @@ const tab = computed(() => {
 </script>
 
 <template>
-    <v-card
-        v-if="isAuthentication && siderState === SiderState.hidden"
-        class="sticky overscroll-contain z-10"
-        :style="`top: ${ScreenSize.HeaderHeight}px`"
-    >
+    <v-card class="sticky overscroll-contain z-10" :style="`top: ${ScreenSize.HeaderHeight}px`">
         <v-tabs
-            :v-model="tab"
+            v-model="tab"
             slider-color="primary"
             align-tabs="center"
             show-arrows

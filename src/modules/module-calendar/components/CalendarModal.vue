@@ -7,7 +7,6 @@
 
 /** libs */
 import { computed, ref, watch } from 'vue';
-import { useLocale } from 'vuetify';
 import { useI18n } from 'vue-i18n';
 
 /** constants */
@@ -28,11 +27,10 @@ const props = defineProps<{
 }>();
 
 defineEmits<{
-    (e: 'onClose'): void;
+    (e: 'on-close'): void;
 }>();
 
-const locale = useLocale();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const calendarStore = useCalendarStore();
 
 const isOpen = ref(!!props.day);
@@ -48,7 +46,7 @@ const titleCalendar = computed(() => {
     if (!props.day) {
         return '';
     }
-    const month = props.day.format(locale.current.value === localeObject.en ? 'MMMM' : 'MM');
+    const month = props.day.format(locale.value === localeObject.en ? 'MMMM' : 'MM');
     const year = props.day.format('YYYY');
     return t(CalendarLanguage.component.label.calendarInfo.title, { month, year });
 });
@@ -65,7 +63,7 @@ watch(
 </script>
 
 <template>
-    <v-overlay v-model="isOpen" class="flex justify-center items-center" @update:model-value="$emit('onClose')">
+    <v-overlay v-model="isOpen" class="flex justify-center items-center" @update:model-value="$emit('on-close')">
         <v-card
             :class="{
                 'flex flex-column overflow-auto': true,
@@ -106,7 +104,7 @@ watch(
                             'text-red': isWeekend,
                         }"
                     >
-                        {{ day.locale(locale.current.value).format('dddd') }}
+                        {{ day.locale(locale).format('dddd') }}
                     </span>
                 </div>
             </div>

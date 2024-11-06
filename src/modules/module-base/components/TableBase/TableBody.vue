@@ -13,7 +13,7 @@ withDefaults(defineProps<TableBodyProps>(), {
 });
 
 defineEmits<{
-    (e: 'onClick', payload: { item: TableBodyProps['data'][number]; indexRow: number; indexCell: number }): void;
+    (e: 'on-click', payload: { item: TableBodyProps['data'][number]; indexRow: number; indexCell: number }): void;
 }>();
 </script>
 
@@ -23,7 +23,7 @@ defineEmits<{
             <td
                 v-for="(cell, indexCell) in rows"
                 :key="`${item.id}-${cell.id}`"
-                @click.stop="$emit('onClick', { item, indexRow, indexCell })"
+                @click.stop="$emit('on-click', { item, indexRow, indexCell })"
             >
                 {{ cell.render(item, indexRow, indexCell) }}
             </td>

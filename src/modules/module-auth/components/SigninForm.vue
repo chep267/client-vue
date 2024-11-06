@@ -103,7 +103,12 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
     >
-        <Field :name="FormFieldsName.email" v-slot="{ field, errorMessage, setErrors }" :rules="validateEmail">
+        <Field
+            :name="FormFieldsName.email"
+            v-slot="{ field, errorMessage, setErrors }"
+            :rules="validateEmail"
+            :validate-on-input="false"
+        >
             <InputText
                 v-bind="field"
                 :label="$t(AuthLanguage.component.label.email)"

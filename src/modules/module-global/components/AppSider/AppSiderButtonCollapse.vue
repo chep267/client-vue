@@ -17,7 +17,7 @@ defineProps<{
 }>();
 
 defineEmits<{
-    (e: 'toggleSider'): void;
+    (e: 'toggle-sider'): void;
 }>();
 </script>
 
@@ -28,7 +28,7 @@ defineEmits<{
                 v-bind="props"
                 class="flex align-center justify-center w-full min-w-0 rounded-none"
                 :disabled="disabled"
-                @click.stop="$emit('toggleSider')"
+                @click.stop="$emit('toggle-sider')"
             >
                 <v-icon
                     :icon="openSider ? mdiChevronTripleLeft : mdiChevronTripleRight"

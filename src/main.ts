@@ -28,8 +28,7 @@ const app = createApp(App)
     .use(routers)
     .use(Particles, {
         init: async engine => {
-            // await loadFull(engine); // you can load the full tsParticles library from "tsparticles" if you need it
-            await loadSlim(engine); // or you can load the slim version from "@tsparticles/slim" if you don't need Shapes or Animations
+            await loadSlim(engine);
         },
     });
 app.mount('#app');

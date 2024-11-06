@@ -65,7 +65,7 @@ type TypeMenuData = {
 };
 
 const emits = defineEmits<{
-    (e: 'closeMenu'): void;
+    (e: 'close-menu'): void;
 }>();
 
 const theme = useTheme();
@@ -73,7 +73,7 @@ const locale = useLocale();
 const cookies = useCookies();
 const authStore = useAuthStore();
 const calendarStore = useCalendarStore();
-const SIGN_OUT = useSignout();
+const hookSignOut = useSignout();
 
 const { isAuthentication } = storeToRefs(authStore);
 const { display, isOnlyMonth } = storeToRefs(calendarStore);
@@ -209,7 +209,7 @@ const menuAuth = computed<TypeMenuData[]>(() => {
                     icon: {
                         name: mdiLogout,
                     },
-                    loading: SIGN_OUT.isPending.value,
+                    loading: hookSignOut.isPending.value,
                     onClick: signout,
                 },
             ],
@@ -227,10 +227,10 @@ const setLocale = async (value: TypeLocale) => {
     locale.current.value = value;
 };
 const signout = () => {
-    SIGN_OUT.mutate(
+    hookSignOut.mutate(
         {},
         {
-            onSettled: () => emits('closeMenu'),
+            onSettled: () => emits('close-menu'),
         }
     );
 };
