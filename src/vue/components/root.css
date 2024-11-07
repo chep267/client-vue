@@ -20,11 +20,6 @@ body {
     overscroll-behavior: none;
     scroll-behavior: smooth;
     overflow: hidden auto;
-    @media screen and (max-width: 640px /* sm */) {
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
 }
 
 html {

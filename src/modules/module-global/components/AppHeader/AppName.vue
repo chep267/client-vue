@@ -9,11 +9,11 @@
 import { RouterLink } from 'vue-router';
 
 /** constants */
-import { AppName } from '@module-global/constants/AppName';
+import { AppEnv } from '@module-base/constants/AppEnv';
 </script>
 
 <template>
     <RouterLink v-once to="/">
-        {{ AppName }}
+        {{ AppEnv.appName }}
     </RouterLink>
 </template>

@@ -4,12 +4,16 @@
  *
  */
 
+/** libs */
 import { createVuetify } from 'vuetify';
 import colors from 'vuetify/util/colors';
 import * as directives from 'vuetify/directives';
 import * as components from 'vuetify/components';
 import * as labsComponents from 'vuetify/labs/components';
 import { useCookies } from '@vueuse/integrations/useCookies';
+import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n';
+import { useI18n } from 'vue-i18n';
+import { en, vi } from 'vuetify/locale';
 
 /** icons */
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
@@ -20,10 +24,7 @@ import { AppKey } from '@module-base/constants/AppKey';
 import { localeObject } from '@module-language/constants/localeObject';
 import { themeObject } from '@module-theme/constants/themeObject';
 
-/** messages */
-import { en, vi } from 'vuetify/locale';
-import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n';
-import { useI18n } from 'vue-i18n';
+/** utils */
 import { defaultLocale, i18n } from '@module-language/utils/i18n';
 
 /** styles */

@@ -4,13 +4,15 @@
  * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
-const title = 'start';
+
+/** constants */
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 </script>
 
 <template>
     <div class="fixed w-screen h-screen top-0 left-0 z-10">
         <div class="start-elem">
-            <span class="text-start">{{ title }}</span>
+            <span class="text-start">{{ $t(BaseLanguage.component.label.start) }}</span>
             <span class="text-loading" />
         </div>
     </div>

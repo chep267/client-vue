@@ -1,4 +1,10 @@
 <script setup lang="ts">
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2024.
+ *
+ */
+
 /** libs */
 import { ref, useAttrs } from 'vue';
 import { mdiEye, mdiEyeOff } from '@mdi/js';

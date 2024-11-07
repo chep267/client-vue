@@ -49,6 +49,11 @@ export default ({ mode }: ConfigEnv) => {
                     manualChunks: {
                         'start-screen': ['./src/modules/module-auth/screens/StartScreen.vue'],
                         'auth-screen': ['./src/modules/module-auth/screens/AuthScreen.vue'],
+                        'main-screen': ['./src/modules/module-global/screens/MainScreen.vue'],
+                        'not-found-screen': ['./src/modules/module-global/screens/NotFoundScreen.vue'],
+                        'feed-screen': ['./src/modules/module-global/screens/FeedScreen.vue'],
+                        'messenger-screen': ['./src/modules/module-global/screens/MessengerScreen.vue'],
+                        'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen/index.vue'],
                     },
                 },
             },

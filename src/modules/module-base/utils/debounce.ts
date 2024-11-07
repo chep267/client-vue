@@ -4,7 +4,10 @@
  *
  */
 
-export const debounce = (timer = 1000, callback?: () => void) => {
+/** constants */
+import { AppTimer } from '@module-base/constants/AppTimer';
+
+export const debounce = (timer: number = AppTimer.debounce, callback?: () => void) => {
     return new Promise(resolve => {
         setTimeout(() => resolve(callback?.()), timer);
     });

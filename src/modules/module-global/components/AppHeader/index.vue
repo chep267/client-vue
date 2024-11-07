@@ -38,4 +38,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
 .v-theme--light {
     color: rgb(var(--v-theme-info));
 }
+:deep(.v-toolbar__prepend) {
+    margin-inline: 12px auto;
+}
 </style>

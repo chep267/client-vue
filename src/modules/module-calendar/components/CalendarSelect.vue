@@ -55,7 +55,7 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
             'relative flex flex-row justify-between w-full p-3 gap-2': true,
             'px-1 !flex-col-reverse': miniMode,
         }"
-        :style="`height: ${ScreenSize.CalendarSelectHeight}px`"
+        :style="`min-height: ${ScreenSize.CalendarSelectHeight}px`"
     >
         <v-btn :disabled="isToday" :class="{ 'w-fit': true, 'primary-text': !isToday }" @click.stop="onChangeDay('today')">
             {{ $t(CalendarLanguage.component.label.today) }}

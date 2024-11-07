@@ -7,9 +7,8 @@
 /** libs */
 import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
-
-/** lang */
 import 'dayjs/locale/vi';
+import 'dayjs/locale/en';
 
 /** constants */
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';

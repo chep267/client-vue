@@ -4,4 +4,10 @@
  *
  */
 
-export const en = {} as const;
+/** constants */
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
+
+export const en = {
+    [BaseLanguage.component.label.start]: 'start',
+    [BaseLanguage.component.label.develop]: 'On develop!',
+} as const;

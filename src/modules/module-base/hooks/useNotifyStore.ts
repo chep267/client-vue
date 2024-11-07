@@ -9,14 +9,15 @@ import { defineStore } from 'pinia';
 
 /** constants */
 import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 /** types */
 import type { TypeNotifyStore } from '@module-base/types';
 
 const defaultNotify: Readonly<TypeNotifyStore> = {
     open: false,
-    message: 'On develop!',
-    messageIntl: '',
+    message: '',
+    messageIntl: BaseLanguage.component.label.develop,
     duration: 2000,
     location: 'top right',
     color: NotifyColor.default,
@@ -28,7 +29,7 @@ export const useNotifyStore = defineStore('notify-store', {
     actions: {
         show(payload: Omit<TypeNotifyStore, 'open'>) {
             const { message, messageIntl, duration, location, color } = payload;
-            this.messageIntl = messageIntl;
+            this.messageIntl = messageIntl || defaultNotify.messageIntl;
             this.message = message || defaultNotify.message;
             this.duration = duration || defaultNotify.duration;
             this.location = location || defaultNotify.location;
