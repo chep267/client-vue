@@ -75,6 +75,9 @@ export default ({ mode }: ConfigEnv) => {
                 scss: {
                     silenceDeprecations: ['legacy-js-api'],
                 },
+                sass: {
+                    silenceDeprecations: ['legacy-js-api'],
+                },
             },
         },
     });

@@ -9,7 +9,7 @@
 import { computed } from 'vue';
 import { useTheme, useLocale } from 'vuetify';
 import { storeToRefs } from 'pinia';
-import { useCookies } from '@vueuse/integrations/useCookies';
+import Cookie from 'js-cookie';
 
 /** icons */
 import {
@@ -70,7 +70,6 @@ const emits = defineEmits<{
 
 const theme = useTheme();
 const locale = useLocale();
-const cookies = useCookies();
 const authStore = useAuthStore();
 const calendarStore = useCalendarStore();
 const hookSignOut = useSignout();
@@ -218,11 +217,11 @@ const menuAuth = computed<TypeMenuData[]>(() => {
 });
 
 const setTheme = (value: TypeTheme) => {
+    Cookie.set(AppKey.theme, value);
     theme.global.name.value = value;
-    cookies.set(AppKey.theme, value);
 };
 const setLocale = async (value: TypeLocale) => {
-    cookies.set(AppKey.locale, value);
+    Cookie.set(AppKey.locale, value);
     await setI18nLanguage(value);
     locale.current.value = value;
 };

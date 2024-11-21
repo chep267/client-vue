@@ -1,6 +1,4 @@
 /// <reference types="vite/client" />
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference path="node_modules/vue-i18n/dist/vue-i18n.d.ts" />
 
 /**
  *

@@ -7,7 +7,7 @@
 /** types */
 import type { TypeLocale } from '@module-language/types';
 
-export const localeObject: Readonly<Record<TypeLocale, TypeLocale>> = {
+export const localeObject: Readonly<{ [Key in TypeLocale]: Key }> = {
     vi: 'vi',
     en: 'en',
 };

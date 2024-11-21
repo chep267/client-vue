@@ -20,12 +20,22 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
-export function useSignout() {
+/** types */
+import type { AxiosError } from 'axios';
+import type { UseMutationReturnType } from '@tanstack/vue-query';
+import type { TypeApiAuth } from '@module-auth/types';
+
+export function useSignout(): UseMutationReturnType<
+    TypeApiAuth['Signout']['Response'],
+    AxiosError,
+    TypeApiAuth['Signout']['Payload'],
+    unknown
+> {
     const { push } = useRouter();
     const authStore = useAuthStore();
     const notifyStore = useNotifyStore();
 
-    return useMutation({
+    return useMutation<TypeApiAuth['Signout']['Response'], AxiosError, TypeApiAuth['Signout']['Payload']>({
         mutationFn: authApi.signout,
         onSettled: async () => {
             await authStore.signout();

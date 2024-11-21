@@ -50,7 +50,7 @@ const tableHeight = computed(() => {
 const data = computed(() => {
     const matrixCalendar = genMatrixCalendarDayJS(day.value, display.value);
     const output = reverseMatrix(matrixCalendar);
-    return output.map(item => item);
+    return output.map((item) => item);
 });
 
 const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
@@ -67,18 +67,18 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
             output = [0, 1, 2, 3, 4, 5, 6];
             break;
     }
-    return output.map(day => {
+    return output.map((day) => {
         const isWeekend = calendarStore.isWeekend(day);
         return {
             key: `${day}`,
             title: dayjs().day(day).locale(locale.value).format('ddd'),
             align: 'center',
             sortable: false,
-            value: item => (item[day] as Dayjs).date(),
+            value: (item) => (item[day] as Dayjs).date(),
             headerProps: {
                 class: { 'text-red': isWeekend },
             },
-            cellProps: data => {
+            cellProps: (data) => {
                 const thisDay = data.item[day] as Dayjs;
                 const isToDay = calendarStore.isToday(thisDay);
                 const isInMonth = calendarStore.isInMonth(thisDay);

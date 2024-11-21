@@ -7,7 +7,7 @@
 /** types */
 import type { TypeCalendarDisplay } from '@module-calendar/types';
 
-export const CalendarDisplay: Readonly<Record<TypeCalendarDisplay, TypeCalendarDisplay>> = {
+export const CalendarDisplay: Readonly<{ [Key in TypeCalendarDisplay]: Key }> = {
     sunday: 'sunday',
     monday: 'monday',
     weekend: 'weekend',

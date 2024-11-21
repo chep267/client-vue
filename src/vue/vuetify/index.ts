@@ -10,7 +10,6 @@ import colors from 'vuetify/util/colors';
 import * as directives from 'vuetify/directives';
 import * as components from 'vuetify/components';
 import * as labsComponents from 'vuetify/labs/components';
-import { useCookies } from '@vueuse/integrations/useCookies';
 import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n';
 import { useI18n } from 'vue-i18n';
 import { en, vi } from 'vuetify/locale';
@@ -20,17 +19,14 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
 import { customSVGs } from '@module-base/icons';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey';
 import { localeObject } from '@module-language/constants/localeObject';
-import { themeObject } from '@module-theme/constants/themeObject';
 
 /** utils */
 import { defaultLocale, i18n } from '@module-language/utils/i18n';
+import { getDeviceTheme } from '@module-theme/utils/defaultTheme';
 
 /** styles */
-import 'vuetify/styles';
-
-const cookies = useCookies();
+import 'vuetify/styles/main.sass';
 
 export const vueComponents = createVuetify({
     components: {
@@ -39,18 +35,20 @@ export const vueComponents = createVuetify({
     },
     directives,
     theme: {
-        defaultTheme: cookies.get(AppKey.theme) || themeObject.dark,
+        defaultTheme: getDeviceTheme(),
         themes: {
             light: {
-                variables: {
-                    'form-title-color': colors.blue.base,
-                    'start-loading-color': colors.blue.base,
+                colors: {
+                    // error: '#C10000',
+                    // main: '#0351BF',
+                    start: colors.blue.base,
                 },
             },
             dark: {
-                variables: {
-                    'form-title-color': colors.shades.white,
-                    'start-loading-color': colors.amber.base,
+                colors: {
+                    // error: '#C10000',
+                    // main: '#0351BF',
+                    start: colors.amber.base,
                 },
             },
         },

@@ -41,8 +41,8 @@ const axiosClientCDN = axios.create(axiosDefaultFormDataConfig);
 
 /** Add a request interceptor */
 axiosClient.interceptors.request.use(
-    config => config,
-    error => Promise.reject(error)
+    (config) => config,
+    (error) => Promise.reject(error)
 );
 
 /** Add a response interceptor */

@@ -1,3 +1,9 @@
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2024.
+ *
+ */
+
 /** @type {import('tailwindcss').Config} */
 
 export default {
@@ -5,19 +11,27 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                // quicksand: ['Quicksand', 'sans-serif'],
+                // arial: 'Arial, sans-serif',
             },
             transitionProperty: {
                 spacing: 'margin, padding',
             },
             colors: {
-                // 'semi-black': '#0A0810',
-                // 'neutral-black': '#222222',
                 // error: '#cd0000',
                 // main: '#f36c21',
             },
             lineHeight: {
                 // custom: '1.1',
+            },
+            fontSize: {
+                // 15: ['15px', 1.5],
+                // 22: ['22px', 1.5],
+            },
+            maxWidth: {
+                // 'auth-form': '715px',
+            },
+            padding: {
+                // screen: '244px',
             },
         },
     },

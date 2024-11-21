@@ -8,7 +8,7 @@
 /** libs */
 import { ref } from 'vue';
 import { Field, Form, type RuleExpression, type SubmissionHandler, type InvalidSubmissionHandler } from 'vee-validate';
-import { useCookies } from '@vueuse/integrations/useCookies';
+import Cookie from 'js-cookie';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
@@ -39,7 +39,6 @@ const FormFieldsName: Readonly<{ [Key in TypeFormFieldsName]: Key }> = {
     email: 'email',
     password: 'password',
 };
-const cookies = useCookies();
 const hookSignIn = useSignin();
 
 const formFieldsRef = ref<Record<TypeFormFieldsName, TypeInputElem>>({
@@ -48,18 +47,18 @@ const formFieldsRef = ref<Record<TypeFormFieldsName, TypeInputElem>>({
 });
 
 const initialValues: TypeFormData = {
-    [FormFieldsName.email]: cookies.get<string>(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
+    [FormFieldsName.email]: Cookie.get(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
     [FormFieldsName.password]: 'Midom@2024',
 };
 
-const validateEmail: RuleExpression<unknown> = email => {
+const validateEmail: RuleExpression<unknown> = (email) => {
     const value = email as TypeFormData[typeof FormFieldsName.email];
     if (!value?.trim()) {
         return AuthLanguage.status.email.empty;
     }
     return !Regex.email.test(value) ? AuthLanguage.status.email.invalid : true;
 };
-const validatePassword: RuleExpression<unknown> = password => {
+const validatePassword: RuleExpression<unknown> = (password) => {
     const value = password as TypeFormData[typeof FormFieldsName.password];
     if (!value?.trim()) {
         return AuthLanguage.status.password.empty;
@@ -87,7 +86,7 @@ const onSubmit: SubmissionHandler = (data, { setFieldError }) => {
 };
 const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
     const listFieldsCheck: TypeFormFieldsName[] = [FormFieldsName.email, FormFieldsName.password];
-    const field = listFieldsCheck.find(field => field in errors);
+    const field = listFieldsCheck.find((field) => field in errors);
     if (field) {
         focusInput({ elem: formFieldsRef.value[field] });
     }

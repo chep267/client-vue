@@ -7,7 +7,7 @@
 /** types */
 import type { TypeTheme } from '@module-theme/types';
 
-export const themeObject: Readonly<Record<TypeTheme, TypeTheme>> = {
+export const themeObject: Readonly<{ [Key in TypeTheme]: Key }> = {
     dark: 'dark',
     light: 'light',
 };

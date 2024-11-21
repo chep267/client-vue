@@ -7,7 +7,7 @@
 /** types */
 import type { TypeSiderState } from '@module-global/types';
 
-export const SiderState: Readonly<Record<TypeSiderState, TypeSiderState>> = {
+export const SiderState: Readonly<{ [Key in TypeSiderState]: Key }> = {
     collapse: 'collapse',
     expand: 'expand',
     hidden: 'hidden',

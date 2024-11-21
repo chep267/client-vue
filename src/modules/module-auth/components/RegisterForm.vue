@@ -49,14 +49,14 @@ const initialValues: TypeFormData = {
     [FormFieldsName.password]: '',
 };
 
-const validateEmail: RuleExpression<unknown> = email => {
+const validateEmail: RuleExpression<unknown> = (email) => {
     const value = email as TypeFormData[typeof FormFieldsName.email];
     if (!value?.trim()) {
         return AuthLanguage.status.email.empty;
     }
     return !Regex.email.test(value) ? AuthLanguage.status.email.invalid : true;
 };
-const validatePassword: RuleExpression<unknown> = password => {
+const validatePassword: RuleExpression<unknown> = (password) => {
     const value = password as TypeFormData[typeof FormFieldsName.password];
     if (!value?.trim()) {
         return AuthLanguage.status.password.empty;
@@ -84,7 +84,7 @@ const onSubmit: SubmissionHandler = (data, { setFieldError }) => {
 };
 const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
     const listFieldsCheck: TypeFormFieldsName[] = [FormFieldsName.email, FormFieldsName.password];
-    const field = listFieldsCheck.find(field => field in errors);
+    const field = listFieldsCheck.find((field) => field in errors);
     if (field) {
         focusInput({ elem: formFieldsRef.value[field] });
     }

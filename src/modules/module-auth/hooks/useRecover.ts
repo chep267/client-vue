@@ -18,19 +18,26 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 
 /** types */
-import type { AxiosError } from '@module-base/types';
+import type { AxiosError } from 'axios';
+import type { UseMutationReturnType } from '@tanstack/vue-query';
+import type { TypeApiAuth } from '@module-auth/types';
 
-export function useRecover() {
+export function useRecover(): UseMutationReturnType<
+    TypeApiAuth['Recover']['Response'],
+    AxiosError,
+    TypeApiAuth['Recover']['Payload'],
+    unknown
+> {
     const notifyStore = useNotifyStore();
 
-    return useMutation({
+    return useMutation<TypeApiAuth['Recover']['Response'], AxiosError, TypeApiAuth['Recover']['Payload']>({
         mutationFn: authApi.recover,
         onSuccess: () => {
             notifyStore.show({ color: NotifyColor.success, messageIntl: AuthLanguage.notify.recover.success });
         },
-        onError: (error: AxiosError) => {
+        onError: (error) => {
             const code = Number(error?.response?.status);
-            let messageIntl;
+            let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.recover.error;

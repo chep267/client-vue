@@ -17,13 +17,12 @@ import { ScreenPath } from '@module-global/constants/ScreenPath';
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 /** screens */
-const StartScreen = () => import(/* webpackChunkName: "start-screen" */ '@module-auth/screens/StartScreen.vue');
-const NotFoundScreen = () => import(/* webpackChunkName: "not-found-screen" */ '@module-global/screens/NotFoundScreen.vue');
-const AuthScreen = () => import(/* webpackChunkName: "auth-screen" */ '@module-auth/screens/AuthScreen.vue');
-const FeedScreen = () => import(/* webpackChunkName: "feed-screen" */ '@module-global/screens/FeedScreen.vue');
-const MessengerScreen = () => import(/* webpackChunkName: "messenger-screen" */ '@module-global/screens/MessengerScreen.vue');
-const CalendarScreen = () =>
-    import(/* webpackChunkName: "calendar-screen" */ '@module-calendar/screens/CalendarScreen/index.vue');
+const StartScreen = () => import('@module-auth/screens/StartScreen.vue');
+const NotFoundScreen = () => import('@module-global/screens/NotFoundScreen.vue');
+const AuthScreen = () => import('@module-auth/screens/AuthScreen.vue');
+const FeedScreen = () => import('@module-global/screens/FeedScreen.vue');
+const MessengerScreen = () => import('@module-global/screens/MessengerScreen.vue');
+const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen/index.vue');
 
 const routes = [
     /** authentication */
@@ -87,7 +86,7 @@ export const routers = createRouter({
 
 const AuthPath = Object.values(AuthScreenPath);
 
-routers.beforeEach(to => {
+routers.beforeEach((to) => {
     const uid = Cookies.get(AppKey.uid) as string;
     const authStore = useAuthStore();
 
@@ -97,12 +96,12 @@ routers.beforeEach(to => {
             authStore.setPath(to.path);
             return { path: ScreenPath.start };
         }
-        if (!uid && !AuthPath.some(path => to.path.startsWith(path))) {
+        if (!uid && !AuthPath.some((path) => to.path.startsWith(path))) {
             // redirect to /signin => call signin
             return { path: AuthScreenPath.signin };
         }
     }
-    if (authStore.isAuthentication && AuthPath.some(path => to.path.startsWith(path))) {
+    if (authStore.isAuthentication && AuthPath.some((path) => to.path.startsWith(path))) {
         // redirect to / => home!!
         return { path: ScreenPath.home };
     }

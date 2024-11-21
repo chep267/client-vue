@@ -30,7 +30,7 @@ export function useRegister() {
         },
         onError: (error: AxiosError) => {
             const code = Number(error?.response?.status);
-            let messageIntl;
+            let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.register.error;

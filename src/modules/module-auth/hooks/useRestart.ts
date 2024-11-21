@@ -7,7 +7,7 @@
 /** libs */
 import { useRouter } from 'vue-router';
 import { useMutation } from '@tanstack/vue-query';
-import { useCookies } from '@vueuse/integrations/useCookies';
+import Cookie from 'js-cookie';
 
 /** apis */
 import { authApi } from '@module-auth/apis/authApi';
@@ -27,25 +27,30 @@ import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 /** types */
 import type { AxiosError } from 'axios';
+import type { UseMutationReturnType } from '@tanstack/vue-query';
 import type { TypeApiAuth } from '@module-auth/types';
 
-export function useRestart() {
+export function useRestart(): UseMutationReturnType<
+    TypeApiAuth['Restart']['Response'],
+    AxiosError,
+    TypeApiAuth['Restart']['Payload'],
+    unknown
+> {
     const notifyStore = useNotifyStore();
     const { push } = useRouter();
     const authStore = useAuthStore();
-    const cookies = useCookies();
 
-    const RESTART = useMutation({
+    const RESTART = useMutation<TypeApiAuth['Restart']['Response'], AxiosError, TypeApiAuth['Restart']['Payload']>({
         mutationFn: authApi.restart,
         onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
             await authStore.signin(response.data);
             await push(authStore.prePath);
             await debounce(response.data.token.exp, () => RESTART.mutate({}));
         },
-        onError: async (error: AxiosError) => {
-            cookies.remove(AppKey.uid);
+        onError: async (error) => {
+            Cookie.remove(AppKey.uid);
             const code = Number(error?.response?.status);
-            let messageIntl;
+            let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.refresh.error;

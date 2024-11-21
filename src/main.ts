@@ -27,7 +27,7 @@ const app = createApp(App)
     .use(i18n)
     .use(routers)
     .use(Particles, {
-        init: async engine => {
+        init: async (engine) => {
             await loadSlim(engine);
         },
     });

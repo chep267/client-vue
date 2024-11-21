@@ -6,15 +6,13 @@
 
 /** libs */
 import { defineStore } from 'pinia';
-import { useCookies } from '@vueuse/integrations/useCookies';
+import Cookie from 'js-cookie';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 
 /** types */
 import type { TypeApiAuth, TypeAuthStore } from '@module-auth/types';
-
-const cookies = useCookies();
 
 export const useAuthStore = defineStore('auth-store', {
     state: (): TypeAuthStore => {
@@ -37,12 +35,12 @@ export const useAuthStore = defineStore('auth-store', {
         },
         async signin(payload: TypeApiAuth['Signin']['Response']['data']) {
             const { user } = payload;
-            cookies.set(AppKey.uid, user.uid);
-            cookies.set(AppKey.email, user.email);
+            Cookie.set(AppKey.uid, user.uid);
+            Cookie.set(AppKey.email, user.email || '');
             this.user = user;
         },
         async signout() {
-            cookies.remove(AppKey.uid);
+            Cookie.remove(AppKey.uid);
             this.user = null;
         },
     },

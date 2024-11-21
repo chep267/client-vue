@@ -310,7 +310,7 @@ export default class VietnameseDate {
         const propitiousHours = PropitiousHours[terrestrialBranchOfDay % 6];
         return propitiousHours
             .map((c, i) => (c === 0 ? null : `${TerrestrialBranches[i]} (${(i * 2 + 23) % 24}-${(i * 2 + 1) % 24})`))
-            .filter(s => s !== null)
+            .filter((s) => s !== null)
             .join(', ');
     }
     /**
