@@ -4,6 +4,9 @@
  *
  */
 
+/** libs */
+import colors from 'vuetify/util/colors';
+
 /** @type {import('tailwindcss').Config} */
 
 export default {
@@ -19,6 +22,10 @@ export default {
             colors: {
                 // error: '#cd0000',
                 // main: '#f36c21',
+                'auth-title': {
+                    light: colors.blue.base,
+                    dark: colors.shades.white,
+                },
             },
             lineHeight: {
                 // custom: '1.1',

@@ -23,7 +23,7 @@ configure({
 </script>
 
 <template>
-    <div class="flex flex-col justify-center items-center w-full h-full gap-y-10 auth-form">
+    <div class="flex flex-col justify-center items-center w-full h-full gap-10 auth-form">
         <AuthFormTitle />
         <AuthFormContent />
         <BaseParticles />
