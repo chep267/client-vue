@@ -5,8 +5,8 @@
  */
 
 export const AppKey = {
-    uid: 'local_uid',
-    email: 'local_email',
-    theme: 'local_theme',
-    locale: 'local_locale',
+    uid: 'client_vue_local_uid',
+    email: 'client_vue_local_email',
+    theme: 'client_vue_local_theme',
+    locale: 'client_vue_local_locale',
 } as const;

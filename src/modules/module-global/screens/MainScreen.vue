@@ -5,16 +5,41 @@
  *
  */
 
+/** libs */
+import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+
+/** constants */
+import { SiderState } from '@module-global/constants/SiderState';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+
+/** hooks */
+import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+import { useSiderStore } from '@module-global/hooks/useSiderStore';
+
 /** components */
+import NotifyProvider from '@module-base/components/NotifyProvider.vue';
 import AppHeader from '@module-global/components/AppHeader/index.vue';
 import AppSider from '@module-global/components/AppSider/index.vue';
 import AppMain from '@module-global/components/AppMain.vue';
+
+const authStore = useAuthStore();
+const siderStore = useSiderStore();
+const { isAuthentication } = storeToRefs(authStore);
+const { siderState } = storeToRefs(siderStore);
+
+const top = computed(() => {
+    const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
+    return ScreenSize.HeaderHeight + (isAuthentication.value ? appBarMiniHeight : 0);
+});
 </script>
 
 <template>
-    <v-app class="w-screen h-screen">
-        <AppHeader />
-        <AppSider />
-        <AppMain />
-    </v-app>
+    <NotifyProvider :style="`top: ${top}px`">
+        <v-app class="w-screen h-screen">
+            <AppHeader />
+            <AppSider />
+            <AppMain />
+        </v-app>
+    </NotifyProvider>
 </template>
