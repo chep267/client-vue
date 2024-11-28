@@ -36,20 +36,19 @@ export function useRestart(): UseMutationReturnType<
     TypeApiAuth['Restart']['Payload'],
     unknown
 > {
-    const notifyStore = useNotifyStore();
     const { push } = useRouter();
+    const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
     const RESTART = useMutation<TypeApiAuth['Restart']['Response'], AxiosError, TypeApiAuth['Restart']['Payload']>({
         mutationFn: authApi.restart,
-        onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
-            await authStore.signin(response.data);
-            await push(authStore.prePath);
-            await debounce(response.data.token.exp, () => RESTART.mutate({}));
+        onSuccess: (response: TypeApiAuth['Restart']['Response']) => {
+            authStore.signin(response.data);
+            push(authStore.prePath).then(() => debounce(response.data.token.exp, () => RESTART.mutate({})));
         },
-        onError: async (error) => {
+        onError: (error) => {
             Cookie.remove(AppKey.uid);
-            const code = Number(error?.response?.status);
+            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
@@ -60,7 +59,7 @@ export function useRestart(): UseMutationReturnType<
                     break;
             }
             notifyStore.show({ color: NotifyColor.error, messageIntl });
-            await push(AuthScreenPath.signin);
+            push(AuthScreenPath.signin).then();
         },
     });
 

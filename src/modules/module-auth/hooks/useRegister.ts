@@ -18,18 +18,25 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 
 /** types */
-import type { AxiosError } from '@module-base/types';
+import type { AxiosError } from 'axios';
+import type { UseMutationReturnType } from '@tanstack/vue-query';
+import type { TypeApiAuth } from '@module-auth/types';
 
-export function useRegister() {
+export function useRegister(): UseMutationReturnType<
+    TypeApiAuth['Register']['Response'],
+    AxiosError,
+    TypeApiAuth['Register']['Payload'],
+    unknown
+> {
     const notifyStore = useNotifyStore();
 
-    return useMutation({
+    return useMutation<TypeApiAuth['Register']['Response'], AxiosError, TypeApiAuth['Register']['Payload']>({
         mutationFn: authApi.register,
         onSuccess: () => {
             notifyStore.show({ color: NotifyColor.success, messageIntl: AuthLanguage.notify.register.success });
         },
-        onError: (error: AxiosError) => {
-            const code = Number(error?.response?.status);
+        onError: (error) => {
+            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:

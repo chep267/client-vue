@@ -17,7 +17,7 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 import { debounce } from '@module-base/utils/debounce';
 
 /** types */
-import type { AxiosError, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults } from '@module-base/types';
+import type { AxiosError, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 
 /** for default api */
 const axiosDefaultConfig: CreateAxiosDefaults = {
@@ -42,12 +42,12 @@ const axiosClientCDN = axios.create(axiosDefaultFormDataConfig);
 /** Add a request interceptor */
 axiosClient.interceptors.request.use(
     (config) => config,
-    (error) => Promise.reject(error)
+    (error: AxiosError) => Promise.reject(error)
 );
 
 /** Add a response interceptor */
 axiosClient.interceptors.response.use(
-    (response: AxiosResponse) => {
+    (response) => {
         return {
             ...response.data,
             status: response.status,

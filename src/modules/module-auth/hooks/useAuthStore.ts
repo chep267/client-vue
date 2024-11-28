@@ -33,13 +33,13 @@ export const useAuthStore = defineStore('auth-store', {
         setPath(path: string) {
             this.prePath = path || this.prePath;
         },
-        async signin(payload: TypeApiAuth['Signin']['Response']['data']) {
+        signin(payload: TypeApiAuth['Signin']['Response']['data']) {
             const { user } = payload;
             Cookie.set(AppKey.uid, user.uid);
             Cookie.set(AppKey.email, user.email || '');
             this.user = user;
         },
-        async signout() {
+        signout() {
             Cookie.remove(AppKey.uid);
             this.user = null;
         },

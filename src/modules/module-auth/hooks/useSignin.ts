@@ -15,9 +15,6 @@ import { authApi } from '@module-auth/apis/authApi';
 import { NotifyColor } from '@module-base/constants/NotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** utils */
-import { debounce } from '@module-base/utils/debounce';
-
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
@@ -33,19 +30,18 @@ export function useSignin(): UseMutationReturnType<
     TypeApiAuth['Signin']['Payload'],
     unknown
 > {
-    const notifyStore = useNotifyStore();
     const { push } = useRouter();
+    const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    const SIGN_IN = useMutation<TypeApiAuth['Signin']['Response'], AxiosError, TypeApiAuth['Signin']['Payload']>({
+    return useMutation<TypeApiAuth['Signin']['Response'], AxiosError, TypeApiAuth['Signin']['Payload']>({
         mutationFn: authApi.signin,
-        onSuccess: async (response, data) => {
-            await authStore.signin(response.data);
-            await push('/');
-            debounce(response.data.token.exp, () => SIGN_IN.mutate(data)).then();
+        onSuccess: (response) => {
+            authStore.signin(response.data);
+            push('/').then();
         },
         onError: (error) => {
-            const code = Number(error?.response?.status);
+            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
@@ -58,6 +54,4 @@ export function useSignin(): UseMutationReturnType<
             notifyStore.show({ color: NotifyColor.error, messageIntl });
         },
     });
-
-    return SIGN_IN;
 }

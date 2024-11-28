@@ -32,14 +32,14 @@ export function useSignout(): UseMutationReturnType<
     unknown
 > {
     const { push } = useRouter();
-    const authStore = useAuthStore();
     const notifyStore = useNotifyStore();
+    const authStore = useAuthStore();
 
     return useMutation<TypeApiAuth['Signout']['Response'], AxiosError, TypeApiAuth['Signout']['Payload']>({
         mutationFn: authApi.signout,
-        onSettled: async () => {
-            await authStore.signout();
-            await push(ScreenPath.start);
+        onSettled: () => {
+            authStore.signout();
+            push(ScreenPath.start).then();
         },
         onError: () => {
             notifyStore.show({ color: NotifyColor.error, messageIntl: AuthLanguage.notify.server.error });

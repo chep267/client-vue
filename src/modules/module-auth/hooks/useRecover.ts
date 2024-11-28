@@ -36,7 +36,7 @@ export function useRecover(): UseMutationReturnType<
             notifyStore.show({ color: NotifyColor.success, messageIntl: AuthLanguage.notify.recover.success });
         },
         onError: (error) => {
-            const code = Number(error?.response?.status);
+            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:

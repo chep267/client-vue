@@ -27,7 +27,7 @@ import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.v
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 /** type */
-import type { TypeInputElem, AxiosError } from '@module-base/types';
+import type { TypeInputElem } from '@module-base/types';
 
 type TypeFormFieldsName = 'email';
 type TypeFormData = {
@@ -56,8 +56,8 @@ const validateEmail: RuleExpression<unknown> = (email) => {
 };
 const onSubmit: SubmissionHandler = (data, { setFieldError }) => {
     hookRecover.mutate(data as TypeFormData, {
-        onError: (error: AxiosError) => {
-            const code = Number(error?.response?.status);
+        onError: (error) => {
+            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:

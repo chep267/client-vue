@@ -32,6 +32,7 @@ export default ({ mode }: ConfigEnv) => {
     process.env = Object.assign(process.env, loadEnv(mode, process.cwd()));
     const isDevMode = process.env.VITE_APP_MODE === 'dev';
     const port = Number(process.env.VITE_APP_PORT) || 3000;
+    const host = process.env.VITE_APP_HOST || 'localhost';
 
     return defineConfig({
         plugins: [vue(), vueDevTools(), vuetify(), basicSsl()],
@@ -60,7 +61,7 @@ export default ({ mode }: ConfigEnv) => {
             },
         },
         server: {
-            host: process.env.VITE_APP_HOST,
+            host,
             port,
             open: true,
         },
