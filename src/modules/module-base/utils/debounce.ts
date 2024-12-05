@@ -7,8 +7,8 @@
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
 
-export const debounce = (timer: number = AppTimer.debounce, callback?: () => void) => {
+export const debounce = (timer: number = AppTimer.debounce, cb?: () => void) => {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(callback?.()), timer);
+        setTimeout(() => resolve(cb?.()), timer);
     });
 };
