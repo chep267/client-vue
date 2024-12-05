@@ -17,11 +17,7 @@ import { focusInput } from '@module-base/utils/focusInput';
 import InputText from '@module-base/components/InputText.vue';
 
 /** types */
-import type { TypeInputElem } from '@module-base/types';
-
-type TextFieldProps = InstanceType<typeof VTextField>['$props'];
-
-interface InputTextProps extends /* @vue-ignore */ TextFieldProps {}
+import type { TypeInputElem, InputTextProps } from '@module-base/types';
 
 defineOptions({ name: 'InputPassword', extends: VTextField, inheritAttrs: false });
 defineProps<InputTextProps>();
