@@ -6,7 +6,6 @@
  */
 
 /** components */
-import NotifyProvider from '@module-base/components/NotifyProvider.vue';
 import ThemeProvider from '@module-theme/components/ThemeProvider.vue';
 import LanguageProvider from '@module-language/components/LanguageProvider.vue';
 
@@ -20,9 +19,7 @@ import './root.css';
 <template>
     <LanguageProvider>
         <ThemeProvider>
-            <NotifyProvider>
-                <MainScreen />
-            </NotifyProvider>
+            <MainScreen />
         </ThemeProvider>
     </LanguageProvider>
 </template>

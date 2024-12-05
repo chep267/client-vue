@@ -6,23 +6,38 @@
  */
 
 /** libs */
-import { ref, watch, useAttrs } from 'vue';
+import { ref, watch } from 'vue';
+import { VTextField } from 'vuetify/components/VTextField';
 
 /** types */
-import type { TypeInputElem, InputBaseProps } from '@module-base/types';
+import type { TypeInputElem } from '@module-base/types';
 
+type TextFieldProps = InstanceType<typeof VTextField>['$props'];
+
+interface InputTextProps extends /* @vue-ignore */ TextFieldProps {}
+
+defineOptions({ name: 'InputText', extends: VTextField, inheritAttrs: false });
+defineProps<InputTextProps>();
 const emits = defineEmits<{
     (e: 'set-ref', elem: TypeInputElem): void;
+    (e: 'input'): void;
+    (e: 'on-change', event: unknown): void;
 }>();
 
-const attrs: InputBaseProps = useAttrs();
 const inputRef = ref<TypeInputElem>(null);
 
 watch(inputRef, () => emits('set-ref', inputRef.value));
 </script>
 
 <template>
-    <v-text-field v-bind="attrs" ref="inputRef" :type="attrs.type || 'text'" variant="outlined" :spellcheck="false" />
+    <v-text-field
+        v-bind.prop="$props"
+        ref="inputRef"
+        :spellcheck="false"
+        variant="outlined"
+        @update:model-value="$emit('on-change', $event)"
+        @input="$emit('input')"
+    />
 </template>
 
 <style lang="scss" scoped>

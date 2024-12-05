@@ -90,14 +90,20 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
     >
-        <Field :name="FormFieldsName.email" v-slot="{ field, errorMessage, setErrors }" :rules="validateEmail">
+        <Field
+            v-slot="{ value, handleChange, errorMessage, setErrors }"
+            :name="FormFieldsName.email"
+            :rules="validateEmail"
+            :validate-on-input="false"
+        >
             <InputText
-                v-bind="field"
+                :model-value="value"
                 :label="$t(AuthLanguage.component.label.email)"
-                :autofocus="true"
                 :error-messages="errorMessage ? $t(errorMessage) : null"
+                :autofocus="true"
                 @set-ref="formFieldsRef[FormFieldsName.email] = $event"
                 @input="setErrors('')"
+                @on-change="handleChange"
             />
         </Field>
         <AuthFormBreadcrumbs />

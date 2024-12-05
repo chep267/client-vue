@@ -7,7 +7,7 @@
 
 /** libs */
 import { ref } from 'vue';
-import { Field, Form, type RuleExpression, type SubmissionHandler, type InvalidSubmissionHandler } from 'vee-validate';
+import { Field, Form } from 'vee-validate';
 import Cookie from 'js-cookie';
 
 /** constants */
@@ -28,6 +28,7 @@ import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.v
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 /** type */
+import type { RuleExpression, SubmissionHandler, InvalidSubmissionHandler } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
 
 type TypeFormFieldsName = 'email' | 'password';
@@ -103,27 +104,33 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         :on-invalid-submit="onSubmitError"
     >
         <Field
+            v-slot="{ value, handleChange, errorMessage, setErrors }"
             :name="FormFieldsName.email"
-            v-slot="{ field, errorMessage, setErrors }"
             :rules="validateEmail"
             :validate-on-input="false"
         >
             <InputText
-                v-bind="field"
+                :model-value="value"
                 :label="$t(AuthLanguage.component.label.email)"
-                :autofocus="true"
                 :error-messages="errorMessage ? $t(errorMessage) : null"
+                :autofocus="true"
                 @set-ref="formFieldsRef[FormFieldsName.email] = $event"
                 @input="setErrors('')"
+                @on-change="handleChange"
             />
         </Field>
-        <Field :name="FormFieldsName.password" v-slot="{ field, errorMessage, setErrors }" :rules="validatePassword">
+        <Field
+            v-slot="{ value, handleChange, errorMessage, setErrors }"
+            :name="FormFieldsName.password"
+            :rules="validatePassword"
+        >
             <InputPassword
-                v-bind="field"
+                :model-value="value"
                 :label="$t(AuthLanguage.component.label.password)"
                 :error-messages="errorMessage ? $t(errorMessage) : null"
                 @set-ref="formFieldsRef[FormFieldsName.password] = $event"
                 @input="setErrors('')"
+                @on-change="handleChange"
             />
         </Field>
         <AuthFormBreadcrumbs />

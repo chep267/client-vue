@@ -6,8 +6,9 @@
  */
 
 /** libs */
-import { ref, useAttrs } from 'vue';
+import { ref } from 'vue';
 import { mdiEye, mdiEyeOff } from '@mdi/js';
+import { VTextField } from 'vuetify/components/VTextField';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput';
@@ -16,13 +17,20 @@ import { focusInput } from '@module-base/utils/focusInput';
 import InputText from '@module-base/components/InputText.vue';
 
 /** types */
-import type { InputBaseProps, TypeInputElem } from '@module-base/types';
+import type { TypeInputElem } from '@module-base/types';
 
+type TextFieldProps = InstanceType<typeof VTextField>['$props'];
+
+interface InputTextProps extends /* @vue-ignore */ TextFieldProps {}
+
+defineOptions({ name: 'InputPassword', extends: VTextField, inheritAttrs: false });
+defineProps<InputTextProps>();
 const emits = defineEmits<{
     (e: 'set-ref', elem: TypeInputElem): void;
+    (e: 'input'): void;
+    (e: 'on-change', event: unknown): void;
 }>();
 
-const attrs: InputBaseProps = useAttrs();
 const inputRef = ref<TypeInputElem>(null);
 const visible = ref(false);
 
@@ -37,12 +45,12 @@ const onSeen = () => {
 
 <template>
     <input-text
-        v-bind="attrs"
+        v-bind.prop="$props"
         :type="visible ? 'text' : 'password'"
-        autocapitalize="off"
-        autocomplete="off"
         :append-inner-icon="visible ? mdiEyeOff : mdiEye"
         @click:append-inner.stop="onSeen"
         @set-ref="setRef"
+        @input="$emit('input')"
+        @on-change="$emit('on-change', $event)"
     />
 </template>
