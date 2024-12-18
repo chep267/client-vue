@@ -20,15 +20,15 @@ import { routers } from '@root/router';
 import App from '@root/components/App.vue';
 
 const pinia = createPinia();
-const app = createApp(App)
-    .use(VueQueryPlugin)
-    .use(pinia)
-    .use(vueComponents)
-    .use(i18n)
-    .use(routers)
-    .use(Particles, {
-        init: async (engine) => {
-            await loadSlim(engine);
-        },
-    });
+const app = createApp(App);
+app.use(pinia);
+app.use(routers);
+app.use(VueQueryPlugin);
+app.use(vueComponents);
+app.use(i18n);
+app.use(Particles, {
+    init: async (engine) => {
+        await loadSlim(engine);
+    },
+});
 app.mount('#app');
