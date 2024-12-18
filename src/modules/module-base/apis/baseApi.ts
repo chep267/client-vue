@@ -54,12 +54,11 @@ axiosClient.interceptors.response.use(
         };
     },
     async (error: AxiosError) => {
-        /** khoan, dừng khoảng chừng là 600ms */
-        await debounce(AppTimer.pendingApi);
         if (error.response?.status === 401) {
             Cookies.remove(AppKey.uid);
-            window.location.href = '/';
         }
+        /** khoan, dừng khoảng chừng là 600ms */
+        await debounce(AppTimer.pendingApi);
         return Promise.reject(error);
     }
 );

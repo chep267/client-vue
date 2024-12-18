@@ -87,7 +87,7 @@ export const routers = createRouter({
 const AuthPath = Object.values(AuthScreenPath);
 
 routers.beforeEach((to) => {
-    const uid = Cookies.get(AppKey.uid) as string;
+    const uid = Cookies.get(AppKey.uid);
     const authStore = useAuthStore();
 
     if (!authStore.isAuthentication) {
