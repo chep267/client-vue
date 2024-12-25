@@ -12,17 +12,16 @@ import { VTextField } from 'vuetify/components/VTextField';
 /** types */
 import type { TypeInputElem, InputTextProps } from '@module-base/types';
 
-defineOptions({ name: 'InputText', extends: VTextField, inheritAttrs: false });
+defineOptions({ name: 'InputText', extends: VTextField, inheritAttrs: true });
 defineProps<InputTextProps>();
 const emits = defineEmits<{
-    (e: 'set-ref', elem: TypeInputElem): void;
-    (e: 'input'): void;
-    (e: 'on-change', event: unknown): void;
+    (e: 'update:ref', elem: TypeInputElem): void;
+    (e: 'update:model-value', value: string): void;
 }>();
 
 const inputRef = useTemplateRef<TypeInputElem>('input-ref');
 
-watch(inputRef, () => emits('set-ref', inputRef.value));
+watch(inputRef, () => emits('update:ref', inputRef.value));
 </script>
 
 <template>
@@ -32,8 +31,7 @@ watch(inputRef, () => emits('set-ref', inputRef.value));
         :spellcheck="false"
         autocomplete="off"
         variant="outlined"
-        @update:model-value="$emit('on-change', $event)"
-        @input="$emit('input')"
+        @update:model-value="$emit('update:model-value', $event)"
     />
 </template>
 

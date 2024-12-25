@@ -16,21 +16,21 @@
     },
     "dependencies": {
         "@mdi/js": "^7.4.47",
-        "@tanstack/vue-query": "^5.62.7",
+        "@tanstack/vue-query": "^5.62.9",
         "@tsparticles/slim": "^3.7.1",
         "@tsparticles/vue3": "^3.0.1",
-        "@vueuse/core": "^12.0.0",
+        "@vueuse/core": "^12.2.0",
         "axios": "^1.7.9",
         "dayjs": "^1.11.13",
-        "firebase": "^11.0.2",
+        "firebase": "^11.1.0",
         "js-cookie": "^3.0.5",
         "pinia": "^2.3.0",
-        "tailwindcss": "^3.4.16",
-        "vee-validate": "^4.14.7",
+        "tailwindcss": "^3.4.17",
+        "vee-validate": "^4.15.0",
         "vue": "^3.5.13",
-        "vue-i18n": "10.0.5",
+        "vue-i18n": "11.0.0",
         "vue-router": "^4.5.0",
-        "vuetify": "^3.7.5"
+        "vuetify": "^3.7.6"
     },
     "devDependencies": {
         "@tsconfig/node20": "^20.1.4",
@@ -42,15 +42,15 @@
         "@vue/eslint-config-typescript": "^14.1.4",
         "@vue/tsconfig": "^0.7.0",
         "autoprefixer": "^10.4.20",
-        "eslint": "^9.16.0",
+        "eslint": "^9.17.0",
         "eslint-plugin-vue": "^9.32.0",
         "postcss": "^8.4.49",
         "prettier": "^3.4.2",
-        "sass-embedded": "^1.82.0",
-        "typescript": "5.6.3",
-        "vite": "^6.0.3",
+        "sass-embedded": "^1.83.0",
+        "typescript": "5.7.2",
+        "vite": "^6.0.5",
         "vite-plugin-vue-devtools": "^7.6.8",
         "vite-plugin-vuetify": "^2.0.4",
-        "vue-tsc": "^2.1.10"
+        "vue-tsc": "^2.2.0"
     }
 }

@@ -6,8 +6,17 @@
 
 /** type */
 import type { VTextField } from 'vuetify/components/VTextField';
+import type { VBtn } from 'vuetify/components/VBtn';
+import type { VOtpInput } from 'vuetify/components/VOtpInput';
 
 type TextFieldProps = InstanceType<typeof VTextField>['$props'];
+type ButtonProps = InstanceType<typeof VBtn>['$props'];
+type InputOTPProps = InstanceType<typeof VOtpInput>['$props'];
 
-export interface InputTextProps extends /* @vue-ignore */ TextFieldProps {}
 export type TypeInputElem = HTMLInputElement | null;
+export interface InputTextProps extends /* @vue-ignore */ TextFieldProps {}
+export interface ButtonBaseProps extends /* @vue-ignore */ ButtonProps {
+    overlay?: 'none';
+    type?: string;
+}
+export interface InputOTPBaseProps extends /* @vue-ignore */ InputOTPProps {}

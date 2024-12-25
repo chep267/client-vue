@@ -7,7 +7,7 @@
 
 /** libs */
 import { computed, type VueElement } from 'vue';
-import { useRoute, RouterLink } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 /** constants */
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
@@ -50,9 +50,9 @@ const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
     <div class="flex flex-row w-full text-router">
         <template v-for="(item, index) in breadcrumbs" :key="item.path">
             <span v-if="index > 0" class="text-router px-1">{{ append }}</span>
-            <RouterLink class="text-router hover:underline" :to="item.path">
+            <router-link class="text-router hover:underline" :to="item.path">
                 {{ $t(item.title) }}
-            </RouterLink>
+            </router-link>
         </template>
     </div>
 </template>

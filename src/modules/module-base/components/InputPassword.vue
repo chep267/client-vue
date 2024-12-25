@@ -19,34 +19,34 @@ import InputText from '@module-base/components/InputText.vue';
 /** types */
 import type { TypeInputElem, InputTextProps } from '@module-base/types';
 
-defineOptions({ name: 'InputPassword', extends: VTextField, inheritAttrs: false });
+defineOptions({ name: 'InputPassword', extends: VTextField, inheritAttrs: true });
 defineProps<InputTextProps>();
 const emits = defineEmits<{
-    (e: 'set-ref', elem: TypeInputElem): void;
-    (e: 'input'): void;
-    (e: 'on-change', event: unknown): void;
+    (e: 'update:ref', elem: TypeInputElem): void;
+    (e: 'update:model-value', value: string): void;
 }>();
 
 const inputRef = ref<TypeInputElem>(null);
 const visible = ref(false);
 
-const setRef = (elem: TypeInputElem) => {
+const updateRef = (elem: TypeInputElem) => {
     inputRef.value = elem;
-    emits('set-ref', elem);
+    emits('update:ref', elem);
 };
 const onSeen = () => {
-    focusInput({ elem: inputRef.value, fnCallback: () => (visible.value = !visible.value) });
+    visible.value = !visible.value;
+    focusInput({ elem: inputRef.value });
 };
 </script>
 
 <template>
     <input-text
         v-bind.prop="$props"
+        v-bind.attr="$attrs"
         :type="visible ? 'text' : 'password'"
         :append-inner-icon="visible ? mdiEyeOff : mdiEye"
         @click:append-inner.stop="onSeen"
-        @set-ref="setRef"
-        @input="$emit('input')"
-        @on-change="$emit('on-change', $event)"
+        @update:ref="updateRef"
+        @update:model-value="$emit('update:model-value', $event)"
     />
 </template>

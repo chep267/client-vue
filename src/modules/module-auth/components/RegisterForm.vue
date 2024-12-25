@@ -7,7 +7,7 @@
 
 /** libs */
 import { ref } from 'vue';
-import { Field, Form, type RuleExpression, type SubmissionHandler, type InvalidSubmissionHandler } from 'vee-validate';
+import { Field, Form } from 'vee-validate';
 
 /** constants */
 import { Regex } from '@module-base/constants/Regex';
@@ -22,10 +22,11 @@ import { useRegister } from '@module-auth/hooks/useRegister';
 /** components */
 import InputText from '@module-base/components/InputText.vue';
 import InputPassword from '@module-base/components/InputPassword.vue';
-import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
+import ButtonBase from '@module-base/components/ButtonBase.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 /** type */
+import type { RuleExpression, SubmissionHandler, InvalidSubmissionHandler, FieldContext } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
 
 type TypeFormFieldsName = 'email' | 'password';
@@ -37,47 +38,57 @@ const FormFieldsName: Readonly<{ [Key in TypeFormFieldsName]: Key }> = {
     email: 'email',
     password: 'password',
 };
+
 const hookRegister = useRegister();
 
 const formFieldsRef = ref<Record<TypeFormFieldsName, TypeInputElem>>({
     [FormFieldsName.email]: null,
     [FormFieldsName.password]: null,
 });
+const errorStatus = ref('');
 
 const initialValues: TypeFormData = {
     [FormFieldsName.email]: '',
     [FormFieldsName.password]: '',
 };
 
-const validateEmail: RuleExpression<unknown> = (email) => {
-    const value = email as TypeFormData[typeof FormFieldsName.email];
-    if (!value?.trim()) {
+const validateEmail: RuleExpression<unknown> = (value) => {
+    const email = value as TypeFormData[typeof FormFieldsName.email];
+    if (!email?.trim()) {
         return AuthLanguage.status.email.empty;
     }
-    return !Regex.email.test(value) ? AuthLanguage.status.email.invalid : true;
+    return !Regex.email.test(email) ? AuthLanguage.status.email.invalid : true;
 };
-const validatePassword: RuleExpression<unknown> = (password) => {
-    const value = password as TypeFormData[typeof FormFieldsName.password];
-    if (!value?.trim()) {
+const validatePassword: RuleExpression<unknown> = (value) => {
+    const password = value as TypeFormData[typeof FormFieldsName.password];
+    if (!password?.trim()) {
         return AuthLanguage.status.password.empty;
     }
-    return !Regex.password.test(value) ? AuthLanguage.status.password.invalid : true;
+    return !Regex.password.test(password) ? AuthLanguage.status.password.invalid : true;
 };
-const onSubmit: SubmissionHandler = (data, { setFieldError }) => {
+const handleResetError = (setErrors: FieldContext['setErrors']) => () => {
+    errorStatus.value = '';
+    setErrors('');
+};
+const handleInputChange = (value: string, handleChange: FieldContext['handleChange'], setErrors: () => void) => {
+    setErrors();
+    handleChange(value, false);
+};
+const onSubmit: SubmissionHandler = (data) => {
+    if (errorStatus.value) {
+        focusInput({ elem: formFieldsRef.value[FormFieldsName.email] });
+        return;
+    }
     hookRegister.mutate(data as TypeFormData, {
         onError: (error) => {
             const code = Number(error.response?.status);
-            let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
-                    messageIntl = AuthLanguage.notify.register.error;
+                    errorStatus.value = AuthLanguage.notify.register.error;
                     break;
                 default:
-                    messageIntl = AuthLanguage.notify.server.error;
-                    break;
+                    errorStatus.value = AuthLanguage.notify.server.error;
             }
-            setFieldError(FormFieldsName.email, messageIntl);
-            setFieldError(FormFieldsName.password, messageIntl);
             focusInput({ elem: formFieldsRef.value[FormFieldsName.email] });
         },
     });
@@ -109,11 +120,10 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
             <InputText
                 :model-value="value"
                 :label="$t(AuthLanguage.component.label.email)"
-                :error-messages="errorMessage ? $t(errorMessage) : null"
+                :error-messages="errorMessage || errorStatus ? $t(errorMessage || errorStatus) : null"
                 :autofocus="true"
-                @set-ref="formFieldsRef[FormFieldsName.email] = $event"
-                @input="setErrors('')"
-                @on-change="handleChange"
+                @update:ref="formFieldsRef[FormFieldsName.email] = $event"
+                @update:model-value="handleInputChange($event, handleChange, handleResetError(setErrors))"
             />
         </Field>
         <Field
@@ -124,18 +134,23 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
             <InputPassword
                 :model-value="value"
                 :label="$t(AuthLanguage.component.label.password)"
-                :error-messages="errorMessage ? $t(errorMessage) : null"
-                @set-ref="formFieldsRef[FormFieldsName.password] = $event"
-                @input="setErrors('')"
-                @on-change="handleChange"
+                :error-messages="errorMessage || errorStatus ? $t(errorMessage || errorStatus) : null"
+                @update:ref="formFieldsRef[FormFieldsName.password] = $event"
+                @update:model-value="handleInputChange($event, handleChange, handleResetError(setErrors))"
             />
         </Field>
-        <AuthFormBreadcrumbs />
-        <div class="flex w-full justify-end">
-            <AuthFormButtonSubmit
-                :text="$t(AuthLanguage.component.button.register)"
+        <div class="flex w-full items-end justify-between mt-2">
+            <AuthFormBreadcrumbs />
+            <ButtonBase
+                class="font-bold capitalize tracking-normal"
+                type="submit"
+                color="primary"
+                size="large"
+                width="30%"
                 :loading="isValidating || isSubmitting || hookRegister.isPending.value"
-            />
+            >
+                {{ $t(AuthLanguage.component.button.register) }}
+            </ButtonBase>
         </div>
     </Form>
 </template>

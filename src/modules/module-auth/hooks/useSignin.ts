@@ -49,7 +49,6 @@ export function useSignin(): UseMutationReturnType<
                     break;
                 default:
                     messageIntl = AuthLanguage.notify.server.error;
-                    break;
             }
             notifyStore.show({ color: NotifyColor.error, messageIntl });
         },

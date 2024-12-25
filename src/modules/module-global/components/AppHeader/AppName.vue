@@ -5,15 +5,12 @@
  *
  */
 
-/** libs */
-import { RouterLink } from 'vue-router';
-
 /** constants */
 import { AppEnv } from '@module-base/constants/AppEnv';
 </script>
 
 <template>
-    <RouterLink v-once to="/">
+    <router-link v-once to="/">
         {{ AppEnv.appName }}
-    </RouterLink>
+    </router-link>
 </template>

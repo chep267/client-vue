@@ -7,7 +7,7 @@
 
 /** libs */
 import { ref } from 'vue';
-import { Field, Form, type RuleExpression, type SubmissionHandler, type InvalidSubmissionHandler } from 'vee-validate';
+import { Field, Form } from 'vee-validate';
 import Cookie from 'js-cookie';
 
 /** constants */
@@ -23,10 +23,11 @@ import { useRecover } from '@module-auth/hooks/useRecover';
 
 /** components */
 import InputText from '@module-base/components/InputText.vue';
-import AuthFormButtonSubmit from '@module-auth/components/AuthFormButtonSubmit.vue';
+import ButtonBase from '@module-base/components/ButtonBase.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/AuthFormBreadcrumbs.vue';
 
 /** type */
+import type { RuleExpression, SubmissionHandler, InvalidSubmissionHandler, FieldContext } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
 
 type TypeFormFieldsName = 'email';
@@ -37,37 +38,48 @@ type TypeFormData = {
 const FormFieldsName: Readonly<{ [Key in TypeFormFieldsName]: Key }> = {
     email: 'email',
 };
+
 const hookRecover = useRecover();
 
 const formFieldsRef = ref<Record<TypeFormFieldsName, TypeInputElem>>({
     [FormFieldsName.email]: null,
 });
+const errorStatus = ref('');
 
 const initialValues: TypeFormData = {
-    [FormFieldsName.email]: Cookie.get(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
+    [FormFieldsName.email]: Cookie.get(AppKey.email) || '',
 };
 
-const validateEmail: RuleExpression<unknown> = (email) => {
-    const value = email as TypeFormData[typeof FormFieldsName.email];
-    if (!value?.trim()) {
+const validateEmail: RuleExpression<unknown> = (value) => {
+    const email = value as TypeFormData[typeof FormFieldsName.email];
+    if (!email?.trim()) {
         return AuthLanguage.status.email.empty;
     }
-    return !Regex.email.test(value) ? AuthLanguage.status.email.invalid : true;
+    return !Regex.email.test(email) ? AuthLanguage.status.email.invalid : true;
 };
-const onSubmit: SubmissionHandler = (data, { setFieldError }) => {
+const handleResetError = (setErrors: FieldContext['setErrors']) => () => {
+    errorStatus.value = '';
+    setErrors('');
+};
+const handleInputChange = (value: string, handleChange: FieldContext['handleChange'], setErrors: () => void) => {
+    setErrors();
+    handleChange(value, false);
+};
+const onSubmit: SubmissionHandler = (data) => {
+    if (errorStatus.value) {
+        focusInput({ elem: formFieldsRef.value[FormFieldsName.email] });
+        return;
+    }
     hookRecover.mutate(data as TypeFormData, {
         onError: (error) => {
             const code = Number(error.response?.status);
-            let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
-                    messageIntl = AuthLanguage.notify.recover.error;
+                    errorStatus.value = AuthLanguage.notify.recover.error;
                     break;
                 default:
-                    messageIntl = AuthLanguage.notify.server.error;
-                    break;
+                    errorStatus.value = AuthLanguage.notify.server.error;
             }
-            setFieldError(FormFieldsName.email, messageIntl);
             focusInput({ elem: formFieldsRef.value[FormFieldsName.email] });
         },
     });
@@ -99,19 +111,24 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
             <InputText
                 :model-value="value"
                 :label="$t(AuthLanguage.component.label.email)"
-                :error-messages="errorMessage ? $t(errorMessage) : null"
+                :error-messages="errorMessage || errorStatus ? $t(errorMessage || errorStatus) : null"
                 :autofocus="true"
-                @set-ref="formFieldsRef[FormFieldsName.email] = $event"
-                @input="setErrors('')"
-                @on-change="handleChange"
+                @update:ref="formFieldsRef[FormFieldsName.email] = $event"
+                @update:model-value="handleInputChange($event, handleChange, handleResetError(setErrors))"
             />
         </Field>
-        <AuthFormBreadcrumbs />
-        <div class="flex w-full justify-end">
-            <AuthFormButtonSubmit
-                :text="$t(AuthLanguage.component.button.recover)"
+        <div class="flex w-full items-end justify-between mt-2">
+            <AuthFormBreadcrumbs />
+            <ButtonBase
+                class="font-bold capitalize tracking-normal"
+                type="submit"
+                color="primary"
+                size="large"
+                width="30%"
                 :loading="isValidating || isSubmitting || hookRecover.isPending.value"
-            />
+            >
+                {{ $t(AuthLanguage.component.button.recover) }}
+            </ButtonBase>
         </div>
     </Form>
 </template>
