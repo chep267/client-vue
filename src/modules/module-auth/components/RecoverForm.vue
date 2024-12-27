@@ -57,12 +57,13 @@ const validateEmail: RuleExpression<unknown> = (value) => {
     }
     return !Regex.email.test(email) ? AuthLanguage.status.email.invalid : true;
 };
-const handleResetError = (setErrors: FieldContext['setErrors']) => () => {
+const handleInputChange = (
+    value: string,
+    handleChange: FieldContext['handleChange'],
+    setErrors: FieldContext['setErrors']
+) => {
     errorStatus.value = '';
     setErrors('');
-};
-const handleInputChange = (value: string, handleChange: FieldContext['handleChange'], setErrors: () => void) => {
-    setErrors();
     handleChange(value, false);
 };
 const onSubmit: SubmissionHandler = (data) => {
@@ -114,7 +115,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
                 :error-messages="errorMessage || errorStatus ? $t(errorMessage || errorStatus) : null"
                 :autofocus="true"
                 @update:ref="formFieldsRef[FormFieldsName.email] = $event"
-                @update:model-value="handleInputChange($event, handleChange, handleResetError(setErrors))"
+                @update:model-value="handleInputChange($event, handleChange, setErrors)"
             />
         </Field>
         <div class="flex w-full items-end justify-between mt-2">

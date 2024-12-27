@@ -66,12 +66,13 @@ const validatePassword: RuleExpression<unknown> = (value) => {
     }
     return !Regex.password.test(password) ? AuthLanguage.status.password.invalid : true;
 };
-const handleResetError = (setErrors: FieldContext['setErrors']) => () => {
+const handleInputChange = (
+    value: string,
+    handleChange: FieldContext['handleChange'],
+    setErrors: FieldContext['setErrors']
+) => {
     errorStatus.value = '';
     setErrors('');
-};
-const handleInputChange = (value: string, handleChange: FieldContext['handleChange'], setErrors: () => void) => {
-    setErrors();
     handleChange(value, false);
 };
 const onSubmit: SubmissionHandler = (data) => {
@@ -123,7 +124,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
                 :error-messages="errorMessage || errorStatus ? $t(errorMessage || errorStatus) : null"
                 :autofocus="true"
                 @update:ref="formFieldsRef[FormFieldsName.email] = $event"
-                @update:model-value="handleInputChange($event, handleChange, handleResetError(setErrors))"
+                @update:model-value="handleInputChange($event, handleChange, setErrors)"
             />
         </Field>
         <Field
@@ -136,7 +137,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
                 :label="$t(AuthLanguage.component.label.password)"
                 :error-messages="errorMessage || errorStatus ? $t(errorMessage || errorStatus) : null"
                 @update:ref="formFieldsRef[FormFieldsName.password] = $event"
-                @update:model-value="handleInputChange($event, handleChange, handleResetError(setErrors))"
+                @update:model-value="handleInputChange($event, handleChange, setErrors)"
             />
         </Field>
         <div class="flex w-full items-end justify-between mt-2">
