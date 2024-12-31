@@ -84,7 +84,7 @@ watch(
     <div class="flex w-full h-full">
         <v-menu>
             <template #activator="{ props }">
-                <input-text
+                <InputText
                     class="input-time"
                     placeholder="--:-- --"
                     autocapitalize="off"

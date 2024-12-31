@@ -40,7 +40,7 @@ const onSeen = () => {
 </script>
 
 <template>
-    <input-text
+    <InputText
         v-bind.prop="$props"
         v-bind.attr="$attrs"
         :type="visible ? 'text' : 'password'"

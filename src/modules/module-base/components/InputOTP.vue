@@ -1,4 +1,10 @@
 <script setup lang="ts">
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2024.
+ *
+ */
+
 /** libs */
 import { useTemplateRef, watch } from 'vue';
 import { VOtpInput } from 'vuetify/components/VOtpInput';
@@ -23,10 +29,7 @@ watch(inputRef, () => emits('update:ref', inputRef.value));
         v-bind.prop="$props"
         v-bind.attr="$attrs"
         ref="input-otp-ref"
-        :class="{
-            'input-otp-base font-arial': true,
-            'input-error-messages': error,
-        }"
+        class="input-otp-base"
         @update:model-value="$emit('update:model-value', $event)"
     />
 </template>
@@ -72,15 +75,6 @@ watch(inputRef, () => emits('update:ref', inputRef.value));
         .v-messages__message {
             opacity: 1;
             font-weight: 700;
-        }
-    }
-}
-.input-error-messages {
-    &:deep(.v-field__outline) {
-        --v-field-border-opacity: 1;
-        .v-field__outline__start,
-        .v-field__outline__end {
-            border-color: rgba(var(--v-theme-error), 1) !important;
         }
     }
 }

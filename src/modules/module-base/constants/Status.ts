@@ -9,3 +9,10 @@ export const ApiStatus = {
     success: 'api_status_success',
     error: 'api_status_error',
 } as const;
+
+export const ApiMethod = {
+    get: 'get',
+    post: 'post',
+    push: 'push',
+    delete: 'delete',
+} as const;
