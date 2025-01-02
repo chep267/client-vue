@@ -8,7 +8,6 @@
 /** libs */
 import { ref } from 'vue';
 import { mdiEye, mdiEyeOff } from '@mdi/js';
-import { VTextField } from 'vuetify/components/VTextField';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput';
@@ -17,14 +16,15 @@ import { focusInput } from '@module-base/utils/focusInput';
 import InputText from '@module-base/components/InputText.vue';
 
 /** types */
-import type { TypeInputElem, InputTextProps } from '@module-base/types';
+import type { TypeInputElem, InputTextProps, InputTextSlots } from '@module-base/types';
 
-defineOptions({ name: 'InputPassword', extends: VTextField, inheritAttrs: true });
+defineOptions({ name: 'InputPassword', extends: InputText, inheritAttrs: true });
 defineProps<InputTextProps>();
 const emits = defineEmits<{
     (e: 'update:ref', elem: TypeInputElem): void;
     (e: 'update:model-value', value: string): void;
 }>();
+defineSlots<InputTextSlots>();
 
 const inputRef = ref<TypeInputElem>(null);
 const visible = ref(false);
@@ -48,5 +48,11 @@ const onSeen = () => {
         @click:append-inner.stop="onSeen"
         @update:ref="updateRef"
         @update:model-value="$emit('update:model-value', $event)"
-    />
+    >
+        <!-- Forward slots -->
+        <template v-for="(_slotContent, slotName) in $slots as InputTextSlots">
+            <!-- @vue-ignore -->
+            <slot :name="slotName" />
+        </template>
+    </InputText>
 </template>

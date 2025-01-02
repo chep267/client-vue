@@ -7,7 +7,7 @@
         "dev": "vite",
         "dev-server": "cd ../express-server && pnpm dev",
         "type-check": "vue-tsc -b",
-        "build": "rm -rf dist && vue-tsc -b && vite build && cp dist/index.html dist/404.html",
+        "build": "rm -rf dist && vue-tsc --noEmit && vite build && cp dist/index.html dist/404.html",
         "preview": "vite preview",
         "lint": "eslint . --fix",
         "format": "prettier --write .",
@@ -35,7 +35,7 @@
     "devDependencies": {
         "@tsconfig/node20": "^20.1.4",
         "@types/js-cookie": "^3.0.6",
-        "@types/node": "^22.10.2",
+        "@types/node": "^22.10.3",
         "@vitejs/plugin-basic-ssl": "^1.2.0",
         "@vitejs/plugin-vue": "^5.2.1",
         "@vue/eslint-config-prettier": "^10.1.0",

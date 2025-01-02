@@ -9,6 +9,7 @@
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
+        "types": ["vuetify"],
 
         "baseUrl": ".",
         "outDir": "dist",

@@ -37,6 +37,7 @@ watch(inputRef, () => emits('update:ref', inputRef.value));
     >
         <!-- Forward slots -->
         <template v-for="(_slotContent, slotName) in $slots as InputTextSlots">
+            <!-- @vue-ignore -->
             <slot :name="slotName" />
         </template>
     </v-text-field>

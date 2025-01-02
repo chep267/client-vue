@@ -8,7 +8,6 @@
 import type { VTextField } from 'vuetify/components/VTextField';
 import type { VBtn } from 'vuetify/components/VBtn';
 import type { VOtpInput } from 'vuetify/components/VOtpInput';
-// import type { VInputSlots, DefaultInputSlot, LoaderSlotProps, VFieldSlots } from 'vuetify';
 
 type TextFieldProps = InstanceType<typeof VTextField>['$props'];
 type TextFieldSlots = InstanceType<typeof VTextField>['$slots'];

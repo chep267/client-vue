@@ -1,4 +1,10 @@
 <script setup lang="ts">
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2024.
+ *
+ */
+
 /** libs */
 import { ref, watch } from 'vue';
 import { mdiChevronUp, mdiChevronDown, mdiClockOutline } from '@mdi/js';
