@@ -10,6 +10,7 @@ import { defineStore } from 'pinia';
 /** constants */
 import { NotifyColor } from '@module-base/constants/NotifyColor';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
+import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** types */
 import type { TypeNotifyStore } from '@module-base/types';
@@ -18,7 +19,7 @@ const defaultNotify: Readonly<TypeNotifyStore> = {
     open: false,
     message: '',
     messageIntl: BaseLanguage.component.label.develop,
-    duration: 2000,
+    duration: AppTimer.notifyDuration,
     location: 'top right',
     color: NotifyColor.default,
 };

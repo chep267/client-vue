@@ -16,10 +16,10 @@
     },
     "dependencies": {
         "@mdi/js": "^7.4.47",
-        "@tanstack/vue-query": "^5.62.9",
+        "@tanstack/vue-query": "^5.62.16",
         "@tsparticles/slim": "^3.7.1",
         "@tsparticles/vue3": "^3.0.1",
-        "@vueuse/core": "^12.2.0",
+        "@vueuse/core": "^12.3.0",
         "axios": "^1.7.9",
         "dayjs": "^1.11.13",
         "firebase": "^11.1.0",
@@ -35,7 +35,7 @@
     "devDependencies": {
         "@tsconfig/node20": "^20.1.4",
         "@types/js-cookie": "^3.0.6",
-        "@types/node": "^22.10.3",
+        "@types/node": "^22.10.5",
         "@vitejs/plugin-basic-ssl": "^1.2.0",
         "@vitejs/plugin-vue": "^5.2.1",
         "@vue/eslint-config-prettier": "^10.1.0",
@@ -46,9 +46,9 @@
         "eslint-plugin-vue": "^9.32.0",
         "postcss": "^8.4.49",
         "prettier": "^3.4.2",
-        "sass-embedded": "^1.83.0",
+        "sass-embedded": "^1.83.1",
         "typescript": "5.7.2",
-        "vite": "^6.0.6",
+        "vite": "^6.0.7",
         "vite-plugin-vue-devtools": "^7.6.8",
         "vite-plugin-vuetify": "^2.0.4",
         "vue-tsc": "^2.2.0"
