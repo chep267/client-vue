@@ -40,9 +40,6 @@ onMounted(() => emits('update:ref', inputRef.value));
             <!-- @vue-ignore -->
             <slot :name="slotName" v-bind="{ ...slotProps }" />
         </template>
-        <!--        <template #append-inner>-->
-        <!--            <slot name="append-inner" />-->
-        <!--        </template>-->
     </v-text-field>
 </template>
 

@@ -19,7 +19,7 @@ defineSlots<TooltipSlots>();
         <!-- Forward slots -->
         <template v-for="(slotContent, name) in $slots as TooltipSlots" #[name]="slotProps">
             <!-- @vue-ignore -->
-            <slot :name="name" v-bind="slotProps" />
+            <slot :name="name" v-bind="{ ...slotProps }" />
         </template>
     </v-tooltip>
 </template>
