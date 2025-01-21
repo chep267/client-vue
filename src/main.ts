@@ -10,6 +10,8 @@ import { createPinia } from 'pinia';
 import Particles from '@tsparticles/vue3';
 import { loadSlim } from '@tsparticles/slim';
 import { VueQueryPlugin } from '@tanstack/vue-query';
+import { setupCalendar, DatePicker } from '@angelblanco/v-calendar';
+import '@angelblanco/v-calendar/style.css';
 
 /** utils */
 import { i18n } from '@module-language/utils/i18n';
@@ -31,4 +33,6 @@ app.use(Particles, {
         await loadSlim(engine);
     },
 });
+app.use(setupCalendar, { componentPrefix: 'vc-' });
+app.component('VcDatePicker', DatePicker);
 app.mount('#app');

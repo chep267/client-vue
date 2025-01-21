@@ -29,13 +29,7 @@ const title = computed(() => {
 </script>
 
 <template>
-    <span class="text-4xl z-10 text-auth-title">
+    <span class="text-4xl z-10 text-auth-form-title">
         {{ $t(title) }}
     </span>
 </template>
-
-<style scoped lang="scss">
-.form-title {
-    color: rgb(var(--v-form-title-color));
-}
-</style>

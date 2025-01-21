@@ -12,9 +12,9 @@ import { useRoute } from 'vue-router';
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 
 /** components */
-import SigninForm from '@module-auth/components/SigninForm.vue';
-import RegisterForm from '@module-auth/components/RegisterForm.vue';
-import RecoverForm from '@module-auth/components/RecoverForm.vue';
+import SigninForm from '@module-auth/components/form/SigninForm.vue';
+import RegisterForm from '@module-auth/components/form/RegisterForm.vue';
+import RecoverForm from '@module-auth/components/form/RecoverForm.vue';
 
 const route = useRoute();
 </script>

@@ -15,25 +15,20 @@ import InputText from '@module-base/components/InputText.vue';
 /** types */
 import type { TypeInputElem } from '@module-base/types';
 
-const TimePeriod = {
-    AM: 'AM',
-    PM: 'PM',
-} as const;
-
 const emits = defineEmits<{
     (e: 'update:ref', elem: TypeInputElem): void;
     (e: 'update:model-value', value: string): void;
 }>();
 
-const inputRef = ref<TypeInputElem>(null);
+const TimePeriod = {
+    AM: 'AM',
+    PM: 'PM',
+} as const;
+
 const hh = ref<number>(9);
 const mm = ref<number>(0);
 const period = ref<keyof typeof TimePeriod>(TimePeriod.AM);
 
-const updateRef = (elem: TypeInputElem) => {
-    inputRef.value = elem;
-    emits('update:ref', elem);
-};
 const onPrevHour = () => {
     let nextValue = hh.value - 1;
     nextValue = nextValue < 1 ? 12 : nextValue;
@@ -91,15 +86,15 @@ watch(
         <v-menu>
             <template #activator="{ props }">
                 <InputText
+                    v-bind.prop="props"
+                    v-bind.attr="$attrs"
                     class="input-time"
                     placeholder="--:-- --"
                     autocapitalize="off"
                     autocomplete="off"
                     read-only
                     :append-inner-icon="mdiClockOutline"
-                    v-bind.prop="props"
-                    v-bind.attr="$attrs"
-                    @update:ref="updateRef"
+                    @update:ref="$emit('update:ref', $event)"
                 />
             </template>
             <v-list>
@@ -107,7 +102,7 @@ watch(
                     <div class="flex card-select flex-col py-2 px-4 items-center gap-2" @click.stop>
                         <div class="flex w-full h-full items-center justify-between">
                             <div class="flex flex-col w-full h-full items-center justify-between">
-                                <v-btn class="icon" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
+                                <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
                                 <v-number-input
                                     v-model="hh"
                                     class="input-number"
@@ -116,11 +111,11 @@ watch(
                                     :min="1"
                                     :step="1"
                                 />
-                                <v-btn class="icon" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextHour" />
+                                <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextHour" />
                             </div>
                             <span>:</span>
                             <div class="flex flex-col w-full h-full items-center justify-between">
-                                <v-btn class="icon" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevMinute" />
+                                <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevMinute" />
                                 <v-number-input
                                     v-model="mm"
                                     class="input-number"
@@ -129,7 +124,12 @@ watch(
                                     :min="0"
                                     :step="1"
                                 />
-                                <v-btn class="icon" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextMinute" />
+                                <v-btn
+                                    :elevation="0"
+                                    density="comfortable"
+                                    :icon="mdiChevronDown"
+                                    @click.stop="onNextMinute"
+                                />
                             </div>
                         </div>
                         <div class="card-select-period flex justify-between">
@@ -184,7 +184,7 @@ watch(
     height: 160px;
     border: 1px solid rgba(var(--v-bs-border-color), 1);
     border-radius: 10px;
-    background-color: rgb(var(--v-color-white));
+    background-color: white;
     &-period {
         width: 125px;
         height: 24px;
@@ -206,12 +206,9 @@ watch(
             font-weight: 600;
         }
         &-selected {
-            background-color: #fef0e0;
+            background-color: rgba(var(--v-theme-main), 0.15);
         }
     }
-}
-.icon {
-    box-shadow: none;
 }
 .input-number {
     line-height: 0;

@@ -1,19 +1,13 @@
 <script setup lang="ts">
-/**
- *
- * @author dongntd267@gmail.com on 26/07/2024.
- *
- */
-
 /** libs */
 import { VBtn } from 'vuetify/components/VBtn';
 
 /** types */
-import type { ButtonBaseProps, ButtonBaseSlots } from '@module-base/types';
+import type { ButtonProps, ButtonSlots } from '@module-base/types';
 
 defineOptions({ name: 'ButtonBase', extends: VBtn, inheritAttrs: true });
-defineProps<ButtonBaseProps>();
-defineSlots<ButtonBaseSlots>();
+defineProps<ButtonProps>();
+defineSlots<ButtonSlots>();
 </script>
 
 <template>
@@ -26,7 +20,8 @@ defineSlots<ButtonBaseSlots>();
         }"
     >
         <!-- Forward slots -->
-        <template v-for="(_slotContent, slotName) in $slots as ButtonBaseSlots">
+        <template v-for="(_slotContent, slotName) in $slots as ButtonSlots" #[slotName]>
+            <!-- @vue-ignore -->
             <slot :name="slotName" />
         </template>
     </v-btn>

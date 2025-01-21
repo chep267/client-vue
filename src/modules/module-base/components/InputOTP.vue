@@ -6,32 +6,39 @@
  */
 
 /** libs */
-import { useTemplateRef, watch } from 'vue';
+import { onMounted, useTemplateRef } from 'vue';
 import { VOtpInput } from 'vuetify/components/VOtpInput';
 
 /** types */
-import type { InputOTPBaseProps, TypeInputElem } from '@module-base/types';
+import type { InputOtpProps, InputOtpSlots, TypeInputElem } from '@module-base/types';
 
 defineOptions({ name: 'InputOTP', extends: VOtpInput, inheritAttrs: true });
-defineProps<InputOTPBaseProps>();
+defineProps<InputOtpProps>();
 const emits = defineEmits<{
     (e: 'update:ref', elem: TypeInputElem): void;
     (e: 'update:model-value', value: string): void;
 }>();
+defineSlots<InputOtpSlots>();
 
-const inputRef = useTemplateRef<TypeInputElem>('input-otp-ref');
+const inputRef = useTemplateRef<TypeInputElem>('input-ref');
 
-watch(inputRef, () => emits('update:ref', inputRef.value));
+onMounted(() => emits('update:ref', inputRef.value));
 </script>
 
 <template>
     <v-otp-input
+        ref="input-ref"
         v-bind.prop="$props"
         v-bind.attr="$attrs"
-        ref="input-otp-ref"
         class="input-otp-base"
         @update:model-value="$emit('update:model-value', $event)"
-    />
+    >
+        <!-- Forward slots -->
+        <template v-for="(_slotContent, slotName) in $slots as InputOtpSlots" #[slotName]>
+            <!-- @vue-ignore -->
+            <slot :name="slotName" />
+        </template>
+    </v-otp-input>
 </template>
 
 <style lang="scss" scoped>
@@ -70,12 +77,11 @@ watch(inputRef, () => emits('update:ref', inputRef.value));
             }
         }
     }
-    &:deep(.v-input__details) {
-        padding-inline: 0;
-        .v-messages__message {
-            opacity: 1;
-            font-weight: 700;
-        }
+}
+:deep(.v-input__details) {
+    padding-inline: 0;
+    .v-messages__message {
+        text-align: right;
     }
 }
 </style>

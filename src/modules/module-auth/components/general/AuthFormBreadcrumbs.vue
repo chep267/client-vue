@@ -6,14 +6,16 @@
  */
 
 /** libs */
-import { computed, type VueElement } from 'vue';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** types */
+import type { VueElement } from 'vue';
+
 interface AuthBreadcrumbsProps {
     append?: string | VueElement;
 }
@@ -49,8 +51,8 @@ const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
 <template>
     <div class="flex flex-row w-full text-router">
         <template v-for="(item, index) in breadcrumbs" :key="item.path">
-            <span v-if="index > 0" class="text-router px-1">{{ append }}</span>
-            <router-link class="text-router hover:underline" :to="item.path">
+            <span v-if="index > 0" class="px-1">{{ append }}</span>
+            <router-link class="hover:underline" :to="item.path">
                 {{ $t(item.title) }}
             </router-link>
         </template>

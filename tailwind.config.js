@@ -22,10 +22,7 @@ export default {
             colors: {
                 // error: '#cd0000',
                 // main: '#f36c21',
-                'auth-title': {
-                    light: colors.blue.base,
-                    dark: colors.shades.white,
-                },
+                'auth-form-title': colors.blue.base,
             },
             lineHeight: {
                 // custom: '1.1',

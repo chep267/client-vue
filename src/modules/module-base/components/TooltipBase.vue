@@ -1,14 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+/** libs */
+import { VTooltip } from 'vuetify/components/VTooltip';
+
+/** types */
+import type { TooltipProps, TooltipSlots } from '@module-base/types';
+
+defineOptions({ name: 'TooltipBase', extends: VTooltip, inheritAttrs: true });
+defineProps<TooltipProps>();
+defineSlots<TooltipSlots>();
+</script>
 
 <template>
     <v-tooltip
-        v-bind="$attrs"
+        v-bind.prop="$props"
+        v-bind.attr="$attrs"
         content-class="tooltip-base !text-xs !text-white !font-arial text-center !bg-bs-body-color h-fit"
     >
-        <template #activator="props">
-            <slot name="activator" v-bind="props" />
+        <!-- Forward slots -->
+        <template v-for="(slotContent, name) in $slots as TooltipSlots" #[name]="slotProps">
+            <!-- @vue-ignore -->
+            <slot :name="name" v-bind="slotProps" />
         </template>
-        <slot />
     </v-tooltip>
 </template>
 
