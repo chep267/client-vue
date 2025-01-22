@@ -7,13 +7,13 @@
 
 import { onMounted, ref } from 'vue';
 import { baseApi } from '@module-base/apis/baseApi';
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 const text = ref('fetching...');
 const callApi = () => baseApi({ method: 'post', url: '/app/feed' });
 
 onMounted(async () => {
-    const [res]: any = await Promise.all([callApi(), debounce(1000)]);
+    const [res]: any = await Promise.all([callApi(), delay(1000)]);
     text.value = res.message;
 });
 </script>

@@ -14,7 +14,7 @@ import { AppEnv } from '@module-base/constants/AppEnv';
 import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** types */
 import type { AxiosError, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
@@ -57,7 +57,7 @@ axiosClient.interceptors.response.use(
             Cookies.remove(AppKey.uid);
         }
         /** khoan, dừng khoảng chừng là 600ms */
-        await debounce(AppTimer.pendingApi);
+        await delay(AppTimer.pendingApi);
         return Promise.reject(error);
     }
 );

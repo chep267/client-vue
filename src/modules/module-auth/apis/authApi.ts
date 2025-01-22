@@ -13,7 +13,7 @@ import { AuthApi } from '@module-auth/constants/AuthApi';
 import { ApiMethod } from '@module-base/constants/Status';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** types */
 import type { TypeApiAuth } from '@module-auth/types';
@@ -27,14 +27,14 @@ const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<Typ
             data: { email, password },
         });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
 const apiSignout = async (payload: TypeApiAuth['Signout']['Payload']): Promise<TypeApiAuth['Signout']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
     const callApi = () => baseApi({ method: ApiMethod.post, url: AuthApi.signout });
-    await Promise.all([callApi(), debounce(timer)]);
+    await Promise.all([callApi(), delay(timer)]);
 };
 
 const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<TypeApiAuth['Restart']['Response']> => {
@@ -42,7 +42,7 @@ const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<T
     const callApi = () => {
         return baseApi<TypeApiAuth['Restart']['Response']>({ method: ApiMethod.post, url: AuthApi.restart });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
@@ -55,7 +55,7 @@ const apiRegister = async (payload: TypeApiAuth['Register']['Payload']): Promise
             data,
         });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
@@ -68,7 +68,7 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
             data,
         });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 

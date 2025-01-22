@@ -19,7 +19,7 @@ import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
@@ -44,7 +44,7 @@ export function useRestart(): UseMutationReturnType<
         mutationFn: authApi.restart,
         onSuccess: (response: TypeApiAuth['Restart']['Response']) => {
             authStore.signin(response.data);
-            push(authStore.prePath).then(() => debounce(response.data.token.exp, () => RESTART.mutate({})));
+            push(authStore.prePath).then(() => delay(response.data.token.exp, () => RESTART.mutate({})));
         },
         onError: (error) => {
             Cookie.remove(AppKey.uid);

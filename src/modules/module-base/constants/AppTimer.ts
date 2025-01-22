@@ -11,4 +11,5 @@ export const AppTimer = {
     notifyDuration: 2000,
     countdownError: 99,
     debounce: 1000,
+    delay: 1000,
 } as const;

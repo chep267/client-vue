@@ -16,7 +16,6 @@ defineSlots<ButtonSlots>();
         v-bind.attr="$attrs"
         :class="{
             'button-no-overlay': overlay === 'none',
-            [`${$props.class}`]: Boolean($props.class),
         }"
     >
         <!-- Forward slots -->

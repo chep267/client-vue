@@ -6,15 +6,17 @@
  */
 
 /** libs */
-import { ref, watch } from 'vue';
+import { reactive, watch } from 'vue';
 import { mdiChevronUp, mdiChevronDown, mdiClockOutline } from '@mdi/js';
 
 /** components */
 import InputText from '@module-base/components/InputText.vue';
 
 /** types */
-import type { TypeInputElem } from '@module-base/types';
+import type { InputTextProps, TypeInputElem } from '@module-base/types';
 
+defineOptions({ name: 'InputTime', extends: InputText, inheritAttrs: true });
+defineProps<InputTextProps>();
 const emits = defineEmits<{
     (e: 'update:ref', elem: TypeInputElem): void;
     (e: 'update:model-value', value: string): void;
@@ -25,200 +27,156 @@ const TimePeriod = {
     PM: 'PM',
 } as const;
 
-const hh = ref<number>(9);
-const mm = ref<number>(0);
-const period = ref<keyof typeof TimePeriod>(TimePeriod.AM);
+const data = reactive<{
+    hour: number;
+    min: number;
+    period: keyof typeof TimePeriod;
+}>({
+    hour: 9,
+    min: 0,
+    period: TimePeriod.AM,
+});
 
 const onPrevHour = () => {
-    let nextValue = hh.value - 1;
+    let nextValue = data.hour - 1;
     nextValue = nextValue < 1 ? 12 : nextValue;
-    hh.value = nextValue;
+    data.hour = nextValue;
     if (nextValue === 12) {
-        period.value = TimePeriod.AM;
+        data.period = TimePeriod.AM;
     }
 };
 const onNextHour = () => {
-    let nextValue = hh.value + 1;
+    let nextValue = data.hour + 1;
     nextValue = nextValue > 12 ? 1 : nextValue;
-    hh.value = nextValue;
+    data.hour = nextValue;
     if (nextValue === 12) {
-        period.value = TimePeriod.AM;
+        data.period = TimePeriod.AM;
     }
 };
 const onPrevMinute = () => {
-    const nextValue = mm.value - 1;
+    const nextValue = data.min - 1;
     if (nextValue < 0) {
-        mm.value = 59;
-        onPrevHour();
-        return;
+        data.min = 59;
+        return onPrevHour();
     }
-    mm.value = nextValue;
+    data.min = nextValue;
 };
 const onNextMinute = () => {
-    const nextValue = mm.value + 1;
+    const nextValue = data.min + 1;
     if (nextValue > 59) {
-        mm.value = 0;
-        onNextHour();
-        return;
+        data.min = 0;
+        return onNextHour();
     }
-    mm.value = nextValue;
+    data.min = nextValue;
 };
 
-watch(
-    () => [hh.value, mm.value, period.value],
-    () => {
-        if (!hh.value) {
-            hh.value = 12;
-        }
-        if (!mm.value) {
-            mm.value = 0;
-        }
-        const hour = hh.value < 10 ? `0${hh.value}` : hh.value;
-        const min = mm.value < 10 ? `0${mm.value}` : mm.value;
-        const time = `${hour}:${min} ${period.value}`;
-        emits('update:model-value', time);
+watch(data, () => {
+    if (!data.hour) {
+        data.hour = 12;
+        return;
     }
-);
+    if (!data.min) {
+        data.min = 0;
+        return;
+    }
+    const hour = data.hour < 10 ? `0${data.hour}` : data.hour;
+    const min = data.min < 10 ? `0${data.min}` : data.min;
+    const time = `${hour}:${min} ${data.period}`;
+    emits('update:model-value', time);
+});
 </script>
 
 <template>
-    <div class="flex w-full h-full">
-        <v-menu>
-            <template #activator="{ props }">
-                <InputText
-                    v-bind.prop="props"
-                    v-bind.attr="$attrs"
-                    class="input-time"
-                    placeholder="--:-- --"
-                    autocapitalize="off"
-                    autocomplete="off"
-                    read-only
-                    :append-inner-icon="mdiClockOutline"
-                    @update:ref="$emit('update:ref', $event)"
-                />
-            </template>
-            <v-list>
-                <v-list-item>
-                    <div class="flex card-select flex-col py-2 px-4 items-center gap-2" @click.stop>
-                        <div class="flex w-full h-full items-center justify-between">
-                            <div class="flex flex-col w-full h-full items-center justify-between">
-                                <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
-                                <v-number-input
-                                    v-model="hh"
-                                    class="input-number"
-                                    variant="outlined"
-                                    :max="12"
-                                    :min="1"
-                                    :step="1"
-                                />
-                                <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextHour" />
-                            </div>
-                            <span>:</span>
-                            <div class="flex flex-col w-full h-full items-center justify-between">
-                                <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevMinute" />
-                                <v-number-input
-                                    v-model="mm"
-                                    class="input-number"
-                                    variant="outlined"
-                                    :max="59"
-                                    :min="0"
-                                    :step="1"
-                                />
-                                <v-btn
-                                    :elevation="0"
-                                    density="comfortable"
-                                    :icon="mdiChevronDown"
-                                    @click.stop="onNextMinute"
-                                />
-                            </div>
+    <v-menu>
+        <template #activator="{ props: menuProps }">
+            <InputText
+                v-bind.prop="{ ...$props, ...menuProps }"
+                v-bind.attr="$attrs"
+                placeholder="--:-- --"
+                autocapitalize="off"
+                autocomplete="off"
+                read-only
+                :append-inner-icon="mdiClockOutline"
+                @update:ref="$emit('update:ref', $event)"
+            />
+        </template>
+        <v-list :elevation="0" class="max-w-40">
+            <v-list-item>
+                <div
+                    class="flex flex-col py-2 px-4 items-center gap-2 border border-solid rounded-lg w-full h-max"
+                    @click.stop
+                >
+                    <div class="flex w-full h-full items-center justify-between">
+                        <div class="flex flex-col w-full h-full items-center justify-between gap-2">
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
+                            <v-number-input
+                                v-model="data.hour"
+                                class="input-number"
+                                variant="outlined"
+                                :max="12"
+                                :min="1"
+                                :step="1"
+                            />
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextHour" />
                         </div>
-                        <div class="card-select-period flex justify-between">
-                            <v-btn
-                                elevation="0"
-                                :class="{
-                                    'card-select-period-item': true,
-                                    'card-select-period-selected': period === TimePeriod.AM,
-                                }"
-                                @click.stop="period = TimePeriod.AM"
-                            >
-                                {{ TimePeriod.AM }}
-                            </v-btn>
-                            <v-btn
-                                elevation="0"
-                                :class="{
-                                    'card-select-period-item': true,
-                                    'card-select-period-selected': period === TimePeriod.PM,
-                                }"
-                                @click.stop="period = TimePeriod.PM"
-                            >
-                                {{ TimePeriod.PM }}
-                            </v-btn>
+                        <span>:</span>
+                        <div class="flex flex-col w-full h-full items-center justify-between gap-2">
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevMinute" />
+                            <v-number-input
+                                v-model="data.min"
+                                class="input-number"
+                                variant="outlined"
+                                :max="59"
+                                :min="0"
+                                :step="1"
+                            />
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextMinute" />
                         </div>
                     </div>
-                </v-list-item>
-            </v-list>
-        </v-menu>
-    </div>
+                    <div class="flex justify-between w-28 rounded-md overflow-hidden border border-solid">
+                        <v-btn
+                            elevation="0"
+                            :class="{
+                                'w-1/2 !h-6 min-w-0 min-h-0 !p-0 rounded-none': true,
+                                'bg-info': data.period === TimePeriod.AM,
+                            }"
+                            @click.stop="data.period = TimePeriod.AM"
+                        >
+                            {{ TimePeriod.AM }}
+                        </v-btn>
+                        <v-btn
+                            elevation="0"
+                            :class="{
+                                'w-1/2 !h-6 min-w-0 min-h-0 !p-0 rounded-none': true,
+                                'bg-info': data.period === TimePeriod.PM,
+                            }"
+                            @click.stop="data.period = TimePeriod.PM"
+                        >
+                            {{ TimePeriod.PM }}
+                        </v-btn>
+                    </div>
+                </div>
+            </v-list-item>
+        </v-list>
+    </v-menu>
 </template>
 
 <style lang="scss" scoped>
 :deep(.v-list) {
-    background: transparent !important;
-    box-shadow: none !important;
+    padding: 0;
     .v-list-item {
         padding: 0;
     }
 }
-.input-time {
-    &:deep(.v-field__append-inner) {
-        .v-icon {
-            font-size: 20.5px;
-        }
-    }
-    &:deep(.v-field) {
-        padding-inline-end: 16px;
-    }
-}
-.card-select {
-    width: 160px;
-    height: 160px;
-    border: 1px solid rgba(var(--v-bs-border-color), 1);
-    border-radius: 10px;
-    background-color: white;
-    &-period {
-        width: 125px;
-        height: 24px;
-        &-item {
-            &:first-of-type {
-                border-radius: 6px 0 0 6px;
-                border-right: none !important;
-            }
-            &:last-of-type {
-                border-radius: 0 6px 6px 0;
-            }
-            padding: 0;
-            min-width: 0;
-            width: 50%;
-            height: 24px;
-            border: 1px solid rgba(var(--v-bs-border-color), 1);
-            font-size: 14px;
-            font-family: Quicksand, sans-serif;
-            font-weight: 600;
-        }
-        &-selected {
-            background-color: rgba(var(--v-theme-main), 0.15);
-        }
-    }
-}
+
 .input-number {
-    line-height: 0;
-    grid-template-areas: unset !important;
-    grid-template-rows: 0 !important;
-    max-height: 26px;
     &:deep(.v-number-input__control) {
         display: none;
     }
     &:deep(.v-input__details) {
+        display: none;
+    }
+    &:deep(.v-field__append-inner) {
         display: none;
     }
     &:deep(.v-field__outline) {
@@ -231,7 +189,7 @@ watch(
         padding: 0;
         min-height: 0;
         text-align: center;
-        width: 36px;
+        width: 24px;
     }
 }
 </style>

@@ -4,12 +4,12 @@
  *
  */
 
-export type TypeCallApiDebounce = { timer?: number };
+export type TypeCallApiDelay = { timer?: number };
 
-export type TypeCallApiPayload<Data = unknown> = TypeCallApiDebounce & Data;
+export type TypeCallApiPayload<Data = unknown> = TypeCallApiDelay & Data;
 
 export type TypeResponseApi<Data = unknown> = {
     message: string;
-    status: string | number;
+    status: number;
     data: Data;
 };
