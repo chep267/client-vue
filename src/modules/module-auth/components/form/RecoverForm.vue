@@ -60,19 +60,14 @@ const initialValues: TypeFormData = {
     [FormFieldsName.email]: Cookie.get(AppKey.email) || '',
 };
 
-const handleFormError = () => {
-    ApiStatus.error = '';
-    focusInput({ elem: FormFields[FormFieldsName.email].elem });
-};
-
-const handleResetError = (setErrors: FieldContext['setErrors']) => {
+const resetError = (setErrors: FieldContext['setErrors']) => {
     ApiStatus.error = '';
     ApiStatus.success = '';
     setErrors('');
 };
 
 const updateValue = (value: string, handleChange: FieldContext['handleChange'], setErrors: FieldContext['setErrors']) => {
-    handleResetError(setErrors);
+    resetError(setErrors);
     handleChange(value, false);
 };
 
@@ -82,7 +77,7 @@ const updateRef = (elem: TypeInputElem, field: string) => {
 
 const onSubmit: SubmissionHandler = (data) => {
     if (ApiStatus.error) {
-        return handleFormError();
+        return focusInput({ elem: FormFields[FormFieldsName.email].elem });
     }
     hookRecover.mutate(data as TypeFormData, {
         onError: (error) => {
