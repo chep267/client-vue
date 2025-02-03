@@ -31,7 +31,7 @@ withDefaults(defineProps<FormFieldProps>(), {
                 <slot name="title" />
                 <sup v-if="title.required" class="text-error top-[-0.2rem]">&nbsp;*</sup>
             </span>
-            <slot name="label-helper" />
+            <slot name="append" />
         </div>
         <slot v-if="description.show" name="description" :class="['font-normal', description.class]" />
         <slot v-else name="field" />

@@ -10,6 +10,7 @@ import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vuetify from 'vite-plugin-vuetify';
 import basicSsl from '@vitejs/plugin-basic-ssl';
+import tailwindcss from '@tailwindcss/vite';
 
 /** module path */
 import tsPaths from './tsconfig.app.json' with { type: 'json' };
@@ -34,7 +35,7 @@ export default ({ mode }: ConfigEnv) => {
     const host = process.env.VITE_APP_HOST || 'localhost';
 
     return defineConfig({
-        plugins: [vue(), basicSsl(), vuetify()],
+        plugins: [vue(), basicSsl(), vuetify(), tailwindcss()],
         resolve: {
             alias: {
                 ...resolveAlias(),
@@ -69,16 +70,6 @@ export default ({ mode }: ConfigEnv) => {
             legalComments: 'none',
             treeShaking: true,
             format: 'esm',
-        },
-        css: {
-            preprocessorOptions: {
-                scss: {
-                    silenceDeprecations: ['legacy-js-api'],
-                },
-                sass: {
-                    silenceDeprecations: ['legacy-js-api'],
-                },
-            },
         },
     });
 };
