@@ -11,11 +11,7 @@ defineSlots<TooltipSlots>();
 </script>
 
 <template>
-    <v-tooltip
-        v-bind.prop="$props"
-        v-bind.attr="$attrs"
-        content-class="tooltip-base !text-xs !text-white !font-arial text-center !bg-bs-body-color h-fit"
-    >
+    <v-tooltip v-bind.prop="$props" v-bind.attr="$attrs" content-class="text-center h-fit">
         <!-- Forward slots -->
         <template v-for="(slotContent, name) in $slots as TooltipSlots" #[name]="slotProps">
             <!-- @vue-ignore -->
@@ -34,7 +30,7 @@ defineSlots<TooltipSlots>();
         transform: translateX(-50%);
         border-width: 8px;
         border-style: solid;
-        border-color: rgb(var(--v-bs-body-color)) transparent transparent transparent; /* Arrow pointing down */
+        border-color: transparent transparent transparent; /* Arrow pointing down */
     }
 }
 </style>

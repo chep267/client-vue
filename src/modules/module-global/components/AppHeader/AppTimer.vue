@@ -16,22 +16,11 @@ const calendarStore = useCalendarStore();
 </script>
 
 <template>
-    <div class="flex flex-row justify-center items-center gap-2">
-        <div class="w-2 h-2 dot rounded-full" />
+    <div class="flex flex-row items-center justify-center gap-2">
+        <div class="bg-info h-2 w-2 rounded-full dark:!bg-white" />
         <span class="text-sm capitalize">
             {{ calendarStore.today.locale(locale).format('dddd, DD/MM/YYYY') }}
         </span>
-        <div class="w-2 h-2 dot rounded-full" />
+        <div class="bg-info h-2 w-2 rounded-full dark:!bg-white" />
     </div>
 </template>
-
-<style scoped lang="scss">
-.dot {
-    background-color: rgb(var(--v-theme-on-surface));
-}
-.v-theme--light {
-    .dot {
-        background-color: rgb(var(--v-theme-info));
-    }
-}
-</style>

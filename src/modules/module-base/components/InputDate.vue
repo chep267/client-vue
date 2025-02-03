@@ -43,9 +43,3 @@ const { locale } = useI18n();
         </template>
     </vc-date-picker>
 </template>
-
-<style lang="scss" scoped>
-:deep(.v-field__append-inner) {
-    color: rgb(var(--v-bs-body-color));
-}
-</style>

@@ -25,16 +25,18 @@ const siderStore = useSiderStore();
 const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
 
-const containerHeight = computed(() => {
+const containerStyle = computed(() => {
     const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
-    return `calc(100% - ${isAuthentication.value ? appBarMiniHeight : 0}px)`;
+    return {
+        height: `calc(100% - ${isAuthentication.value ? appBarMiniHeight : 0}px)`,
+    };
 });
 </script>
 
 <template>
     <v-main>
         <AppSiderMini v-if="isAuthentication && siderState === SiderState.hidden" />
-        <v-container :style="`height: ${containerHeight}`" :fluid="true">
+        <v-container :style="containerStyle" :fluid="true">
             <router-view />
         </v-container>
     </v-main>

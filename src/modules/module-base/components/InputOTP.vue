@@ -64,18 +64,6 @@ onMounted(() => emits('update:ref', inputRef.value));
             padding-top: 0;
             padding-bottom: 0;
         }
-        .v-field__append-inner {
-            .v-icon {
-                opacity: 1;
-            }
-        }
-        .v-field__outline {
-            --v-field-border-opacity: 1;
-            .v-field__outline__start,
-            .v-field__outline__end {
-                border-color: rgba(var(--v-bs-border-color), 1);
-            }
-        }
     }
 }
 :deep(.v-input__details) {

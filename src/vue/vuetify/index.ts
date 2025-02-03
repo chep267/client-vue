@@ -42,7 +42,6 @@ export const vueComponents = createVuetify({
                     // error: '#C10000',
                     // main: '#0351BF',
                     start: colors.blue.base,
-                    'auth-title': colors.blue.base,
                 },
             },
             dark: {
@@ -50,7 +49,6 @@ export const vueComponents = createVuetify({
                     // error: '#C10000',
                     // main: '#0351BF',
                     start: colors.amber.base,
-                    'auth-title': colors.shades.white,
                 },
             },
         },

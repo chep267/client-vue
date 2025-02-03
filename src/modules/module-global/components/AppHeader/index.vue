@@ -17,7 +17,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
 </script>
 
 <template>
-    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight">
+    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight" class="text-info dark:!text-white">
         <template #prepend>
             <AppLogo />
         </template>
@@ -35,9 +35,6 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
 </template>
 
 <style scoped lang="scss">
-.v-theme--light {
-    color: rgb(var(--v-theme-info));
-}
 :deep(.v-toolbar__prepend) {
     margin-inline: 12px auto;
 }

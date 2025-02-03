@@ -222,8 +222,8 @@ const setTheme = (value: TypeTheme) => {
 };
 const setLocale = async (value: TypeLocale) => {
     Cookie.set(AppKey.locale, value);
-    await setI18nLanguage(value);
     locale.current.value = value;
+    await setI18nLanguage(value);
 };
 const signout = () => {
     hookSignOut.mutate(

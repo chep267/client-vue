@@ -29,7 +29,7 @@ const title = computed(() => {
 </script>
 
 <template>
-    <span class="text-4xl z-10 text-auth-form-title">
+    <span class="text-4xl z-10 text-info">
         {{ $t(title) }}
     </span>
 </template>

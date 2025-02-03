@@ -5,6 +5,11 @@
  */
 
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-cam: #ff7f50;
+}
 
 * {
     padding: 0;
@@ -37,9 +42,4 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     user-select: none;
-}
-
-a {
-    text-decoration: none;
-    color: unset;
 }

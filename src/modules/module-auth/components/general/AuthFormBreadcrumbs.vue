@@ -49,7 +49,7 @@ const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
 </script>
 
 <template>
-    <div class="flex flex-row w-full text-router">
+    <div class="flex flex-row w-full text-info">
         <template v-for="(item, index) in breadcrumbs" :key="item.path">
             <span v-if="index > 0" class="px-1">{{ append }}</span>
             <router-link class="hover:underline" :to="item.path">
@@ -58,9 +58,3 @@ const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
         </template>
     </div>
 </template>
-
-<style scoped lang="scss">
-.text-router {
-    color: rgb(var(--v-theme-info));
-}
-</style>

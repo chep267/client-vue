@@ -27,10 +27,6 @@ onMounted(() => emits('update:ref', inputRef.value));
         :spellcheck="false"
         autocomplete="off"
         variant="outlined"
-        :class="{
-            'select-field font-arial': true,
-            'field-no-error-messages': !errorMessages,
-        }"
         @update:model-value="$emit('update:model-value', $event)"
     >
         <!-- Forward slots -->
@@ -40,68 +36,3 @@ onMounted(() => emits('update:ref', inputRef.value));
         </template>
     </v-select>
 </template>
-
-<style lang="scss" scoped>
-.select-field {
-    &:deep(.v-field) {
-        border-radius: 3px;
-        background-color: white;
-        min-height: 48px;
-        max-height: 48px;
-        .v-field__input {
-            min-height: 48px;
-            max-height: 48px;
-            padding-top: 0;
-            padding-bottom: 0;
-            & > input {
-                height: 48px;
-            }
-        }
-        .v-field__append-inner {
-            .v-icon {
-                opacity: 1;
-            }
-        }
-    }
-    &:deep(.v-input__details) {
-        padding-inline: 0;
-        .v-messages__message {
-            opacity: 1;
-            font-weight: 400;
-            color: rgba(var(--v-theme-error), 1);
-            font-family: Arial, sans-serif;
-            line-height: 1.5;
-        }
-    }
-    &:deep(.v-field__outline) {
-        .v-field__outline__notch,
-        .v-field__outline__notch:after,
-        .v-field__outline__notch:before,
-        .v-field__outline__start,
-        .v-field__outline__end {
-            border-color: rgba(var(--v-bs-border-color), 1);
-            color: rgba(var(--v-bs-border-color), 1);
-            opacity: 1;
-        }
-    }
-}
-:deep(.v-field--error:not(.v-field--disabled)) {
-    .v-field__outline,
-    .v-field__outline__notch,
-    .v-field__outline__notch:after,
-    .v-field__outline__notch:before,
-    .v-field__outline__start,
-    .v-field__outline__end {
-        color: rgba(var(--v-theme-error), 1);
-        border-color: rgba(var(--v-theme-error), 1);
-    }
-}
-:deep(.v-field--active.v-field--variant-outlined .v-field__outline .v-field__outline__notch:before) {
-    display: none;
-}
-.field-no-error-messages {
-    &:deep(.v-input__details) {
-        display: none;
-    }
-}
-</style>

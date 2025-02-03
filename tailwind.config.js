@@ -4,9 +4,6 @@
  *
  */
 
-/** libs */
-import colors from 'vuetify/util/colors';
-
 /** @type {import('tailwindcss').Config} */
 
 export default {
@@ -19,11 +16,7 @@ export default {
             transitionProperty: {
                 spacing: 'margin, padding',
             },
-            colors: {
-                // error: '#cd0000',
-                // main: '#f36c21',
-                'auth-form-title': colors.blue.base,
-            },
+            colors: {},
             lineHeight: {
                 // custom: '1.1',
             },

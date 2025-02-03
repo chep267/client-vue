@@ -28,15 +28,17 @@ const siderStore = useSiderStore();
 const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
 
-const top = computed(() => {
+const notifyStyle = computed(() => {
     const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
-    return ScreenSize.HeaderHeight + (isAuthentication.value ? appBarMiniHeight : 0);
+    return {
+        top: `${ScreenSize.HeaderHeight + (isAuthentication.value ? appBarMiniHeight : 0)}px`,
+    };
 });
 </script>
 
 <template>
-    <NotifyProvider :style="`top: ${top}px`">
-        <v-app class="w-screen h-screen">
+    <NotifyProvider :style="notifyStyle">
+        <v-app class="h-screen w-screen">
             <AppHeader />
             <AppSider />
             <AppMain />
