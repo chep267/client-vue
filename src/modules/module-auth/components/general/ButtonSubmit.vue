@@ -17,11 +17,10 @@ defineProps<{
 
 <template>
     <ButtonBase
-        class="font-bold capitalize tracking-normal"
+        :class="['font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3']"
         type="submit"
         color="primary"
         size="large"
-        width="30%"
         :loading="loading"
     >
         {{ title }}

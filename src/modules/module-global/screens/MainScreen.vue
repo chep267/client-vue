@@ -10,8 +10,8 @@ import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
-import { SiderState } from '@module-global/constants/SiderState';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';

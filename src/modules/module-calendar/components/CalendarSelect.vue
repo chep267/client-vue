@@ -14,9 +14,9 @@ import { useI18n } from 'vue-i18n';
 import { mdiChevronTripleLeft, mdiChevronTripleRight, mdiChevronDoubleLeft, mdiChevronDoubleRight } from '@mdi/js';
 
 /** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
 import { localeObject } from '@module-language/constants/localeObject';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
 
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
@@ -52,8 +52,8 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
 <template>
     <div
         :class="{
-            'relative flex flex-row justify-between w-full p-3 gap-2': true,
-            'px-1 !flex-col-reverse': miniMode,
+            'relative flex w-full flex-row justify-between gap-2 p-3': true,
+            '!flex-col-reverse px-1': miniMode,
         }"
         :style="`min-height: ${ScreenSize.CalendarSelectHeight}px`"
     >

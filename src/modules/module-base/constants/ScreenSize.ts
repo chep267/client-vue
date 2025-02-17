@@ -10,6 +10,6 @@ export const ScreenSize = {
     AppBarCollapseWidth: 56,
     AppBarExpandWidth: 267,
     AppbarHiddenBreakpoint: 600,
-    AppbarCollapseBreakpoint: 1030, // 900,
+    AppbarCollapseBreakpoint: 1030,
     CalendarSelectHeight: 100,
 } as const;

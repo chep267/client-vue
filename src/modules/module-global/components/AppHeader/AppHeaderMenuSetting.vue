@@ -29,12 +29,12 @@ import {
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 import { localeObject } from '@module-language/constants/localeObject';
 import { LangLanguage } from '@module-language/constants/LangLanguage';
 import { themeObject } from '@module-theme/constants/themeObject';
 import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 

@@ -6,7 +6,7 @@
  */
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 /** components */
 import AppLogo from '@module-global/components/AppHeader/AppLogo.vue';

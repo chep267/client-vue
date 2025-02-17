@@ -114,7 +114,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
     <Form
         v-slot="{ isSubmitting, isValidating }"
         as="v-form"
-        class="flex flex-col w-full max-w-xl gap-y-2 !p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
+        class="z-10 flex w-full max-w-xl flex-col gap-y-2 overflow-hidden rounded-md !p-6 shadow-lg shadow-gray-500/40"
         :initial-values="initialValues"
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
@@ -133,7 +133,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
             @update:ref="updateRef"
             @update:model-value="updateValue"
         />
-        <div class="flex w-full items-end justify-between mt-2">
+        <div :class="['flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row']">
             <AuthFormBreadcrumbs />
             <ButtonSubmit
                 :loading="isValidating || isSubmitting || hookSignIn.isPending.value"

@@ -9,8 +9,8 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 /** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 import { ListApp } from '@module-global/constants/ListApp';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
 
 const route = useRoute();
 
@@ -21,7 +21,7 @@ const tab = computed(() => {
 </script>
 
 <template>
-    <v-card class="sticky overscroll-contain z-10" :style="`top: ${ScreenSize.HeaderHeight}px`">
+    <v-card class="sticky z-10 overscroll-contain" :style="`top: ${ScreenSize.HeaderHeight}px`">
         <v-tabs
             v-model="tab"
             slider-color="primary"

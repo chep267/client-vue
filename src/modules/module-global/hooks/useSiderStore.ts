@@ -8,8 +8,8 @@
 import { defineStore } from 'pinia';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
 
 /** types */
 import type { TypeSiderState, TypeSiderStore } from '@module-global/types';
