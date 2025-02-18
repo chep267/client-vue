@@ -103,11 +103,11 @@ watch(data, () => {
         <v-list :elevation="0" class="max-w-40">
             <v-list-item>
                 <div
-                    class="flex flex-col py-2 px-4 items-center gap-2 border border-solid rounded-lg w-full h-max"
+                    class="flex h-max w-full flex-col items-center gap-2 rounded-lg border border-solid px-4 py-2"
                     @click.stop
                 >
-                    <div class="flex w-full h-full items-center justify-between">
-                        <div class="flex flex-col w-full h-full items-center justify-between gap-2">
+                    <div class="flex h-full w-full items-center justify-between">
+                        <div class="flex h-full w-full flex-col items-center justify-between gap-2">
                             <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
                             <v-number-input
                                 v-model="data.hour"
@@ -120,7 +120,7 @@ watch(data, () => {
                             <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextHour" />
                         </div>
                         <span>:</span>
-                        <div class="flex flex-col w-full h-full items-center justify-between gap-2">
+                        <div class="flex h-full w-full flex-col items-center justify-between gap-2">
                             <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevMinute" />
                             <v-number-input
                                 v-model="data.min"
@@ -133,11 +133,11 @@ watch(data, () => {
                             <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextMinute" />
                         </div>
                     </div>
-                    <div class="flex justify-between w-28 rounded-md overflow-hidden border border-solid">
+                    <div class="flex w-28 justify-between overflow-hidden rounded-md border border-solid">
                         <v-btn
                             elevation="0"
                             :class="{
-                                'w-1/2 !h-6 min-w-0 min-h-0 !p-0 rounded-none': true,
+                                '!h-6 min-h-0 w-1/2 min-w-0 rounded-none !p-0': true,
                                 'bg-info': data.period === TimePeriod.AM,
                             }"
                             @click.stop="data.period = TimePeriod.AM"
@@ -147,7 +147,7 @@ watch(data, () => {
                         <v-btn
                             elevation="0"
                             :class="{
-                                'w-1/2 !h-6 min-w-0 min-h-0 !p-0 rounded-none': true,
+                                '!h-6 min-h-0 w-1/2 min-w-0 rounded-none !p-0': true,
                                 'bg-info': data.period === TimePeriod.PM,
                             }"
                             @click.stop="data.period = TimePeriod.PM"

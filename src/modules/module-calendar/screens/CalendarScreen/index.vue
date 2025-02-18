@@ -20,8 +20,8 @@ const daySelected = ref<Dayjs | null>(null);
 </script>
 
 <template>
-    <div class="flex flex-row w-full h-full">
-        <div class="flex flex-column w-full h-full rounded-md overflow-hidden border border-gray-100">
+    <div class="flex h-full w-full flex-row">
+        <div class="flex-column flex h-full w-full overflow-hidden rounded-md border border-gray-100">
             <CalendarSelect />
             <CalendarTable @on-select-day="daySelected = $event" />
             <CalendarModal :day="daySelected" @on-close="daySelected = null" />

@@ -25,7 +25,7 @@ withDefaults(defineProps<FormFieldProps>(), {
 </script>
 
 <template>
-    <div v-bind.attr="$attrs" class="flex flex-col w-full">
+    <div v-bind.attr="$attrs" class="flex w-full flex-col">
         <div class="flex justify-between">
             <span v-if="title.show" :class="['font-bold', title.class]">
                 <slot name="title" />

@@ -28,7 +28,6 @@ import ButtonSubmit from '@module-auth/components/general/ButtonSubmit.vue';
 /** type */
 import type { SubmissionHandler, InvalidSubmissionHandler, FieldContext } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
-import FieldPassword from '@module-auth/components/general/FieldPassword.vue';
 
 type TypeFormFieldsName = 'email';
 type TypeFormData = {
