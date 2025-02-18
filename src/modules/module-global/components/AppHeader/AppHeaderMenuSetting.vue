@@ -39,7 +39,7 @@ import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
-import { setI18nLanguage } from '@module-language/utils/i18n';
+import { getMessages } from '@module-language/utils/i18n';
 
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
@@ -221,9 +221,9 @@ const setTheme = (value: TypeTheme) => {
     theme.global.name.value = value;
 };
 const setLocale = async (value: TypeLocale) => {
+    await getMessages(value);
     Cookie.set(AppKey.locale, value);
     locale.current.value = value;
-    await setI18nLanguage(value);
 };
 const signout = () => {
     hookSignOut.mutate(
