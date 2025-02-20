@@ -5,8 +5,8 @@
  */
 
 @forward 'vuetify/styles' with (
-  $utilities: false,
-  $layers: true,
+    $utilities: false,
+    $layers: true
 );
 
 @layer base, vuetify, overrides;
