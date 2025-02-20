@@ -43,7 +43,7 @@ const tableHeight = computed(() => {
     const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
     const calendarSelectHeight = ScreenSize.CalendarSelectHeight;
     const paddingHeight = 2 * 16;
-    const borderHeight = 2;
+    const borderHeight = 6;
     return `calc(100vh - ${headerHeight + appBarMiniHeight + calendarSelectHeight + paddingHeight + borderHeight}px)`;
 });
 
