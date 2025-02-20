@@ -73,56 +73,62 @@ watch(
             }"
             height="70vh"
         >
-            <div v-if="day" class="justify-space-between flex min-h-96 flex-1 flex-col items-center">
-                <div class="flex w-full justify-end p-5">
-                    <span
-                        :class="{
-                            'text-2xl italic': true,
-                            'calendar-item-today': isToday,
-                            'text-red': isWeekend,
-                        }"
-                    >
-                        {{ titleCalendar }}
-                    </span>
+            <div class="flex h-full flex-col justify-between">
+                <div v-if="day" class="flex min-h-96 flex-1 flex-col items-center justify-between">
+                    <div class="flex w-full justify-end p-5">
+                        <span
+                            :class="{
+                                'text-2xl italic': true,
+                                'calendar-item-today': isToday,
+                                'text-red': isWeekend,
+                            }"
+                        >
+                            {{ titleCalendar }}
+                        </span>
+                    </div>
+                    <div class="flex flex-1 flex-col items-center justify-center">
+                        <span
+                            :class="{
+                                'text-9xl': true,
+                                'calendar-item-today': isToday,
+                                'text-red': isWeekend,
+                            }"
+                        >
+                            {{ day.date() }}
+                        </span>
+                    </div>
+                    <div class="flex h-32 flex-col items-center justify-center">
+                        <span
+                            :class="{
+                                'text-3xl capitalize': true,
+                                'calendar-item-today': isToday,
+                                'text-red': isWeekend,
+                            }"
+                        >
+                            {{ day.locale(locale).format('dddd') }}
+                        </span>
+                    </div>
                 </div>
-                <div class="flex flex-1 flex-col items-center justify-center">
-                    <span
-                        :class="{
-                            'text-9xl': true,
-                            'calendar-item-today': isToday,
-                            'text-red': isWeekend,
-                        }"
-                    >
-                        {{ day.date() }}
-                    </span>
-                </div>
-                <div class="flex h-32 flex-col items-center justify-center">
-                    <span
-                        :class="{
-                            'text-3xl capitalize': true,
-                            'calendar-item-today': isToday,
-                            'text-red': isWeekend,
-                        }"
-                    >
-                        {{ day.locale(locale).format('dddd') }}
-                    </span>
-                </div>
-            </div>
-            <div v-if="lunarDay" class="lunar flex h-40 min-h-40 truncate">
-                <div class="justify-space-between flex flex-1 flex-col items-center p-2">
-                    <span class="text-xl">{{ $t(CalendarLanguage.component.label.day) }}</span>
-                    <span class="text-3xl">{{ lunarDay.day }}</span>
-                    <span class="text-xl">{{ `${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}` }}</span>
-                </div>
-                <div class="justify-space-between flex flex-1 flex-col items-center p-2">
-                    <span class="text-xl">{{ $t(CalendarLanguage.component.label.month) }}</span>
-                    <span class="text-3xl">{{ lunarDay.month }}</span>
-                    <span class="text-xl">{{ `${lunarDay.celestialStemOfMonth} ${lunarDay.terrestrialBranchOfMonth}` }}</span>
-                </div>
-                <div class="justify-space-between flex flex-1 flex-col items-center p-2">
-                    <span class="text-xl">{{ $t(CalendarLanguage.component.label.year) }}</span>
-                    <span class="text-3xl">{{ lunarDay.year }}</span>
-                    <span class="text-xl">{{ `${lunarDay.celestialStemOfYear} ${lunarDay.terrestrialBranchOfYear}` }}</span>
+                <div v-if="lunarDay" class="lunar flex h-40 min-h-40 truncate">
+                    <div class="flex flex-1 flex-col items-center justify-between p-2">
+                        <span class="text-xl">{{ $t(CalendarLanguage.component.label.day) }}</span>
+                        <span class="text-3xl">{{ lunarDay.day }}</span>
+                        <span class="text-xl">{{ `${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}` }}</span>
+                    </div>
+                    <div class="flex flex-1 flex-col items-center justify-between p-2">
+                        <span class="text-xl">{{ $t(CalendarLanguage.component.label.month) }}</span>
+                        <span class="text-3xl">{{ lunarDay.month }}</span>
+                        <span class="text-xl">{{
+                            `${lunarDay.celestialStemOfMonth} ${lunarDay.terrestrialBranchOfMonth}`
+                        }}</span>
+                    </div>
+                    <div class="flex flex-1 flex-col items-center justify-between p-2">
+                        <span class="text-xl">{{ $t(CalendarLanguage.component.label.year) }}</span>
+                        <span class="text-3xl">{{ lunarDay.year }}</span>
+                        <span class="text-xl">{{
+                            `${lunarDay.celestialStemOfYear} ${lunarDay.terrestrialBranchOfYear}`
+                        }}</span>
+                    </div>
                 </div>
             </div>
         </v-card>
