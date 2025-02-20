@@ -1,0 +1,12 @@
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2024.
+ *
+ */
+
+@forward 'vuetify/styles' with (
+  $utilities: false,
+  $layers: true,
+);
+
+@layer base, vuetify, overrides;

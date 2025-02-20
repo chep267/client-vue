@@ -22,7 +22,7 @@ const NotFoundScreen = () => import('@module-global/screens/NotFoundScreen.vue')
 const AuthScreen = () => import('@module-auth/screens/AuthScreen.vue');
 const FeedScreen = () => import('@module-global/screens/FeedScreen.vue');
 const MessengerScreen = () => import('@module-global/screens/MessengerScreen.vue');
-const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen/index.vue');
+const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen.vue');
 
 const routes = [
     /** authentication */

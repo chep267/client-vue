@@ -26,8 +26,10 @@ defineEmits<{
         <template #activator="{ props }">
             <v-btn
                 v-bind="props"
-                class="align-center flex w-full min-w-0 justify-center rounded-none"
+                class="w-full min-w-0"
                 :disabled="disabled"
+                elevation="0"
+                rounded="0"
                 @click.stop="$emit('toggle-sider')"
             >
                 <v-icon

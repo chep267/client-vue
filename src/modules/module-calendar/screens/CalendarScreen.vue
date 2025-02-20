@@ -21,10 +21,16 @@ const daySelected = ref<Dayjs | null>(null);
 
 <template>
     <div class="flex h-full w-full flex-row">
-        <div class="flex-column flex h-full w-full overflow-hidden rounded-md border border-gray-100">
+        <div class="container flex h-full w-full flex-col overflow-hidden rounded-md border">
             <CalendarSelect />
             <CalendarTable @on-select-day="daySelected = $event" />
             <CalendarModal :day="daySelected" @on-close="daySelected = null" />
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.container {
+    border-color: rgba(var(--v-border-color), var(--v-border-opacity));
+}
+</style>

@@ -26,7 +26,7 @@ import { defaultLocale, i18n } from '@module-language/utils/i18n';
 import { getDeviceTheme } from '@module-theme/utils/defaultTheme';
 
 /** styles */
-import 'vuetify/styles/main.sass';
+import './vuetify.scss';
 
 export const vueComponents = createVuetify({
     components: {

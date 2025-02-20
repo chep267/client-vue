@@ -13,7 +13,7 @@ import LanguageProvider from '@module-language/components/LanguageProvider.vue';
 import MainScreen from '@module-global/screens/MainScreen.vue';
 
 /** styles */
-import './root.css';
+import './global.css';
 </script>
 
 <template>
