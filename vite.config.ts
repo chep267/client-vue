@@ -30,10 +30,11 @@ function resolveAlias() {
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv) => {
     process.env = Object.assign(process.env, loadEnv(mode, process.cwd()));
-    const isDevMode = process.env.VITE_APP_MODE === 'dev';
-    const port = Number(process.env.VITE_APP_PORT) || 3000;
-    const host = process.env.VITE_APP_HOST || 'localhost';
-
+    const config = {
+        isDevMode: process.env.VITE_APP_MODE === 'dev',
+        port: Number(process.env.VITE_APP_PORT) || 3000,
+        host: process.env.VITE_APP_HOST || 'localhost',
+    };
     return defineConfig({
         plugins: [vue(), basicSsl(), vuetify(), tailwindcss()],
         resolve: {
@@ -45,7 +46,7 @@ export default ({ mode }: ConfigEnv) => {
         },
         build: {
             target: 'esnext',
-            sourcemap: isDevMode,
+            sourcemap: config.isDevMode,
             rollupOptions: {
                 output: {
                     manualChunks: {
@@ -55,14 +56,14 @@ export default ({ mode }: ConfigEnv) => {
                         'not-found-screen': ['./src/modules/module-global/screens/NotFoundScreen.vue'],
                         'feed-screen': ['./src/modules/module-global/screens/FeedScreen.vue'],
                         'messenger-screen': ['./src/modules/module-global/screens/MessengerScreen.vue'],
-                        'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen/index.vue'],
+                        'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen.vue'],
                     },
                 },
             },
         },
         server: {
-            host,
-            port,
+            host: config.host,
+            port: config.port,
             open: true,
         },
         esbuild: {
