@@ -30,9 +30,7 @@ const { siderState } = storeToRefs(siderStore);
 
 const notifyStyle = computed(() => {
     const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
-    return {
-        top: `${ScreenSize.HeaderHeight + (isAuthentication.value ? appBarMiniHeight : 0)}px`,
-    };
+    return `top: ${ScreenSize.HeaderHeight + (isAuthentication.value ? appBarMiniHeight : 0)}px`;
 });
 </script>
 

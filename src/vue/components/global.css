@@ -4,8 +4,9 @@
  *
  */
 
-@import 'tailwindcss';
+@import 'tailwindcss' important;
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant hover (&:hover);
 
 @theme {
     --breakpoint-xs: 30rem; /* 480px */
@@ -44,5 +45,44 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         user-select: none;
+    }
+}
+
+@layer utilities {
+    /* Light theme */
+    /*.scrollbar-custom::-webkit-scrollbar {*/
+    /*    width: 10px;*/
+    /*    height: 10px;*/
+    /*}*/
+    .scrollbar-hidden {
+        scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+    }
+    .scrollbar-hidden::-webkit-scrollbar-track {
+        display: none; /* Ẩn thanh cuộn trên Chrome, Edge, Safari */
+    }
+    .scrollbar-custom::-webkit-scrollbar-track {
+        background: #e5e7eb; /* bg-gray-200 */
+        border-radius: 10px;
+    }
+    .scrollbar-custom::-webkit-scrollbar-thumb {
+        background: #6b7280; /* bg-gray-500 */
+        border-radius: 10px;
+    }
+    .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+        background: #4b5563; /* bg-gray-600 */
+    }
+    .scrollbar-custom::-webkit-scrollbar-thumb:active {
+        background: #4b5563; /* bg-gray-600 */
+    }
+
+    /* Dark theme */
+    .dark .scrollbar-custom::-webkit-scrollbar-track {
+        background: #1e293b; /* bg-gray-800 */
+    }
+    .dark .scrollbar-custom::-webkit-scrollbar-thumb {
+        background: #475569; /* bg-gray-600 */
+    }
+    .dark .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+        background: #64748b; /* bg-gray-400 */
     }
 }

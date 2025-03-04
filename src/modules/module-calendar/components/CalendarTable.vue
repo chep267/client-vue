@@ -42,8 +42,8 @@ const tableHeight = computed(() => {
     const headerHeight = ScreenSize.HeaderHeight;
     const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
     const calendarSelectHeight = ScreenSize.CalendarSelectHeight;
-    const paddingHeight = 2 * 16;
-    const borderHeight = 6;
+    const paddingHeight = 32;
+    const borderHeight = 2;
     return `calc(100vh - ${headerHeight + appBarMiniHeight + calendarSelectHeight + paddingHeight + borderHeight}px)`;
 });
 
@@ -87,8 +87,8 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
                     class: {
                         'calendar-item': true,
                         'calendar-item-today': isToDay,
-                        'text-red': isWeekend,
-                        'calendar-item-diff-month': !isToDay && !isInMonth,
+                        'calendar-item-diff-month': !isInMonth,
+                        'text-red': isInMonth && isWeekend,
                         invisible: hideDiffMonth,
                     },
                     onclick: () => emits('on-select-day', thisDay),
@@ -101,7 +101,7 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
 
 <template>
     <v-data-table-virtual
-        class="rounded-0 table-scroll"
+        class="scrollbar-custom rounded-none"
         fixed-header
         :headers="headers"
         :items="data"
@@ -110,24 +110,6 @@ const headers = computed<VDataTableVirtual['$props']['headers']>(() => {
 </template>
 
 <style scoped lang="scss">
-.table-scroll:deep(.v-table__wrapper) {
-    &::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
-    &::-webkit-scrollbar-track {
-        background: rgba(var(--v-border-color), var(--v-border-opacity));
-    }
-    &::-webkit-scrollbar-thumb {
-        min-height: 50px;
-        background: rgba(var(--v-border-color), 0.1);
-        border-radius: 7px;
-    }
-    &:hover::-webkit-scrollbar-thumb {
-        background: rgba(var(--v-border-color), 0.3);
-    }
-}
-
 :deep(.calendar-item) {
     position: relative;
     height: 70px !important;
