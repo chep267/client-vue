@@ -11,6 +11,8 @@ import vue from '@vitejs/plugin-vue';
 import vuetify from 'vite-plugin-vuetify';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import tailwindcss from '@tailwindcss/vite';
+import { visualizer } from 'rollup-plugin-visualizer';
+import viteCompression from 'vite-plugin-compression';
 
 /** module path */
 import tsPaths from './tsconfig.app.json' with { type: 'json' };
@@ -34,9 +36,24 @@ export default ({ mode }: ConfigEnv) => {
         isDevMode: process.env.VITE_APP_MODE === 'dev',
         port: Number(process.env.VITE_APP_PORT) || 3000,
         host: process.env.VITE_APP_HOST || 'localhost',
+        isGzip: process.env.VITE_APP_ISGZIP === 'true',
     };
     return defineConfig({
-        plugins: [vue(), basicSsl(), vuetify(), tailwindcss()],
+        plugins: [
+            vue(),
+            basicSsl(),
+            vuetify(),
+            tailwindcss(), // Gzip compression for production builds
+            config.isGzip
+                ? viteCompression({
+                      algorithm: 'gzip', // Use gzip compression
+                      ext: '.gz', // Output extension
+                      threshold: 10240, // Only compress files larger than 10KB
+                      deleteOriginFile: false, // Keep original files
+                  })
+                : undefined,
+            visualizer({ filename: 'dist/stats.html', open: true }),
+        ],
         resolve: {
             alias: {
                 ...resolveAlias(),
@@ -44,33 +61,37 @@ export default ({ mode }: ConfigEnv) => {
             },
             extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
         },
+        esbuild: {
+            target: 'esnext', // Target modern browsers that support ES Modules
+            treeShaking: true, // Remove unnecessary code
+            legalComments: 'none', // Remove comments
+            format: 'esm',
+        },
         build: {
-            target: 'esnext',
-            sourcemap: config.isDevMode,
+            outDir: 'dist', // Output directory
+            target: 'esnext', // Target modern browsers
+            minify: 'esbuild', // Enable minification
+            sourcemap: false, // Generate sourcemaps (optional, disable for smaller builds)
+            chunkSizeWarningLimit: 500, // Set maximum chunk size (in bytes)
+            assetsInlineLimit: 4096,
+            cssCodeSplit: true, // Enable CSS code splitting
+            commonjsOptions: {
+                transformMixedEsModules: true, // Enable tree-shaking
+            },
             rollupOptions: {
                 output: {
-                    manualChunks: {
-                        'start-screen': ['./src/modules/module-auth/screens/StartScreen.vue'],
-                        'auth-screen': ['./src/modules/module-auth/screens/AuthScreen.vue'],
-                        'main-screen': ['./src/modules/module-global/screens/MainScreen.vue'],
-                        'not-found-screen': ['./src/modules/module-global/screens/NotFoundScreen.vue'],
-                        'feed-screen': ['./src/modules/module-global/screens/FeedScreen.vue'],
-                        'messenger-screen': ['./src/modules/module-global/screens/MessengerScreen.vue'],
-                        'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen.vue'],
-                    },
+                    minifyInternalExports: true, // Minify output
+                    compact: true, // Compact output
                 },
             },
         },
         server: {
             host: config.host,
             port: config.port,
-            open: true,
+            open: config.isDevMode,
         },
-        esbuild: {
-            target: 'esnext',
-            legalComments: 'none',
-            treeShaking: true,
-            format: 'esm',
+        optimizeDeps: {
+            esbuildOptions: { target: 'esnext', treeShaking: true },
         },
     });
 };

@@ -15,8 +15,8 @@
         "outDir": "dist",
         "paths": {
             "@src/*": ["src/*"],
-            "@lang/*": ["src/vue/utils/lang/*"],
-            "@root/*": ["src/vue/*"],
+            "@root/*": ["src/root/*"],
+            "@lang/*": ["src/root/utils/lang/*"],
             "@modules/*": ["src/modules/*"],
             "@module-base/*": ["src/modules/module-base/*"],
             "@module-theme/*": ["src/modules/module-theme/*"],

@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import pluginVue from 'eslint-plugin-vue';
 import vueTsEslintConfig from '@vue/eslint-config-typescript';
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting';
@@ -15,7 +16,7 @@ export default [
     },
     {
         name: 'app/files-to-ignore',
-        ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
+        ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**', 'dist/*', 'dist/assets/*', 'node_modules/*'],
     },
     ...pluginVue.configs['flat/recommended'],
     ...vueTsEslintConfig(),
