@@ -19,7 +19,6 @@ import InputPassword from '@module-base/components/InputPassword.vue';
 /** type */
 import type { RuleExpression, FieldContext } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
-import InputText from '@module-base/components/InputText.vue';
 
 defineOptions({ name: 'FieldPassword', inheritAttrs: true });
 defineProps<{
