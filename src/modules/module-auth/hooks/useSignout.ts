@@ -13,7 +13,6 @@ import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
 import { NotifyColor } from '@module-base/constants/NotifyColor';
-import { ScreenPath } from '@module-global/constants/ScreenPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
@@ -26,20 +25,20 @@ import type { UseMutationReturnType } from '@tanstack/vue-query';
 import type { TypeApiAuth } from '@module-auth/types';
 
 export function useSignout(): UseMutationReturnType<
-    TypeApiAuth['Signout']['Response'],
+    TypeApiAuth['SignOut']['Response'],
     AxiosError,
-    TypeApiAuth['Signout']['Payload'],
+    TypeApiAuth['SignOut']['Payload'],
     unknown
 > {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    return useMutation<TypeApiAuth['Signout']['Response'], AxiosError, TypeApiAuth['Signout']['Payload']>({
-        mutationFn: authApi.signout,
+    return useMutation<TypeApiAuth['SignOut']['Response'], AxiosError, TypeApiAuth['SignOut']['Payload']>({
+        mutationFn: authApi.signOut,
         onSettled: () => {
             authStore.signout();
-            push(ScreenPath.start).then();
+            push('/').then();
         },
         onError: () => {
             notifyStore.show({ color: NotifyColor.error, messageIntl: AuthLanguage.notify.server.error });

@@ -6,21 +6,22 @@
  */
 
 /** libs */
+import { defineAsyncComponent } from 'vue';
 import { useRoute } from 'vue-router';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 
 /** components */
-import SigninForm from '@module-auth/components/form/SigninForm.vue';
-import RegisterForm from '@module-auth/components/form/RegisterForm.vue';
-import RecoverForm from '@module-auth/components/form/RecoverForm.vue';
+const SigninForm = defineAsyncComponent(() => import('@module-auth/components/form/SigninForm.vue'));
+const RegisterForm = defineAsyncComponent(() => import('@module-auth/components/form/RegisterForm.vue'));
+const RecoverForm = defineAsyncComponent(() => import('@module-auth/components/form/RecoverForm.vue'));
 
 const route = useRoute();
 </script>
 
 <template>
-    <SigninForm v-if="route.path === AuthScreenPath.signin" />
-    <RegisterForm v-else-if="route.path === AuthScreenPath.register" />
-    <RecoverForm v-else-if="route.path === AuthScreenPath.recover" />
+    <SigninForm v-if="route.path === AuthRouterPath.signin" />
+    <RegisterForm v-else-if="route.path === AuthRouterPath.register" />
+    <RecoverForm v-else-if="route.path === AuthRouterPath.recover" />
 </template>

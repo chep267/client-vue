@@ -14,8 +14,9 @@ import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { AppTimer } from '@module-base/constants/AppTimer';
 import { NotifyColor } from '@module-base/constants/NotifyColor';
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
@@ -40,11 +41,12 @@ export function useRestart(): UseMutationReturnType<
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    const RESTART = useMutation<TypeApiAuth['Restart']['Response'], AxiosError, TypeApiAuth['Restart']['Payload']>({
+    const hookRestart = useMutation<TypeApiAuth['Restart']['Response'], AxiosError, TypeApiAuth['Restart']['Payload']>({
         mutationFn: authApi.restart,
         onSuccess: (response: TypeApiAuth['Restart']['Response']) => {
+            const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             authStore.signin(response.data);
-            push(authStore.prePath).then(() => delay(response.data.token.exp, () => RESTART.mutate({})));
+            push(authStore.prePath).then(() => delay(exp - 3000 * 60, () => hookRestart.mutate({})));
         },
         onError: (error) => {
             Cookie.remove(AppKey.uid);
@@ -59,9 +61,9 @@ export function useRestart(): UseMutationReturnType<
                     break;
             }
             notifyStore.show({ color: NotifyColor.error, messageIntl });
-            push(AuthScreenPath.signin).then();
+            push(AuthRouterPath.signin).then();
         },
     });
 
-    return RESTART;
+    return hookRestart;
 }

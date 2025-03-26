@@ -6,12 +6,15 @@
  */
 
 /** libs */
+import { defineAsyncComponent } from 'vue';
 import { configure } from 'vee-validate';
 
 /** components */
-import BaseParticles from '@module-base/components/BaseParticles.vue';
 import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
 import AuthFormContent from '@module-auth/components/AuthFormContent.vue';
+
+/** lazy components */
+const BaseParticles = defineAsyncComponent(() => import('@module-base/components/BaseParticles.vue'));
 
 configure({
     bails: false,

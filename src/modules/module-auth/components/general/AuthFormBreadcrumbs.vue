@@ -10,7 +10,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
@@ -31,19 +31,19 @@ const breadcrumbs = computed(() => {
     const register = genBreadcrumb('register');
     const recover = genBreadcrumb('recover');
     switch (true) {
-        case route.path.startsWith(AuthScreenPath.signin):
+        case route.path.startsWith(AuthRouterPath.signin):
             return [register, recover];
-        case route.path.startsWith(AuthScreenPath.register):
+        case route.path.startsWith(AuthRouterPath.register):
             return [signin, recover];
         default:
             return [signin, register];
     }
 });
 
-const genBreadcrumb = (type: keyof typeof AuthScreenPath) => {
+const genBreadcrumb = (type: keyof typeof AuthRouterPath) => {
     return {
         title: AuthLanguage.component.title[type],
-        path: AuthScreenPath[type],
+        path: AuthRouterPath[type],
     };
 };
 </script>

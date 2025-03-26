@@ -4,7 +4,8 @@
  *
  */
 
-export const AuthScreenPath = {
+export const AuthRouterPath = {
+    start: '/start',
     signin: '/signin',
     register: '/register',
     recover: '/recover',

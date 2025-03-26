@@ -11,17 +11,17 @@ import { useRoute } from 'vue-router';
 
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 
 const route = useRoute();
 
 const title = computed(() => {
     switch (route.path) {
-        case AuthScreenPath.register:
+        case AuthRouterPath.register:
             return AuthLanguage.component.title.register;
-        case AuthScreenPath.recover:
+        case AuthRouterPath.recover:
             return AuthLanguage.component.title.recover;
-        case AuthScreenPath.signin:
+        case AuthRouterPath.signin:
         default:
             return AuthLanguage.component.title.signin;
     }

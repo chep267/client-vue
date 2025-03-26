@@ -6,7 +6,7 @@
  */
 
 /** libs */
-import { computed } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
@@ -19,9 +19,11 @@ import { useSiderStore } from '@module-global/hooks/useSiderStore';
 
 /** components */
 import NotifyProvider from '@module-base/components/NotifyProvider.vue';
-import AppHeader from '@module-global/components/AppHeader/index.vue';
-import AppSider from '@module-global/components/AppSider/index.vue';
-import AppMain from '@module-global/components/AppMain.vue';
+
+/** lazy components */
+const AppHeader = defineAsyncComponent(() => import('@module-global/components/AppHeader/index.vue'));
+const AppSider = defineAsyncComponent(() => import('@module-global/components/AppSider/index.vue'));
+const AppMain = defineAsyncComponent(() => import('@module-global/components/AppMain.vue'));
 
 const authStore = useAuthStore();
 const siderStore = useSiderStore();

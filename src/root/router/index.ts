@@ -5,12 +5,13 @@
  */
 
 /** libs */
-import { createRouter, createWebHistory } from 'vue-router';
 import Cookies from 'js-cookie';
+import { createRouter, createWebHistory } from 'vue-router';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
+import { AccountState } from '@module-auth/constants/AccountState';
 import { ScreenPath } from '@module-global/constants/ScreenPath';
 
 /** store */
@@ -27,19 +28,24 @@ const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen.vue
 const routes = [
     /** authentication */
     {
-        name: AuthScreenPath.signin,
-        path: AuthScreenPath.signin,
+        name: AuthRouterPath.signin,
+        path: AuthRouterPath.signin,
         component: AuthScreen,
     },
     {
-        name: AuthScreenPath.register,
-        path: AuthScreenPath.register,
+        name: AuthRouterPath.register,
+        path: AuthRouterPath.register,
         component: AuthScreen,
     },
     {
-        name: AuthScreenPath.recover,
-        path: AuthScreenPath.recover,
+        name: AuthRouterPath.recover,
+        path: AuthRouterPath.recover,
         component: AuthScreen,
+    },
+    {
+        name: AuthRouterPath.start,
+        path: AuthRouterPath.start,
+        component: StartScreen,
     },
 
     /** main */
@@ -47,11 +53,6 @@ const routes = [
         name: ScreenPath.home,
         path: ScreenPath.home,
         component: FeedScreen,
-    },
-    {
-        name: ScreenPath.start,
-        path: ScreenPath.start,
-        component: StartScreen,
     },
     {
         name: ScreenPath.feed,
@@ -84,28 +85,31 @@ export const routers = createRouter({
     routes,
 });
 
-const AuthPath = Object.values(AuthScreenPath);
-
+const AuthPath = Object.values(AuthRouterPath);
 routers.beforeEach((to) => {
     const uid = Cookies.get(AppKey.uid);
     const authStore = useAuthStore();
+    const accountState = authStore.isAuthentication
+        ? AccountState.signedIn
+        : uid
+          ? AccountState.reSignin
+          : AccountState.signin;
 
-    if (!authStore.isAuthentication) {
-        if (uid && to.path !== ScreenPath.start) {
-            // redirect to /start => call re-signin
-            authStore.setPath(to.path);
-            return { path: ScreenPath.start };
-        }
-        if (!uid && !AuthPath.some((path) => to.path.startsWith(path))) {
-            // redirect to /signin => call signin
-            return { path: AuthScreenPath.signin };
-        }
+    const isAuthPath = AuthPath.some((path) => to.path.startsWith(path));
+    if (accountState === AccountState.signin && !isAuthPath) {
+        /** chưa đăng nhập, trở về đăng nhập  */
+        authStore.setPath(to.path);
+        return { path: AuthRouterPath.signin };
     }
-    if (authStore.isAuthentication && AuthPath.some((path) => to.path.startsWith(path))) {
-        // redirect to / => home!!
-        return { path: ScreenPath.home };
+    if (accountState === AccountState.reSignin && to.path !== AuthRouterPath.start) {
+        /** đã đăng nhập từ trước, lấy phiên đăng nhập */
+        authStore.setPath(isAuthPath ? '/' : to.path);
+        return { path: AuthRouterPath.start };
     }
-    if (to.path === ScreenPath.home) {
-        return { path: ScreenPath.defaultPath };
+    if (accountState === AccountState.signedIn) {
+        /** đã đăng nhập xong, vào home */
+        if (isAuthPath || to.path === ScreenPath.home) {
+            return { path: ScreenPath.defaultPath };
+        }
     }
 });

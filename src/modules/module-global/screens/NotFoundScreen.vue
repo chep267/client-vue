@@ -5,9 +5,14 @@
  *
  */
 
+/** libs */
+import { defineAsyncComponent } from 'vue';
+
 /** components */
 import NotFound from '@module-base/components/NotFound.vue';
-import BaseParticles from '@module-base/components/BaseParticles.vue';
+
+/** lazy components */
+const BaseParticles = defineAsyncComponent(() => import('@module-base/components/BaseParticles.vue'));
 </script>
 
 <template>

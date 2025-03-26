@@ -14,10 +14,10 @@ import { useRestart } from '@module-auth/hooks/useRestart';
 /** components */
 import StartLoading from '@module-base/components/StartLoading.vue';
 
-const RESTART = useRestart();
+const hookRestart = useRestart();
 
 onMounted(() => {
-    RESTART.mutate({});
+    hookRestart.mutate({});
 });
 </script>
 

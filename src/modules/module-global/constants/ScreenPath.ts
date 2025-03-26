@@ -6,7 +6,6 @@
 
 export const ScreenPath = {
     home: '/',
-    start: '/start',
     defaultPath: '/calendar',
     feed: '/feed',
     messenger: '/messenger',
