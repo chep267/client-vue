@@ -18,5 +18,5 @@ const notifyStore = useNotifyStore();
 </script>
 
 <template>
-    <v-btn v-once :icon="mdiBell" @click.stop="notifyStore.show({ color: NotifyColor.warning })" />
+    <v-btn v-once aria-label="dev" :icon="mdiBell" @click.stop="notifyStore.show({ color: NotifyColor.warning })" />
 </template>

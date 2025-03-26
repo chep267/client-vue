@@ -48,6 +48,7 @@ const validateEmail: RuleExpression<unknown> = (value) => {
 <template>
     <Field v-slot="{ value, handleChange, errorMessage: errorText, setErrors }" :name="name" :rules="validateEmail">
         <InputText
+            :aria-label="name"
             :model-value="value"
             :label="$t(AuthLanguage.component.label.email)"
             :error="error"

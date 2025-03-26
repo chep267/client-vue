@@ -19,6 +19,7 @@ import InputPassword from '@module-base/components/InputPassword.vue';
 /** type */
 import type { RuleExpression, FieldContext } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
+import InputText from '@module-base/components/InputText.vue';
 
 defineOptions({ name: 'FieldPassword', inheritAttrs: true });
 defineProps<{
@@ -48,6 +49,7 @@ const validatePassword: RuleExpression<unknown> = (value) => {
 <template>
     <Field v-slot="{ value, handleChange, errorMessage: errorText, setErrors }" :name="name" :rules="validatePassword">
         <InputPassword
+            :aria-label="name"
             :model-value="value"
             :label="$t(AuthLanguage.component.label.password)"
             :error="error || Boolean(errorMessage || errorText)"

@@ -10,7 +10,7 @@ import Logo from '@root/assets/favicon.svg';
 </script>
 
 <template>
-    <router-link v-once to="/">
+    <router-link v-once aria-label="home" to="/">
         <img alt="" :src="Logo" width="40" height="40" />
     </router-link>
 </template>

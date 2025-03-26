@@ -20,10 +20,11 @@ const isOpenMenu = ref(false);
 <template>
     <v-menu id="header-menu-setting" v-model="isOpenMenu" :close-on-content-click="false" :offset="10">
         <template #activator="{ props: MenuProps }">
-            <v-tooltip :text="$t(GlobalLanguage.component.label.setting)" location="bottom">
+            <v-tooltip :text="$t(GlobalLanguage.component.label.setting)" location="bottom" aria-label="setting">
                 <template #activator="{ props: ToolTipProps }">
                     <v-app-bar-nav-icon
                         v-bind="{ ...MenuProps, ...ToolTipProps }"
+                        aria-label="setting"
                         :color="isOpenMenu ? 'primary' : undefined"
                     />
                 </template>
