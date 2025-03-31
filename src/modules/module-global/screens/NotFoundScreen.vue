@@ -17,7 +17,7 @@ const BaseParticles = defineAsyncComponent(() => import('@module-base/components
 
 <template>
     <div class="flex h-full w-full items-center justify-center">
-        <not-found class="z-10" width="500" height="500" />
+        <not-found class="z-1" width="500" height="500" />
         <base-particles />
     </div>
 </template>

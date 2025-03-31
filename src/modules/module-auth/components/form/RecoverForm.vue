@@ -34,10 +34,6 @@ type TypeFormData = {
     [Key in TypeFormFieldsName]: string;
 };
 
-const FormFieldsName: Readonly<{ [Key in TypeFormFieldsName]: Key }> = {
-    email: 'email',
-};
-
 const hookRecover = useRecover();
 
 const FormFields = reactive<{
@@ -46,8 +42,8 @@ const FormFields = reactive<{
         elem: TypeInputElem;
     };
 }>({
-    [FormFieldsName.email]: {
-        name: FormFieldsName.email,
+    email: {
+        name: 'email',
         elem: null,
     },
 });
@@ -57,7 +53,7 @@ const ApiStatus = reactive({
 });
 
 const initialValues: TypeFormData = {
-    [FormFieldsName.email]: Cookie.get(AppKey.email) || '',
+    [FormFields.email.name]: Cookie.get(AppKey.email) || '',
 };
 
 const resetError = (setErrors: FieldContext['setErrors']) => {
@@ -77,7 +73,7 @@ const updateRef = (elem: TypeInputElem, field: string) => {
 
 const onSubmit: SubmissionHandler = (data) => {
     if (ApiStatus.error) {
-        return focusInput({ elem: FormFields[FormFieldsName.email].elem });
+        return focusInput({ elem: FormFields.email.elem });
     }
     hookRecover.mutate(data as TypeFormData, {
         onError: (error) => {
@@ -89,13 +85,13 @@ const onSubmit: SubmissionHandler = (data) => {
                 default:
                     ApiStatus.error = AuthLanguage.notify.server.error;
             }
-            focusInput({ elem: FormFields[FormFieldsName.email].elem });
+            focusInput({ elem: FormFields.email.elem });
         },
     });
 };
 
 const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
-    const listFieldsCheck: TypeFormFieldsName[] = [FormFieldsName.email];
+    const listFieldsCheck: TypeFormFieldsName[] = [FormFields.email.name];
     const field = listFieldsCheck.find((field) => field in errors);
     if (field) {
         focusInput({ elem: FormFields[field].elem });
@@ -107,13 +103,13 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
     <Form
         v-slot="{ isSubmitting, isValidating }"
         as="v-form"
-        class="z-10 flex w-full max-w-xl flex-col gap-y-2 rounded-md !p-6 shadow-lg shadow-gray-500/40"
+        class="z-1 flex w-full max-w-xl flex-col gap-y-2 rounded-md !p-6 shadow-lg shadow-gray-500/40"
         :initial-values="initialValues"
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
     >
         <FieldEmail
-            :name="FormFieldsName.email"
+            :name="FormFields.email.name"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             @update:ref="updateRef"

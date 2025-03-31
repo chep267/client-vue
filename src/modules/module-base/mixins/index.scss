@@ -4,14 +4,16 @@
  *
  */
 
+$breakpoint-desktop: 88rem; /* 1280px */
+
 @mixin mixin-mobile-screen {
     @media only screen and (max-width: 480px /* mobile - xs */) {
         @content;
     }
 }
 
-@mixin mixin-sm-screen {
-    @media only screen and (max-width: 640px /* sm */) {
+@mixin mixin-desktop-screen {
+    @media only screen and (min-width: #{$breakpoint-desktop}) {
         @content;
     }
 }
