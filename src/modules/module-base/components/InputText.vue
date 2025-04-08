@@ -36,7 +36,7 @@ onMounted(() => emits('update:ref', inputRef.value));
         @update:model-value="$emit('update:model-value', $event)"
     >
         <!-- Forward slots -->
-        <template v-for="(_slotContent, slotName) in $slots as InputTextSlots" #[slotName]="slotProps">
+        <template v-for="(_slotContent, slotName) in $slots as InputTextSlots" :key="slotName" #[slotName]="slotProps">
             <!-- @vue-ignore -->
             <slot :name="slotName" v-bind="{ ...slotProps }" />
         </template>

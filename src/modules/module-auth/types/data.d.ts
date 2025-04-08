@@ -7,7 +7,7 @@
 /** types */
 import type { UserInfo } from 'firebase/compat';
 
-export type TypeAuthStore = {
+export declare type TypeAuthStore = {
     prePath: string;
     user: null | UserInfo;
 };

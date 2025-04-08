@@ -7,9 +7,9 @@
 /** types */
 import { type Dayjs } from 'dayjs';
 
-export type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
+export declare type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
 
-export type TypeCalendarStore = {
+export declare type TypeCalendarStore = {
     today: Dayjs;
     display: TypeCalendarDisplay;
     day: Dayjs;

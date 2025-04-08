@@ -11,7 +11,7 @@ import { mdiFacebookMessenger, mdiHome, mdiCalendarMonth } from '@mdi/js';
 import { ScreenPath } from '@module-global/constants/ScreenPath';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
-export type TypeListAppItem = {
+export declare type TypeListAppItem = {
     id: string;
     path: string;
     title: string;

@@ -4,4 +4,4 @@
  *
  */
 
-export type TypeTheme = 'dark' | 'light';
+export declare type TypeTheme = 'dark' | 'light';

@@ -29,7 +29,7 @@ import {
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
 import { localeObject } from '@module-language/constants/localeObject';
 import { LangLanguage } from '@module-language/constants/LangLanguage';
 import { themeObject } from '@module-theme/constants/themeObject';

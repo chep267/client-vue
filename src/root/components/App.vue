@@ -5,7 +5,7 @@
  *
  */
 
-/** components */
+/** providers */
 import ThemeProvider from '@module-theme/components/ThemeProvider.vue';
 import LanguageProvider from '@module-language/components/LanguageProvider.vue';
 

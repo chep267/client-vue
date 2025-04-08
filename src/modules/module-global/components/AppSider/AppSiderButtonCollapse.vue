@@ -22,11 +22,14 @@ defineEmits<{
 </script>
 
 <template>
-    <v-tooltip :text="$t(GlobalLanguage.component.label[openSider ? 'collapse' : 'expand'])" location="right">
+    <v-tooltip
+        :text="$t(openSider ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand)"
+        location="right"
+    >
         <template #activator="{ props }">
             <v-btn
                 v-bind="props"
-                class="w-full min-w-0"
+                class="w-full min-w-0 rounded-none"
                 :disabled="disabled"
                 elevation="0"
                 rounded="0"

@@ -13,8 +13,8 @@ import dayjs from 'dayjs';
 import { useI18n } from 'vue-i18n';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
-import { SiderState } from '@module-base/constants/SiderState';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 
 /** utils */

@@ -6,7 +6,7 @@
  */
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
 
 /** components */
 import AppLogo from '@module-global/components/AppHeader/AppLogo.vue';
@@ -17,7 +17,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
 </script>
 
 <template>
-    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight" class="text-info dark:!text-white">
+    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight" class="text-blue-500 dark:text-white">
         <template #prepend>
             <AppLogo />
         </template>
@@ -36,6 +36,6 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
 
 <style scoped lang="scss">
 :deep(.v-toolbar__prepend) {
-    margin-inline: 12px auto;
+    margin-inline: calc(var(--spacing) * 3) auto;
 }
 </style>

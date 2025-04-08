@@ -14,8 +14,8 @@ import { useI18n } from 'vue-i18n';
 import { mdiChevronTripleLeft, mdiChevronTripleRight, mdiChevronDoubleLeft, mdiChevronDoubleRight } from '@mdi/js';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
-import { SiderState } from '@module-base/constants/SiderState';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 import { localeObject } from '@module-language/constants/localeObject';
 
 /** hooks */

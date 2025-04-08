@@ -4,6 +4,6 @@
  *
  */
 
-export type TypeLocale = 'vi' | 'en';
+export declare type TypeLocale = 'vi' | 'en';
 
-export type TypeMessages = Record<string, string>;
+export declare type TypeMessages = Record<string, string>;

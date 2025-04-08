@@ -4,9 +4,9 @@
  *
  */
 
-export type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
+export declare type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
 
-export type TypeSiderStore = {
+export declare type TypeSiderStore = {
     lastState: TypeSiderState;
     siderState: TypeSiderState;
 };

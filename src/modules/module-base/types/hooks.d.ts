@@ -7,7 +7,7 @@
 /** types */
 import type { VSnackbar } from 'vuetify/lib/components/VSnackbar';
 
-export type TypeNotifyStore = {
+export declare type TypeNotifyStore = {
     open?: boolean;
     message?: string;
     messageIntl?: string;

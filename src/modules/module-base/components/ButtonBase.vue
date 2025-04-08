@@ -1,5 +1,6 @@
 <script setup lang="ts">
 /** libs */
+import clsx from 'clsx';
 import { VBtn } from 'vuetify/components/VBtn';
 
 /** types */
@@ -14,12 +15,14 @@ defineSlots<ButtonSlots>();
     <v-btn
         v-bind.prop="$props"
         v-bind.attr="$attrs"
-        :class="{
-            'button-no-overlay': overlay === 'none',
-        }"
+        :class="
+            clsx({
+                'button-no-overlay': overlay === 'none',
+            })
+        "
     >
         <!-- Forward slots -->
-        <template v-for="(_slotContent, slotName) in $slots as ButtonSlots" #[slotName]>
+        <template v-for="(_slotContent, slotName) in $slots as ButtonSlots" :key="slotName" #[slotName]>
             <!-- @vue-ignore -->
             <slot :name="slotName" />
         </template>

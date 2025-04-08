@@ -7,4 +7,4 @@
 /** types */
 import type { UserInfo } from 'firebase/auth';
 
-export type TypeUser = UserInfo;
+export declare type TypeUser = UserInfo;

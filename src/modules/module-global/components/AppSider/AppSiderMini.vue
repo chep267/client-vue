@@ -9,7 +9,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
 import { ListApp } from '@module-global/constants/ListApp';
 
 const route = useRoute();

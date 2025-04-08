@@ -10,8 +10,8 @@ import { computed, defineAsyncComponent } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
-import { SiderState } from '@module-base/constants/SiderState';
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
 
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
@@ -31,8 +31,9 @@ const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
 
 const notifyStyle = computed(() => {
-    const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
-    return `top: ${ScreenSize.HeaderHeight + (isAuthentication.value ? appBarMiniHeight : 0)}px`;
+    const appBarMiniHeight =
+        isAuthentication.value && siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
+    return `top: ${ScreenSize.HeaderHeight + appBarMiniHeight}px`;
 });
 </script>
 
