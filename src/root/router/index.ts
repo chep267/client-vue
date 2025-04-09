@@ -50,11 +50,6 @@ const routes = [
 
     /** main */
     {
-        name: ScreenPath.home,
-        path: ScreenPath.home,
-        component: FeedScreen,
-    },
-    {
         name: ScreenPath.feed,
         path: ScreenPath.feed,
         component: FeedScreen,

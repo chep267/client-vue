@@ -22,7 +22,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
             <AppLogo />
         </template>
         <v-app-bar-title>
-            <div class="flex flex-row items-center gap-10">
+            <div class="flex items-center gap-10">
                 <AppName />
                 <AppTimer class="max-sm:invisible" />
             </div>

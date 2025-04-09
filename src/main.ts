@@ -23,6 +23,7 @@ import App from '@root/components/App.vue';
 
 const pinia = createPinia();
 const app = createApp(App);
+
 app.use(pinia);
 app.use(routers);
 app.use(VueQueryPlugin);
