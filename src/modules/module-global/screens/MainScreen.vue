@@ -9,8 +9,8 @@
 import { defineAsyncComponent } from 'vue';
 
 /** lazy components */
-const AppHeader = defineAsyncComponent(() => import('@module-global/components/AppHeader/index.vue'));
-const AppSider = defineAsyncComponent(() => import('@module-global/components/AppSider/index.vue'));
+const AppHeader = defineAsyncComponent(() => import('@module-global/components/AppHeader/AppHeader.vue'));
+const AppSider = defineAsyncComponent(() => import('@module-global/components/AppSider/AppSider.vue'));
 const AppMain = defineAsyncComponent(() => import('@module-global/components/AppMain.vue'));
 </script>
 

@@ -33,6 +33,7 @@ onMounted(() => emits('update:ref', inputRef.value));
         :spellcheck="false"
         autocomplete="off"
         variant="outlined"
+        class="dongntd align-content-center cursor-pointer text-3xl"
         @update:model-value="$emit('update:model-value', $event)"
     >
         <!-- Forward slots -->

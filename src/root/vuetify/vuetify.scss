@@ -4,9 +4,8 @@
  *
  */
 
-@forward 'vuetify/styles' with (
-    $utilities: false,
-    $layers: true
+@use 'vuetify/styles' with (
+  $utilities: false,
+  $reset: false,
+  $color-pack: false,
 );
-
-@layer base, vuetify, overrides;

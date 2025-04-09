@@ -42,7 +42,12 @@ export default ({ mode }: ConfigEnv) => {
         plugins: [
             vue(),
             basicSsl(),
-            vuetify(),
+            vuetify({
+                autoImport: true,
+                styles: {
+                    configFile: 'src/root/vuetify/settings.scss',
+                },
+            }),
             tailwindcss(), // Gzip compression for production builds
             config.isGzip
                 ? viteCompression({
@@ -52,7 +57,7 @@ export default ({ mode }: ConfigEnv) => {
                       deleteOriginFile: false, // Keep original files
                   })
                 : undefined,
-            visualizer({ filename: 'dist/stats.html', open: true }),
+            visualizer({ filename: 'stats.html', open: false }),
         ],
         resolve: {
             alias: {
