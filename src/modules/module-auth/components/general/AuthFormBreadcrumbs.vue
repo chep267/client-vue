@@ -40,7 +40,7 @@ const breadcrumbs = computed(() => {
     }
 });
 
-const genBreadcrumb = (type: keyof typeof AuthRouterPath) => {
+const genBreadcrumb = (type: keyof Omit<typeof AuthRouterPath, 'start'>) => {
     return {
         title: AuthLanguage.component.title[type],
         path: AuthRouterPath[type],
@@ -49,7 +49,7 @@ const genBreadcrumb = (type: keyof typeof AuthRouterPath) => {
 </script>
 
 <template>
-    <div class="text-info flex w-full flex-row">
+    <div class="text-tw-primary flex w-full flex-row">
         <template v-for="(item, index) in breadcrumbs" :key="item.path">
             <span v-if="index > 0" class="px-1">{{ append }}</span>
             <router-link class="hover:underline" :to="item.path">

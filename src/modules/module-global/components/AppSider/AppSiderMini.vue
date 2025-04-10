@@ -21,7 +21,7 @@ const tab = computed(() => {
 </script>
 
 <template>
-    <v-card class="!sticky !z-1 overscroll-contain" :style="`top: ${ScreenSize.HeaderHeight}px`">
+    <v-card class="sticky z-1 overscroll-contain" :style="`top: ${ScreenSize.HeaderHeight}px`">
         <v-tabs
             v-model="tab"
             slider-color="primary"

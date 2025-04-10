@@ -17,7 +17,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
 </script>
 
 <template>
-    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight" class="text-blue-500 dark:text-white">
+    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight" class="text-tw-primary dark:text-white">
         <template #prepend>
             <AppLogo />
         </template>

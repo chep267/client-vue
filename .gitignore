@@ -32,4 +32,5 @@ coverage
 .env*
 pnpm-lock.yaml
 package-lock.json
+stats.html
 

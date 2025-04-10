@@ -23,6 +23,9 @@ import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 import { useSiderStore } from '@module-global/hooks/useSiderStore';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
+/** components */
+import ButtonBase from '@module-base/components/ButtonBase.vue';
+
 const { t, locale } = useI18n();
 const siderStore = useSiderStore();
 const calendarStore = useCalendarStore();
@@ -53,21 +56,25 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
     <div
         :class="{
             'relative flex w-full flex-row justify-between gap-2 p-3': true,
-            '!flex-col-reverse px-1': miniMode,
+            'flex-col-reverse px-1': miniMode,
         }"
         :style="`min-height: ${ScreenSize.CalendarSelectHeight}px`"
     >
-        <v-btn :disabled="isToday" :class="{ 'w-fit': true, 'primary-text': !isToday }" @click.stop="onChangeDay('today')">
+        <ButtonBase
+            :disabled="isToday"
+            :class="{ 'w-fit': true, 'primary-text': !isToday }"
+            @click.stop="onChangeDay('today')"
+        >
             {{ $t(CalendarLanguage.component.label.today) }}
-        </v-btn>
+        </ButtonBase>
         <div :class="{ 'flex flex-row justify-between gap-2': true, 'flex-1': miniMode }">
             <div class="flex gap-1">
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'year')">
+                <ButtonBase :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'year')">
                     <v-icon :icon="mdiChevronTripleLeft" color="primary" :size="sizeIcon" />
-                </v-btn>
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'month')">
+                </ButtonBase>
+                <ButtonBase :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'month')">
                     <v-icon :icon="mdiChevronDoubleLeft" color="primary" :size="sizeIcon" />
-                </v-btn>
+                </ButtonBase>
             </div>
             <div
                 :class="{
@@ -78,12 +85,12 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
                 <span class="primary-text text-2xl">{{ titleCalendar }}</span>
             </div>
             <div class="flex gap-1">
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'month')">
+                <ButtonBase :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'month')">
                     <v-icon :icon="mdiChevronDoubleRight" color="primary" :size="sizeIcon" />
-                </v-btn>
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'year')">
+                </ButtonBase>
+                <ButtonBase :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'year')">
                     <v-icon :icon="mdiChevronTripleRight" color="primary" :size="sizeIcon" />
-                </v-btn>
+                </ButtonBase>
             </div>
         </div>
     </div>

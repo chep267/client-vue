@@ -17,10 +17,10 @@ const calendarStore = useCalendarStore();
 
 <template>
     <div class="flex flex-row items-center justify-center gap-2">
-        <div class="bg-info h-2 w-2 rounded-full dark:!bg-white" />
+        <div class="bg-tw-primary h-2 w-2 rounded-full dark:bg-white" />
         <span class="text-sm capitalize">
             {{ calendarStore.today.locale(locale).format('dddd, DD/MM/YYYY') }}
         </span>
-        <div class="bg-info h-2 w-2 rounded-full dark:!bg-white" />
+        <div class="bg-tw-primary h-2 w-2 rounded-full dark:bg-white" />
     </div>
 </template>

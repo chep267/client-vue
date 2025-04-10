@@ -5,7 +5,7 @@
  */
 
 @import 'tailwindcss';
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant hover (&:hover);
 
 @theme {
@@ -17,7 +17,19 @@
     --color-cam: #ff7f50;
 }
 
+@theme inline {
+    --color-tw-primary: var(--color-custom-primary);
+}
+
 @layer base {
+    :root {
+        --color-custom-primary: var(--color-blue-500);
+    }
+    /* Theme dark */
+    [data-theme="dark"] {
+        --color-custom-primary: var(--color-blue-400);
+    }
+
     * {
         padding: 0;
         margin: 0;

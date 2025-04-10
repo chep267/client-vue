@@ -9,6 +9,7 @@
 import { reactive } from 'vue';
 import { Form } from 'vee-validate';
 import Cookie from 'js-cookie';
+import clsx from 'clsx';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
@@ -103,7 +104,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
     <Form
         v-slot="{ isSubmitting, isValidating }"
         as="v-form"
-        class="z-1 flex w-full max-w-xl flex-col gap-y-2 rounded-md !p-6 shadow-lg shadow-gray-500/40"
+        class="z-1 flex w-full max-w-xl flex-col gap-y-2 rounded-md p-6 shadow-lg shadow-gray-500/40"
         :initial-values="initialValues"
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
@@ -115,7 +116,7 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
             @update:ref="updateRef"
             @update:model-value="updateValue"
         />
-        <div :class="['flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row']">
+        <div :class="clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')">
             <AuthFormBreadcrumbs />
             <ButtonSubmit
                 :loading="isValidating || isSubmitting || hookRecover.isPending.value"

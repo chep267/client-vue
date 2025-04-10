@@ -6,6 +6,7 @@
  */
 
 /** libs */
+import clsx from 'clsx';
 import { ref } from 'vue';
 
 /** constants */
@@ -25,7 +26,7 @@ const isOpenMenu = ref(false);
                     <v-app-bar-nav-icon
                         v-bind="{ ...MenuProps, ...ToolTipProps }"
                         aria-label="setting"
-                        :color="isOpenMenu ? 'primary' : undefined"
+                        :class="clsx('cursor-pointer', { 'text-tw-primary': isOpenMenu })"
                     />
                 </template>
             </v-tooltip>

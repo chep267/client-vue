@@ -5,6 +5,9 @@
  *
  */
 
+/** libs */
+import clsx from 'clsx';
+
 /** components */
 import ButtonBase from '@module-base/components/ButtonBase.vue';
 
@@ -17,7 +20,8 @@ defineProps<{
 
 <template>
     <ButtonBase
-        :class="['font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3']"
+        aria-label="submit form"
+        :class="clsx('font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')"
         type="submit"
         color="primary"
         size="large"

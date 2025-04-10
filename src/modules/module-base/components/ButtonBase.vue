@@ -7,16 +7,21 @@ import { VBtn } from 'vuetify/components/VBtn';
 import type { ButtonProps, ButtonSlots } from '@module-base/types';
 
 defineOptions({ name: 'ButtonBase', extends: VBtn, inheritAttrs: true });
+// withDefaults(defineProps<ButtonProps>(), {
+//     type: 'button',
+// });
 defineProps<ButtonProps>();
 defineSlots<ButtonSlots>();
 </script>
 
 <template>
     <v-btn
+        aria-pressed="true"
+        aria-label="button"
         v-bind.prop="$props"
         v-bind.attr="$attrs"
         :class="
-            clsx({
+            clsx('cursor-pointer', {
                 'button-no-overlay': overlay === 'none',
             })
         "

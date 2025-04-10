@@ -38,14 +38,16 @@ export const vueComponents = createVuetify({
         defaultTheme: getDeviceTheme(),
         themes: {
             light: {
-                colors: {
-                    start: colors.blue.base,
-                },
+                // colors: {
+                //     start: colors.blue.base,
+                // },
+                colors: {},
             },
             dark: {
-                colors: {
-                    start: colors.amber.base,
-                },
+                // colors: {
+                //     start: colors.amber.base,
+                // },
+                colors: {},
             },
         },
     },
