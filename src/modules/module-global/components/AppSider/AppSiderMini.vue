@@ -9,7 +9,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { ListApp } from '@module-global/constants/ListApp';
 
 const route = useRoute();
@@ -21,7 +21,7 @@ const tab = computed(() => {
 </script>
 
 <template>
-    <v-card class="sticky z-1 overscroll-contain" :style="`top: ${ScreenSize.HeaderHeight}px`">
+    <v-card class="sticky z-1 overscroll-contain" :style="`top: ${AppScreenSize.HeaderHeight}px`">
         <v-tabs
             v-model="tab"
             slider-color="primary"
@@ -29,7 +29,7 @@ const tab = computed(() => {
             show-arrows
             center-active
             grow
-            :style="`top: ${ScreenSize.HeaderHeight}px; height: ${ScreenSize.AppBarMiniHeight}px`"
+            :style="`top: ${AppScreenSize.HeaderHeight}px; height: ${AppScreenSize.AppBarMiniHeight}px`"
         >
             <v-tooltip v-for="app in ListApp" :key="app.id" :text="$t(app.title)" location="bottom">
                 <template #activator="{ props }">

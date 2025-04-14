@@ -5,7 +5,7 @@
  */
 
 @use 'vuetify/styles' with (
-  $utilities: false,
-  $reset: false,
-  $color-pack: false,
+    $utilities: false,
+    $reset: false,
+    $color-pack: false
 );

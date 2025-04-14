@@ -10,11 +10,11 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
 
 /** hooks */
-import { useSiderStore } from '@module-global/hooks/useSiderStore';
+import { useSiderStore } from '@module-base/hooks/useSiderStore';
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 /** components */
@@ -39,18 +39,18 @@ onUnmounted(() => {
 <template>
     <v-navigation-drawer
         v-if="isAuthentication"
-        :width="ScreenSize.AppBarExpandWidth"
-        :rail="siderState === SiderState.force || siderState === SiderState.collapse"
-        :rail-width="ScreenSize.AppBarCollapseWidth"
-        :permanent="siderState !== SiderState.hidden"
+        :width="AppScreenSize.AppBarExpandWidth"
+        :rail="siderState === AppSiderState.force || siderState === AppSiderState.collapse"
+        :rail-width="AppScreenSize.AppBarCollapseWidth"
+        :permanent="siderState !== AppSiderState.hidden"
         :app="true"
     >
         <AppSiderButtonCollapse
-            :open-sider="siderState === SiderState.expand"
-            :disabled="siderState === SiderState.force"
+            :open-sider="siderState === AppSiderState.expand"
+            :disabled="siderState === AppSiderState.force"
             @toggle-sider="siderStore.toggleSiderState"
         />
         <v-divider v-once />
-        <AppSiderMenuApp :disabled-tooltip="openSider && siderState !== SiderState.collapse" />
+        <AppSiderMenuApp :disabled-tooltip="openSider && siderState !== AppSiderState.collapse" />
     </v-navigation-drawer>
 </template>

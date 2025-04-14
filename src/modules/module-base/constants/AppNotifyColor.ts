@@ -4,7 +4,7 @@
  *
  */
 
-export const NotifyColor = {
+export const AppNotifyColor = {
     default: '',
     error: 'red',
     warning: 'warning',

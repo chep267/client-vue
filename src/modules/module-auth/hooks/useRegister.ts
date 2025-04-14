@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/vue-query';
 import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
@@ -33,7 +33,7 @@ export function useRegister(): UseMutationReturnType<
     return useMutation<TypeApiAuth['Register']['Response'], AxiosError, TypeApiAuth['Register']['Payload']>({
         mutationFn: authApi.register,
         onSuccess: () => {
-            notifyStore.show({ color: NotifyColor.success, messageIntl: AuthLanguage.notify.register.success });
+            notifyStore.show({ color: AppNotifyColor.success, messageIntl: AuthLanguage.notify.register.success });
         },
         onError: (error) => {
             const code = Number(error.response?.status);
@@ -46,7 +46,7 @@ export function useRegister(): UseMutationReturnType<
                     messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
-            notifyStore.show({ color: NotifyColor.error, messageIntl });
+            notifyStore.show({ color: AppNotifyColor.error, messageIntl });
         },
     });
 }

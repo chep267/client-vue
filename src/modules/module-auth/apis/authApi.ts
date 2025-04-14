@@ -8,7 +8,7 @@
 import { baseApi } from '@module-base/apis/baseApi';
 
 /** constants */
-import { ApiMethod } from '@module-base/constants/Status';
+import { ApiMethod } from '@module-base/constants/AppStatus';
 import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
 

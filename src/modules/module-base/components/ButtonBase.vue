@@ -7,10 +7,10 @@ import { VBtn } from 'vuetify/components/VBtn';
 import type { ButtonProps, ButtonSlots } from '@module-base/types';
 
 defineOptions({ name: 'ButtonBase', extends: VBtn, inheritAttrs: true });
-// withDefaults(defineProps<ButtonProps>(), {
-//     type: 'button',
-// });
-defineProps<ButtonProps>();
+withDefaults(defineProps<ButtonProps>(), {
+    type: 'button',
+});
+// defineProps<ButtonProps>();
 defineSlots<ButtonSlots>();
 </script>
 

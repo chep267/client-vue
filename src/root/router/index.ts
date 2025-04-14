@@ -10,9 +10,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { AppRoutePath } from '@module-base/constants/AppRoutePath';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AccountState } from '@module-auth/constants/AccountState';
-import { ScreenPath } from '@module-global/constants/ScreenPath';
 
 /** store */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
@@ -25,63 +25,61 @@ const FeedScreen = () => import('@module-global/screens/FeedScreen.vue');
 const MessengerScreen = () => import('@module-global/screens/MessengerScreen.vue');
 const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen.vue');
 
-const routes = [
-    /** authentication */
-    {
-        name: AuthRouterPath.signin,
-        path: AuthRouterPath.signin,
-        component: AuthScreen,
-    },
-    {
-        name: AuthRouterPath.register,
-        path: AuthRouterPath.register,
-        component: AuthScreen,
-    },
-    {
-        name: AuthRouterPath.recover,
-        path: AuthRouterPath.recover,
-        component: AuthScreen,
-    },
-    {
-        name: AuthRouterPath.start,
-        path: AuthRouterPath.start,
-        component: StartScreen,
-    },
-
-    /** main */
-    {
-        name: ScreenPath.feed,
-        path: ScreenPath.feed,
-        component: FeedScreen,
-    },
-    {
-        name: ScreenPath.messenger,
-        path: ScreenPath.messenger,
-        component: MessengerScreen,
-    },
-    {
-        name: ScreenPath.calendar,
-        path: ScreenPath.calendar,
-        component: CalendarScreen,
-    },
-    {
-        name: ScreenPath.notFound,
-        path: ScreenPath.notFound,
-        component: NotFoundScreen,
-    },
-    {
-        path: '/:catchAll(.*)',
-        component: NotFoundScreen,
-    },
-];
-
 export const routers = createRouter({
     history: createWebHistory(),
-    routes,
+    routes: [
+        /** authentication */
+        {
+            name: AuthRouterPath.signin,
+            path: AuthRouterPath.signin,
+            component: AuthScreen,
+        },
+        {
+            name: AuthRouterPath.register,
+            path: AuthRouterPath.register,
+            component: AuthScreen,
+        },
+        {
+            name: AuthRouterPath.recover,
+            path: AuthRouterPath.recover,
+            component: AuthScreen,
+        },
+        {
+            name: AuthRouterPath.start,
+            path: AuthRouterPath.start,
+            component: StartScreen,
+        },
+
+        /** main */
+        {
+            name: AppRoutePath.feed,
+            path: AppRoutePath.feed,
+            component: FeedScreen,
+        },
+        {
+            name: AppRoutePath.messenger,
+            path: AppRoutePath.messenger,
+            component: MessengerScreen,
+        },
+        {
+            name: AppRoutePath.calendar,
+            path: AppRoutePath.calendar,
+            component: CalendarScreen,
+        },
+        {
+            name: AppRoutePath.notFound,
+            path: AppRoutePath.notFound,
+            component: NotFoundScreen,
+        },
+        {
+            path: '/:catchAll(.*)',
+            component: NotFoundScreen,
+        },
+    ],
 });
 
-const AuthPath = Object.values(AuthRouterPath);
 routers.beforeEach((to) => {
+    const AuthPath = Object.values(AuthRouterPath);
     const uid = Cookies.get(AppKey.uid);
     const authStore = useAuthStore();
     const accountState = authStore.isAuthentication
@@ -98,13 +96,13 @@ routers.beforeEach((to) => {
     }
     if (accountState === AccountState.reSignin && to.path !== AuthRouterPath.start) {
         /** đã đăng nhập từ trước, lấy phiên đăng nhập */
-        authStore.setPath(isAuthPath ? '/' : to.path);
+        authStore.setPath(isAuthPath ? AppRoutePath.home : to.path);
         return { path: AuthRouterPath.start };
     }
     if (accountState === AccountState.signedIn) {
         /** đã đăng nhập xong, vào home */
-        if (isAuthPath || to.path === ScreenPath.home) {
-            return { path: ScreenPath.defaultPath };
+        if (isAuthPath || to.path === AppRoutePath.home) {
+            return { path: AppRoutePath.defaultPath };
         }
     }
 });

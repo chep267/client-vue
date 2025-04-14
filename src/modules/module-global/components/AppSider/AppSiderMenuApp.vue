@@ -10,8 +10,8 @@ import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 /** constants */
+import { AppRoutePath } from '@module-base/constants/AppRoutePath';
 import { ListApp } from '@module-global/constants/ListApp';
-import { ScreenPath } from '@module-global/constants/ScreenPath';
 
 defineProps<{
     disabledTooltip?: boolean;
@@ -20,10 +20,10 @@ defineProps<{
 const route = useRoute();
 const { push } = useRouter();
 
-const tabs = ref<string[]>([ScreenPath.defaultPath]);
+const tabs = ref<string[]>([AppRoutePath.defaultPath]);
 
 watch(route, () => {
-    tabs.value = [ListApp.find(({ path }) => route.path.includes(path))?.path || ScreenPath.defaultPath];
+    tabs.value = [ListApp.find(({ path }) => route.path.includes(path))?.path || AppRoutePath.defaultPath];
 });
 </script>
 

@@ -29,7 +29,7 @@ import {
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { localeObject } from '@module-language/constants/localeObject';
 import { LangLanguage } from '@module-language/constants/LangLanguage';
 import { themeObject } from '@module-theme/constants/themeObject';
@@ -239,7 +239,7 @@ const signout = () => {
 </script>
 
 <template>
-    <v-card class="mx-auto" :width="ScreenSize.AppBarExpandWidth">
+    <v-card class="mx-auto" :width="AppScreenSize.AppBarExpandWidth">
         <v-list>
             <v-list-group v-for="menu in menuBase.concat(menuAuth)" :key="menu.id" :value="menu.id">
                 <template #activator="{ props: vListProps }">

@@ -10,12 +10,12 @@ import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
 
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
-import { useSiderStore } from '@module-global/hooks/useSiderStore';
+import { useSiderStore } from '@module-base/hooks/useSiderStore';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSider/AppSiderMini.vue';
@@ -26,7 +26,7 @@ const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
 
 const containerStyle = computed(() => {
-    const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
+    const appBarMiniHeight = siderState.value === AppSiderState.hidden ? AppScreenSize.AppBarMiniHeight : 0;
     return {
         height: `calc(100% - ${isAuthentication.value ? appBarMiniHeight : 0}px)`,
     };
@@ -35,7 +35,7 @@ const containerStyle = computed(() => {
 
 <template>
     <v-main>
-        <AppSiderMini v-if="isAuthentication && siderState === SiderState.hidden" />
+        <AppSiderMini v-if="isAuthentication && siderState === AppSiderState.hidden" />
         <v-container :style="containerStyle" :fluid="true">
             <router-view />
         </v-container>

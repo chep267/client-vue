@@ -13,15 +13,15 @@ import dayjs from 'dayjs';
 import { useI18n } from 'vue-i18n';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 
 /** utils */
 import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices';
 
 /** hooks */
-import { useSiderStore } from '@module-global/hooks/useSiderStore';
+import { useSiderStore } from '@module-base/hooks/useSiderStore';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
@@ -39,9 +39,9 @@ const { siderState } = storeToRefs(siderStore);
 const { display, day, isOnlyMonth } = storeToRefs(calendarStore);
 
 const tableHeight = computed(() => {
-    const headerHeight = ScreenSize.HeaderHeight;
-    const appBarMiniHeight = siderState.value === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
-    const calendarSelectHeight = ScreenSize.CalendarSelectHeight;
+    const headerHeight = AppScreenSize.HeaderHeight;
+    const appBarMiniHeight = siderState.value === AppSiderState.hidden ? AppScreenSize.AppBarMiniHeight : 0;
+    const calendarSelectHeight = AppScreenSize.CalendarSelectHeight;
     const paddingHeight = 32;
     const borderHeight = 2;
     return `calc(100vh - ${headerHeight + appBarMiniHeight + calendarSelectHeight + paddingHeight + borderHeight}px)`;

@@ -15,7 +15,7 @@ import { authApi } from '@module-auth/apis/authApi';
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 import { AppTimer } from '@module-base/constants/AppTimer';
-import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
@@ -60,7 +60,7 @@ export function useRestart(): UseMutationReturnType<
                     messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
-            notifyStore.show({ color: NotifyColor.error, messageIntl });
+            notifyStore.show({ color: AppNotifyColor.error, messageIntl });
             push(AuthRouterPath.signin).then();
         },
     });

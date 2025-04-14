@@ -14,7 +14,7 @@ const RegexName = /^(?!\s*$)[a-zA-ZÀ-Ưà-ư]+([ \s][a-zA-ZÀ-Ưà-ư]+|['-][a-
 
 const RegexDate = /(^0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(\d{4}$)/;
 
-export const Regex = {
+export const AppRegex = {
     email: RegexEmail,
     password: RegexPassword,
     phone: RegexPhone,

@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/vue-query';
 import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
@@ -33,7 +33,7 @@ export function useRecover(): UseMutationReturnType<
     return useMutation<TypeApiAuth['Recover']['Response'], AxiosError, TypeApiAuth['Recover']['Payload']>({
         mutationFn: authApi.recover,
         onSuccess: () => {
-            notifyStore.show({ color: NotifyColor.success, messageIntl: AuthLanguage.notify.recover.success });
+            notifyStore.show({ color: AppNotifyColor.success, messageIntl: AuthLanguage.notify.recover.success });
         },
         onError: (error) => {
             const code = Number(error.response?.status);
@@ -45,7 +45,7 @@ export function useRecover(): UseMutationReturnType<
                 default:
                     messageIntl = AuthLanguage.notify.server.error;
             }
-            notifyStore.show({ color: NotifyColor.error, messageIntl });
+            notifyStore.show({ color: AppNotifyColor.error, messageIntl });
         },
     });
 }

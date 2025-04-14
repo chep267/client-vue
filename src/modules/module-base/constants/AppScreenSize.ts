@@ -4,7 +4,7 @@
  *
  */
 
-export const ScreenSize = {
+export const AppScreenSize = {
     HeaderHeight: 64,
     AppBarMiniHeight: 48,
     AppBarCollapseWidth: 56,

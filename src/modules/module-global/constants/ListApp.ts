@@ -8,7 +8,7 @@
 import { mdiFacebookMessenger, mdiHome, mdiCalendarMonth } from '@mdi/js';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants/ScreenPath';
+import { AppRoutePath } from '@module-base/constants/AppRoutePath';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 export declare type TypeListAppItem = {
@@ -20,20 +20,20 @@ export declare type TypeListAppItem = {
 
 export const ListApp: Readonly<TypeListAppItem[]> = [
     {
-        id: ScreenPath.feed,
-        path: ScreenPath.feed,
+        id: AppRoutePath.feed,
+        path: AppRoutePath.feed,
         title: GlobalLanguage.component.label.feed,
         icon: mdiHome,
     },
     {
-        id: ScreenPath.messenger,
-        path: ScreenPath.messenger,
+        id: AppRoutePath.messenger,
+        path: AppRoutePath.messenger,
         title: GlobalLanguage.component.label.messenger,
         icon: mdiFacebookMessenger,
     },
     {
-        id: ScreenPath.calendar,
-        path: ScreenPath.calendar,
+        id: AppRoutePath.calendar,
+        path: AppRoutePath.calendar,
         title: GlobalLanguage.component.label.calendar,
         icon: mdiCalendarMonth,
     },

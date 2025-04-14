@@ -14,13 +14,13 @@ import { useI18n } from 'vue-i18n';
 import { mdiChevronTripleLeft, mdiChevronTripleRight, mdiChevronDoubleLeft, mdiChevronDoubleRight } from '@mdi/js';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { localeObject } from '@module-language/constants/localeObject';
 
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
-import { useSiderStore } from '@module-global/hooks/useSiderStore';
+import { useSiderStore } from '@module-base/hooks/useSiderStore';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** components */
@@ -34,7 +34,7 @@ const { siderState } = storeToRefs(siderStore);
 const { day } = storeToRefs(calendarStore);
 const sizeIcon = 24;
 
-const miniMode = computed(() => siderState.value === SiderState.hidden || siderState.value === SiderState.force);
+const miniMode = computed(() => siderState.value === AppSiderState.hidden || siderState.value === AppSiderState.force);
 
 const isToday = computed(() => calendarStore.isToday(day.value));
 
@@ -58,7 +58,7 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
             'relative flex w-full flex-row justify-between gap-2 p-3': true,
             'flex-col-reverse px-1': miniMode,
         }"
-        :style="`min-height: ${ScreenSize.CalendarSelectHeight}px`"
+        :style="`min-height: ${AppScreenSize.CalendarSelectHeight}px`"
     >
         <ButtonBase
             :disabled="isToday"

@@ -6,7 +6,6 @@
 
 /** libs */
 import { createVuetify } from 'vuetify';
-import colors from 'vuetify/util/colors';
 import * as directives from 'vuetify/directives';
 import * as components from 'vuetify/components';
 import * as labsComponents from 'vuetify/labs/components';
@@ -38,15 +37,9 @@ export const vueComponents = createVuetify({
         defaultTheme: getDeviceTheme(),
         themes: {
             light: {
-                // colors: {
-                //     start: colors.blue.base,
-                // },
                 colors: {},
             },
             dark: {
-                // colors: {
-                //     start: colors.amber.base,
-                // },
                 colors: {},
             },
         },

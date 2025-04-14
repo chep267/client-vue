@@ -5,7 +5,7 @@
  */
 
 @forward 'vuetify/settings' with (
-    $layers: true,
+    $layers: true
 );
 
 @layer base, vuetify, overrides;

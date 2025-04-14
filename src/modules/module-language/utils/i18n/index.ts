@@ -39,14 +39,13 @@ export async function getMessages(locale: TypeLocale): Promise<void> {
         document.querySelector('html')?.setAttribute('lang', locale);
         return;
     }
-    import(`@lang/${locale}.ts`).then((messages) => {
-        if (messages && messages[locale]) {
-            i18n.global.setLocaleMessage(locale, messages[locale]);
-            i18n.global.locale.value = locale;
-            document.querySelector('html')?.setAttribute('lang', locale);
-            messagesCache[locale] = messages[locale];
-        }
-    });
+    const messages = await import(`@lang/${locale}.ts`);
+    if (messages && messages[locale]) {
+        i18n.global.setLocaleMessage(locale, messages[locale]);
+        i18n.global.locale.value = locale;
+        document.querySelector('html')?.setAttribute('lang', locale);
+        messagesCache[locale] = messages[locale];
+    }
 }
 
 await getMessages(defaultLocale);

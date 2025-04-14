@@ -4,7 +4,7 @@
  *
  */
 
-export const ScreenPath = {
+export const AppRoutePath = {
     home: '/',
     defaultPath: '/calendar',
     feed: '/feed',

@@ -12,7 +12,7 @@ import { useMutation } from '@tanstack/vue-query';
 import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
@@ -41,7 +41,7 @@ export function useSignout(): UseMutationReturnType<
             push('/').then();
         },
         onError: () => {
-            notifyStore.show({ color: NotifyColor.error, messageIntl: AuthLanguage.notify.server.error });
+            notifyStore.show({ color: AppNotifyColor.error, messageIntl: AuthLanguage.notify.server.error });
         },
     });
 }

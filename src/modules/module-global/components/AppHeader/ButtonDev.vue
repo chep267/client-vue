@@ -9,7 +9,7 @@
 import { mdiBell } from '@mdi/js';
 
 /** constants */
-import { NotifyColor } from '@module-base/constants/NotifyColor';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
@@ -26,6 +26,6 @@ const notifyStore = useNotifyStore();
         variant="text"
         class="text-inherit"
         :icon="mdiBell"
-        @click.stop="notifyStore.show({ color: NotifyColor.warning })"
+        @click.stop="notifyStore.show({ color: AppNotifyColor.warning })"
     />
 </template>

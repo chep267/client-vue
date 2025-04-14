@@ -9,7 +9,7 @@
 import { Field } from 'vee-validate';
 
 /** constants */
-import { Regex } from '@module-base/constants/Regex';
+import { AppRegex } from '@module-base/constants/AppRegex';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
@@ -41,7 +41,7 @@ const validatePassword: RuleExpression<unknown> = (value) => {
     if (!password?.trim()) {
         return AuthLanguage.status.password.empty;
     }
-    return !Regex.password.test(password) ? AuthLanguage.status.password.invalid : true;
+    return !AppRegex.password.test(password) ? AuthLanguage.status.password.invalid : true;
 };
 </script>
 

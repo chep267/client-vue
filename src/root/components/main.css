@@ -26,7 +26,8 @@
         --color-custom-primary: var(--color-blue-500);
     }
     /* Theme dark */
-    [data-theme="dark"] {
+    [data-theme='dark'],
+    .dark {
         --color-custom-primary: var(--color-blue-400);
     }
 
@@ -62,23 +63,23 @@
 }
 
 @layer utilities {
-    /* Light theme */
+    /* Theme light */
     .scrollbar-thin {
         scrollbar-width: thin;
     }
     .scrollbar-hidden {
-        scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+        scrollbar-width: none; /* Firefox */
     }
     .scrollbar-hidden::-webkit-scrollbar-track {
-        display: none; /* Ẩn thanh cuộn trên Chrome, Edge, Safari */
+        display: none; /* Chrome, Edge, Safari */
     }
     .scrollbar-custom::-webkit-scrollbar-track {
         background: var(--color-gray-200);
-        border-radius: 10px;
+        border-radius: calc(var(--spacing) * 2.5);
     }
     .scrollbar-custom::-webkit-scrollbar-thumb {
         background: var(--color-gray-500);
-        border-radius: 10px;
+        border-radius: calc(var(--spacing) * 2.5);
     }
     .scrollbar-custom::-webkit-scrollbar-thumb:hover {
         background: var(--color-gray-600);
@@ -87,7 +88,7 @@
         background: var(--color-gray-600);
     }
 
-    /* Dark theme */
+    /* Theme dark */
     [data-theme='dark'],
     .dark {
         .scrollbar-custom::-webkit-scrollbar-track {

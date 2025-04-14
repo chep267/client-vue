@@ -6,7 +6,7 @@
  */
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** components */
 import AppLogo from '@module-global/components/AppHeader/AppLogo.vue';
@@ -17,7 +17,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
 </script>
 
 <template>
-    <v-app-bar :elevation="5" :app="true" :height="ScreenSize.HeaderHeight" class="text-tw-primary dark:text-white">
+    <v-app-bar :elevation="5" :app="true" :height="AppScreenSize.HeaderHeight" class="text-tw-primary dark:text-white">
         <template #prepend>
             <AppLogo />
         </template>
