@@ -4,7 +4,7 @@
  *
  */
 
-export const AppRoutePath = {
+export const AppRouterPath = {
     home: '/',
     defaultPath: '/calendar',
     feed: '/feed',

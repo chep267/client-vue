@@ -10,7 +10,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { AppRoutePath } from '@module-base/constants/AppRoutePath';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath.ts';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AccountState } from '@module-auth/constants/AccountState';
 
@@ -52,23 +52,23 @@ export const routers = createRouter({
 
         /** main */
         {
-            name: AppRoutePath.feed,
-            path: AppRoutePath.feed,
+            name: AppRouterPath.feed,
+            path: AppRouterPath.feed,
             component: FeedScreen,
         },
         {
-            name: AppRoutePath.messenger,
-            path: AppRoutePath.messenger,
+            name: AppRouterPath.messenger,
+            path: AppRouterPath.messenger,
             component: MessengerScreen,
         },
         {
-            name: AppRoutePath.calendar,
-            path: AppRoutePath.calendar,
+            name: AppRouterPath.calendar,
+            path: AppRouterPath.calendar,
             component: CalendarScreen,
         },
         {
-            name: AppRoutePath.notFound,
-            path: AppRoutePath.notFound,
+            name: AppRouterPath.notFound,
+            path: AppRouterPath.notFound,
             component: NotFoundScreen,
         },
         {
@@ -96,13 +96,13 @@ routers.beforeEach((to) => {
     }
     if (accountState === AccountState.reSignin && to.path !== AuthRouterPath.start) {
         /** đã đăng nhập từ trước, lấy phiên đăng nhập */
-        authStore.setPath(isAuthPath ? AppRoutePath.home : to.path);
+        authStore.setPath(isAuthPath ? AppRouterPath.home : to.path);
         return { path: AuthRouterPath.start };
     }
     if (accountState === AccountState.signedIn) {
         /** đã đăng nhập xong, vào home */
-        if (isAuthPath || to.path === AppRoutePath.home) {
-            return { path: AppRoutePath.defaultPath };
+        if (isAuthPath || to.path === AppRouterPath.home) {
+            return { path: AppRouterPath.defaultPath };
         }
     }
 });

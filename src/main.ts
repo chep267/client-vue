@@ -24,6 +24,9 @@ import App from '@root/components/App.vue';
 const pinia = createPinia();
 const app = createApp(App);
 
+window.checkMobile = () => /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent);
+window.isMobile = window.checkMobile();
+
 app.use(pinia);
 app.use(routers);
 app.use(VueQueryPlugin);

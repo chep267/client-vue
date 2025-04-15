@@ -41,3 +41,10 @@ declare module '@vue/runtime-core' {
         $t: Composer['t'];
     }
 }
+
+declare global {
+    interface Window {
+        checkMobile(): boolean;
+        isMobile: boolean;
+    }
+}

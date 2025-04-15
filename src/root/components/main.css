@@ -60,6 +60,9 @@
         -webkit-text-size-adjust: 100%;
         user-select: none;
     }
+    code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    }
 }
 
 @layer utilities {

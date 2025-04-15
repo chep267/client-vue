@@ -10,7 +10,7 @@ import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 /** constants */
-import { AppRoutePath } from '@module-base/constants/AppRoutePath';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath.ts';
 import { ListApp } from '@module-global/constants/ListApp';
 
 defineProps<{
@@ -20,10 +20,10 @@ defineProps<{
 const route = useRoute();
 const { push } = useRouter();
 
-const tabs = ref<string[]>([AppRoutePath.defaultPath]);
+const tabs = ref<string[]>([AppRouterPath.defaultPath]);
 
 watch(route, () => {
-    tabs.value = [ListApp.find(({ path }) => route.path.includes(path))?.path || AppRoutePath.defaultPath];
+    tabs.value = [ListApp.find(({ path }) => route.path.includes(path))?.path || AppRouterPath.defaultPath];
 });
 </script>
 
