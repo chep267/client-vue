@@ -32,7 +32,7 @@ export const routers = createRouter({
         {
             name: AuthRouterPath.signin,
             path: AuthRouterPath.signin,
-            component: StartScreen,
+            component: AuthScreen,
         },
         {
             name: AuthRouterPath.register,
