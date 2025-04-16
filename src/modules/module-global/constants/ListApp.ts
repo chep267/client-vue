@@ -8,7 +8,7 @@
 import { mdiFacebookMessenger, mdiHome, mdiCalendarMonth } from '@mdi/js';
 
 /** constants */
-import { AppRouterPath } from '@module-base/constants/AppRouterPath.ts';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 export declare type TypeListAppItem = {

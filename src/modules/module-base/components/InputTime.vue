@@ -7,17 +7,13 @@
 
 /** libs */
 import { reactive, watch } from 'vue';
+import clsx from 'clsx';
 import { mdiChevronUp, mdiChevronDown, mdiClockOutline } from '@mdi/js';
-
-/** components */
-import InputText from '@module-base/components/InputText.vue';
-import ButtonBase from '@module-base/components/ButtonBase.vue';
 
 /** types */
 import type { InputTextProps, TypeInputElem } from '@module-base/types';
-import clsx from 'clsx';
 
-defineOptions({ name: 'InputTime', extends: InputText, inheritAttrs: true });
+defineOptions({ name: 'InputTime', inheritAttrs: true });
 defineProps<InputTextProps>();
 const emits = defineEmits<{
     (e: 'update:ref', elem: TypeInputElem): void;
@@ -91,13 +87,15 @@ watch(data, () => {
 <template>
     <v-menu>
         <template #activator="{ props: menuProps }">
-            <InputText
+            <v-text-field
                 v-bind.prop="{ ...$props, ...menuProps }"
                 v-bind.attr="$attrs"
                 placeholder="--:-- --"
                 autocapitalize="off"
                 autocomplete="off"
                 read-only
+                :spellcheck="false"
+                variant="outlined"
                 :append-inner-icon="mdiClockOutline"
                 @update:ref="$emit('update:ref', $event)"
             />
@@ -110,7 +108,7 @@ watch(data, () => {
                 >
                     <div class="flex h-full w-full items-center justify-between">
                         <div class="flex h-full w-full flex-col items-center justify-between gap-2">
-                            <ButtonBase :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
                             <v-number-input
                                 v-model="data.hour"
                                 class="input-number"
@@ -119,21 +117,11 @@ watch(data, () => {
                                 :min="1"
                                 :step="1"
                             />
-                            <ButtonBase
-                                :elevation="0"
-                                density="comfortable"
-                                :icon="mdiChevronDown"
-                                @click.stop="onNextHour"
-                            />
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextHour" />
                         </div>
                         <span>:</span>
                         <div class="flex h-full w-full flex-col items-center justify-between gap-2">
-                            <ButtonBase
-                                :elevation="0"
-                                density="comfortable"
-                                :icon="mdiChevronUp"
-                                @click.stop="onPrevMinute"
-                            />
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevMinute" />
                             <v-number-input
                                 v-model="data.min"
                                 class="input-number"
@@ -142,16 +130,11 @@ watch(data, () => {
                                 :min="0"
                                 :step="1"
                             />
-                            <ButtonBase
-                                :elevation="0"
-                                density="comfortable"
-                                :icon="mdiChevronDown"
-                                @click.stop="onNextMinute"
-                            />
+                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextMinute" />
                         </div>
                     </div>
                     <div class="flex w-28 justify-between overflow-hidden rounded-md border border-solid">
-                        <ButtonBase
+                        <v-btn
                             elevation="0"
                             :class="
                                 clsx('h-6 min-h-0 w-1/2 min-w-0 rounded-none p-0', {
@@ -161,8 +144,8 @@ watch(data, () => {
                             @click.stop="data.period = TimePeriod.AM"
                         >
                             {{ TimePeriod.AM }}
-                        </ButtonBase>
-                        <ButtonBase
+                        </v-btn>
+                        <v-btn
                             elevation="0"
                             :class="
                                 clsx('h-6 min-h-0 w-1/2 min-w-0 rounded-none p-0', {
@@ -172,7 +155,7 @@ watch(data, () => {
                             @click.stop="data.period = TimePeriod.PM"
                         >
                             {{ TimePeriod.PM }}
-                        </ButtonBase>
+                        </v-btn>
                     </div>
                 </div>
             </v-list-item>

@@ -3,13 +3,10 @@
 import { useI18n } from 'vue-i18n';
 import { mdiCalendarBlank } from '@mdi/js';
 
-/** components */
-import InputText from '@module-base/components/InputText.vue';
-
 /** types */
 import type { InputTextProps, TypeInputElem } from '@module-base/types';
 
-defineOptions({ name: 'InputDate', extends: InputText, inheritAttrs: true });
+defineOptions({ name: 'InputDate', inheritAttrs: true });
 defineProps<InputTextProps>();
 defineEmits<{
     (e: 'update:ref', elem: TypeInputElem): void;
@@ -31,12 +28,15 @@ const { locale } = useI18n();
         @update:model-value="$emit('update:model-value', $event)"
     >
         <template #default="{ inputValue, inputEvents }">
-            <InputText
+            <v-text-field
                 v-bind.prop="$props"
-                :model-value="inputValue"
-                :append-inner-icon="mdiCalendarBlank"
+                :spellcheck="false"
+                autocomplete="off"
+                variant="outlined"
                 placeholder="dd/mm/yyyy"
                 readonly
+                :model-value="inputValue"
+                :append-inner-icon="mdiCalendarBlank"
                 v-on="inputEvents"
                 @update:ref="$emit('update:ref', $event)"
             />

@@ -7,12 +7,13 @@
 
 /** libs */
 import { reactive } from 'vue';
-import { Form } from 'vee-validate';
+import { Form, type RuleExpression } from 'vee-validate';
 import Cookie from 'js-cookie';
 import clsx from 'clsx';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { AppRegex } from '@module-base/constants/AppRegex';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
@@ -23,7 +24,7 @@ import { useSignin } from '@module-auth/hooks/useSignin';
 
 /** components */
 import AuthFormBreadcrumbs from '@module-auth/components/general/AuthFormBreadcrumbs.vue';
-import FieldEmail from '@module-auth/components/general/FieldEmail.vue';
+import FieldText from '@module-auth/components/general/FieldText.vue';
 import FieldPassword from '@module-auth/components/general/FieldPassword.vue';
 import ButtonSubmit from '@module-auth/components/general/ButtonSubmit.vue';
 
@@ -35,15 +36,16 @@ type TypeFormFieldsName = 'email' | 'password';
 type TypeFormData = {
     [Key in TypeFormFieldsName]: string;
 };
-
-const hookSignIn = useSignin();
-
-const FormFields = reactive<{
+type TypeFormFields = {
     [Field in TypeFormFieldsName]: {
         name: Field;
         elem: TypeInputElem;
     };
-}>({
+};
+
+const hookSignIn = useSignin();
+
+const FormFields = reactive<TypeFormFields>({
     email: {
         name: 'email',
         elem: null,
@@ -57,7 +59,6 @@ const ApiStatus = reactive({
     success: '',
     error: '',
 });
-
 const initialValues: TypeFormData = {
     [FormFields.email.name]: Cookie.get(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
     [FormFields.password.name]: 'Midom@2024',
@@ -92,7 +93,7 @@ const onSubmit: SubmissionHandler = (data) => {
                 default:
                     ApiStatus.error = AuthLanguage.notify.server.error;
             }
-            focusInput({ elem: FormFields.password.elem });
+            focusInput({ elem: FormFields.email.elem });
         },
     });
 };
@@ -103,6 +104,22 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
     if (field) {
         focusInput({ elem: FormFields[field].elem });
     }
+};
+
+const validateEmail: RuleExpression<unknown> = (value) => {
+    const email = value as string;
+    if (!email?.trim()) {
+        return AuthLanguage.status.email.empty;
+    }
+    return !AppRegex.email.test(email) ? AuthLanguage.status.email.invalid : true;
+};
+
+const validatePassword: RuleExpression<unknown> = (value) => {
+    const password = value as string;
+    if (!password?.trim()) {
+        return AuthLanguage.status.password.empty;
+    }
+    return !AppRegex.password.test(password) ? AuthLanguage.status.password.invalid : true;
 };
 </script>
 
@@ -115,17 +132,21 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
     >
-        <FieldEmail
+        <FieldText
             :name="FormFields.email.name"
+            :label="$t(AuthLanguage.component.label.email)"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
+            :rules="validateEmail"
             @update:ref="updateRef"
             @update:model-value="updateValue"
         />
         <FieldPassword
             :name="FormFields.password.name"
+            :label="$t(AuthLanguage.component.label.password)"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
+            :rules="validatePassword"
             @update:ref="updateRef"
             @update:model-value="updateValue"
         />

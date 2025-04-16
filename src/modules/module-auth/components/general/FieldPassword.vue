@@ -6,27 +6,31 @@
  */
 
 /** libs */
+import { ref, useTemplateRef, watch } from 'vue';
 import { Field } from 'vee-validate';
+import { mdiEye, mdiEyeOff } from '@mdi/js';
 
 /** constants */
 import { AppRegex } from '@module-base/constants/AppRegex';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** components */
-import InputPassword from '@module-base/components/InputPassword.vue';
+/** utils */
+import { focusInput } from '@module-base/utils/focusInput';
 
 /** type */
 import type { RuleExpression, FieldContext } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
 
-defineOptions({ name: 'FieldPassword', inheritAttrs: true });
-defineProps<{
+declare type TypeFieldPasswordProps = {
     name: string;
+    label: string;
     error?: boolean;
     errorMessage?: string;
-}>();
-defineEmits<{
+    rules: RuleExpression<unknown>;
+};
+
+declare type TypeFieldPasswordEmits = {
     (e: 'update:ref', elem: TypeInputElem, field: string): void;
     (
         e: 'update:model-value',
@@ -34,7 +38,19 @@ defineEmits<{
         handleChange: FieldContext['handleChange'],
         setErrors: FieldContext['setErrors']
     ): void;
-}>();
+};
+
+defineOptions({ name: 'FieldPassword', inheritAttrs: true });
+const props = defineProps<TypeFieldPasswordProps>();
+const emits = defineEmits<TypeFieldPasswordEmits>();
+
+const visible = ref<boolean>(false);
+const inputRef = useTemplateRef<TypeInputElem>('input-ref');
+
+const onSeen = () => {
+    visible.value = !visible.value;
+    focusInput({ elem: inputRef.value });
+};
 
 const validatePassword: RuleExpression<unknown> = (value) => {
     const password = value as string;
@@ -43,16 +59,28 @@ const validatePassword: RuleExpression<unknown> = (value) => {
     }
     return !AppRegex.password.test(password) ? AuthLanguage.status.password.invalid : true;
 };
+
+watch(inputRef, () => {
+    emits('update:ref', inputRef.value, props.name);
+});
 </script>
 
 <template>
     <Field v-slot="{ value, handleChange, errorMessage: errorText, setErrors }" :name="name" :rules="validatePassword">
-        <InputPassword
+        <v-text-field
+            ref="input-ref"
+            :autofocus="false"
+            :spellcheck="false"
+            autocomplete="off"
+            variant="outlined"
             :aria-label="name"
             :model-value="value"
-            :label="$t(AuthLanguage.component.label.password)"
-            :error="error || Boolean(errorMessage || errorText)"
+            :label="$t(label)"
+            :type="visible ? 'text' : 'password'"
+            :error="error"
             :error-messages="$t(errorMessage || errorText || BaseLanguage.component.label.default)"
+            :append-inner-icon="visible ? mdiEyeOff : mdiEye"
+            @click:append-inner.stop="onSeen"
             @update:ref="$emit('update:ref', $event, name)"
             @update:model-value="$emit('update:model-value', $event, handleChange, setErrors)"
         />

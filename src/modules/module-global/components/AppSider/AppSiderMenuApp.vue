@@ -10,7 +10,7 @@ import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 /** constants */
-import { AppRouterPath } from '@module-base/constants/AppRouterPath.ts';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath';
 import { ListApp } from '@module-global/constants/ListApp';
 
 defineProps<{

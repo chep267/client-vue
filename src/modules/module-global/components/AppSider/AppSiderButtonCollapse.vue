@@ -11,9 +11,6 @@ import { mdiChevronTripleLeft, mdiChevronTripleRight } from '@mdi/js';
 /** constants */
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
-/** components */
-import ButtonBase from '@module-base/components/ButtonBase.vue';
-
 defineProps<{
     disabled?: boolean;
     openSider?: boolean;
@@ -30,9 +27,10 @@ defineEmits<{
         location="right"
     >
         <template #activator="{ props }">
-            <ButtonBase
+            <v-btn
                 v-bind="props"
                 aria-label="toggle-sider"
+                aria-pressed="true"
                 class="w-full min-w-0 rounded-none"
                 :disabled="disabled"
                 elevation="0"
@@ -44,7 +42,7 @@ defineEmits<{
                     :color="disabled ? 'disabled' : 'primary'"
                     size="24"
                 />
-            </ButtonBase>
+            </v-btn>
         </template>
     </v-tooltip>
 </template>

@@ -7,7 +7,7 @@
 
 /** libs */
 import { reactive } from 'vue';
-import { Form } from 'vee-validate';
+import { Form, type RuleExpression } from 'vee-validate';
 import Cookie from 'js-cookie';
 import clsx from 'clsx';
 
@@ -23,26 +23,28 @@ import { useRecover } from '@module-auth/hooks/useRecover';
 
 /** components */
 import AuthFormBreadcrumbs from '@module-auth/components/general/AuthFormBreadcrumbs.vue';
-import FieldEmail from '@module-auth/components/general/FieldEmail.vue';
+import FieldText from '@module-auth/components/general/FieldText.vue';
 import ButtonSubmit from '@module-auth/components/general/ButtonSubmit.vue';
 
 /** type */
 import type { SubmissionHandler, InvalidSubmissionHandler, FieldContext } from 'vee-validate';
 import type { TypeInputElem } from '@module-base/types';
+import { AppRegex } from '@module-base/constants/AppRegex';
 
 type TypeFormFieldsName = 'email';
 type TypeFormData = {
     [Key in TypeFormFieldsName]: string;
 };
-
-const hookRecover = useRecover();
-
-const FormFields = reactive<{
+type TypeFormFields = {
     [Field in TypeFormFieldsName]: {
         name: Field;
         elem: TypeInputElem;
     };
-}>({
+};
+
+const hookRecover = useRecover();
+
+const FormFields = reactive<TypeFormFields>({
     email: {
         name: 'email',
         elem: null,
@@ -52,7 +54,6 @@ const ApiStatus = reactive({
     success: '',
     error: '',
 });
-
 const initialValues: TypeFormData = {
     [FormFields.email.name]: Cookie.get(AppKey.email) || '',
 };
@@ -98,6 +99,14 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         focusInput({ elem: FormFields[field].elem });
     }
 };
+
+const validateEmail: RuleExpression<unknown> = (value) => {
+    const email = value as string;
+    if (!email?.trim()) {
+        return AuthLanguage.status.email.empty;
+    }
+    return !AppRegex.email.test(email) ? AuthLanguage.status.email.invalid : true;
+};
 </script>
 
 <template>
@@ -109,10 +118,12 @@ const onSubmitError: InvalidSubmissionHandler = ({ errors }) => {
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
     >
-        <FieldEmail
+        <FieldText
             :name="FormFields.email.name"
+            :label="$t(AuthLanguage.component.label.email)"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
+            :rules="validateEmail"
             @update:ref="updateRef"
             @update:model-value="updateValue"
         />

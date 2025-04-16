@@ -19,16 +19,19 @@
 
 @theme inline {
     --color-tw-primary: var(--color-custom-primary);
+    --color-tw-start: var(--color-custom-start);
 }
 
 @layer base {
     :root {
         --color-custom-primary: var(--color-blue-500);
+        --color-custom-start: var(--color-blue-500);
     }
     /* Theme dark */
     [data-theme='dark'],
     .dark {
         --color-custom-primary: var(--color-blue-400);
+        --color-custom-start: var(--color-amber-500);
     }
 
     * {

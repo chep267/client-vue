@@ -8,9 +8,6 @@
 /** libs */
 import clsx from 'clsx';
 
-/** components */
-import ButtonBase from '@module-base/components/ButtonBase.vue';
-
 defineOptions({ name: 'ButtonSubmit', inheritAttrs: true });
 defineProps<{
     title?: string;
@@ -19,14 +16,13 @@ defineProps<{
 </script>
 
 <template>
-    <ButtonBase
+    <v-btn
         aria-label="submit form"
-        :class="clsx('font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')"
+        aria-pressed="true"
         type="submit"
-        color="primary"
+        :class="clsx('bg-tw-primary cursor-pointer font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')"
         size="large"
         :loading="loading"
-    >
-        {{ title }}
-    </ButtonBase>
+        :text="title"
+    />
 </template>

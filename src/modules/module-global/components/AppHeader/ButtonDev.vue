@@ -14,15 +14,13 @@ import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 /** hooks */
 import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 
-/** components */
-import ButtonBase from '@module-base/components/ButtonBase.vue';
-
 const notifyStore = useNotifyStore();
 </script>
 
 <template>
-    <ButtonBase
+    <v-btn
         aria-label="dev"
+        aria-pressed="true"
         variant="text"
         class="text-inherit"
         :icon="mdiBell"

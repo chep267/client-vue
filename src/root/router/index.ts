@@ -10,7 +10,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { AppRouterPath } from '@module-base/constants/AppRouterPath.ts';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AccountState } from '@module-auth/constants/AccountState';
 
@@ -32,7 +32,7 @@ export const routers = createRouter({
         {
             name: AuthRouterPath.signin,
             path: AuthRouterPath.signin,
-            component: AuthScreen,
+            component: StartScreen,
         },
         {
             name: AuthRouterPath.register,

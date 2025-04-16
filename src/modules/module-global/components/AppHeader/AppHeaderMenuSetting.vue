@@ -46,9 +46,6 @@ import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 import { useSignout } from '@module-auth/hooks/useSignout';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
-/** components */
-import ButtonBase from '@module-base/components/ButtonBase.vue';
-
 /** types */
 import type { TypeLocale } from '@module-language/types';
 import type { TypeTheme } from '@module-theme/types';
@@ -258,7 +255,13 @@ const signout = () => {
                     @click.stop="subMenu.onClick"
                 >
                     <template #prepend>
-                        <ButtonBase v-if="subMenu.loading" :loading="true" variant="text" />
+                        <v-btn
+                            v-if="subMenu.loading"
+                            aria-label="loading"
+                            aria-pressed="true"
+                            variant="text"
+                            :loading="true"
+                        />
                         <v-icon v-else :icon="subMenu.icon.name" :color="subMenu.icon.color" :size="subMenu.icon.size" />
                     </template>
                 </v-list-item>
