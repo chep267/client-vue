@@ -6,6 +6,5 @@
 
 @use 'vuetify/styles' with (
     $utilities: false,
-    $reset: false,
-    //$color-pack: false
+    $reset: false //$color-pack: false
 );

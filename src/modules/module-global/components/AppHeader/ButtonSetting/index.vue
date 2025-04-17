@@ -13,7 +13,7 @@ import { ref } from 'vue';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
-import AppHeaderMenuSetting from '@module-global/components/AppHeader/AppHeaderMenuSetting.vue';
+import MenuSetting from '@module-global/components/AppHeader/ButtonSetting/MenuSetting.vue';
 
 const isOpenMenu = ref(false);
 </script>
@@ -31,6 +31,6 @@ const isOpenMenu = ref(false);
                 </template>
             </v-tooltip>
         </template>
-        <AppHeaderMenuSetting @close-menu="isOpenMenu = false" />
+        <MenuSetting @close-menu="isOpenMenu = false" />
     </v-menu>
 </template>

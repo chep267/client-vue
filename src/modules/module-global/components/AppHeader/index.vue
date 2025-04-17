@@ -11,9 +11,9 @@ import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 /** components */
 import AppLogo from '@module-global/components/AppHeader/AppLogo.vue';
 import AppName from '@module-global/components/AppHeader/AppName.vue';
-import AppHeaderButtonSetting from '@module-global/components/AppHeader/AppHeaderButtonSetting.vue';
-import ButtonDev from '@module-global/components/AppHeader/ButtonDev.vue';
 import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
+import ButtonSetting from '@module-global/components/AppHeader/ButtonSetting/index.vue';
+import ButtonDev from '@module-global/components/AppHeader/ButtonDev.vue';
 </script>
 
 <template>
@@ -29,7 +29,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer.vue';
         </v-app-bar-title>
         <template #append>
             <ButtonDev />
-            <AppHeaderButtonSetting />
+            <ButtonSetting />
         </template>
     </v-app-bar>
 </template>

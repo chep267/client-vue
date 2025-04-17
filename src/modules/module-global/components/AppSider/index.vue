@@ -15,16 +15,12 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 
 /** hooks */
 import { useSiderStore } from '@module-base/hooks/useSiderStore';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 
 /** components */
-import AppSiderButtonCollapse from '@module-global/components/AppSider/AppSiderButtonCollapse.vue';
-import AppSiderMenuApp from '@module-global/components/AppSider/AppSiderMenuApp.vue';
+import ButtonCollapse from '@module-global/components/AppSider/ButtonCollapse.vue';
+import MenuApp from '@module-global/components/AppSider/MenuApp.vue';
 
-const authStore = useAuthStore();
 const siderStore = useSiderStore();
-
-const { isAuthentication } = storeToRefs(authStore);
 const { siderState } = storeToRefs(siderStore);
 const openSider = ref(true);
 
@@ -38,19 +34,18 @@ onUnmounted(() => {
 
 <template>
     <v-navigation-drawer
-        v-if="isAuthentication"
         :width="AppScreenSize.AppBarExpandWidth"
         :rail="siderState === AppSiderState.force || siderState === AppSiderState.collapse"
         :rail-width="AppScreenSize.AppBarCollapseWidth"
         :permanent="siderState !== AppSiderState.hidden"
         :app="true"
     >
-        <AppSiderButtonCollapse
+        <ButtonCollapse
             :open-sider="siderState === AppSiderState.expand"
             :disabled="siderState === AppSiderState.force"
             @toggle-sider="siderStore.toggleSiderState"
         />
         <v-divider v-once />
-        <AppSiderMenuApp :disabled-tooltip="openSider && siderState !== AppSiderState.collapse" />
+        <MenuApp :disabled-tooltip="openSider && siderState !== AppSiderState.collapse" />
     </v-navigation-drawer>
 </template>
