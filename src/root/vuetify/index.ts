@@ -36,12 +36,8 @@ export const vueComponents = createVuetify({
     theme: {
         defaultTheme: getDeviceTheme(),
         themes: {
-            light: {
-                colors: {},
-            },
-            dark: {
-                colors: {},
-            },
+            light: {},
+            dark: {},
         },
     },
     icons: {

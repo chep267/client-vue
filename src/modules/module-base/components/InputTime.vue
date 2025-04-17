@@ -108,7 +108,13 @@ watch(data, () => {
                 >
                     <div class="flex h-full w-full items-center justify-between">
                         <div class="flex h-full w-full flex-col items-center justify-between gap-2">
-                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevHour" />
+                            <v-btn
+                                aria-label="button prev hour"
+                                :elevation="0"
+                                density="comfortable"
+                                :icon="mdiChevronUp"
+                                @click.stop="onPrevHour"
+                            />
                             <v-number-input
                                 v-model="data.hour"
                                 class="input-number"
@@ -117,11 +123,23 @@ watch(data, () => {
                                 :min="1"
                                 :step="1"
                             />
-                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextHour" />
+                            <v-btn
+                                aria-label="button next hour"
+                                :elevation="0"
+                                density="comfortable"
+                                :icon="mdiChevronDown"
+                                @click.stop="onNextHour"
+                            />
                         </div>
                         <span>:</span>
                         <div class="flex h-full w-full flex-col items-center justify-between gap-2">
-                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronUp" @click.stop="onPrevMinute" />
+                            <v-btn
+                                aria-label="button prev minute"
+                                :elevation="0"
+                                density="comfortable"
+                                :icon="mdiChevronUp"
+                                @click.stop="onPrevMinute"
+                            />
                             <v-number-input
                                 v-model="data.min"
                                 class="input-number"
@@ -130,7 +148,13 @@ watch(data, () => {
                                 :min="0"
                                 :step="1"
                             />
-                            <v-btn :elevation="0" density="comfortable" :icon="mdiChevronDown" @click.stop="onNextMinute" />
+                            <v-btn
+                                aria-label="button next minute"
+                                :elevation="0"
+                                density="comfortable"
+                                :icon="mdiChevronDown"
+                                @click.stop="onNextMinute"
+                            />
                         </div>
                     </div>
                     <div class="flex w-28 justify-between overflow-hidden rounded-md border border-solid">

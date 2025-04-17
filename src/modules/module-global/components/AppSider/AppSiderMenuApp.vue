@@ -29,7 +29,13 @@ watch(route, () => {
 
 <template>
     <v-list v-model:selected="tabs">
-        <v-tooltip v-for="app in ListApp" :key="app.id" :text="$t(app.title)" :disabled="disabledTooltip">
+        <v-tooltip
+            v-for="app in ListApp"
+            :key="app.id"
+            :aria-label="app.title"
+            :text="$t(app.title)"
+            :disabled="disabledTooltip"
+        >
             <template #activator="{ props }">
                 <v-list-item
                     v-bind="props"

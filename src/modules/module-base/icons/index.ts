@@ -19,6 +19,11 @@ const customSvgNameToComponent = {
     en: FlagEn,
 } as const;
 
+export const flagIcon = {
+    vi: 'flag:vi',
+    en: 'flag:en',
+} as const;
+
 /** aliases */
 export const customSVGs: IconSet = {
     component: (props: IconProps) => h(customSvgNameToComponent[props.icon as keyof typeof customSvgNameToComponent]),

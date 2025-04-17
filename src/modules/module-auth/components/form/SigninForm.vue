@@ -135,7 +135,6 @@ const validatePassword: RuleExpression<unknown> = (value) => {
         <FieldText
             :name="FormFields.email.name"
             :label="$t(AuthLanguage.component.label.email)"
-            :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             :rules="validateEmail"
             @update:ref="updateRef"
@@ -144,7 +143,6 @@ const validatePassword: RuleExpression<unknown> = (value) => {
         <FieldPassword
             :name="FormFields.password.name"
             :label="$t(AuthLanguage.component.label.password)"
-            :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             :rules="validatePassword"
             @update:ref="updateRef"

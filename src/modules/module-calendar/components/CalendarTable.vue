@@ -8,7 +8,6 @@
 /** libs */
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import { VDataTableVirtual } from 'vuetify/components';
 import dayjs from 'dayjs';
 import { useI18n } from 'vue-i18n';
 
@@ -25,6 +24,7 @@ import { useSiderStore } from '@module-base/hooks/useSiderStore';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
+import type { VDataTableVirtual } from 'vuetify/components/VDataTable';
 import type { Dayjs } from '@module-calendar/types';
 
 const emits = defineEmits<{

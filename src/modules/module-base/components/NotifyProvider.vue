@@ -18,7 +18,6 @@ const { open, message, messageIntl, location, duration, color } = storeToRefs(no
 <template>
     <v-snackbar
         v-model="open"
-        v-memo="[open]"
         :multi-line="true"
         :location="location"
         :timeout="duration"

@@ -19,8 +19,7 @@ const notifyStore = useNotifyStore();
 
 <template>
     <v-btn
-        aria-label="dev"
-        aria-pressed="true"
+        aria-label="show tooltip developer mode"
         variant="text"
         class="text-inherit"
         :icon="mdiBell"

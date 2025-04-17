@@ -18,10 +18,9 @@ defineProps<{
 <template>
     <v-btn
         aria-label="submit form"
-        aria-pressed="true"
         type="submit"
-        :class="clsx('bg-tw-primary cursor-pointer font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')"
         size="large"
+        :class="clsx('bg-tw-primary cursor-pointer font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')"
         :loading="loading"
         :text="title"
     />

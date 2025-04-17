@@ -39,6 +39,7 @@ import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
+import { flagIcon } from '@module-base/icons';
 import { getMessages } from '@module-language/utils/i18n';
 
 /** hooks */
@@ -158,7 +159,7 @@ const menuBase: TypeMenuData[] = [
                 id: localeObject.vi,
                 title: LangLanguage.component.label.vi,
                 icon: {
-                    name: 'flag:vi',
+                    name: flagIcon.vi,
                     size: 20,
                 },
                 onClick: () => setLocale(localeObject.vi),
@@ -167,7 +168,7 @@ const menuBase: TypeMenuData[] = [
                 id: localeObject.en,
                 title: LangLanguage.component.label.en,
                 icon: {
-                    name: 'flag:en',
+                    name: flagIcon.en,
                     size: 20,
                 },
                 onClick: () => setLocale(localeObject.en),
@@ -255,13 +256,7 @@ const signout = () => {
                     @click.stop="subMenu.onClick"
                 >
                     <template #prepend>
-                        <v-btn
-                            v-if="subMenu.loading"
-                            aria-label="loading"
-                            aria-pressed="true"
-                            variant="text"
-                            :loading="true"
-                        />
+                        <v-btn v-if="subMenu.loading" aria-label="loading" variant="text" :loading="true" />
                         <v-icon v-else :icon="subMenu.icon.name" :color="subMenu.icon.color" :size="subMenu.icon.size" />
                     </template>
                 </v-list-item>

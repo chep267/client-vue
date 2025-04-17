@@ -31,9 +31,9 @@ const tab = computed(() => {
             grow
             :style="`top: ${AppScreenSize.HeaderHeight}px; height: ${AppScreenSize.AppBarMiniHeight}px`"
         >
-            <v-tooltip v-for="app in ListApp" :key="app.id" :text="$t(app.title)" location="bottom">
+            <v-tooltip v-for="app in ListApp" :key="app.id" :aria-label="app.title" :text="$t(app.title)" location="bottom">
                 <template #activator="{ props }">
-                    <v-tab v-bind="props" :to="app.path" :value="app.id">
+                    <v-tab v-bind="props" :aria-label="app.path" :to="app.path" :value="app.id">
                         <v-icon :icon="app.icon" :color="tab === app.path ? 'primary' : undefined" size="24" />
                     </v-tab>
                 </template>

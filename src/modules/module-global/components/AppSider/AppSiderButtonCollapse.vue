@@ -23,14 +23,14 @@ defineEmits<{
 
 <template>
     <v-tooltip
-        :text="$t(openSider ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand)"
         location="right"
+        aria-label="toggle sider"
+        :text="$t(openSider ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand)"
     >
         <template #activator="{ props }">
             <v-btn
                 v-bind="props"
-                aria-label="toggle-sider"
-                aria-pressed="true"
+                aria-label="toggle sider"
                 class="w-full min-w-0 rounded-none"
                 :disabled="disabled"
                 elevation="0"

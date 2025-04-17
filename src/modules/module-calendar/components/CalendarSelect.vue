@@ -62,10 +62,18 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
         </v-btn>
         <div :class="{ 'flex flex-row justify-between gap-2': true, 'flex-1': miniMode }">
             <div class="flex gap-1">
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'year')">
+                <v-btn
+                    aria-label="button prev year"
+                    :class="{ 'button-mini': miniMode }"
+                    @click.stop="onChangeDay('prev', 'year')"
+                >
                     <v-icon :icon="mdiChevronTripleLeft" color="primary" :size="sizeIcon" />
                 </v-btn>
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('prev', 'month')">
+                <v-btn
+                    aria-label="button prev month"
+                    :class="{ 'button-mini': miniMode }"
+                    @click.stop="onChangeDay('prev', 'month')"
+                >
                     <v-icon :icon="mdiChevronDoubleLeft" color="primary" :size="sizeIcon" />
                 </v-btn>
             </div>
@@ -78,10 +86,18 @@ const onChangeDay = (mode: 'prev' | 'next' | 'today', type?: 'month' | 'year') =
                 <span class="primary-text text-2xl">{{ titleCalendar }}</span>
             </div>
             <div class="flex gap-1">
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'month')">
+                <v-btn
+                    aria-label="button next month"
+                    :class="{ 'button-mini': miniMode }"
+                    @click.stop="onChangeDay('next', 'month')"
+                >
                     <v-icon :icon="mdiChevronDoubleRight" color="primary" :size="sizeIcon" />
                 </v-btn>
-                <v-btn :class="{ 'button-mini': miniMode }" @click.stop="onChangeDay('next', 'year')">
+                <v-btn
+                    aria-label="button next year"
+                    :class="{ 'button-mini': miniMode }"
+                    @click.stop="onChangeDay('next', 'year')"
+                >
                     <v-icon :icon="mdiChevronTripleRight" color="primary" :size="sizeIcon" />
                 </v-btn>
             </div>
