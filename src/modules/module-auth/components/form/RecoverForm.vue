@@ -120,7 +120,7 @@ const validateEmail: RuleExpression<unknown> = (value) => {
     >
         <FieldText
             :name="FormFields.email.name"
-            :label="$t(AuthLanguage.component.label.email)"
+            :label="AuthLanguage.component.label.email"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             :rules="validateEmail"

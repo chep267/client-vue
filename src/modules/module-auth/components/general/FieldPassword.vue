@@ -25,6 +25,7 @@ import type { TypeInputElem } from '@module-base/types';
 declare type TypeFieldPasswordProps = {
     name: string;
     label: string;
+    error?: boolean;
     errorMessage?: string;
     rules: RuleExpression<unknown>;
 };
@@ -76,6 +77,7 @@ watch(inputRef, () => {
             :model-value="value"
             :label="$t(label)"
             :type="visible ? 'text' : 'password'"
+            :error="error"
             :error-messages="$t(errorMessage || errorText || BaseLanguage.component.label.default)"
             :append-inner-icon="visible ? mdiEyeOff : mdiEye"
             @click:append-inner.stop="onSeen"

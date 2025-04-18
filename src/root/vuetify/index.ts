@@ -8,7 +8,6 @@
 import { createVuetify } from 'vuetify';
 import * as directives from 'vuetify/directives';
 import * as components from 'vuetify/components';
-import * as labsComponents from 'vuetify/labs/components';
 import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n';
 import { useI18n } from 'vue-i18n';
 import { en, vi } from 'vuetify/locale';
@@ -28,10 +27,7 @@ import { getDeviceTheme } from '@module-theme/utils/defaultTheme';
 import './vuetify.scss';
 
 export const vueComponents = createVuetify({
-    components: {
-        ...components,
-        ...labsComponents,
-    },
+    components,
     directives,
     theme: {
         defaultTheme: getDeviceTheme(),

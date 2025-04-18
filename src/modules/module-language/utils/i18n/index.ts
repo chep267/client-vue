@@ -5,13 +5,14 @@
  */
 
 /** libs */
+import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n';
 
 /** constants */
 import { localeObject } from '@module-language/constants/localeObject';
 
 /** utils */
-import { getDeviceLanguage } from './getDeviceLanguage';
+import { getDeviceLanguage } from '@module-language/utils/i18n/getDeviceLanguage';
 
 /** lang default */
 import { en } from '@lang/en';
@@ -37,7 +38,7 @@ export async function getMessages(locale: TypeLocale): Promise<void> {
         i18n.global.setLocaleMessage(locale, messagesCache[locale]);
         i18n.global.locale.value = locale;
         document.querySelector('html')?.setAttribute('lang', locale);
-        return;
+        return nextTick();
     }
     const messages = await import(`@lang/${locale}.ts`);
     if (messages && messages[locale]) {
@@ -46,6 +47,9 @@ export async function getMessages(locale: TypeLocale): Promise<void> {
         document.querySelector('html')?.setAttribute('lang', locale);
         messagesCache[locale] = messages[locale];
     }
+    return nextTick();
 }
 
-await getMessages(defaultLocale);
+if (defaultLocale !== localeObject.en) {
+    getMessages(defaultLocale).then();
+}

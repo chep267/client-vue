@@ -1,7 +1,9 @@
 <script setup lang="ts">
 /** libs */
 import { useI18n } from 'vue-i18n';
+import { DatePicker } from '@angelblanco/v-calendar';
 import { mdiCalendarBlank } from '@mdi/js';
+import '@angelblanco/v-calendar/style.css';
 
 /** types */
 import type { InputTextProps, TypeInputElem } from '@module-base/types';
@@ -17,7 +19,7 @@ const { locale } = useI18n();
 </script>
 
 <template>
-    <vc-date-picker
+    <DatePicker
         v-bind.attr="$attrs"
         :masks="{ input: 'DD/MM/YYYY' }"
         :popover="{
@@ -41,5 +43,5 @@ const { locale } = useI18n();
                 @update:ref="$emit('update:ref', $event)"
             />
         </template>
-    </vc-date-picker>
+    </DatePicker>
 </template>
