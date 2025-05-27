@@ -30,16 +30,5 @@ declare global {
                 type StoreValue = TypeData.TypeStoreValue;
             }
         }
-        namespace ModuleLanguage {
-            namespace Data {
-                type Locale = 'vi' | 'en';
-                type Messages = Record<string, string>;
-            }
-        }
-        namespace ModuleTheme {
-            namespace Data {
-                type Theme = 'dark' | 'light';
-            }
-        }
     }
 }

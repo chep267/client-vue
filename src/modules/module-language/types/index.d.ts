@@ -4,12 +4,15 @@
  *
  */
 
+/** types */
+import type * as TypeData from './data.d';
+
 declare global {
     namespace App {
         namespace ModuleLanguage {
             namespace Data {
-                type Locale = 'vi' | 'en';
-                type Messages = Record<string, string>;
+                type Locale = TypeData.TypeLocale;
+                type Messages = TypeData.TypeMessages;
             }
         }
     }

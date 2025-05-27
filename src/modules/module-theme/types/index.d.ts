@@ -4,11 +4,14 @@
  *
  */
 
+/** types */
+import type * as TypeData from './data.d';
+
 declare global {
     namespace App {
         namespace ModuleTheme {
             namespace Data {
-                type Theme = 'dark' | 'light';
+                type Theme = TypeData.TypeTheme;
             }
         }
     }
