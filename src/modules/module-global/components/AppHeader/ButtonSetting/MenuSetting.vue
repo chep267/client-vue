@@ -47,10 +47,6 @@ import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 import { useSignout } from '@module-auth/hooks/useSignout';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
-/** types */
-import type { TypeLocale } from '@module-language/types';
-import type { TypeTheme } from '@module-theme/types';
-
 type TypeMenuData = {
     id: string;
     title: string;
@@ -217,11 +213,11 @@ const menuAuth = computed<TypeMenuData[]>(() => {
     ];
 });
 
-const setTheme = (value: TypeTheme) => {
+const setTheme = (value: App.ModuleTheme.Data.Theme) => {
     Cookie.set(AppKey.theme, value);
     theme.global.name.value = value;
 };
-const setLocale = async (value: TypeLocale) => {
+const setLocale = async (value: App.ModuleLanguage.Data.Locale) => {
     await getMessages(value);
     Cookie.set(AppKey.locale, value);
     locale.current.value = value;

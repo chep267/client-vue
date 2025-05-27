@@ -22,19 +22,18 @@ import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 /** types */
 import type { AxiosError } from 'axios';
 import type { UseMutationReturnType } from '@tanstack/vue-query';
-import type { TypeApiAuth } from '@module-auth/types';
 
 export function useSignout(): UseMutationReturnType<
-    TypeApiAuth['SignOut']['Response'],
+    App.ModuleAuth.Apis.SignOut['Response'],
     AxiosError,
-    TypeApiAuth['SignOut']['Payload'],
+    App.ModuleAuth.Apis.SignOut['Payload'],
     unknown
 > {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    return useMutation<TypeApiAuth['SignOut']['Response'], AxiosError, TypeApiAuth['SignOut']['Payload']>({
+    return useMutation<App.ModuleAuth.Apis.SignOut['Response'], AxiosError, App.ModuleAuth.Apis.SignOut['Payload']>({
         mutationFn: authApi.signOut,
         onSettled: () => {
             authStore.signout();

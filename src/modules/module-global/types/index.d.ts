@@ -4,4 +4,16 @@
  *
  */
 
-export * from './hooks.d';
+/** types */
+import type * as TypeHooks from './hooks.d';
+
+declare global {
+    namespace App {
+        namespace ModuleGlobal {
+            namespace Hooks {
+                type SiderState = TypeHooks.TypeSiderState;
+                type SiderStore = TypeHooks.TypeSiderStore;
+            }
+        }
+    }
+}

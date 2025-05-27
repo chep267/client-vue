@@ -8,6 +8,6 @@ export declare type TypeItemIds = string[];
 
 export declare type TypeItems<T> = Record<string, T>;
 
-export declare type StorageName = 'localStorage' | 'sessionStorage';
+export declare type TypeStorageName = 'localStorage' | 'sessionStorage';
 
-export declare type StoreValueType = string | null;
+export declare type TypeStoreValue = string | null;

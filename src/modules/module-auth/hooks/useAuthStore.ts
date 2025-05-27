@@ -11,11 +11,8 @@ import Cookie from 'js-cookie';
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 
-/** types */
-import type { TypeApiAuth, TypeAuthStore } from '@module-auth/types';
-
 export const useAuthStore = defineStore('auth-store', {
-    state: (): TypeAuthStore => {
+    state: (): App.ModuleAuth.Hooks.AuthStore => {
         return {
             prePath: '/',
             user: null,
@@ -25,15 +22,12 @@ export const useAuthStore = defineStore('auth-store', {
         isAuthentication(state) {
             return !!state.user;
         },
-        getUser(state) {
-            return state.user;
-        },
     },
     actions: {
         setPath(path: string) {
             this.prePath = path || this.prePath;
         },
-        signin(payload: TypeApiAuth['Signin']['Response']['data']) {
+        signin(payload: App.ModuleAuth.Apis.Signin['Response']['data']) {
             const { user } = payload;
             Cookie.set(AppKey.uid, user.uid);
             Cookie.set(AppKey.email, user.email || '');

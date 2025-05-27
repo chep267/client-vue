@@ -9,18 +9,15 @@
 import { onMounted, useTemplateRef } from 'vue';
 import { VOtpInput } from 'vuetify/components/VOtpInput';
 
-/** types */
-import type { InputOtpProps, InputOtpSlots, TypeInputElem } from '@module-base/types';
-
 defineOptions({ name: 'InputOTP', extends: VOtpInput, inheritAttrs: true });
-defineProps<InputOtpProps>();
+defineProps<VOtpInput['$props']>();
 const emits = defineEmits<{
-    (e: 'update:ref', elem: TypeInputElem): void;
+    (e: 'update:ref', elem: App.ModuleBase.Components.InputElement): void;
     (e: 'update:model-value', value: string): void;
 }>();
-defineSlots<InputOtpSlots>();
+defineSlots<VOtpInput['$slots']>();
 
-const inputRef = useTemplateRef<TypeInputElem>('input-ref');
+const inputRef = useTemplateRef<App.ModuleBase.Components.InputElement>('input-ref');
 
 onMounted(() => emits('update:ref', inputRef.value));
 </script>
@@ -34,7 +31,7 @@ onMounted(() => emits('update:ref', inputRef.value));
         @update:model-value="$emit('update:model-value', $event)"
     >
         <!-- Forward slots -->
-        <template v-for="(_slotContent, slotName) in $slots as InputOtpSlots" :key="slotName" #[slotName]>
+        <template v-for="(_slotContent, slotName) in $slots as VOtpInput['$slots']" :key="slotName" #[slotName]>
             <!-- @vue-ignore -->
             <slot :name="slotName" />
         </template>

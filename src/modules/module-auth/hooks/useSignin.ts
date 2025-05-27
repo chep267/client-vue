@@ -22,19 +22,18 @@ import { useAuthStore } from '@module-auth/hooks/useAuthStore';
 /** types */
 import type { AxiosError } from 'axios';
 import type { UseMutationReturnType } from '@tanstack/vue-query';
-import type { TypeApiAuth } from '@module-auth/types';
 
 export function useSignin(): UseMutationReturnType<
-    TypeApiAuth['Restart']['Response'],
+    App.ModuleAuth.Apis.Signin['Response'],
     AxiosError,
-    TypeApiAuth['Signin']['Payload'],
+    App.ModuleAuth.Apis.Signin['Payload'],
     unknown
 > {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    return useMutation<TypeApiAuth['Signin']['Response'], AxiosError, TypeApiAuth['Signin']['Payload']>({
+    return useMutation<App.ModuleAuth.Apis.Signin['Response'], AxiosError, App.ModuleAuth.Apis.Signin['Payload'], unknown>({
         mutationFn: authApi.signin,
         onSuccess: (response) => {
             authStore.signin(response.data);

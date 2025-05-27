@@ -30,7 +30,6 @@ import ButtonSubmit from '@module-auth/components/general/ButtonSubmit.vue';
 
 /** type */
 import type { SubmissionHandler, InvalidSubmissionHandler, FieldContext } from 'vee-validate';
-import type { TypeInputElem } from '@module-base/types';
 
 type TypeFormFieldsName = 'email' | 'password';
 type TypeFormData = {
@@ -39,7 +38,7 @@ type TypeFormData = {
 type TypeFormFields = {
     [Field in TypeFormFieldsName]: {
         name: Field;
-        elem: TypeInputElem;
+        elem: App.ModuleBase.Components.InputElement;
     };
 };
 
@@ -75,7 +74,7 @@ const updateValue = (value: string, handleChange: FieldContext['handleChange'], 
     handleChange(value, false);
 };
 
-const updateRef = (elem: TypeInputElem, field: string) => {
+const updateRef = (elem: App.ModuleBase.Components.InputElement, field: string) => {
     FormFields[field as TypeFormFieldsName].elem = elem;
 };
 

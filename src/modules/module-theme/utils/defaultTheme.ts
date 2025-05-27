@@ -6,12 +6,9 @@ import { AppEnv } from '@module-base/constants/AppEnv';
 import { AppKey } from '@module-base/constants/AppKey';
 import { themeObject } from '@module-theme/constants/themeObject';
 
-/** types */
-import type { TypeTheme } from '@module-theme/types';
-
-export const getDeviceTheme = (): TypeTheme => {
+export const getDeviceTheme = (): App.ModuleTheme.Data.Theme => {
     // get from cookie
-    let theme = Cookies.get(AppKey.theme) as TypeTheme;
+    let theme = Cookies.get(AppKey.theme) as App.ModuleTheme.Data.Theme;
     if (theme in themeObject) {
         return theme;
     }

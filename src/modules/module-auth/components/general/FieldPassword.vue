@@ -20,7 +20,6 @@ import { focusInput } from '@module-base/utils/focusInput';
 
 /** type */
 import type { RuleExpression, FieldContext } from 'vee-validate';
-import type { TypeInputElem } from '@module-base/types';
 
 declare type TypeFieldPasswordProps = {
     name: string;
@@ -31,7 +30,7 @@ declare type TypeFieldPasswordProps = {
 };
 
 declare type TypeFieldPasswordEmits = {
-    (e: 'update:ref', elem: TypeInputElem, field: string): void;
+    (e: 'update:ref', elem: App.ModuleBase.Components.InputElement, field: string): void;
     (
         e: 'update:model-value',
         value: any,
@@ -45,7 +44,7 @@ const props = defineProps<TypeFieldPasswordProps>();
 const emits = defineEmits<TypeFieldPasswordEmits>();
 
 const visible = ref<boolean>(false);
-const inputRef = useTemplateRef<TypeInputElem>('input-ref');
+const inputRef = useTemplateRef<App.ModuleBase.Components.InputElement>('input-ref');
 
 const onSeen = () => {
     visible.value = !visible.value;

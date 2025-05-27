@@ -1,17 +1,15 @@
 <script setup lang="ts">
 /** libs */
 import { useI18n } from 'vue-i18n';
+import { VTextField } from 'vuetify/components/VTextField';
 import { DatePicker } from '@angelblanco/v-calendar';
 import { mdiCalendarBlank } from '@mdi/js';
 import '@angelblanco/v-calendar/style.css';
 
-/** types */
-import type { InputTextProps, TypeInputElem } from '@module-base/types';
-
-defineOptions({ name: 'InputDate', inheritAttrs: true });
-defineProps<InputTextProps>();
+defineOptions({ name: 'InputDate', extends: VTextField, inheritAttrs: true });
+defineProps<VTextField['$props']>();
 defineEmits<{
-    (e: 'update:ref', elem: TypeInputElem): void;
+    (e: 'update:ref', elem: App.ModuleBase.Components.InputElement): void;
     (e: 'update:model-value', value: string): void;
 }>();
 

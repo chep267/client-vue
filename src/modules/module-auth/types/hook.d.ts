@@ -4,10 +4,7 @@
  *
  */
 
-/** types */
-import type { UserInfo } from 'firebase/compat';
-
 export declare type TypeAuthStore = {
     prePath: string;
-    user: null | UserInfo;
+    user: null | App.ModuleUser.Data.User;
 };

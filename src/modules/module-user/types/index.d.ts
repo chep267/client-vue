@@ -4,12 +4,14 @@
  *
  */
 
+/** types */
+import type { UserInfo } from 'firebase/auth';
+
 declare global {
     namespace App {
-        namespace ModuleLanguage {
+        namespace ModuleUser {
             namespace Data {
-                type Locale = 'vi' | 'en';
-                type Messages = Record<string, string>;
+                type User = UserInfo;
             }
         }
     }

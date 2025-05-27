@@ -12,10 +12,7 @@ import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import { AppTimer } from '@module-base/constants/AppTimer';
 
-/** types */
-import type { TypeNotifyStore } from '@module-base/types';
-
-const defaultNotify: Readonly<TypeNotifyStore> = {
+const defaultNotify: Readonly<App.ModuleBase.Hooks.NotifyStore> = {
     open: false,
     message: '',
     messageIntl: BaseLanguage.component.label.develop,
@@ -25,10 +22,10 @@ const defaultNotify: Readonly<TypeNotifyStore> = {
 };
 
 export const useNotifyStore = defineStore('notify-store', {
-    state: (): TypeNotifyStore => ({ ...defaultNotify }),
+    state: (): App.ModuleBase.Hooks.NotifyStore => JSON.parse(JSON.stringify(defaultNotify)),
     getters: {},
     actions: {
-        show(payload: Omit<TypeNotifyStore, 'open'>) {
+        show(payload: Omit<App.ModuleBase.Hooks.NotifyStore, 'open'>) {
             const { message, messageIntl, duration, location, color } = payload;
             this.messageIntl = messageIntl || defaultNotify.messageIntl;
             this.message = message || defaultNotify.message;

@@ -4,10 +4,7 @@
  *
  */
 
-/** types */
-import type { TypeTheme } from '@module-theme/types';
-
-export const themeObject: Readonly<{ [Key in TypeTheme]: Key }> = {
+export const themeObject: Readonly<{ [Key in App.ModuleTheme.Data.Theme]: Key }> = {
     dark: 'dark',
     light: 'light',
 };

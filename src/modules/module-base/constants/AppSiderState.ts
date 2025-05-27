@@ -5,9 +5,7 @@
  */
 
 /** types */
-import type { TypeSiderState } from '@module-global/types';
-
-export const AppSiderState: Readonly<{ [Key in TypeSiderState]: Key }> = {
+export const AppSiderState: Readonly<{ [Key in App.ModuleGlobal.Hooks.SiderState]: Key }> = {
     collapse: 'collapse',
     expand: 'expand',
     hidden: 'hidden',

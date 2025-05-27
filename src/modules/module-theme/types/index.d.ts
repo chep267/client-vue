@@ -4,5 +4,12 @@
  *
  */
 
-/** types */
-export * from './data.d';
+declare global {
+    namespace App {
+        namespace ModuleTheme {
+            namespace Data {
+                type Theme = 'dark' | 'light';
+            }
+        }
+    }
+}

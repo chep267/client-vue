@@ -4,10 +4,7 @@
  *
  */
 
-/** types */
-import type { TypeLocale } from '@module-language/types';
-
-export const localeObject: Readonly<{ [Key in TypeLocale]: Key }> = {
+export const localeObject: Readonly<{ [Key in App.ModuleLanguage.Data.Locale]: Key }> = {
     vi: 'vi',
     en: 'en',
 };

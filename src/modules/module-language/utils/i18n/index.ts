@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import { nextTick } from 'vue';
 import { createI18n } from 'vue-i18n';
 
 /** constants */
@@ -17,10 +16,7 @@ import { getDeviceLanguage } from '@module-language/utils/i18n/getDeviceLanguage
 /** lang default */
 import { en } from '@lang/en';
 
-/** types */
-import type { TypeLocale, TypeMessages } from '@module-language/types';
-
-const messagesCache = { en } as Record<TypeLocale, TypeMessages>;
+const messagesCache = { en } as Record<App.ModuleLanguage.Data.Locale, App.ModuleLanguage.Data.Messages>;
 
 export const defaultLocale = getDeviceLanguage();
 
@@ -31,23 +27,26 @@ export const i18n = createI18n({
     fallbackLocale: localeObject.en,
     availableLocales: Object.values(localeObject),
     messages: messagesCache,
+    escapeParameterHtml: true,
+    warnHtmlMessage: false,
 });
 
-export async function getMessages(locale: TypeLocale): Promise<void> {
+export async function getMessages(locale: App.ModuleLanguage.Data.Locale): Promise<void> {
+    const updateMessage = (data: App.ModuleLanguage.Data.Messages) => {
+        i18n.global.setLocaleMessage(locale, data);
+        i18n.global.locale.value = locale;
+        document.querySelector('html')?.setAttribute('lang', locale);
+        messagesCache[locale] = data;
+    };
+
     if (messagesCache[locale]) {
-        i18n.global.setLocaleMessage(locale, messagesCache[locale]);
-        i18n.global.locale.value = locale;
-        document.querySelector('html')?.setAttribute('lang', locale);
-        return nextTick();
+        return updateMessage(messagesCache[locale]);
     }
-    const messages = await import(`@lang/${locale}.ts`);
-    if (messages && messages[locale]) {
-        i18n.global.setLocaleMessage(locale, messages[locale]);
-        i18n.global.locale.value = locale;
-        document.querySelector('html')?.setAttribute('lang', locale);
-        messagesCache[locale] = messages[locale];
-    }
-    return nextTick();
+    import(`@lang/${locale}.ts`).then((messages) => {
+        if (messages && messages[locale]) {
+            return updateMessage(messages[locale]);
+        }
+    });
 }
 
 if (defaultLocale !== localeObject.en) {

@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { VSnackbar } from 'vuetify/lib/components/VSnackbar';
+import type { VSnackbar } from 'vuetify/components/VSnackbar';
 
 export declare type TypeNotifyStore = {
     open?: boolean;
@@ -13,5 +13,5 @@ export declare type TypeNotifyStore = {
     messageIntl?: string;
     duration?: number;
     location?: VSnackbar['location'];
-    color: string;
+    color: VSnackbar['color'];
 };

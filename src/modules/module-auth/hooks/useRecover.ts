@@ -20,17 +20,16 @@ import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
 /** types */
 import type { AxiosError } from 'axios';
 import type { UseMutationReturnType } from '@tanstack/vue-query';
-import type { TypeApiAuth } from '@module-auth/types';
 
 export function useRecover(): UseMutationReturnType<
-    TypeApiAuth['Recover']['Response'],
+    App.ModuleAuth.Apis.Recover['Response'],
     AxiosError,
-    TypeApiAuth['Recover']['Payload'],
+    App.ModuleAuth.Apis.Recover['Payload'],
     unknown
 > {
     const notifyStore = useNotifyStore();
 
-    return useMutation<TypeApiAuth['Recover']['Response'], AxiosError, TypeApiAuth['Recover']['Payload']>({
+    return useMutation<App.ModuleAuth.Apis.Recover['Response'], AxiosError, App.ModuleAuth.Apis.Recover['Payload']>({
         mutationFn: authApi.recover,
         onSuccess: () => {
             notifyStore.show({ color: AppNotifyColor.success, messageIntl: AuthLanguage.notify.recover.success });

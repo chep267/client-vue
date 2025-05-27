@@ -8,15 +8,13 @@
 /** libs */
 import { reactive, watch } from 'vue';
 import clsx from 'clsx';
+import { VTextField } from 'vuetify/components/VTextField';
 import { mdiChevronUp, mdiChevronDown, mdiClockOutline } from '@mdi/js';
 
-/** types */
-import type { InputTextProps, TypeInputElem } from '@module-base/types';
-
-defineOptions({ name: 'InputTime', inheritAttrs: true });
-defineProps<InputTextProps>();
+defineOptions({ name: 'InputTime', extends: VTextField, inheritAttrs: true });
+defineProps<VTextField['$props']>();
 const emits = defineEmits<{
-    (e: 'update:ref', elem: TypeInputElem): void;
+    (e: 'update:ref', elem: App.ModuleBase.Components.InputElement): void;
     (e: 'update:model-value', value: string): void;
 }>();
 
