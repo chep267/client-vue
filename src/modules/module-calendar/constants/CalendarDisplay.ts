@@ -4,10 +4,7 @@
  *
  */
 
-/** types */
-import type { TypeCalendarDisplay } from '@module-calendar/types';
-
-export const CalendarDisplay: Readonly<{ [Key in TypeCalendarDisplay]: Key }> = {
+export const CalendarDisplay: Readonly<{ [Key in App.ModuleCalendar.Data.CalendarDisplay]: Key }> = {
     sunday: 'sunday',
     monday: 'monday',
     weekend: 'weekend',

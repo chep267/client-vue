@@ -4,10 +4,10 @@
  *
  */
 
-export declare type TypeItemIds = string[];
+export type TypeItemIds = string[];
 
-export declare type TypeItems<T> = Record<string, T>;
+export type TypeItems<T> = Record<string, T>;
 
-export declare type TypeStorageName = 'localStorage' | 'sessionStorage';
+export type TypeStorageName = 'localStorage' | 'sessionStorage';
 
-export declare type TypeStoreValue = string | null;
+export type TypeStoreValue = string | null;

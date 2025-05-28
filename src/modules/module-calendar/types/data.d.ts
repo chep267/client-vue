@@ -5,15 +5,13 @@
  */
 
 /** types */
-import { type Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
 
-export declare type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
+export type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
 
-export declare type TypeCalendarStore = {
+export type TypeCalendarStore = {
     today: Dayjs;
     display: TypeCalendarDisplay;
     day: Dayjs;
     isOnlyMonth: boolean;
 };
-
-export type { Dayjs };

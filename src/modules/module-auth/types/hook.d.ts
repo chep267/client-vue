@@ -4,7 +4,7 @@
  *
  */
 
-export declare type TypeAuthStore = {
+export type TypeAuthStore = {
     prePath: string;
     user: null | App.ModuleUser.Data.User;
 };

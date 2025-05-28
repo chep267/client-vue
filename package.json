@@ -32,14 +32,14 @@
         "tailwindcss": "^4.1.7",
         "vee-validate": "^4.15.0",
         "vue": "^3.5.15",
-        "vue-i18n": "11.1.4",
+        "vue-i18n": "11.1.5",
         "vue-router": "^4.5.1",
         "vuetify": "^3.8.7"
     },
     "devDependencies": {
-        "@tsconfig/node20": "^20.1.5",
+        "@tsconfig/node24": "^24.0.1",
         "@types/js-cookie": "^3.0.6",
-        "@types/node": "^22.15.21",
+        "@types/node": "^22.15.23",
         "@vitejs/plugin-basic-ssl": "^2.0.0",
         "@vitejs/plugin-vue": "^5.2.4",
         "@vue/eslint-config-prettier": "^10.2.0",

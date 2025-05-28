@@ -21,7 +21,7 @@ import { focusInput } from '@module-base/utils/focusInput';
 /** type */
 import type { RuleExpression, FieldContext } from 'vee-validate';
 
-declare type TypeFieldPasswordProps = {
+type TypeFieldPasswordProps = {
     name: string;
     label: string;
     error?: boolean;
@@ -29,7 +29,7 @@ declare type TypeFieldPasswordProps = {
     rules: RuleExpression<unknown>;
 };
 
-declare type TypeFieldPasswordEmits = {
+type TypeFieldPasswordEmits = {
     (e: 'update:ref', elem: App.ModuleBase.Components.InputElement, field: string): void;
     (
         e: 'update:model-value',

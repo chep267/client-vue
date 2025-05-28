@@ -6,9 +6,9 @@
 
 type TypeCallApiDelay = { timer?: number };
 
-export declare type TypeCallApiPayload<Data = unknown> = TypeCallApiDelay & Data;
+export type TypeCallApiPayload<Data = unknown> = TypeCallApiDelay & Data;
 
-export declare type TypeResponseApi<Data = unknown> = {
+export type TypeResponseApi<Data = unknown> = {
     message: string;
     status: number;
     data: Data;

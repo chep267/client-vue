@@ -1,2 +1,2 @@
 /** type */
-export declare type TypeInputElem = HTMLInputElement | null;
+export type TypeInputElem = HTMLInputElement | null;

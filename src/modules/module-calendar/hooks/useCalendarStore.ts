@@ -13,11 +13,8 @@ import 'dayjs/locale/en';
 /** constants */
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 
-/** types */
-import type { TypeCalendarStore } from '@module-calendar/types';
-
 export const useCalendarStore = defineStore('calendar-store', {
-    state: (): TypeCalendarStore => {
+    state: (): App.ModuleCalendar.Data.CalendarStore => {
         const today = dayjs();
         return {
             today,
@@ -27,23 +24,23 @@ export const useCalendarStore = defineStore('calendar-store', {
         };
     },
     actions: {
-        setDay(day: TypeCalendarStore['today']) {
+        setDay(day: App.ModuleCalendar.Data.CalendarStore['today']) {
             this.day = day;
         },
-        setDisplay(display: TypeCalendarStore['display']) {
+        setDisplay(display: App.ModuleCalendar.Data.CalendarStore['display']) {
             this.display = display;
         },
         setOnlyMonth(value: boolean) {
             this.isOnlyMonth = value;
         },
-        isWeekend(day: TypeCalendarStore['today'] | number) {
+        isWeekend(day: App.ModuleCalendar.Data.CalendarStore['today'] | number) {
             const thisDay = typeof day === 'number' ? day : day.day();
             return thisDay === 0 || thisDay == 6;
         },
-        isInMonth(day: TypeCalendarStore['today']) {
+        isInMonth(day: App.ModuleCalendar.Data.CalendarStore['today']) {
             return this.day.year() === day.year() && this.day.month() === day.month();
         },
-        isToday(day: TypeCalendarStore['today']) {
+        isToday(day: App.ModuleCalendar.Data.CalendarStore['today']) {
             return this.today.year() === day.year() && this.today.month() === day.month() && this.today.date() === day.date();
         },
     },

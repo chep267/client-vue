@@ -48,7 +48,7 @@ export default ({ mode }: ConfigEnv) => {
                     configFile: 'src/root/vuetify/settings.scss',
                 },
             }),
-            tailwindcss(), // Gzip compression for production builds
+            tailwindcss(),
             config.isGzip
                 ? viteCompression({
                       algorithm: 'gzip', // Use gzip compression
@@ -57,7 +57,7 @@ export default ({ mode }: ConfigEnv) => {
                       deleteOriginFile: false, // Keep original files
                   })
                 : undefined,
-            visualizer({ filename: 'stats.html', open: false }),
+            config.isDevMode ? visualizer({ filename: 'stats.html', open: false }) : undefined,
         ],
         resolve: {
             alias: {

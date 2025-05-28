@@ -4,7 +4,7 @@
  *
  */
 
-export declare interface TypeApiAuth {
+export interface TypeApiAuth {
     Signin: {
         Payload: App.ModuleBase.Apis.Payload<{ email: NonNullable<App.ModuleUser.Data.User['email']>; password: string }>;
         Response: App.ModuleBase.Apis.Response<{ user: App.ModuleUser.Data.User; token: { exp: number } }>;

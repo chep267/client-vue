@@ -15,7 +15,7 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 /** type */
 import type { RuleExpression, FieldContext } from 'vee-validate';
 
-declare type TypeFieldTextProps = {
+type TypeFieldTextProps = {
     name: string;
     label: string;
     error?: boolean;
@@ -23,7 +23,7 @@ declare type TypeFieldTextProps = {
     rules: RuleExpression<unknown>;
 };
 
-declare type TypeFieldTextEmits = {
+type TypeFieldTextEmits = {
     (e: 'update:ref', elem: App.ModuleBase.Components.InputElement, field: string): void;
     (
         e: 'update:model-value',
