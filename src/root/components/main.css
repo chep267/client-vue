@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2024.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -13,8 +13,7 @@
     --breakpoint-mobile: 30rem; /* 480px */
     --breakpoint-tablet: 40rem; /* 640px */
     --breakpoint-laptop: 64rem; /* 1024px */
-    --breakpoint-desktop: 88rem; /* 1280px */
-    --color-cam: #ff7f50;
+    --breakpoint-desktop: 88rem; /* 1408px */
 }
 
 @theme inline {
