@@ -11,7 +11,7 @@ import { defineStore } from 'pinia';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
 
-export const getState = (): App.ModuleGlobal.Hooks.SiderState => {
+export const getState = (): App.ModuleGlobal.Hook.SiderState => {
     switch (true) {
         case window.innerWidth < AppScreenSize.AppbarHiddenBreakpoint:
             return AppSiderState.hidden;
@@ -23,7 +23,7 @@ export const getState = (): App.ModuleGlobal.Hooks.SiderState => {
 };
 
 export const useSiderStore = defineStore('sider-store', {
-    state: (): App.ModuleGlobal.Hooks.SiderStore => {
+    state: (): App.ModuleGlobal.Hook.SiderStore => {
         const siderState = getState();
         return {
             siderState,

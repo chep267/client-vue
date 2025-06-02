@@ -7,7 +7,7 @@
 /** utils */
 import { delay } from '@module-base/utils/delay';
 
-export const focusInput = (payload: { timer?: number; elem?: App.ModuleBase.Components.InputElement; cb?(): void }) => {
+export const focusInput = (payload: { timer?: number; elem?: App.ModuleBase.Component.InputElement; cb?(): void }) => {
     const { elem, cb, timer = 1 } = payload;
     if (!elem) {
         return cb?.();

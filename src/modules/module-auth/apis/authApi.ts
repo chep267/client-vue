@@ -15,10 +15,10 @@ import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
 /** utils */
 import { delay } from '@module-base/utils/delay';
 
-const apiSignin = async (payload: App.ModuleAuth.Apis.Signin['Payload']): Promise<App.ModuleAuth.Apis.Signin['Response']> => {
+const apiSignin = async (payload: App.ModuleAuth.Api.Signin['Payload']): Promise<App.ModuleAuth.Api.Signin['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
-        return baseApi<App.ModuleAuth.Apis.Signin['Response']>({
+        return baseApi<App.ModuleAuth.Api.Signin['Response']>({
             method: ApiMethod.post,
             url: AuthApiPath.signin,
             data: { email, password },
@@ -29,32 +29,32 @@ const apiSignin = async (payload: App.ModuleAuth.Apis.Signin['Payload']): Promis
 };
 
 const apiSignOut = async (
-    payload: App.ModuleAuth.Apis.SignOut['Payload']
-): Promise<App.ModuleAuth.Apis.SignOut['Response']> => {
+    payload: App.ModuleAuth.Api.SignOut['Payload']
+): Promise<App.ModuleAuth.Api.SignOut['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
     const callApi = () => {
-        return baseApi<App.ModuleAuth.Apis.SignOut['Response']>({ method: ApiMethod.post, url: AuthApiPath.signOut });
+        return baseApi<App.ModuleAuth.Api.SignOut['Response']>({ method: ApiMethod.post, url: AuthApiPath.signOut });
     };
     await Promise.all([callApi(), delay(timer)]);
 };
 
 const apiRestart = async (
-    payload: App.ModuleAuth.Apis.Restart['Payload']
-): Promise<App.ModuleAuth.Apis.Restart['Response']> => {
+    payload: App.ModuleAuth.Api.Restart['Payload']
+): Promise<App.ModuleAuth.Api.Restart['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
     const callApi = () => {
-        return baseApi<App.ModuleAuth.Apis.Restart['Response']>({ method: ApiMethod.post, url: AuthApiPath.restart });
+        return baseApi<App.ModuleAuth.Api.Restart['Response']>({ method: ApiMethod.post, url: AuthApiPath.restart });
     };
     const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
 const apiRegister = async (
-    payload: App.ModuleAuth.Apis.Register['Payload']
-): Promise<App.ModuleAuth.Apis.Register['Response']> => {
+    payload: App.ModuleAuth.Api.Register['Payload']
+): Promise<App.ModuleAuth.Api.Register['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
-        return baseApi<App.ModuleAuth.Apis.Register['Response']>({
+        return baseApi<App.ModuleAuth.Api.Register['Response']>({
             method: ApiMethod.post,
             url: AuthApiPath.register,
             data: { email, password },
@@ -65,11 +65,11 @@ const apiRegister = async (
 };
 
 const apiRecover = async (
-    payload: App.ModuleAuth.Apis.Recover['Payload']
-): Promise<App.ModuleAuth.Apis.Recover['Response']> => {
+    payload: App.ModuleAuth.Api.Recover['Payload']
+): Promise<App.ModuleAuth.Api.Recover['Response']> => {
     const { timer = AppTimer.pendingApi, email } = payload;
     const callApi = () => {
-        return baseApi<App.ModuleAuth.Apis.Recover['Response']>({
+        return baseApi<App.ModuleAuth.Api.Recover['Response']>({
             method: ApiMethod.post,
             url: AuthApiPath.recover,
             data: { email },

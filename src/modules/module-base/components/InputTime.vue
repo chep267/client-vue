@@ -14,7 +14,7 @@ import { mdiChevronUp, mdiChevronDown, mdiClockOutline } from '@mdi/js';
 defineOptions({ name: 'InputTime', extends: VTextField, inheritAttrs: true });
 defineProps<VTextField['$props']>();
 const emits = defineEmits<{
-    (e: 'update:ref', elem: App.ModuleBase.Components.InputElement): void;
+    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement): void;
     (e: 'update:model-value', value: string): void;
 }>();
 

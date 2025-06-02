@@ -24,7 +24,7 @@ type TypeFieldTextProps = {
 };
 
 type TypeFieldTextEmits = {
-    (e: 'update:ref', elem: App.ModuleBase.Components.InputElement, field: string): void;
+    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement, field: string): void;
     (
         e: 'update:model-value',
         value: any,
@@ -37,7 +37,7 @@ defineOptions({ name: 'FieldText', inheritAttrs: true });
 const props = defineProps<TypeFieldTextProps>();
 const emits = defineEmits<TypeFieldTextEmits>();
 
-const inputRef = useTemplateRef<App.ModuleBase.Components.InputElement>('input-ref');
+const inputRef = useTemplateRef<App.ModuleBase.Component.InputElement>('input-ref');
 
 watch(inputRef, () => {
     emits('update:ref', inputRef.value, props.name);

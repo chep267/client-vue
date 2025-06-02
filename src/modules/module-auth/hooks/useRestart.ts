@@ -31,9 +31,9 @@ import type { AxiosError } from 'axios';
 import type { UseMutationReturnType } from '@tanstack/vue-query';
 
 export function useRestart(): UseMutationReturnType<
-    App.ModuleAuth.Apis.Restart['Response'],
+    App.ModuleAuth.Api.Restart['Response'],
     AxiosError,
-    App.ModuleAuth.Apis.Restart['Payload'],
+    App.ModuleAuth.Api.Restart['Payload'],
     unknown
 > {
     const { push } = useRouter();
@@ -41,12 +41,12 @@ export function useRestart(): UseMutationReturnType<
     const authStore = useAuthStore();
 
     const hookRestart = useMutation<
-        App.ModuleAuth.Apis.Restart['Response'],
+        App.ModuleAuth.Api.Restart['Response'],
         AxiosError,
-        App.ModuleAuth.Apis.Restart['Payload']
+        App.ModuleAuth.Api.Restart['Payload']
     >({
         mutationFn: authApi.restart,
-        onSuccess: (response: App.ModuleAuth.Apis.Restart['Response']) => {
+        onSuccess: (response: App.ModuleAuth.Api.Restart['Response']) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             authStore.signin(response.data);
             push(authStore.prePath).then(() => delay(exp - 3000 * 60, () => hookRestart.mutate({})));

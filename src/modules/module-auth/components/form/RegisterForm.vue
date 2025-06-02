@@ -36,7 +36,7 @@ type TypeFormData = {
 type TypeFormFields = {
     [Field in TypeFormFieldsName]: {
         name: Field;
-        elem: App.ModuleBase.Components.InputElement;
+        elem: App.ModuleBase.Component.InputElement;
     };
 };
 
@@ -72,7 +72,7 @@ const updateValue = (value: string, handleChange: FieldContext['handleChange'], 
     handleChange(value, false);
 };
 
-const updateRef = (elem: App.ModuleBase.Components.InputElement, field: string) => {
+const updateRef = (elem: App.ModuleBase.Component.InputElement, field: string) => {
     FormFields[field as TypeFormFieldsName].elem = elem;
 };
 

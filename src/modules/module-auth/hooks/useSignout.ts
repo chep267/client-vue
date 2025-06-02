@@ -24,16 +24,16 @@ import type { AxiosError } from 'axios';
 import type { UseMutationReturnType } from '@tanstack/vue-query';
 
 export function useSignout(): UseMutationReturnType<
-    App.ModuleAuth.Apis.SignOut['Response'],
+    App.ModuleAuth.Api.SignOut['Response'],
     AxiosError,
-    App.ModuleAuth.Apis.SignOut['Payload'],
+    App.ModuleAuth.Api.SignOut['Payload'],
     unknown
 > {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    return useMutation<App.ModuleAuth.Apis.SignOut['Response'], AxiosError, App.ModuleAuth.Apis.SignOut['Payload']>({
+    return useMutation<App.ModuleAuth.Api.SignOut['Response'], AxiosError, App.ModuleAuth.Api.SignOut['Payload']>({
         mutationFn: authApi.signOut,
         onSettled: () => {
             authStore.signout();

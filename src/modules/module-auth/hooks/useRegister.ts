@@ -22,14 +22,14 @@ import type { AxiosError } from 'axios';
 import type { UseMutationReturnType } from '@tanstack/vue-query';
 
 export function useRegister(): UseMutationReturnType<
-    App.ModuleAuth.Apis.Register['Response'],
+    App.ModuleAuth.Api.Register['Response'],
     AxiosError,
-    App.ModuleAuth.Apis.Register['Payload'],
+    App.ModuleAuth.Api.Register['Payload'],
     unknown
 > {
     const notifyStore = useNotifyStore();
 
-    return useMutation<App.ModuleAuth.Apis.Register['Response'], AxiosError, App.ModuleAuth.Apis.Register['Payload']>({
+    return useMutation<App.ModuleAuth.Api.Register['Response'], AxiosError, App.ModuleAuth.Api.Register['Payload']>({
         mutationFn: authApi.register,
         onSuccess: () => {
             notifyStore.show({ color: AppNotifyColor.success, messageIntl: AuthLanguage.notify.register.success });

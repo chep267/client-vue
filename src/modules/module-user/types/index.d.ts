@@ -8,11 +8,9 @@
 import type { UserInfo } from 'firebase/auth';
 
 declare global {
-    namespace App {
-        namespace ModuleUser {
-            namespace Data {
-                type User = UserInfo;
-            }
+    namespace App.ModuleUser {
+        namespace Data {
+            type User = UserInfo;
         }
     }
 }

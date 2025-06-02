@@ -9,7 +9,7 @@ import '@angelblanco/v-calendar/style.css';
 defineOptions({ name: 'InputDate', extends: VTextField, inheritAttrs: true });
 defineProps<VTextField['$props']>();
 defineEmits<{
-    (e: 'update:ref', elem: App.ModuleBase.Components.InputElement): void;
+    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement): void;
     (e: 'update:model-value', value: string): void;
 }>();
 
