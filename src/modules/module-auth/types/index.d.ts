@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type * as TypeApis from './apis.d';
+import type * as TypeApis from './api.d';
 import type * as TypeHooks from './hook.d';
 
 declare global {

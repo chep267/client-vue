@@ -20,7 +20,7 @@ import VietnameseDate from '@module-calendar/utils/Lunar';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
-import type { Dayjs } from '@module-calendar/types';
+import type { Dayjs } from 'dayjs';
 
 const props = defineProps<{
     day: Dayjs | null;

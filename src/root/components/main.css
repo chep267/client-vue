@@ -4,7 +4,7 @@
  *
  */
 
-@import 'tailwindcss';
+@import 'tailwindcss' important;
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant hover (&:hover);
 

@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type * as TypeHooks from './hooks.d';
+import type * as TypeHooks from './hook.d';
 
 declare global {
     namespace App {

@@ -5,16 +5,16 @@
  */
 
 /** types */
-import type * as TypeApis from './apis.d';
-import type * as TypeComponents from './components.d';
-import type * as TypeHooks from './hooks.d';
+import type * as TypeApis from './api.d';
+import type * as TypeComponents from './component.d';
+import type * as TypeHooks from './hook.d';
 import type * as TypeData from './data.d';
 
 declare global {
     namespace App {
         namespace ModuleBase {
             namespace Apis {
-                type Payload<Data = unknown> = TypeApis.TypeCallApiPayload<Data>;
+                type Payload<Data = unknown> = TypeApis.TypePayloadApi<Data>;
                 type Response<Data = unknown> = TypeApis.TypeResponseApi<Data>;
             }
             namespace Components {

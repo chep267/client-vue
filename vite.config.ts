@@ -32,22 +32,19 @@ function resolveAlias() {
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv) => {
     process.env = Object.assign(process.env, loadEnv(mode, process.cwd()));
+
     const config = {
         isDevMode: process.env.VITE_APP_MODE === 'dev',
         host: process.env.VITE_APP_CLIENT_HOST || 'localhost',
         port: Number(process.env.VITE_APP_CLIENT_PORT) || 3000,
         isGzip: process.env.VITE_APP_BUILD_GZIP === 'true',
     };
+
     return defineConfig({
         plugins: [
             vue(),
             basicSsl(),
-            vuetify({
-                autoImport: true,
-                styles: {
-                    configFile: 'src/root/vuetify/settings.scss',
-                },
-            }),
+            vuetify({ autoImport: true }),
             tailwindcss(),
             config.isGzip
                 ? viteCompression({

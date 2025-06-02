@@ -25,7 +25,7 @@ import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
 import type { VDataTableVirtual } from 'vuetify/components/VDataTable';
-import type { Dayjs } from '@module-calendar/types';
+import type { Dayjs } from 'dayjs';
 
 const emits = defineEmits<{
     (e: 'on-select-day', day: Dayjs): void;
