@@ -10,7 +10,7 @@ import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
@@ -46,7 +46,7 @@ const titleCalendar = computed(() => {
     if (!props.day) {
         return '';
     }
-    const month = props.day.format(locale.value === localeObject.en ? 'MMMM' : 'MM');
+    const month = props.day.format(locale.value === LocaleObject.en ? 'MMMM' : 'MM');
     const year = props.day.format('YYYY');
     return t(CalendarLanguage.component.label.calendarInfo.title, { month, year });
 });

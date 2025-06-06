@@ -16,7 +16,7 @@ import { mdiChevronTripleLeft, mdiChevronTripleRight, mdiChevronDoubleLeft, mdiC
 /** constants */
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
-import { localeObject } from '@module-language/constants/localeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
 
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
@@ -36,7 +36,7 @@ const miniMode = computed(() => siderState.value === AppSiderState.hidden || sid
 const isToday = computed(() => calendarStore.isToday(day.value));
 
 const titleCalendar = computed(() => {
-    const month = day.value.format(locale.value === localeObject.en ? 'MMMM' : 'MM');
+    const month = day.value.format(locale.value === LocaleObject.en ? 'MMMM' : 'MM');
     const year = day.value.format('YYYY');
     return t(CalendarLanguage.component.label.calendarInfo.title, { month, year });
 });

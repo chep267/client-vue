@@ -5,12 +5,12 @@
  */
 
 /** types */
-import type { UserInfo } from 'firebase/auth';
+import type * as TypeData from './data.d';
 
 declare global {
     namespace App.ModuleUser {
         namespace Data {
-            type User = UserInfo;
+            type User = TypeData.TypeUser;
         }
     }
 }

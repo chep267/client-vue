@@ -8,7 +8,7 @@
 import { createI18n } from 'vue-i18n';
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
 
 /** utils */
 import { getDeviceLanguage } from '@module-language/utils/i18n/getDeviceLanguage';
@@ -22,10 +22,10 @@ export const defaultLocale = getDeviceLanguage();
 
 export const i18n = createI18n({
     legacy: false,
-    locale: localeObject.en as string,
+    locale: LocaleObject.en as string,
     globalInjection: true,
-    fallbackLocale: localeObject.en,
-    availableLocales: Object.values(localeObject),
+    fallbackLocale: LocaleObject.en,
+    availableLocales: Object.values(LocaleObject),
     messages: messagesCache,
     escapeParameterHtml: true,
     warnHtmlMessage: false,
@@ -49,6 +49,6 @@ export async function getMessages(locale: App.ModuleLanguage.Data.Locale): Promi
     });
 }
 
-if (defaultLocale !== localeObject.en) {
+if (defaultLocale !== LocaleObject.en) {
     getMessages(defaultLocale).then();
 }

@@ -17,7 +17,7 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
 import { customSVGs } from '@module-base/icons';
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
 
 /** utils */
 import { defaultLocale, i18n } from '@module-language/utils/i18n';
@@ -46,7 +46,7 @@ export const vueComponents = createVuetify({
     },
     locale: {
         locale: defaultLocale,
-        fallback: localeObject.en,
+        fallback: LocaleObject.en,
         messages: { en, vi },
         adapter: createVueI18nAdapter({ i18n, useI18n }),
     },

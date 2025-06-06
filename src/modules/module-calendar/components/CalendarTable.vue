@@ -17,7 +17,7 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 
 /** utils */
-import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices';
+import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/calendarServices';
 
 /** hooks */
 import { useSiderStore } from '@module-base/hooks/useSiderStore';

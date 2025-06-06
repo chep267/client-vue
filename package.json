@@ -11,9 +11,10 @@
         "preview": "vite preview",
         "lint": "eslint . --fix",
         "format": "prettier --write .",
-        "update": "pnpm up --latest",
+        "update-all": "pnpm up --latest",
         "deploy": "pnpm build && gh-pages -d dist",
-        "analyze": "open dist/stats.html"
+        "analyze": "open dist/stats.html",
+        "check-code": "node script/check-coding-rules.ts"
     },
     "dependencies": {
         "@angelblanco/v-calendar": "^3.1.3",
@@ -26,7 +27,6 @@
         "axios": "^1.9.0",
         "clsx": "^2.1.1",
         "dayjs": "^1.11.13",
-        "firebase": "^11.8.1",
         "js-cookie": "^3.0.5",
         "pinia": "^3.0.2",
         "tailwindcss": "^4.1.8",

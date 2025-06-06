@@ -30,9 +30,9 @@ import {
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
-import { localeObject } from '@module-language/constants/localeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
 import { LangLanguage } from '@module-language/constants/LangLanguage';
-import { themeObject } from '@module-theme/constants/themeObject';
+import { ThemeObject } from '@module-theme/constants/ThemeObject';
 import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
@@ -126,21 +126,21 @@ const menuBase: TypeMenuData[] = [
         },
         subMenu: [
             {
-                id: themeObject.dark,
+                id: ThemeObject.dark,
                 title: ThemeLanguage.component.label.dark,
                 icon: {
                     name: mdiWeatherNight,
                 },
-                onClick: () => setTheme(themeObject.dark),
+                onClick: () => setTheme(ThemeObject.dark),
             },
             {
-                id: themeObject.light,
+                id: ThemeObject.light,
                 title: ThemeLanguage.component.label.light,
                 icon: {
                     name: mdiWhiteBalanceSunny,
                     color: 'warning',
                 },
-                onClick: () => setTheme(themeObject.light),
+                onClick: () => setTheme(ThemeObject.light),
             },
         ],
     },
@@ -152,22 +152,22 @@ const menuBase: TypeMenuData[] = [
         },
         subMenu: [
             {
-                id: localeObject.vi,
+                id: LocaleObject.vi,
                 title: LangLanguage.component.label.vi,
                 icon: {
                     name: flagIcon.vi,
                     size: 20,
                 },
-                onClick: () => setLocale(localeObject.vi),
+                onClick: () => setLocale(LocaleObject.vi),
             },
             {
-                id: localeObject.en,
+                id: LocaleObject.en,
                 title: LangLanguage.component.label.en,
                 icon: {
                     name: flagIcon.en,
                     size: 20,
                 },
-                onClick: () => setLocale(localeObject.en),
+                onClick: () => setLocale(LocaleObject.en),
             },
         ],
     },

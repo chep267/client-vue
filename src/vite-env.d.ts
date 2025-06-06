@@ -20,10 +20,6 @@ interface ImportMetaEnv {
     readonly VITE_APP_CLIENT_THEME: App.ModuleTheme.Data.Theme;
 }
 
-interface ImportMeta {
-    readonly env: ImportMetaEnv;
-}
-
 declare module 'vue-router' {
     interface RouteMeta {
         isAdmin?: boolean;
@@ -43,5 +39,8 @@ declare global {
     interface Window {
         checkMobile(): boolean;
         isMobile: boolean;
+    }
+    interface ImportMeta {
+        readonly env: ImportMetaEnv;
     }
 }
