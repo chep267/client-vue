@@ -32,7 +32,7 @@ app.use(VueQueryPlugin);
 app.use(vueComponents);
 app.use(i18n);
 app.use(Particles, {
-    init: async (engine) => {
+    init: async (engine: any) => {
         await loadSlim(engine);
     },
 });
