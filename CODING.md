@@ -12,17 +12,18 @@
 ```typescript
 // ❌ WRONG: Logic in component
 export function ChatPage() {
-  const [data, setData] = useState() // NO!
-  useEffect(() => { /* API call */ }, []) // NO!
+    const [data, setData] = useState() // NO!
+    useEffect(() => { /* API call */ }, []) // NO!
 }
 
 // ✅ CORRECT: Pure UI component
 interface ChatPageProps {
-  messages: Message[]
-  onSendMessage: (text: string) => void
+    messages: Message[]
+    onSendMessage: (text: string) => void
 }
-export function ChatPage({ messages, onSendMessage }: ChatPageProps) {
-  return <div>abc</div>
+export function ChatPage(props: ChatPageProps) {
+    const { messages, onSendMessage } = props;
+    return <div>abc</div>
 }
 ```
 

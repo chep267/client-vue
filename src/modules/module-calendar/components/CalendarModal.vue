@@ -10,7 +10,7 @@ import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 /** constants */
-import { LocaleObject } from '@module-language/constants/LocaleObject';
+import { LocaleObject } from '@module-base/constants/LocaleObject';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */

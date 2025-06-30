@@ -18,6 +18,16 @@ export const BaseLanguage = {
                 },
                 server: 'module.base.component.label.error.server.busy',
             },
+            language: {
+                router: 'module.language.component.label.router',
+                vi: 'module.language.component.label.vi',
+                en: 'module.language.component.label.en',
+            },
+            theme: {
+                router: 'module.theme.component.label.router',
+                dark: 'module.theme.component.label.dark',
+                light: 'module.theme.component.label.light',
+            },
         },
         button: {
             retry: 'module.game.component.button.retry',

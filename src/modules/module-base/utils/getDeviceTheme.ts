@@ -4,11 +4,11 @@ import Cookies from 'js-cookie';
 /** constants */
 import { AppEnv } from '@module-base/constants/AppEnv';
 import { AppKey } from '@module-base/constants/AppKey';
-import { ThemeObject } from '@module-theme/constants/ThemeObject';
+import { ThemeObject } from '@module-base/constants/ThemeObject';
 
-export const getDeviceTheme = (): App.ModuleTheme.Data.Theme => {
+export const getDeviceTheme = (): App.ModuleBase.Data.Theme => {
     // get from cookie
-    let theme = Cookies.get(AppKey.theme) as App.ModuleTheme.Data.Theme;
+    let theme = Cookies.get(AppKey.theme) as App.ModuleBase.Data.Theme;
     if (theme in ThemeObject) {
         return theme;
     }

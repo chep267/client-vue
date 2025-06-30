@@ -17,14 +17,15 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
 import { customSVGs } from '@module-base/icons';
 
 /** constants */
-import { LocaleObject } from '@module-language/constants/LocaleObject';
+import { LocaleObject } from '@module-base/constants/LocaleObject';
 
 /** utils */
-import { defaultLocale, i18n } from '@module-language/utils/i18n';
-import { getDeviceTheme } from '@module-theme/utils/defaultTheme';
+import { i18n } from '@module-base/utils/i18n';
+import { getDeviceTheme } from '@module-base/utils/getDeviceTheme';
+import { getDeviceLanguage } from '@module-base/utils/getDeviceLanguage';
 
 /** styles */
-import './vuetify.scss';
+import '@root/vuetify/vuetify.scss';
 
 export const vueComponents = createVuetify({
     components,
@@ -45,7 +46,7 @@ export const vueComponents = createVuetify({
         },
     },
     locale: {
-        locale: defaultLocale,
+        locale: getDeviceLanguage(),
         fallback: LocaleObject.en,
         messages: { en, vi },
         adapter: createVueI18nAdapter({ i18n, useI18n }),

@@ -8,17 +8,17 @@
 import { createI18n } from 'vue-i18n';
 
 /** constants */
-import { LocaleObject } from '@module-language/constants/LocaleObject';
+import { LocaleObject } from '@module-base/constants/LocaleObject';
 
 /** utils */
-import { getDeviceLanguage } from '@module-language/utils/i18n/getDeviceLanguage';
+import { getDeviceLanguage } from '@module-base/utils/getDeviceLanguage';
 
 /** lang default */
 import { en } from '@lang/en';
 
-const messagesCache = { en } as Record<App.ModuleLanguage.Data.Locale, App.ModuleLanguage.Data.Messages>;
+const messagesCache = { en } as Record<App.ModuleBase.Data.Locale, App.ModuleBase.Data.Messages>;
 
-export const defaultLocale = getDeviceLanguage();
+const defaultLocale = getDeviceLanguage();
 
 export const i18n = createI18n({
     legacy: false,
@@ -31,8 +31,8 @@ export const i18n = createI18n({
     warnHtmlMessage: false,
 });
 
-export async function getMessages(locale: App.ModuleLanguage.Data.Locale): Promise<void> {
-    const updateMessage = (data: App.ModuleLanguage.Data.Messages) => {
+export async function getMessages(locale: App.ModuleBase.Data.Locale): Promise<void> {
+    const updateMessage = (data: App.ModuleBase.Data.Messages) => {
         i18n.global.setLocaleMessage(locale, data);
         i18n.global.locale.value = locale;
         document.querySelector('html')?.setAttribute('lang', locale);

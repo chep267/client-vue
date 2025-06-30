@@ -27,27 +27,34 @@ const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen.vue
 
 export const routers = createRouter({
     history: createWebHistory(),
+    scrollBehavior(_to, _from, savedPosition) {
+        return savedPosition || { top: 0 };
+    },
     routes: [
         /** authentication */
         {
             name: AuthRouterPath.signin,
             path: AuthRouterPath.signin,
             component: AuthScreen,
+            meta: { requiresAuth: false },
         },
         {
             name: AuthRouterPath.register,
             path: AuthRouterPath.register,
             component: AuthScreen,
+            meta: { requiresAuth: false },
         },
         {
             name: AuthRouterPath.recover,
             path: AuthRouterPath.recover,
             component: AuthScreen,
+            meta: { requiresAuth: false },
         },
         {
             name: AuthRouterPath.start,
             path: AuthRouterPath.start,
             component: StartScreen,
+            meta: { requiresAuth: false },
         },
 
         /** main */
@@ -55,25 +62,30 @@ export const routers = createRouter({
             name: AppRouterPath.feed,
             path: AppRouterPath.feed,
             component: FeedScreen,
+            meta: { requiresAuth: true },
         },
         {
             name: AppRouterPath.messenger,
             path: AppRouterPath.messenger,
             component: MessengerScreen,
+            meta: { requiresAuth: true },
         },
         {
             name: AppRouterPath.calendar,
             path: AppRouterPath.calendar,
             component: CalendarScreen,
+            meta: { requiresAuth: true },
         },
         {
             name: AppRouterPath.notFound,
             path: AppRouterPath.notFound,
             component: NotFoundScreen,
+            meta: { requiresAuth: true },
         },
         {
             path: '/:catchAll(.*)',
             component: NotFoundScreen,
+            meta: { requiresAuth: true },
         },
     ],
 });
@@ -87,6 +99,7 @@ routers.beforeEach((to) => {
         : uid
           ? AccountState.reSignin
           : AccountState.signin;
+    // const requiresAuth = to.meta.requiresAuth;
 
     const isAuthPath = AuthPath.some((path) => to.path.startsWith(path));
     if (accountState === AccountState.signin && !isAuthPath) {

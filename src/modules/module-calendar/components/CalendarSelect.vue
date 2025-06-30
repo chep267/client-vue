@@ -16,7 +16,7 @@ import { mdiChevronTripleLeft, mdiChevronTripleRight, mdiChevronDoubleLeft, mdiC
 /** constants */
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
-import { LocaleObject } from '@module-language/constants/LocaleObject';
+import { LocaleObject } from '@module-base/constants/LocaleObject';
 
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';

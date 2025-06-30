@@ -10,7 +10,7 @@ import { useTheme } from 'vuetify';
 
 /** constants */
 import { optionsLight, optionsDark } from '@module-base/constants/ParticleOptions';
-import { ThemeObject } from '@module-theme/constants/ThemeObject';
+import { ThemeObject } from '@module-base/constants/ThemeObject';
 
 const theme = useTheme();
 </script>

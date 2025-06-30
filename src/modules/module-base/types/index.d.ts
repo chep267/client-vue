@@ -13,6 +13,9 @@ import type * as TypeData from './data.d';
 declare global {
     namespace App.ModuleBase {
         namespace Data {
+            type Theme = TypeData.TypeTheme;
+            type Locale = TypeData.TypeLocale;
+            type Messages = TypeData.TypeMessages;
             type ItemIds = TypeData.TypeItemIds;
             type Items = TypeData.TypeItems;
             type StorageName = TypeData.TypeStorageName;

@@ -10,11 +10,11 @@ import Cookies from 'js-cookie';
 /** constants */
 import { AppEnv } from '@module-base/constants/AppEnv';
 import { AppKey } from '@module-base/constants/AppKey';
-import { LocaleObject } from '@module-language/constants/LocaleObject';
+import { LocaleObject } from '@module-base/constants/LocaleObject';
 
-export const getDeviceLanguage = (): App.ModuleLanguage.Data.Locale => {
+export const getDeviceLanguage = (): App.ModuleBase.Data.Locale => {
     // get from cookie
-    let locale = Cookies.get(AppKey.locale) as App.ModuleLanguage.Data.Locale;
+    let locale = Cookies.get(AppKey.locale) as App.ModuleBase.Data.Locale;
     if (locale in LocaleObject) {
         return locale;
     }
@@ -26,7 +26,7 @@ export const getDeviceLanguage = (): App.ModuleLanguage.Data.Locale => {
     // get from device
     const deviceLanguage = navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
     // vi_VN | en_UK | en_US | ...
-    locale = `${deviceLanguage}`.slice(0, 2) as App.ModuleLanguage.Data.Locale;
+    locale = `${deviceLanguage}`.slice(0, 2) as App.ModuleBase.Data.Locale;
     if (locale in LocaleObject) {
         return locale;
     }

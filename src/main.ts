@@ -13,7 +13,7 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 import { setupCalendar } from '@angelblanco/v-calendar';
 
 /** utils */
-import { i18n } from '@module-language/utils/i18n';
+import { i18n } from '@module-base/utils/i18n';
 import { vueComponents } from '@root/vuetify';
 import { routers } from '@root/router';
 
@@ -22,9 +22,6 @@ import App from '@root/components/App.vue';
 
 const pinia = createPinia();
 const app = createApp(App);
-
-window.checkMobile = () => /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent);
-window.isMobile = window.checkMobile();
 
 app.use(pinia);
 app.use(routers);

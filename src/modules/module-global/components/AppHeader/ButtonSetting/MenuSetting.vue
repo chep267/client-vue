@@ -28,19 +28,18 @@ import {
 } from '@mdi/js';
 
 /** constants */
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import { AppKey } from '@module-base/constants/AppKey';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
-import { LocaleObject } from '@module-language/constants/LocaleObject';
-import { LangLanguage } from '@module-language/constants/LangLanguage';
-import { ThemeObject } from '@module-theme/constants/ThemeObject';
-import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
+import { LocaleObject } from '@module-base/constants/LocaleObject';
+import { ThemeObject } from '@module-base/constants/ThemeObject';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
 import { flagIcon } from '@module-base/icons';
-import { getMessages } from '@module-language/utils/i18n';
+import { getMessages } from '@module-base/utils/i18n';
 
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
@@ -120,14 +119,14 @@ const calendarSubMenu: TypeMenuData['subMenu'] = [
 const menuBase: TypeMenuData[] = [
     {
         id: 'themes',
-        title: ThemeLanguage.component.label.router,
+        title: BaseLanguage.component.label.theme.router,
         icon: {
             name: mdiPalette,
         },
         subMenu: [
             {
                 id: ThemeObject.dark,
-                title: ThemeLanguage.component.label.dark,
+                title: BaseLanguage.component.label.theme.dark,
                 icon: {
                     name: mdiWeatherNight,
                 },
@@ -135,7 +134,7 @@ const menuBase: TypeMenuData[] = [
             },
             {
                 id: ThemeObject.light,
-                title: ThemeLanguage.component.label.light,
+                title: BaseLanguage.component.label.theme.light,
                 icon: {
                     name: mdiWhiteBalanceSunny,
                     color: 'warning',
@@ -146,14 +145,14 @@ const menuBase: TypeMenuData[] = [
     },
     {
         id: 'languages',
-        title: LangLanguage.component.label.router,
+        title: BaseLanguage.component.label.language.router,
         icon: {
             name: mdiGoogleTranslate,
         },
         subMenu: [
             {
                 id: LocaleObject.vi,
-                title: LangLanguage.component.label.vi,
+                title: BaseLanguage.component.label.language.vi,
                 icon: {
                     name: flagIcon.vi,
                     size: 20,
@@ -162,7 +161,7 @@ const menuBase: TypeMenuData[] = [
             },
             {
                 id: LocaleObject.en,
-                title: LangLanguage.component.label.en,
+                title: BaseLanguage.component.label.language.en,
                 icon: {
                     name: flagIcon.en,
                     size: 20,
@@ -213,11 +212,11 @@ const menuAuth = computed<TypeMenuData[]>(() => {
     ];
 });
 
-const setTheme = (value: App.ModuleTheme.Data.Theme) => {
+const setTheme = (value: App.ModuleBase.Data.Theme) => {
     Cookie.set(AppKey.theme, value);
     theme.global.name.value = value;
 };
-const setLocale = async (value: App.ModuleLanguage.Data.Locale) => {
+const setLocale = async (value: App.ModuleBase.Data.Locale) => {
     await getMessages(value);
     Cookie.set(AppKey.locale, value);
     locale.current.value = value;

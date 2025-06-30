@@ -84,6 +84,10 @@ export default ({ mode }: ConfigEnv) => {
                 output: {
                     minifyInternalExports: true, // Minify output
                     compact: true, // Compact output
+                    // manualChunks: {
+                    //     'group-guest': ['./src/module-auth'],
+                    //     'group-auth': ['./src/module-global'],
+                    // },
                 },
             },
         },

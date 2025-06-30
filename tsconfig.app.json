@@ -4,6 +4,13 @@
     "exclude": ["src/**/__tests__/*", "node_modules", "dist"],
     "compilerOptions": {
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "erasableSyntaxOnly": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedSideEffectImports": true,
         "composite": true,
         "isolatedModules": true,
         "types": ["vuetify", "vite/client"],
