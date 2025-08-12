@@ -15,7 +15,9 @@ import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
 /** utils */
 import { delay } from '@module-base/utils/delay';
 
-const apiSignin = async (payload: App.ModuleAuth.Api.Signin['Payload']): Promise<App.ModuleAuth.Api.Signin['Response']> => {
+const apiSignin = async (
+    payload: App.ModuleAuth.Api.Signin['Payload']
+): Promise<App.ModuleAuth.Api.Signin['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
         return baseApi<App.ModuleAuth.Api.Signin['Response']>({

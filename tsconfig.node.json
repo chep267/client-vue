@@ -1,9 +1,9 @@
 {
     "extends": "@tsconfig/node24/tsconfig.json",
-    "include": ["vite.config.ts", "eslint.config.js"],
+    "include": ["vite.config.ts", "eslint.config.js", "prettier.config.js"],
     "compilerOptions": {
-        "target": "ES2023",
-        "lib": ["ES2023"],
+        "target": "ESNext",
+        "lib": ["ES2024", "ESNext"],
         "module": "ESNext",
         "skipLibCheck": true,
 

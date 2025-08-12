@@ -33,7 +33,12 @@ export function useSignin(): UseMutationReturnType<
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    return useMutation<App.ModuleAuth.Api.Signin['Response'], AxiosError, App.ModuleAuth.Api.Signin['Payload'], unknown>({
+    return useMutation<
+        App.ModuleAuth.Api.Signin['Response'],
+        AxiosError,
+        App.ModuleAuth.Api.Signin['Payload'],
+        unknown
+    >({
         mutationFn: authApi.signin,
         onSuccess: (response) => {
             authStore.signin(response.data);

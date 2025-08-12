@@ -87,6 +87,9 @@ export const optionsLight = {
             z5000: {
                 number: {
                     value: 70,
+                    limit: {
+                        value: 70,
+                    },
                 },
                 zIndex: {
                     value: 50,
@@ -95,6 +98,9 @@ export const optionsLight = {
             z7500: {
                 number: {
                     value: 30,
+                    limit: {
+                        value: 30,
+                    },
                 },
                 zIndex: {
                     value: 75,
@@ -103,6 +109,9 @@ export const optionsLight = {
             z2500: {
                 number: {
                     value: 50,
+                    limit: {
+                        value: 50,
+                    },
                 },
                 zIndex: {
                     value: 25,
@@ -111,6 +120,9 @@ export const optionsLight = {
             z1000: {
                 number: {
                     value: 40,
+                    limit: {
+                        value: 40,
+                    },
                 },
                 zIndex: {
                     value: 10,
@@ -431,6 +443,9 @@ export const optionsDark = {
             z5000: {
                 number: {
                     value: 70,
+                    limit: {
+                        value: 70,
+                    },
                 },
                 zIndex: {
                     value: 50,
@@ -439,6 +454,9 @@ export const optionsDark = {
             z7500: {
                 number: {
                     value: 30,
+                    limit: {
+                        value: 30,
+                    },
                 },
                 zIndex: {
                     value: 75,
@@ -447,6 +465,9 @@ export const optionsDark = {
             z2500: {
                 number: {
                     value: 50,
+                    limit: {
+                        value: 50,
+                    },
                 },
                 zIndex: {
                     value: 25,
@@ -455,6 +476,9 @@ export const optionsDark = {
             z1000: {
                 number: {
                     value: 40,
+                    limit: {
+                        value: 40,
+                    },
                 },
                 zIndex: {
                     value: 10,

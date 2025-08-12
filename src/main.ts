@@ -34,4 +34,4 @@ app.use(Particles, {
     },
 });
 app.use(setupCalendar, {});
-app.mount('#app');
+app.mount('#root');

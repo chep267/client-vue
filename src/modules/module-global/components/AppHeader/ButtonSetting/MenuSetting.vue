@@ -252,7 +252,12 @@ const signout = () => {
                 >
                     <template #prepend>
                         <v-btn v-if="subMenu.loading" aria-label="loading" variant="text" :loading="true" />
-                        <v-icon v-else :icon="subMenu.icon.name" :color="subMenu.icon.color" :size="subMenu.icon.size" />
+                        <v-icon
+                            v-else
+                            :icon="subMenu.icon.name"
+                            :color="subMenu.icon.color"
+                            :size="subMenu.icon.size"
+                        />
                     </template>
                 </v-list-item>
             </v-list-group>

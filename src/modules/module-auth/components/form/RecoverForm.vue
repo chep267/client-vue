@@ -63,7 +63,11 @@ const resetError = (setErrors: FieldContext['setErrors']) => {
     setErrors('');
 };
 
-const updateValue = (value: string, handleChange: FieldContext['handleChange'], setErrors: FieldContext['setErrors']) => {
+const updateValue = (
+    value: string,
+    handleChange: FieldContext['handleChange'],
+    setErrors: FieldContext['setErrors']
+) => {
     resetError(setErrors);
     handleChange(value, false);
 };

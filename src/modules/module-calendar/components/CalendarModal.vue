@@ -113,7 +113,9 @@ watch(
                     <div class="flex flex-1 flex-col items-center justify-between p-2">
                         <span class="text-xl">{{ $t(CalendarLanguage.component.label.day) }}</span>
                         <span class="text-3xl">{{ lunarDay.day }}</span>
-                        <span class="text-xl">{{ `${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}` }}</span>
+                        <span class="text-xl">{{
+                            `${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}`
+                        }}</span>
                     </div>
                     <div class="flex flex-1 flex-col items-center justify-between p-2">
                         <span class="text-xl">{{ $t(CalendarLanguage.component.label.month) }}</span>

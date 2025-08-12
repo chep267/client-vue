@@ -6,7 +6,10 @@
 
 export interface TypeApiAuth {
     Signin: {
-        Payload: App.ModuleBase.Api.Payload<{ email: NonNullable<App.ModuleUser.Data.User['email']>; password: string }>;
+        Payload: App.ModuleBase.Api.Payload<{
+            email: NonNullable<App.ModuleUser.Data.User['email']>;
+            password: string;
+        }>;
         Response: App.ModuleBase.Api.Response<{ user: App.ModuleUser.Data.User; token: { exp: number } }>;
     };
     SignOut: {
@@ -18,7 +21,10 @@ export interface TypeApiAuth {
         Response: App.ModuleBase.Api.Response<{ user: App.ModuleUser.Data.User; token: { exp: number } }>;
     };
     Register: {
-        Payload: App.ModuleBase.Api.Payload<{ email: NonNullable<App.ModuleUser.Data.User['email']>; password: string }>;
+        Payload: App.ModuleBase.Api.Payload<{
+            email: NonNullable<App.ModuleUser.Data.User['email']>;
+            password: string;
+        }>;
         Response: App.ModuleBase.Api.Response;
     };
     Recover: {

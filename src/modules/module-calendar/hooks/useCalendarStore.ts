@@ -41,7 +41,11 @@ export const useCalendarStore = defineStore('calendar-store', {
             return this.day.year() === day.year() && this.day.month() === day.month();
         },
         isToday(day: App.ModuleCalendar.Data.CalendarStore['today']) {
-            return this.today.year() === day.year() && this.today.month() === day.month() && this.today.date() === day.date();
+            return (
+                this.today.year() === day.year() &&
+                this.today.month() === day.month() &&
+                this.today.date() === day.date()
+            );
         },
     },
 });

@@ -7,12 +7,12 @@
 /** libs */
 import { resolve } from 'node:path';
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import vuetify from 'vite-plugin-vuetify';
-import basicSsl from '@vitejs/plugin-basic-ssl';
-import tailwindcss from '@tailwindcss/vite';
-import { visualizer } from 'rollup-plugin-visualizer';
-import viteCompression from 'vite-plugin-compression';
+import pluginVue from '@vitejs/plugin-vue';
+import pluginVuetify from 'vite-plugin-vuetify';
+import pluginBasicSsl from '@vitejs/plugin-basic-ssl';
+import pluginTailwindcss from '@tailwindcss/vite';
+import pluginViteCompression from 'vite-plugin-compression';
+import { visualizer as pluginVisualizer } from 'rollup-plugin-visualizer';
 
 /** module path */
 import tsPaths from './tsconfig.app.json' with { type: 'json' };
@@ -42,19 +42,19 @@ export default ({ mode }: ConfigEnv) => {
 
     return defineConfig({
         plugins: [
-            vue(),
-            basicSsl(),
-            vuetify({ autoImport: true }),
-            tailwindcss(),
+            pluginVue(),
+            pluginBasicSsl(),
+            pluginVuetify({ autoImport: true }),
+            pluginTailwindcss(),
             config.isGzip
-                ? viteCompression({
+                ? pluginViteCompression({
                       algorithm: 'gzip', // Use gzip compression
                       ext: '.gz', // Output extension
                       threshold: 10240, // Only compress files larger than 10KB
                       deleteOriginFile: false, // Keep original files
                   })
                 : undefined,
-            config.isDevMode ? visualizer({ filename: 'stats.html', open: false }) : undefined,
+            config.isDevMode ? pluginVisualizer({ filename: 'stats.html', open: false }) : undefined,
         ],
         resolve: {
             alias: {
@@ -66,6 +66,7 @@ export default ({ mode }: ConfigEnv) => {
         esbuild: {
             target: 'esnext', // Target modern browsers that support ES Modules
             treeShaking: true, // Remove unnecessary code
+            minifySyntax: true, // Minify syntax while preserving ES Modules
             legalComments: 'none', // Remove comments
             format: 'esm',
         },
@@ -84,10 +85,6 @@ export default ({ mode }: ConfigEnv) => {
                 output: {
                     minifyInternalExports: true, // Minify output
                     compact: true, // Compact output
-                    // manualChunks: {
-                    //     'group-guest': ['./src/module-auth'],
-                    //     'group-auth': ['./src/module-global'],
-                    // },
                 },
             },
         },

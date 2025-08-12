@@ -14,7 +14,7 @@ import { LocaleObject } from '@module-base/constants/LocaleObject';
 import { getDeviceLanguage } from '@module-base/utils/getDeviceLanguage';
 
 /** lang default */
-import { en } from '@lang/en';
+import { en } from '@src/langs/en';
 
 const messagesCache = { en } as Record<App.ModuleBase.Data.Locale, App.ModuleBase.Data.Messages>;
 
@@ -42,13 +42,13 @@ export async function getMessages(locale: App.ModuleBase.Data.Locale): Promise<v
     if (messagesCache[locale]) {
         return updateMessage(messagesCache[locale]);
     }
-    import(`@lang/${locale}.ts`).then((messages) => {
+    import(`@langs/${locale}.ts`).then((messages) => {
         if (messages && messages[locale]) {
             return updateMessage(messages[locale]);
         }
     });
 }
 
-if (defaultLocale !== LocaleObject.en) {
+if (!messagesCache[defaultLocale]) {
     getMessages(defaultLocale).then();
 }
