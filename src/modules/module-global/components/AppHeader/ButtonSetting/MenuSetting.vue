@@ -39,7 +39,7 @@ import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
 import { flagIcon } from '@module-base/icons';
-import { getMessages } from '@module-base/utils/i18n';
+import { getMessage } from '@module-base/utils/i18n';
 
 /** hooks */
 import { useAuthStore } from '@module-auth/hooks/useAuthStore';
@@ -217,7 +217,7 @@ const setTheme = (value: App.ModuleBase.Data.Theme) => {
     theme.global.name.value = value;
 };
 const setLocale = async (value: App.ModuleBase.Data.Locale) => {
-    await getMessages(value);
+    await getMessage(value);
     Cookie.set(AppKey.locale, value);
     locale.current.value = value;
 };

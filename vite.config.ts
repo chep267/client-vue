@@ -8,7 +8,7 @@
 import { resolve } from 'node:path';
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
 import pluginVue from '@vitejs/plugin-vue';
-import pluginVuetify from 'vite-plugin-vuetify';
+// import pluginVuetify from 'vite-plugin-vuetify';
 import pluginBasicSsl from '@vitejs/plugin-basic-ssl';
 import pluginTailwindcss from '@tailwindcss/vite';
 import pluginViteCompression from 'vite-plugin-compression';
@@ -44,7 +44,7 @@ export default ({ mode }: ConfigEnv) => {
         plugins: [
             pluginVue(),
             pluginBasicSsl(),
-            pluginVuetify({ autoImport: true }),
+            // pluginVuetify(),
             pluginTailwindcss(),
             config.isGzip
                 ? pluginViteCompression({
