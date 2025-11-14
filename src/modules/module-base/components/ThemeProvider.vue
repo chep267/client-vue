@@ -5,17 +5,18 @@
  *
  */
 
+/** libs */
 import { watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
+
+/** constants */
+import { ThemeObject } from '@module-base/constants/ThemeObject';
 
 const theme = useTheme();
 
 watchEffect(() => {
-    if (theme.global.current.value.dark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
+    const value = theme.global.current.value.dark ? ThemeObject.dark : ThemeObject.light;
+    document.documentElement.setAttribute('data-theme', value);
 });
 </script>
 

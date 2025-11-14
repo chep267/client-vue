@@ -21,6 +21,7 @@ import { focusInput } from '@module-base/utils/focusInput';
 import { useRegister } from '@module-auth/hooks/useRegister';
 
 /** components */
+import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/general/AuthFormBreadcrumbs.vue';
 import FieldText from '@module-auth/components/general/FieldText.vue';
 import FieldPassword from '@module-auth/components/general/FieldPassword.vue';
@@ -128,11 +129,19 @@ const validatePassword: RuleExpression<unknown> = (value) => {
     <Form
         v-slot="{ isSubmitting, isValidating }"
         as="v-form"
-        class="z-1 flex w-full max-w-xl flex-col gap-y-2 rounded-md p-6 shadow-lg shadow-gray-500/40"
+        :class="
+            clsx(
+                'flex flex-col',
+                'w-full max-w-xl',
+                'z-1 gap-y-2 rounded-md p-6',
+                'overflow-hidden shadow-lg shadow-gray-500/40'
+            )
+        "
         :initial-values="initialValues"
         :on-submit="onSubmit"
         :on-invalid-submit="onSubmitError"
     >
+        <AuthFormTitle class="mb-5" />
         <FieldText
             :name="FormFields.email.name"
             :label="AuthLanguage.component.label.email"

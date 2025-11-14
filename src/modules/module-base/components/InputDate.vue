@@ -2,9 +2,9 @@
 /** libs */
 import { useI18n } from 'vue-i18n';
 import { VTextField } from 'vuetify/components/VTextField';
-import { DatePicker } from '@angelblanco/v-calendar';
+import { DatePicker } from 'v-calendar';
 import { mdiCalendarBlank } from '@mdi/js';
-import '@angelblanco/v-calendar/style.css';
+import 'v-calendar/style.css';
 
 defineOptions({ name: 'InputDate', extends: VTextField, inheritAttrs: true });
 defineProps<VTextField['$props']>();
@@ -30,11 +30,11 @@ const { locale } = useI18n();
         <template #default="{ inputValue, inputEvents }">
             <v-text-field
                 v-bind.prop="$props"
-                :spellcheck="false"
                 autocomplete="off"
                 variant="outlined"
                 placeholder="dd/mm/yyyy"
                 readonly
+                :spellcheck="false"
                 :model-value="inputValue"
                 :append-inner-icon="mdiCalendarBlank"
                 v-on="inputEvents"

@@ -10,7 +10,7 @@ import { createPinia } from 'pinia';
 import Particles from '@tsparticles/vue3';
 import { loadSlim } from '@tsparticles/slim';
 import { VueQueryPlugin } from '@tanstack/vue-query';
-import { setupCalendar } from '@angelblanco/v-calendar';
+import { setupCalendar } from 'v-calendar';
 
 /** utils */
 import { i18n } from '@module-base/utils/i18n';
