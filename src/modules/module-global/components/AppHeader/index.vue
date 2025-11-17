@@ -5,6 +5,9 @@
  *
  */
 
+/** libs */
+import clsx from 'clsx';
+
 /** constants */
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
@@ -17,12 +20,12 @@ import ButtonDev from '@module-global/components/AppHeader/ButtonDev.vue';
 </script>
 
 <template>
-    <v-app-bar :elevation="5" :height="AppScreenSize.HeaderHeight" class="text-tw-primary dark:text-white">
+    <v-app-bar :elevation="5" :height="AppScreenSize.HeaderHeight" :class="clsx('text-tw-primary', 'dark:text-white')">
         <template #prepend>
             <AppLogo />
         </template>
         <v-app-bar-title>
-            <div class="flex items-center gap-10">
+            <div :class="clsx('flex items-center', 'gap-10')">
                 <AppName />
                 <AppTimer class="max-sm:invisible" />
             </div>

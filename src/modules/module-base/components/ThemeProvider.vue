@@ -21,5 +21,7 @@ watchEffect(() => {
 </script>
 
 <template>
-    <v-theme-provider><slot /></v-theme-provider>
+    <v-theme-provider>
+        <slot />
+    </v-theme-provider>
 </template>

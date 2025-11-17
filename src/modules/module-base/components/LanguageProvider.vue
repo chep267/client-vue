@@ -7,5 +7,7 @@
 </script>
 
 <template>
-    <v-locale-provider><slot /></v-locale-provider>
+    <v-locale-provider>
+        <slot />
+    </v-locale-provider>
 </template>

@@ -65,7 +65,7 @@ const emits = defineEmits<{
 }>();
 
 const theme = useTheme();
-const locale = useLocale();
+const { current } = useLocale();
 const authStore = useAuthStore();
 const calendarStore = useCalendarStore();
 const hookSignOut = useSignout();
@@ -73,7 +73,7 @@ const hookSignOut = useSignout();
 const { isAuthentication } = storeToRefs(authStore);
 const { display, isOnlyMonth } = storeToRefs(calendarStore);
 
-const calendarSubMenu: TypeMenuData['subMenu'] = [
+const calendarSubMenu: TypeMenuData[] = [
     {
         id: 'default',
         title: CalendarLanguage.component.label.display.default,
@@ -173,13 +173,8 @@ const menuBase: TypeMenuData[] = [
 ];
 
 const menuAuth = computed<TypeMenuData[]>(() => {
-    const menuOnlyMonth = calendarSubMenu[isOnlyMonth.value ? 4 : 3];
-    const _calendarSubMenu =
-        display.value === CalendarDisplay.sunday
-            ? [calendarSubMenu[1], calendarSubMenu[2], menuOnlyMonth]
-            : display.value === CalendarDisplay.monday
-              ? [calendarSubMenu[0], calendarSubMenu[2], menuOnlyMonth]
-              : [calendarSubMenu[0], calendarSubMenu[1], menuOnlyMonth];
+    const menuOnlyMonth = calendarSubMenu[isOnlyMonth.value ? 4 : 3]!;
+
     return [
         {
             id: 'calendar',
@@ -188,7 +183,12 @@ const menuAuth = computed<TypeMenuData[]>(() => {
                 name: mdiCalendar,
             },
             hidden: !isAuthentication.value,
-            subMenu: _calendarSubMenu,
+            subMenu:
+                display.value === CalendarDisplay.sunday
+                    ? [calendarSubMenu[1]!, calendarSubMenu[2]!, menuOnlyMonth]
+                    : display.value === CalendarDisplay.monday
+                      ? [calendarSubMenu[0]!, calendarSubMenu[2]!, menuOnlyMonth]
+                      : [calendarSubMenu[0]!, calendarSubMenu[1]!, menuOnlyMonth],
         },
         {
             id: 'others',
@@ -205,7 +205,7 @@ const menuAuth = computed<TypeMenuData[]>(() => {
                         name: mdiLogout,
                     },
                     loading: hookSignOut.isPending.value,
-                    onClick: signout,
+                    onClick: signOut,
                 },
             ],
         },
@@ -214,14 +214,16 @@ const menuAuth = computed<TypeMenuData[]>(() => {
 
 const setTheme = (value: App.ModuleBase.Data.Theme) => {
     Cookie.set(AppKey.theme, value);
-    theme.global.name.value = value;
+    theme.change(value);
 };
+
 const setLocale = async (value: App.ModuleBase.Data.Locale) => {
     await getMessage(value);
     Cookie.set(AppKey.locale, value);
-    locale.current.value = value;
+    current.value = value;
 };
-const signout = () => {
+
+const signOut = () => {
     hookSignOut.mutate(
         {},
         {

@@ -6,18 +6,20 @@
  */
 
 /** libs */
+import { computed } from 'vue';
+import clsx from 'clsx';
 import { useI18n } from 'vue-i18n';
 import dayjs from 'dayjs';
 
 const { locale } = useI18n();
+
+const formattedDate = computed(() => dayjs().locale(locale.value).format('dddd, DD/MM/YYYY'));
 </script>
 
 <template>
-    <div class="flex flex-row items-center justify-center gap-2">
-        <div class="bg-tw-primary h-2 w-2 rounded-full dark:bg-white" />
-        <span class="text-sm capitalize">
-            {{ dayjs().locale(locale).format('dddd, DD/MM/YYYY') }}
-        </span>
-        <div class="bg-tw-primary h-2 w-2 rounded-full dark:bg-white" />
+    <div :class="clsx('flex flex-row items-center justify-center', 'gap-2')">
+        <div :class="clsx('h-2 w-2 rounded-full', 'bg-tw-primary', 'dark:bg-white')" />
+        <span :class="clsx('text-sm', 'capitalize')">{{ formattedDate }}</span>
+        <div :class="clsx('h-2 w-2 rounded-full', 'bg-tw-primary', 'dark:bg-white')" />
     </div>
 </template>

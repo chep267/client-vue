@@ -23,7 +23,7 @@ interface ImportMetaEnv {
 declare module 'vue-router' {
     interface RouteMeta {
         isAdmin?: boolean;
-        requiresAuth?: boolean;
+        requireAuth?: boolean;
         hasHeader?: boolean;
         hasFooter?: boolean;
     }

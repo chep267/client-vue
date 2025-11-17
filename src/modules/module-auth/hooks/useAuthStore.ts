@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth-store', {
     },
     getters: {
         isAuthentication(state) {
-            return !!state.user;
+            return Boolean(state.user);
         },
     },
     actions: {

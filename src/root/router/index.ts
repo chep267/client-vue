@@ -36,25 +36,25 @@ export const routers = createRouter({
             name: AuthRouterPath.signin,
             path: AuthRouterPath.signin,
             component: AuthScreen,
-            meta: { requiresAuth: false },
+            meta: { requireAuth: false },
         },
         {
             name: AuthRouterPath.register,
             path: AuthRouterPath.register,
             component: AuthScreen,
-            meta: { requiresAuth: false },
+            meta: { requireAuth: false },
         },
         {
             name: AuthRouterPath.recover,
             path: AuthRouterPath.recover,
             component: AuthScreen,
-            meta: { requiresAuth: false },
+            meta: { requireAuth: false },
         },
         {
             name: AuthRouterPath.start,
             path: AuthRouterPath.start,
             component: StartScreen,
-            meta: { requiresAuth: false },
+            meta: { requireAuth: false },
         },
 
         /** main */
@@ -62,60 +62,60 @@ export const routers = createRouter({
             name: AppRouterPath.feed,
             path: AppRouterPath.feed,
             component: FeedScreen,
-            meta: { requiresAuth: true },
+            meta: { requireAuth: true },
         },
         {
             name: AppRouterPath.messenger,
             path: AppRouterPath.messenger,
             component: MessengerScreen,
-            meta: { requiresAuth: true },
+            meta: { requireAuth: true },
         },
         {
             name: AppRouterPath.calendar,
             path: AppRouterPath.calendar,
             component: CalendarScreen,
-            meta: { requiresAuth: true },
+            meta: { requireAuth: true },
         },
         {
             name: AppRouterPath.notFound,
             path: AppRouterPath.notFound,
             component: NotFoundScreen,
-            meta: { requiresAuth: true },
+            meta: { requireAuth: true },
         },
         {
             path: '/:catchAll(.*)',
             component: NotFoundScreen,
-            meta: { requiresAuth: true },
+            meta: { requireAuth: true },
         },
     ],
 });
 
 routers.beforeEach((to) => {
-    const AuthPath = Object.values(AuthRouterPath);
     const uid = Cookies.get(AppKey.uid);
     const authStore = useAuthStore();
     const accountState = authStore.isAuthentication
         ? AccountState.signedIn
-        : uid
-          ? AccountState.reSignin
-          : AccountState.signin;
-    // const requiresAuth = to.meta.requiresAuth;
+        : Boolean(uid)
+          ? AccountState.reSignIn
+          : AccountState.signIn;
 
-    const isAuthPath = AuthPath.some((path) => to.path.startsWith(path));
-    if (accountState === AccountState.signin && !isAuthPath) {
-        /** chưa đăng nhập, trở về đăng nhập  */
-        authStore.setPath(to.path);
-        return { path: AuthRouterPath.signin };
-    }
-    if (accountState === AccountState.reSignin && to.path !== AuthRouterPath.start) {
-        /** đã đăng nhập từ trước, lấy phiên đăng nhập */
-        authStore.setPath(isAuthPath ? AppRouterPath.home : to.path);
-        return { path: AuthRouterPath.start };
-    }
-    if (accountState === AccountState.signedIn) {
-        /** đã đăng nhập xong, vào home */
-        if (isAuthPath || to.path === AppRouterPath.home) {
+    const requireAuth = Boolean(to.meta.requireAuth);
+
+    switch (true) {
+        case accountState === AccountState.signIn && requireAuth: {
+            /** not logged in, return to log in  */
+            authStore.setPath(to.path);
+            return { path: AuthRouterPath.signin };
+        }
+        case accountState === AccountState.reSignIn && to.path !== AuthRouterPath.start: {
+            /** already logged in, get session */
+            authStore.setPath(requireAuth ? to.path : AppRouterPath.home);
+            return { path: AuthRouterPath.start };
+        }
+        case accountState === AccountState.signedIn && (!requireAuth || to.path === AppRouterPath.home): {
+            /** logged in and go home */
             return { path: AppRouterPath.defaultPath };
         }
+        default: // nothing
     }
 });

@@ -19,42 +19,42 @@ export function genMatrixCalendar(time: Dayjs, display: App.ModuleCalendar.Data.
     /** fill before matrixCalendar */
     if (display === CalendarDisplay.sunday) {
         for (let i = day - 1; i >= 0; --i) {
-            matrixCalendar[i].push(0);
+            matrixCalendar[i]!.push(0);
         }
     } else if (display === CalendarDisplay.monday) {
         for (let i = day === 0 ? 6 : day - 1; i >= 1; --i) {
-            matrixCalendar[i].push(0);
+            matrixCalendar[i]!.push(0);
         }
     } else if (display === CalendarDisplay.weekend) {
         if (day !== 6) {
             for (let i = day - 1; i >= 0; --i) {
-                matrixCalendar[i].push(0);
+                matrixCalendar[i]!.push(0);
             }
-            matrixCalendar[6].push(0);
+            matrixCalendar[6]!.push(0);
         }
     }
 
     /** fill matrixCalendar */
     for (let date = 1; date <= totalDate; ++date) {
-        matrixCalendar[day].push(date);
+        matrixCalendar[day]!.push(date);
         day = date === totalDate ? day : (day + 1) % 7;
     }
 
     /** fill after matrixCalendar */
     if (display === CalendarDisplay.sunday) {
         for (let i = day + 1; i <= 6; ++i) {
-            matrixCalendar[i].push(0);
+            matrixCalendar[i]!.push(0);
         }
     } else if (display === CalendarDisplay.monday) {
         if (day !== 0) {
             for (let i = day + 1; i <= 6; ++i) {
-                matrixCalendar[i].push(0);
+                matrixCalendar[i]!.push(0);
             }
-            matrixCalendar[0].push(0);
+            matrixCalendar[0]!.push(0);
         }
     } else if (display === CalendarDisplay.weekend) {
         for (let i = day === 6 ? 0 : day + 1; i <= 5; ++i) {
-            matrixCalendar[i].push(0);
+            matrixCalendar[i]!.push(0);
         }
     }
 
@@ -71,27 +71,27 @@ export function genMatrixCalendarDayJS(time: Dayjs, display: App.ModuleCalendar.
     let prevDay = firstDay.add(-1, 'day');
     if (display === CalendarDisplay.sunday) {
         for (let i = day - 1; i >= 0; --i) {
-            matrixCalendar[i].push(prevDay);
+            matrixCalendar[i]!.push(prevDay);
             prevDay = prevDay.add(-1, 'day');
         }
     } else if (display === CalendarDisplay.monday) {
         for (let i = day === 0 ? 6 : day - 1; i >= 1; --i) {
-            matrixCalendar[i].push(prevDay);
+            matrixCalendar[i]!.push(prevDay);
             prevDay = prevDay.add(-1, 'day');
         }
     } else if (display === CalendarDisplay.weekend) {
         if (day !== 6) {
             for (let i = day - 1; i >= 0; --i) {
-                matrixCalendar[i].push(prevDay);
+                matrixCalendar[i]!.push(prevDay);
                 prevDay = prevDay.add(-1, 'day');
             }
-            matrixCalendar[6].push(prevDay);
+            matrixCalendar[6]!.push(prevDay);
         }
     }
 
     /** fill matrixCalendar */
     for (let date = 1; date <= totalDate; ++date) {
-        matrixCalendar[day].push(time.set('date', date));
+        matrixCalendar[day]!.push(time.set('date', date));
         day = date === totalDate ? day : (day + 1) % 7;
     }
 
@@ -99,20 +99,20 @@ export function genMatrixCalendarDayJS(time: Dayjs, display: App.ModuleCalendar.
     let nextDay = firstDay.add(1, 'month');
     if (display === CalendarDisplay.sunday) {
         for (let i = day + 1; i <= 6; ++i) {
-            matrixCalendar[i].push(nextDay);
+            matrixCalendar[i]!.push(nextDay);
             nextDay = nextDay.add(1, 'day');
         }
     } else if (display === CalendarDisplay.monday) {
         if (day !== 0) {
             for (let i = day + 1; i <= 6; ++i) {
-                matrixCalendar[i].push(nextDay);
+                matrixCalendar[i]!.push(nextDay);
                 nextDay = nextDay.add(1, 'day');
             }
-            matrixCalendar[0].push(nextDay);
+            matrixCalendar[0]!.push(nextDay);
         }
     } else if (display === CalendarDisplay.weekend) {
         for (let i = day === 6 ? 0 : day + 1; i <= 5; ++i) {
-            matrixCalendar[i].push(nextDay);
+            matrixCalendar[i]!.push(nextDay);
             nextDay = nextDay.add(1, 'day');
         }
     }
@@ -120,13 +120,18 @@ export function genMatrixCalendarDayJS(time: Dayjs, display: App.ModuleCalendar.
     return matrixCalendar;
 }
 
-export function reverseMatrix<T extends unknown[][]>(matrix: T) {
-    const output = [] as unknown[][];
-    for (let j = 0, m = matrix[0].length; j < m; ++j) {
-        output.push([]);
-        for (let i = 0, n = matrix.length; i < n; ++i) {
-            output[j].push(matrix[i][j]);
+export function reverseMatrix<T>(matrix: T[][]): T[][] {
+    if (!matrix.length) return [];
+
+    const rows = matrix.length;
+    const cols = matrix[0]!.length;
+    const output = Array.from({ length: cols }, () => Array(rows));
+
+    for (let i = 0; i < rows; ++i) {
+        for (let j = 0; j < cols; ++j) {
+            output[0]![0] = matrix[i]![j];
         }
     }
-    return output as T;
+
+    return output;
 }
