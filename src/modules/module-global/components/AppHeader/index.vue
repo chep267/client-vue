@@ -20,7 +20,7 @@ import ButtonDev from '@module-global/components/AppHeader/ButtonDev.vue';
 </script>
 
 <template>
-    <v-app-bar :elevation="5" :height="AppScreenSize.HeaderHeight" :class="clsx('text-tw-primary', 'dark:text-white')">
+    <v-app-bar :height="AppScreenSize.HeaderHeight" :class="clsx('text-tw-primary', 'dark:text-white')">
         <template #prepend>
             <AppLogo />
         </template>

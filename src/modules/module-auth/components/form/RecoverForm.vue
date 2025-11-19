@@ -7,17 +7,19 @@
 
 /** libs */
 import { reactive } from 'vue';
-import { Form, type RuleExpression } from 'vee-validate';
+import { Form } from 'vee-validate';
 import Cookie from 'js-cookie';
 import clsx from 'clsx';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 import { AppRegex } from '@module-base/constants/AppRegex';
+import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput';
+import { debounce } from '@module-base/utils/debounce';
 
 /** hooks */
 import { useRecover } from '@module-auth/hooks/useRecover';
@@ -29,7 +31,7 @@ import FieldText from '@module-auth/components/general/FieldText.vue';
 import ButtonSubmit from '@module-auth/components/general/ButtonSubmit.vue';
 
 /** type */
-import type { SubmissionHandler, InvalidSubmissionHandler, FieldContext } from 'vee-validate';
+import type { SubmissionHandler, InvalidSubmissionHandler, FieldContext, RuleExpression } from 'vee-validate';
 
 type TypeFormFieldsName = 'email';
 type TypeFormData = {
@@ -58,10 +60,10 @@ const initialValues: TypeFormData = {
     [FormFields.email.name]: Cookie.get(AppKey.email) || '',
 };
 
-const resetError = (setErrors: FieldContext['setErrors']) => {
+const resetError = (setErrors?: FieldContext['setErrors']) => {
     ApiStatus.error = '';
     ApiStatus.success = '';
-    setErrors('');
+    setErrors?.('');
 };
 
 const updateValue = (
@@ -71,10 +73,6 @@ const updateValue = (
 ) => {
     resetError(setErrors);
     handleChange(value, false);
-};
-
-const updateRef = (elem: App.ModuleBase.Component.InputElement, field: string) => {
-    FormFields[field as TypeFormFieldsName].elem = elem;
 };
 
 const onSubmit: SubmissionHandler = (data) => {
@@ -90,6 +88,7 @@ const onSubmit: SubmissionHandler = (data) => {
                     break;
                 default:
                     ApiStatus.error = AuthLanguage.notify.server.error;
+                    debounce(AppTimer.notifyDuration, resetError)();
             }
             focusInput({ elem: FormFields.email.elem });
         },
@@ -136,10 +135,10 @@ const validateEmail: RuleExpression<unknown> = (value) => {
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             :rules="validateEmail"
-            @update:ref="updateRef"
+            @update:ref="FormFields[FormFields.email.name].elem = $event"
             @update:model-value="updateValue"
         />
-        <div :class="clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')">
+        <div :class="clsx('flex items-end justify-between', 'w-full gap-2', 'flex-col', 'xs:flex-row')">
             <AuthFormBreadcrumbs />
             <ButtonSubmit
                 :loading="isValidating || isSubmitting || hookRecover.isPending.value"

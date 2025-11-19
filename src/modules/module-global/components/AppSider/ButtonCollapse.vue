@@ -31,10 +31,8 @@ defineEmits<{
             <v-btn
                 v-bind="props"
                 aria-label="toggle sider"
-                class="w-full min-w-0 rounded-none"
+                class="w-full min-w-0 rounded-none shadow-none"
                 :disabled="disabled"
-                elevation="0"
-                rounded="0"
                 @click.stop="$emit('toggle-sider')"
             >
                 <v-icon

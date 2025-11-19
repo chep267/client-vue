@@ -98,7 +98,7 @@ watch(data, () => {
                 @update:ref="$emit('update:ref', $event)"
             />
         </template>
-        <v-list :elevation="0" class="max-w-40">
+        <v-list class="max-w-40 shadow-none">
             <v-list-item>
                 <div
                     class="flex h-max w-full flex-col items-center gap-2 rounded-lg border border-solid px-4 py-2"
@@ -107,8 +107,7 @@ watch(data, () => {
                     <div class="flex h-full w-full items-center justify-between">
                         <div class="flex h-full w-full flex-col items-center justify-between gap-2">
                             <v-btn
-                                aria-label="button prev hour"
-                                :elevation="0"
+                                aria-label="button prev hour shadow-none"
                                 density="comfortable"
                                 :icon="mdiChevronUp"
                                 @click.stop="onPrevHour"
@@ -122,8 +121,7 @@ watch(data, () => {
                                 :step="1"
                             />
                             <v-btn
-                                aria-label="button next hour"
-                                :elevation="0"
+                                aria-label="button next hour shadow-none"
                                 density="comfortable"
                                 :icon="mdiChevronDown"
                                 @click.stop="onNextHour"
@@ -132,8 +130,7 @@ watch(data, () => {
                         <span>:</span>
                         <div class="flex h-full w-full flex-col items-center justify-between gap-2">
                             <v-btn
-                                aria-label="button prev minute"
-                                :elevation="0"
+                                aria-label="button prev minute shadow-none"
                                 density="comfortable"
                                 :icon="mdiChevronUp"
                                 @click.stop="onPrevMinute"
@@ -147,8 +144,7 @@ watch(data, () => {
                                 :step="1"
                             />
                             <v-btn
-                                aria-label="button next minute"
-                                :elevation="0"
+                                aria-label="button next minute shadow-none"
                                 density="comfortable"
                                 :icon="mdiChevronDown"
                                 @click.stop="onNextMinute"
@@ -157,9 +153,8 @@ watch(data, () => {
                     </div>
                     <div class="flex w-28 justify-between overflow-hidden rounded-md border border-solid">
                         <v-btn
-                            elevation="0"
                             :class="
-                                clsx('h-6 min-h-0 w-1/2 min-w-0 rounded-none p-0', {
+                                clsx('h-6 min-h-0 w-1/2 min-w-0 rounded-none p-0 shadow-none', {
                                     'bg-info': data.period === TimePeriod.AM,
                                 })
                             "
@@ -168,9 +163,8 @@ watch(data, () => {
                             {{ TimePeriod.AM }}
                         </v-btn>
                         <v-btn
-                            elevation="0"
                             :class="
-                                clsx('h-6 min-h-0 w-1/2 min-w-0 rounded-none p-0', {
+                                clsx('h-6 min-h-0 w-1/2 min-w-0 rounded-none p-0 shadow-none', {
                                     'bg-info': data.period === TimePeriod.PM,
                                 })
                             "

@@ -6,7 +6,7 @@
  */
 
 /** libs */
-import { ref, useTemplateRef, watch } from 'vue';
+import { ref, useTemplateRef, watchEffect } from 'vue';
 import { Field } from 'vee-validate';
 import { mdiEye, mdiEyeOff } from '@mdi/js';
 
@@ -30,7 +30,7 @@ type TypeFieldPasswordProps = {
 };
 
 type TypeFieldPasswordEmits = {
-    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement, field: string): void;
+    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement): void;
     (
         e: 'update:model-value',
         value: any,
@@ -40,7 +40,7 @@ type TypeFieldPasswordEmits = {
 };
 
 defineOptions({ name: 'FieldPassword', inheritAttrs: true });
-const props = defineProps<TypeFieldPasswordProps>();
+defineProps<TypeFieldPasswordProps>();
 const emits = defineEmits<TypeFieldPasswordEmits>();
 
 const visible = ref<boolean>(false);
@@ -59,8 +59,8 @@ const validatePassword: RuleExpression<unknown> = (value) => {
     return !AppRegex.password.test(password) ? AuthLanguage.status.password.invalid : true;
 };
 
-watch(inputRef, () => {
-    emits('update:ref', inputRef.value, props.name);
+watchEffect(() => {
+    emits('update:ref', inputRef.value);
 });
 </script>
 
@@ -80,7 +80,6 @@ watch(inputRef, () => {
             :error-messages="$t(errorMessage || errorText || BaseLanguage.component.label.default)"
             :append-inner-icon="visible ? mdiEyeOff : mdiEye"
             @click:append-inner.stop="onSeen"
-            @update:ref="$emit('update:ref', $event, name)"
             @update:model-value="$emit('update:model-value', $event, handleChange, setErrors)"
         />
     </Field>

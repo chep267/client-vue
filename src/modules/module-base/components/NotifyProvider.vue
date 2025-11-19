@@ -22,7 +22,6 @@ const { open, message, messageIntl, location, duration, color } = storeToRefs(no
         :location="location"
         :timeout="duration"
         :color="color"
-        elevation="24"
         v-bind="$attrs"
     >
         <span v-if="messageIntl">{{ $t(messageIntl) }}</span>

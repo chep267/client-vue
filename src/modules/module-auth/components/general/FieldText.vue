@@ -6,7 +6,7 @@
  */
 
 /** libs */
-import { useTemplateRef, watch } from 'vue';
+import { useTemplateRef, watchEffect } from 'vue';
 import { Field } from 'vee-validate';
 
 /** constants */
@@ -24,7 +24,7 @@ type TypeFieldTextProps = {
 };
 
 type TypeFieldTextEmits = {
-    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement, field: string): void;
+    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement): void;
     (
         e: 'update:model-value',
         value: any,
@@ -34,13 +34,13 @@ type TypeFieldTextEmits = {
 };
 
 defineOptions({ name: 'FieldText', inheritAttrs: true });
-const props = defineProps<TypeFieldTextProps>();
+defineProps<TypeFieldTextProps>();
 const emits = defineEmits<TypeFieldTextEmits>();
 
 const inputRef = useTemplateRef<App.ModuleBase.Component.InputElement>('input-ref');
 
-watch(inputRef, () => {
-    emits('update:ref', inputRef.value, props.name);
+watchEffect(() => {
+    emits('update:ref', inputRef.value);
 });
 </script>
 
@@ -57,7 +57,6 @@ watch(inputRef, () => {
             :label="$t(label)"
             :error="error"
             :error-messages="$t(errorMessage || errorText || BaseLanguage.component.label.default)"
-            @update:ref="$emit('update:ref', $event, name)"
             @update:model-value="$emit('update:model-value', $event, handleChange, setErrors)"
         />
     </Field>
