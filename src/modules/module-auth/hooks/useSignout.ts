@@ -7,34 +7,28 @@
 /** libs */
 import { useRouter } from 'vue-router';
 import { useMutation } from '@tanstack/vue-query';
-
-/** apis */
-import { authApi } from '@module-auth/apis/authApi';
+import Cookies from 'js-cookie';
 
 /** constants */
+import { AppKey } from '@module-base/constants/AppKey';
 import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
-/** types */
-import type { AxiosError } from 'axios';
-import type { UseMutationReturnType } from '@tanstack/vue-query';
+/** services */
+import { authServices } from '@module-auth/services';
 
-export function useSignout(): UseMutationReturnType<
-    App.ModuleAuth.Api.SignOut['Response'],
-    AxiosError,
-    App.ModuleAuth.Api.SignOut['Payload'],
-    unknown
-> {
+export function useSignout() {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
+    const uid = Cookies.get(AppKey.uid) || '';
 
-    return useMutation<App.ModuleAuth.Api.SignOut['Response'], AxiosError, App.ModuleAuth.Api.SignOut['Payload']>({
-        mutationFn: authApi.signOut,
+    return useMutation({
+        mutationFn: () => authServices.signout({ uid }),
         onSettled: () => {
             authStore.signout();
             push('/').then();

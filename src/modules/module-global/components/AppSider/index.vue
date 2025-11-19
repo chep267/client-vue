@@ -14,7 +14,7 @@ import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
 
 /** hooks */
-import { useSiderStore } from '@module-base/hooks/useSiderStore';
+import { useSiderStore } from '@module-base/stores/useSiderStore';
 
 /** components */
 import ButtonCollapse from '@module-global/components/AppSider/ButtonCollapse.vue';

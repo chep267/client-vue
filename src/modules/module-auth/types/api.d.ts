@@ -4,31 +4,28 @@
  *
  */
 
+/** types */
+import type { TypeUser } from '@module-user/types';
+
 export interface TypeApiAuth {
     Signin: {
-        Payload: App.ModuleBase.Api.Payload<{
-            email: NonNullable<App.ModuleUser.Data.User['email']>;
-            password: string;
-        }>;
-        Response: App.ModuleBase.Api.Response<{ user: App.ModuleUser.Data.User; token: { exp: number } }>;
+        Payload: { email: string; password: string };
+        Response: { user: TypeUser; token: { exp: number } };
     };
-    SignOut: {
-        Payload: App.ModuleBase.Api.Payload;
-        Response: void;
+    Signout: {
+        Payload: { uid: string };
+        Response: null;
     };
     Restart: {
-        Payload: App.ModuleBase.Api.Payload;
-        Response: App.ModuleBase.Api.Response<{ user: App.ModuleUser.Data.User; token: { exp: number } }>;
+        Payload: { uid?: string };
+        Response: { user: TypeUser; token: { exp: number } };
     };
     Register: {
-        Payload: App.ModuleBase.Api.Payload<{
-            email: NonNullable<App.ModuleUser.Data.User['email']>;
-            password: string;
-        }>;
-        Response: App.ModuleBase.Api.Response;
+        Payload: { email: string; password: string };
+        Response: null;
     };
     Recover: {
-        Payload: App.ModuleBase.Api.Payload<{ email: NonNullable<App.ModuleUser.Data.User['email']> }>;
-        Response: App.ModuleBase.Api.Response;
+        Payload: { email: string };
+        Response: null;
     };
 }

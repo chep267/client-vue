@@ -10,7 +10,7 @@ import { defineAsyncComponent } from 'vue';
 import { storeToRefs } from 'pinia';
 
 /** hooks */
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
 /** lazy components */
 const AppHeader = defineAsyncComponent(() => import('@module-global/components/AppHeader/index.vue'));

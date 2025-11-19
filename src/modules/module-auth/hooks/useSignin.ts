@@ -8,43 +8,32 @@
 import { useRouter } from 'vue-router';
 import { useMutation } from '@tanstack/vue-query';
 
-/** apis */
-import { authApi } from '@module-auth/apis/authApi';
-
 /** constants */
 import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
+
+/** services */
+import { authServices } from '@module-auth/services';
 
 /** types */
 import type { AxiosError } from 'axios';
-import type { UseMutationReturnType } from '@tanstack/vue-query';
 
-export function useSignin(): UseMutationReturnType<
-    App.ModuleAuth.Api.Signin['Response'],
-    AxiosError,
-    App.ModuleAuth.Api.Signin['Payload'],
-    unknown
-> {
+export function useSignin() {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    return useMutation<
-        App.ModuleAuth.Api.Signin['Response'],
-        AxiosError,
-        App.ModuleAuth.Api.Signin['Payload'],
-        unknown
-    >({
-        mutationFn: authApi.signin,
+    return useMutation({
+        mutationFn: authServices.signin,
         onSuccess: (response) => {
             authStore.signin(response.data);
             push('/').then();
         },
-        onError: (error) => {
+        onError: (error: AxiosError) => {
             const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {

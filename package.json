@@ -38,11 +38,11 @@
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.17",
-        "@tsconfig/node24": "^24.0.2",
+        "@tsconfig/node24": "^24.0.3",
         "@types/js-cookie": "^3.0.6",
         "@types/node": "^24.10.1",
         "@vitejs/plugin-basic-ssl": "^2.1.0",
-        "@vitejs/plugin-vue": "^6.0.1",
+        "@vitejs/plugin-vue": "^6.0.2",
         "@vue/eslint-config-prettier": "^10.2.0",
         "@vue/eslint-config-typescript": "^14.6.0",
         "@vue/tsconfig": "^0.8.1",
@@ -56,7 +56,7 @@
         "typescript": "^5.9.3",
         "vite": "^7.2.2",
         "vite-plugin-compression": "^0.5.1",
-        "vite-plugin-vue-devtools": "^8.0.3",
+        "vite-plugin-vue-devtools": "^8.0.5",
         "vite-plugin-vuetify": "^2.1.2",
         "vue-tsc": "^3.1.4"
     }

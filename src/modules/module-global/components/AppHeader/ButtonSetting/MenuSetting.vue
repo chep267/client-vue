@@ -42,7 +42,7 @@ import { flagIcon } from '@module-base/icons';
 import { getMessage } from '@module-base/utils/i18n';
 
 /** hooks */
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
 import { useSignout } from '@module-auth/hooks/useSignout';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
@@ -224,12 +224,9 @@ const setLocale = async (value: App.ModuleBase.Data.Locale) => {
 };
 
 const signOut = () => {
-    hookSignOut.mutate(
-        {},
-        {
-            onSettled: () => emits('close-menu'),
-        }
-    );
+    hookSignOut.mutate(undefined, {
+        onSettled: () => emits('close-menu'),
+    });
 };
 </script>
 

@@ -5,20 +5,20 @@
  */
 
 /** types */
-import type * as TypeApi from './api.d';
-import type * as TypeHook from './hook.d';
+import type * as TypeApi from '@module-auth/types/api.d';
+import type * as TypeStore from '@module-auth/types/store.d';
 
 declare global {
     namespace App.ModuleAuth {
         namespace Api {
             type Signin = TypeApi.TypeApiAuth['Signin'];
-            type SignOut = TypeApi.TypeApiAuth['SignOut'];
+            type Signout = TypeApi.TypeApiAuth['Signout'];
             type Register = TypeApi.TypeApiAuth['Register'];
             type Recover = TypeApi.TypeApiAuth['Recover'];
             type Restart = TypeApi.TypeApiAuth['Restart'];
         }
-        namespace Hook {
-            type AuthStore = TypeHook.TypeAuthStore;
+        namespace Store {
+            type AuthStore = TypeStore.TypeAuthStore;
         }
     }
 }

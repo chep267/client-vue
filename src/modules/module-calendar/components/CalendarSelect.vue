@@ -20,7 +20,7 @@ import { LocaleObject } from '@module-base/constants/LocaleObject';
 
 /** hooks */
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
-import { useSiderStore } from '@module-base/hooks/useSiderStore';
+import { useSiderStore } from '@module-base/stores/useSiderStore';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 const { t, locale } = useI18n();

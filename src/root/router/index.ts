@@ -15,7 +15,7 @@ import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AccountState } from '@module-auth/constants/AccountState';
 
 /** store */
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
 /** screens */
 const StartScreen = () => import('@module-auth/screens/StartScreen.vue');
@@ -27,7 +27,7 @@ const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen.vue
 
 export const routers = createRouter({
     history: createWebHistory(),
-    scrollBehavior(_to, _from, savedPosition) {
+    scrollBehavior: (_to, _from, savedPosition) => {
         return savedPosition || { top: 0 };
     },
     routes: [

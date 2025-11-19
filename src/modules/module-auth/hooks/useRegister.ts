@@ -7,34 +7,28 @@
 /** libs */
 import { useMutation } from '@tanstack/vue-query';
 
-/** apis */
-import { authApi } from '@module-auth/apis/authApi';
-
 /** constants */
 import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+
+/** services */
+import { authServices } from '@module-auth/services';
 
 /** types */
 import type { AxiosError } from 'axios';
-import type { UseMutationReturnType } from '@tanstack/vue-query';
 
-export function useRegister(): UseMutationReturnType<
-    App.ModuleAuth.Api.Register['Response'],
-    AxiosError,
-    App.ModuleAuth.Api.Register['Payload'],
-    unknown
-> {
+export function useRegister() {
     const notifyStore = useNotifyStore();
 
-    return useMutation<App.ModuleAuth.Api.Register['Response'], AxiosError, App.ModuleAuth.Api.Register['Payload']>({
-        mutationFn: authApi.register,
+    return useMutation({
+        mutationFn: authServices.register,
         onSuccess: () => {
             notifyStore.show({ color: AppNotifyColor.success, messageIntl: AuthLanguage.notify.register.success });
         },
-        onError: (error) => {
+        onError: (error: AxiosError) => {
             const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {

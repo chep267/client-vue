@@ -8,8 +8,8 @@
 import { h } from 'vue';
 
 /** icons */
-import FlagVi from './FlagVi.vue';
-import FlagEn from './FlagEn.vue';
+import FlagVi from '@module-base/icons/FlagVi.vue';
+import FlagEn from '@module-base/icons/FlagEn.vue';
 
 /** types */
 import type { IconSet, IconProps } from 'vuetify';

@@ -6,11 +6,12 @@
  */
 
 import { onMounted, ref } from 'vue';
-import { baseApi } from '@module-base/apis/baseApi';
 import { delay } from '@module-base/utils/delay';
+import { BaseServices } from '@module-base/services';
 
 const text = ref('fetching...');
-const callApi = () => baseApi({ method: 'post', url: '/app/messenger' });
+
+const callApi = () => new BaseServices().get({ url: '/app/messenger' });
 
 onMounted(async () => {
     const [res]: any = await Promise.all([callApi(), delay(1000)]);

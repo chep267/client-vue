@@ -5,13 +5,13 @@
  */
 
 /** types */
-import type * as TypeHook from './hook.d';
+import type * as TypeStore from '@module-base/types/store.d';
 
 declare global {
     namespace App.ModuleGlobal {
-        namespace Hook {
-            type SiderState = TypeHook.TypeSiderState;
-            type SiderStore = TypeHook.TypeSiderStore;
+        namespace Store {
+            type SiderState = TypeStore.TypeSiderState;
+            type SiderStore = TypeStore.TypeSiderStore;
         }
     }
 }

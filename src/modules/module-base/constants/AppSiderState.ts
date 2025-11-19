@@ -5,7 +5,7 @@
  */
 
 /** types */
-export const AppSiderState: Readonly<{ [Key in App.ModuleGlobal.Hook.SiderState]: Key }> = {
+export const AppSiderState: Readonly<{ [Key in App.ModuleGlobal.Store.SiderState]: Key }> = {
     collapse: 'collapse',
     expand: 'expand',
     hidden: 'hidden',

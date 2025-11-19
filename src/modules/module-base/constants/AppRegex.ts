@@ -4,11 +4,11 @@
  *
  */
 
-const RegexEmail = /^[a-zA-Z0-9](\.?[a-zA-Z0-9_-]+)*@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/i;
+const RegexEmail = /^[a-zA-Z0-9](\.?[a-zA-Z0-9_-]+)*@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
 
-const RegexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i;
+const RegexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
-const RegexPhone = /^\+?[1-9][0-9]{7,14}$/i;
+const RegexPhone = /^\+?[1-9][0-9]{7,14}$/;
 
 const RegexName = /^(?!\s*$)[a-zA-ZÀ-Ưà-ư]+([ \s][a-zA-ZÀ-Ưà-ư]+|['-][a-zA-ZÀ-Ưà-ư]+)*\s*$/;
 

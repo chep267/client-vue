@@ -9,7 +9,7 @@
 import { storeToRefs } from 'pinia';
 
 /** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 const notifyStore = useNotifyStore();
 const { open, message, messageIntl, location, duration, color } = storeToRefs(notifyStore);

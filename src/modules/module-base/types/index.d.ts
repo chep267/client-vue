@@ -5,10 +5,9 @@
  */
 
 /** types */
-import type * as TypeApi from './api.d';
-import type * as TypeComponent from './component.d';
-import type * as TypeHook from './hook.d';
-import type * as TypeData from './data.d';
+import type * as TypeData from '@module-base/types/data.d';
+import type * as TypeComponent from '@module-base/types/component.d';
+import type * as TypeStore from '@module-base/types/store.d';
 
 declare global {
     namespace App.ModuleBase {
@@ -17,16 +16,12 @@ declare global {
             type Locale = TypeData.TypeLocale;
             type Messages = TypeData.TypeMessages;
             type ItemIds = TypeData.TypeItemIds;
-            type Items = TypeData.TypeItems;
+            type Items<Data = any> = TypeData.TypeItems<Data>;
             type StorageName = TypeData.TypeStorageName;
-            type StoreValue = TypeData.TypeStoreValue;
+            type StorageValue = TypeData.TypeStorageValue;
         }
-        namespace Api {
-            type Payload<Data = unknown> = TypeApi.TypePayloadApi<Data>;
-            type Response<Data = unknown> = TypeApi.TypeResponseApi<Data>;
-        }
-        namespace Hook {
-            type NotifyStore = TypeHook.TypeNotifyStore;
+        namespace Store {
+            type NotifyStore = TypeStore.TypeNotifyStore;
         }
         namespace Component {
             type InputElement = TypeComponent.TypeInputElem;

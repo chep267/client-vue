@@ -8,7 +8,7 @@
 import { resolve } from 'node:path';
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
 import pluginVue from '@vitejs/plugin-vue';
-// import pluginVuetify from 'vite-plugin-vuetify';
+import pluginVuetify from 'vite-plugin-vuetify';
 import pluginBasicSsl from '@vitejs/plugin-basic-ssl';
 import pluginTailwindcss from '@tailwindcss/vite';
 import pluginViteCompression from 'vite-plugin-compression';
@@ -44,7 +44,7 @@ export default ({ mode }: ConfigEnv) => {
         plugins: [
             pluginVue(),
             pluginBasicSsl(),
-            // pluginVuetify(),
+            pluginVuetify({ autoImport: false }),
             pluginTailwindcss(),
             config.isGzip
                 ? pluginViteCompression({
@@ -75,7 +75,7 @@ export default ({ mode }: ConfigEnv) => {
             target: 'esnext', // Target modern browsers
             minify: 'esbuild', // Enable minification
             sourcemap: false, // Generate sourcemaps (optional, disable for smaller builds)
-            chunkSizeWarningLimit: 500, // Set maximum chunk size (in bytes)
+            chunkSizeWarningLimit: 500, // Set the maximum chunk size (in bytes)
             assetsInlineLimit: 4096,
             cssCodeSplit: true, // Enable CSS code splitting
             commonjsOptions: {

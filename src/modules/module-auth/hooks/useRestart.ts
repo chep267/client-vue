@@ -9,9 +9,6 @@ import { useRouter } from 'vue-router';
 import { useMutation } from '@tanstack/vue-query';
 import Cookie from 'js-cookie';
 
-/** apis */
-import { authApi } from '@module-auth/apis/authApi';
-
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 import { AppTimer } from '@module-base/constants/AppTimer';
@@ -22,36 +19,29 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 /** utils */
 import { delay } from '@module-base/utils/delay';
 
-/** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
+
+/** services */
+import { authServices } from '@module-auth/services';
 
 /** types */
 import type { AxiosError } from 'axios';
-import type { UseMutationReturnType } from '@tanstack/vue-query';
 
-export function useRestart(): UseMutationReturnType<
-    App.ModuleAuth.Api.Restart['Response'],
-    AxiosError,
-    App.ModuleAuth.Api.Restart['Payload'],
-    unknown
-> {
+export function useRestart() {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
 
-    const hookRestart = useMutation<
-        App.ModuleAuth.Api.Restart['Response'],
-        AxiosError,
-        App.ModuleAuth.Api.Restart['Payload']
-    >({
-        mutationFn: authApi.restart,
-        onSuccess: (response: App.ModuleAuth.Api.Restart['Response']) => {
+    const hookRestart = useMutation({
+        mutationFn: authServices.restart,
+        onSuccess: (response) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             authStore.signin(response.data);
             push(authStore.prePath).then(() => delay(exp - 3000 * 60, () => hookRestart.mutate({})));
         },
-        onError: (error) => {
+        onError: (error: AxiosError) => {
             Cookie.remove(AppKey.uid);
             const code = Number(error.response?.status);
             let messageIntl: string;

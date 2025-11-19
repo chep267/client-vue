@@ -20,11 +20,11 @@ import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/calendarServices';
 
 /** hooks */
-import { useSiderStore } from '@module-base/hooks/useSiderStore';
+import { useSiderStore } from '@module-base/stores/useSiderStore';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
-import type { VDataTableVirtual } from 'vuetify/components/VDataTable';
+import type { VDataTableVirtual } from 'vuetify/components';
 import type { Dayjs } from 'dayjs';
 
 const emits = defineEmits<{

@@ -12,7 +12,7 @@ import { mdiBell } from '@mdi/js';
 import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 
 /** hooks */
-import { useNotifyStore } from '@module-base/hooks/useNotifyStore';
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 const notifyStore = useNotifyStore();
 </script>

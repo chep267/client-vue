@@ -14,8 +14,8 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** hooks */
-import { useAuthStore } from '@module-auth/hooks/useAuthStore';
-import { useSiderStore } from '@module-base/hooks/useSiderStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
+import { useSiderStore } from '@module-base/stores/useSiderStore';
 
 /** providers */
 import NotifyProvider from '@module-base/components/NotifyProvider.vue';
