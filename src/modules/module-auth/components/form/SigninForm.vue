@@ -25,7 +25,7 @@ import { debounce } from '@module-base/utils/debounce';
 import { useSignin } from '@module-auth/hooks/useSignin';
 
 /** components */
-import AuthFormTitle from '@module-auth/components/AuthFormTitle.vue';
+import AuthFormTitle from '@module-auth/components/general/AuthFormTitle.vue';
 import AuthFormBreadcrumbs from '@module-auth/components/general/AuthFormBreadcrumbs.vue';
 import FieldText from '@module-auth/components/general/FieldText.vue';
 import FieldPassword from '@module-auth/components/general/FieldPassword.vue';
