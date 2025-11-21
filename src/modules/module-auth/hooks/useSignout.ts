@@ -19,7 +19,7 @@ import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
 /** services */
-import { authServices } from '@module-auth/services';
+import { authService } from '@module-auth/services';
 
 export function useSignout() {
     const { push } = useRouter();
@@ -28,7 +28,7 @@ export function useSignout() {
     const uid = Cookies.get(AppKey.uid) || '';
 
     return useMutation({
-        mutationFn: () => authServices.signout({ uid }),
+        mutationFn: () => authService.signout({ uid }),
         onSettled: () => {
             authStore.signout();
             push('/').then();

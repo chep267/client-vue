@@ -6,12 +6,12 @@
  */
 
 /** libs */
+import { computed } from 'vue';
 import { useTheme } from 'vuetify';
 
 /** constants */
-import { optionsLight, optionsDark } from '@module-base/constants/ParticleOptions';
 import { ThemeObject } from '@module-base/constants/ThemeObject';
-import { computed } from 'vue';
+import { optionsLight, optionsDark } from '@module-base/constants/ParticleOptions';
 
 const theme = useTheme();
 

@@ -16,7 +16,7 @@ import { delay as funcDelay } from '@module-base/utils/delay';
 /** types */
 import type { AxiosResponse, AxiosRequestConfig } from 'axios';
 
-export class BaseServices {
+export class BaseService {
     protected readonly url: string;
     protected readonly delay: number;
 

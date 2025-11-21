@@ -24,7 +24,7 @@ import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
 /** services */
-import { authServices } from '@module-auth/services';
+import { authService } from '@module-auth/services';
 
 /** types */
 import type { AxiosError } from 'axios';
@@ -35,7 +35,7 @@ export function useRestart() {
     const authStore = useAuthStore();
 
     const hookRestart = useMutation({
-        mutationFn: authServices.restart,
+        mutationFn: authService.restart,
         onSuccess: (response) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             authStore.signin(response.data);

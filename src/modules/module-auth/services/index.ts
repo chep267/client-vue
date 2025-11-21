@@ -8,9 +8,9 @@
 import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
 
 /** services */
-import { BaseServices } from '@module-base/services';
+import { BaseService } from '@module-base/services';
 
-class AuthServices extends BaseServices {
+class AuthService extends BaseService {
     constructor(url = AuthApiPath.root) {
         super(url);
     }
@@ -56,4 +56,4 @@ class AuthServices extends BaseServices {
     };
 }
 
-export const authServices = new AuthServices();
+export const authService = new AuthService();

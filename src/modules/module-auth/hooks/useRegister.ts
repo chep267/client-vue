@@ -15,7 +15,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 /** services */
-import { authServices } from '@module-auth/services';
+import { authService } from '@module-auth/services';
 
 /** types */
 import type { AxiosError } from 'axios';
@@ -24,7 +24,7 @@ export function useRegister() {
     const notifyStore = useNotifyStore();
 
     return useMutation({
-        mutationFn: authServices.register,
+        mutationFn: authService.register,
         onSuccess: () => {
             notifyStore.show({ color: AppNotifyColor.success, messageIntl: AuthLanguage.notify.register.success });
         },

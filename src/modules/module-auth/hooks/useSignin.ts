@@ -17,7 +17,7 @@ import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
 /** services */
-import { authServices } from '@module-auth/services';
+import { authService } from '@module-auth/services';
 
 /** types */
 import type { AxiosError } from 'axios';
@@ -28,7 +28,7 @@ export function useSignin() {
     const authStore = useAuthStore();
 
     return useMutation({
-        mutationFn: authServices.signin,
+        mutationFn: authService.signin,
         onSuccess: (response) => {
             authStore.signin(response.data);
             push('/').then();

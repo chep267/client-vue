@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import axios, { HttpStatusCode } from 'axios';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 
 /** constants */
@@ -43,7 +43,7 @@ axiosClient.interceptors.response.use(
         return response;
     },
     async (error: AxiosError) => {
-        if (error.response?.status === HttpStatusCode.Unauthorized) {
+        if (error.response?.status === axios.HttpStatusCode.Unauthorized) {
             Cookies.remove(AppKey.uid);
         }
         /** khoan, dừng khoảng chừng là 600ms */
