@@ -18,6 +18,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
 import { delay } from '@module-base/utils/delay';
+import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
 
 /** stores */
 import { useNotifyStore } from '@module-base/stores/useNotifyStore';
@@ -43,10 +44,9 @@ export function useRestart() {
         },
         onError: (error: AxiosError) => {
             Cookie.remove(AppKey.uid);
-            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
-                case code >= 400 && code < 500:
+                case isCallApiErrorByClient(error):
                     messageIntl = AuthLanguage.notify.refresh.error;
                     break;
                 default:

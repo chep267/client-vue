@@ -11,6 +11,9 @@ import { useMutation } from '@tanstack/vue-query';
 import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
+/** utils */
+import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
+
 /** stores */
 import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
@@ -29,10 +32,9 @@ export function useRecover() {
             notifyStore.show({ color: AppNotifyColor.success, messageIntl: AuthLanguage.notify.recover.success });
         },
         onError: (error: AxiosError) => {
-            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
-                case code >= 400 && code < 500:
+                case isCallApiErrorByClient(error):
                     messageIntl = AuthLanguage.notify.recover.error;
                     break;
                 default:

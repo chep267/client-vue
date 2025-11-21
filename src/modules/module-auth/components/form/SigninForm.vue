@@ -19,7 +19,8 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput';
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
+import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
 
 /** hooks */
 import { useSignin } from '@module-auth/hooks/useSignin';
@@ -87,14 +88,13 @@ const onSubmit: SubmissionHandler = (data) => {
     }
     hookSignIn.mutate(data as TypeFormData, {
         onError: (error) => {
-            const code = Number(error.response?.status);
             switch (true) {
-                case code >= 400 && code < 500:
+                case isCallApiErrorByClient(error):
                     ApiStatus.error = AuthLanguage.notify.signin.error;
                     break;
                 default:
                     ApiStatus.error = AuthLanguage.notify.server.error;
-                    debounce(AppTimer.notifyDuration, resetError)();
+                    delay(AppTimer.notifyDuration, resetError);
             }
             focusInput({ elem: FormFields.email.elem });
         },

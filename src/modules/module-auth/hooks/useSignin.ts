@@ -12,6 +12,9 @@ import { useMutation } from '@tanstack/vue-query';
 import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
+/** utils */
+import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
+
 /** stores */
 import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 import { useAuthStore } from '@module-auth/stores/useAuthStore';
@@ -34,10 +37,9 @@ export function useSignin() {
             push('/').then();
         },
         onError: (error: AxiosError) => {
-            const code = Number(error.response?.status);
             let messageIntl: string;
             switch (true) {
-                case code >= 400 && code < 500:
+                case isCallApiErrorByClient(error):
                     messageIntl = AuthLanguage.notify.signin.error;
                     break;
                 default:
