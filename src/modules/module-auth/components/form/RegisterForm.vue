@@ -143,7 +143,7 @@ const validatePassword: RuleExpression<unknown> = (value) => {
         <AuthFormTitle class="mb-5" />
         <FieldText
             :name="FormFields.email.name"
-            :label="AuthLanguage.component.label.email"
+            :label="$t(AuthLanguage.component.label.email)"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             :rules="validateEmail"
@@ -152,7 +152,7 @@ const validatePassword: RuleExpression<unknown> = (value) => {
         />
         <FieldPassword
             :name="FormFields.password.name"
-            :label="AuthLanguage.component.label.password"
+            :label="$t(AuthLanguage.component.label.password)"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             :rules="validatePassword"

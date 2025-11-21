@@ -131,7 +131,7 @@ const validateEmail: RuleExpression<unknown> = (value) => {
         <AuthFormTitle class="mb-5" />
         <FieldText
             :name="FormFields.email.name"
-            :label="AuthLanguage.component.label.email"
+            :label="$t(AuthLanguage.component.label.email)"
             :error="Boolean(ApiStatus.error)"
             :error-message="ApiStatus.error"
             :rules="validateEmail"
