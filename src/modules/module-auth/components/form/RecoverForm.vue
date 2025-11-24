@@ -8,7 +8,7 @@
 /** libs */
 import { reactive } from 'vue';
 import { Form } from 'vee-validate';
-import Cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 import clsx from 'clsx';
 
 /** constants */
@@ -58,7 +58,7 @@ const ApiStatus = reactive({
     error: '',
 });
 const initialValues: TypeFormData = {
-    [FormFields.email.name]: Cookie.get(AppKey.email) || '',
+    [FormFields.email.name]: Cookies.get(AppKey.email) || '',
 };
 
 const resetError = (setErrors?: FieldContext['setErrors']) => {

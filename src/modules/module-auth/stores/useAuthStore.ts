@@ -6,7 +6,7 @@
 
 /** libs */
 import { defineStore } from 'pinia';
-import Cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
@@ -29,12 +29,12 @@ export const useAuthStore = defineStore('auth-store', {
         },
         signin(payload: App.ModuleAuth.Api.Signin['Response']) {
             const { user } = payload;
-            Cookie.set(AppKey.uid, user.uid);
-            Cookie.set(AppKey.email, user.email || '');
+            Cookies.set(AppKey.uid, user.uid);
+            Cookies.set(AppKey.email, user.email || '');
             this.user = user;
         },
         signout() {
-            Cookie.remove(AppKey.uid);
+            Cookies.remove(AppKey.uid);
             this.user = null;
         },
     },

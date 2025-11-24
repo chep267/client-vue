@@ -33,7 +33,7 @@
         "v-calendar": "^3.1.2",
         "vee-validate": "^4.15.1",
         "vue": "^3.5.24",
-        "vue-i18n": "11.1.12",
+        "vue-i18n": "11.2.1",
         "vue-router": "^4.6.3",
         "vuetify": "^3.10.11"
     },
@@ -46,13 +46,13 @@
         "@types/node": "^24.10.1",
         "@vitejs/plugin-basic-ssl": "^2.1.0",
         "@vitejs/plugin-vue": "^6.0.2",
-        "@vitest/ui": "^4.0.12",
+        "@vitest/ui": "^4.0.13",
         "@vue/eslint-config-prettier": "^10.2.0",
         "@vue/eslint-config-typescript": "^14.6.0",
         "@vue/test-utils": "^2.4.6",
         "@vue/tsconfig": "^0.8.1",
         "eslint": "^9.39.1",
-        "eslint-plugin-vue": "^10.5.1",
+        "eslint-plugin-vue": "^10.6.0",
         "jsdom": "^27.2.0",
         "prettier": "^3.6.2",
         "prettier-plugin-tailwindcss": "^0.7.1",
@@ -65,7 +65,7 @@
         "vite-plugin-vue-devtools": "^8.0.5",
         "vite-plugin-vuetify": "^2.1.2",
         "vite-tsconfig-paths": "^5.1.4",
-        "vitest": "^4.0.12",
-        "vue-tsc": "^3.1.4"
+        "vitest": "^4.0.13",
+        "vue-tsc": "^3.1.5"
     }
 }

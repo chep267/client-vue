@@ -17,7 +17,7 @@ import StartLoading from '@module-base/components/StartLoading.vue';
 const hookRestart = useRestart();
 
 onMounted(() => {
-    hookRestart.mutate({});
+    hookRestart.mutate();
 });
 </script>
 

@@ -17,7 +17,7 @@ export interface TypeApiAuth {
         Response: null;
     };
     Restart: {
-        Payload: { uid?: string };
+        Payload: { uid: string };
         Response: { user: TypeUser; token: { exp: number } };
     };
     Register: {

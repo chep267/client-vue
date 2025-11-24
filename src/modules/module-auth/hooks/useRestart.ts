@@ -7,7 +7,7 @@
 /** libs */
 import { useRouter } from 'vue-router';
 import { useMutation } from '@tanstack/vue-query';
-import Cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
@@ -34,16 +34,17 @@ export function useRestart() {
     const { push } = useRouter();
     const notifyStore = useNotifyStore();
     const authStore = useAuthStore();
+    const uid = Cookies.get(AppKey.uid) || '';
 
     const hookRestart = useMutation({
-        mutationFn: authService.restart,
+        mutationFn: () => authService.restart({ uid }),
         onSuccess: (response) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             authStore.signin(response.data);
-            push(authStore.prePath).then(() => delay(exp - 3000 * 60, () => hookRestart.mutate({})));
+            push(authStore.prePath).then(() => delay(exp - 3000 * 60, () => hookRestart.mutate()));
         },
         onError: (error: AxiosError) => {
-            Cookie.remove(AppKey.uid);
+            Cookies.remove(AppKey.uid);
             let messageIntl: string;
             switch (true) {
                 case isCallApiErrorByClient(error):
