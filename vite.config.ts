@@ -85,6 +85,16 @@ export default ({ mode }: ConfigEnv) => {
                 output: {
                     minifyInternalExports: true, // Minify output
                     compact: true, // Compact output
+                    manualChunks: {
+                        'vite-chunks-vue-core': ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+                        'vite-chunks-vuetify-core': ['vuetify', 'vuetify/directives'],
+                        'vite-chunks-vuetify-components': ['vuetify/components'],
+                        'vite-chunks-lib-components': ['v-calendar'],
+                        'vite-chunks-vendor': ['@vueuse/core', '@tanstack/vue-query', 'axios', 'dayjs', 'js-cookie'],
+                        'vite-chunks-validation': ['vee-validate'],
+                        'vite-chunks-icons': ['@mdi/js'],
+                        'vite-chunks-particles': ['@tsparticles/vue3', '@tsparticles/slim'],
+                    },
                 },
             },
         },

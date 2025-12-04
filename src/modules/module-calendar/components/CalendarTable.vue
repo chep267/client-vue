@@ -24,7 +24,7 @@ import { useSiderStore } from '@module-base/stores/useSiderStore';
 import { useCalendarStore } from '@module-calendar/hooks/useCalendarStore';
 
 /** types */
-import type { VDataTableVirtual } from 'vuetify/components';
+import type { VDataTableVirtual } from 'vuetify/components/VDataTable';
 import type { Dayjs } from 'dayjs';
 
 const emits = defineEmits<{
