@@ -24,9 +24,9 @@ onMounted(() => emits('update:ref', inputRef.value));
 
 <template>
     <v-otp-input
-        ref="input-ref"
         v-bind.prop="$props"
         v-bind.attr="$attrs"
+        ref="input-ref"
         class="input-otp-base"
         @update:model-value="$emit('update:model-value', $event)"
     >
