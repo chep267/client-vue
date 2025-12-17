@@ -39,7 +39,8 @@ export function useRestart() {
     const hookRestart = useMutation({
         mutationFn: () => authService.restart({ uid }),
         onSuccess: (response) => {
-            const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
+            let exp = response.data.data.token.exp;
+            exp = isNaN(exp) ? AppTimer.restart : exp;
             authStore.signin(response.data);
             push(authStore.prePath).then(() => delay(exp - 3000 * 60, () => hookRestart.mutate()));
         },

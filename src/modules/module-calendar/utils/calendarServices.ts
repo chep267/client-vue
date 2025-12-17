@@ -129,7 +129,7 @@ export function reverseMatrix<T>(matrix: T[][]): T[][] {
 
     for (let i = 0; i < rows; ++i) {
         for (let j = 0; j < cols; ++j) {
-            output[0]![0] = matrix[i]![j];
+            output[j]![i] = matrix[i]![j];
         }
     }
 

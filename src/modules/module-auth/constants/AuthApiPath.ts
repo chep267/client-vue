@@ -5,7 +5,7 @@
  */
 
 export const AuthApiPath = {
-    root: '/api/auth',
+    root: '/auth',
     signin: '/signin',
     signout: '/signout',
     restart: '/restart',

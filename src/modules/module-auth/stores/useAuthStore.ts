@@ -28,7 +28,7 @@ export const useAuthStore = defineStore('auth-store', {
             this.prePath = path || this.prePath;
         },
         signin(payload: App.ModuleAuth.Api.Signin['Response']) {
-            const { user } = payload;
+            const { user } = payload.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, user.email || '');
             this.user = user;

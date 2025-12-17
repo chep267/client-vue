@@ -6,11 +6,11 @@
 
 export const AppTimer = {
     timeoutApi: 0,
-    pendingApi: 600,
-    searching: 1000,
-    notifyDuration: 2000,
-    countdownError: 99,
-    restart: 15 * 60 * 1000,
-    debounce: 1000,
-    delay: 1000,
+    pendingApi: 600, //600 milliseconds
+    searching: 1000, // 1 second
+    notifyDuration: 2000, // 2 seconds
+    countdownError: 99, // 99 seconds
+    restart: 15 * 60 * 1000, // 15 minutes
+    debounce: 1000, // 1 second
+    delay: 1000, // 1 second
 } as const;

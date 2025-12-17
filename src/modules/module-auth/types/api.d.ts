@@ -10,22 +10,22 @@ import type { TypeUser } from '@module-user/types';
 export interface TypeApiAuth {
     Signin: {
         Payload: { email: string; password: string };
-        Response: { user: TypeUser; token: { exp: number } };
+        Response: App.ModuleBase.Api.Response<{ user: TypeUser; token: { exp: number } }>;
     };
     Signout: {
         Payload: { uid: string };
-        Response: null;
+        Response: App.ModuleBase.Api.Response<null>;
     };
     Restart: {
         Payload: { uid: string };
-        Response: { user: TypeUser; token: { exp: number } };
+        Response: App.ModuleBase.Api.Response<{ user: TypeUser; token: { exp: number } }>;
     };
     Register: {
         Payload: { email: string; password: string };
-        Response: null;
+        Response: App.ModuleBase.Api.Response<null>;
     };
     Recover: {
         Payload: { email: string };
-        Response: null;
+        Response: App.ModuleBase.Api.Response<null>;
     };
 }

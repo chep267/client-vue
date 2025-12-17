@@ -11,6 +11,13 @@ import type * as TypeStore from '@module-base/types/store.d';
 
 declare global {
     namespace App.ModuleBase {
+        namespace Api {
+            type Response<Data, Metadata = Record<string, any>> = {
+                message: string;
+                data: Data;
+                metadata: { timestamp: number } & Metadata;
+            };
+        }
         namespace Data {
             type Theme = TypeData.TypeTheme;
             type Locale = TypeData.TypeLocale;
