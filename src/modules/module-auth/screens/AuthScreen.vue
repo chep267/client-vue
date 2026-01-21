@@ -6,13 +6,13 @@
  */
 
 /** libs */
+import clsx from 'clsx';
 import { defineAsyncComponent } from 'vue';
 import { configure } from 'vee-validate';
 import { useRoute } from 'vue-router';
 
 /** constants */
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
-import clsx from 'clsx';
 
 /** components */
 const SigninForm = defineAsyncComponent(() => import('@module-auth/components/form/SigninForm.vue'));

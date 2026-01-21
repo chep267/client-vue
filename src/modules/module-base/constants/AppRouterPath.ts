@@ -6,7 +6,7 @@
 
 export const AppRouterPath = {
     home: '/',
-    defaultPath: '/calendar',
+    defaultPath: '/feed',
     feed: '/feed',
     messenger: '/messenger',
     calendar: '/calendar',
