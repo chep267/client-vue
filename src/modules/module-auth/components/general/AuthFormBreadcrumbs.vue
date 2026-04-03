@@ -49,7 +49,7 @@ const genBreadcrumb = (type: keyof Omit<typeof AuthRouterPath, 'start'>) => {
 </script>
 
 <template>
-    <div class="text-tw-primary flex w-full flex-row">
+    <div class="text-main flex w-full flex-row">
         <template v-for="(item, index) in breadcrumbs" :key="item.path">
             <span v-if="index > 0" class="px-1">{{ append }}</span>
             <router-link class="hover:underline" :to="item.path">

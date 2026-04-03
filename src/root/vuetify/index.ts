@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
 import * as directives from 'vuetify/directives';
 import * as components from 'vuetify/components';
@@ -25,7 +26,7 @@ import { getDeviceTheme } from '@module-base/utils/getDeviceTheme';
 import { getDeviceLanguage } from '@module-base/utils/getDeviceLanguage';
 
 /** styles */
-import '@root/vuetify/vuetify.scss';
+// import '@root/vuetify/vuetify.scss';
 
 export const vueComponents = createVuetify({
     components,

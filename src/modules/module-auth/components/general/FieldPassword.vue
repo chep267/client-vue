@@ -30,7 +30,7 @@ type TypeFieldPasswordProps = {
 };
 
 type TypeFieldPasswordEmits = {
-    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement): void;
+    (e: 'update:ref', elem: App.ModuleBase.Component.TypeInputElement): void;
     (
         e: 'update:model-value',
         value: any,
@@ -44,7 +44,7 @@ defineProps<TypeFieldPasswordProps>();
 const emits = defineEmits<TypeFieldPasswordEmits>();
 
 const visible = ref<boolean>(false);
-const inputRef = useTemplateRef<App.ModuleBase.Component.InputElement>('input-ref');
+const inputRef = useTemplateRef<App.ModuleBase.Component.TypeInputElement>('input-ref');
 
 const onSeen = () => {
     visible.value = !visible.value;

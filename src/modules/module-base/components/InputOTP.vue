@@ -12,12 +12,12 @@ import { VOtpInput } from 'vuetify/components/VOtpInput';
 defineOptions({ name: 'InputOTP', extends: VOtpInput, inheritAttrs: true });
 defineProps<VOtpInput['$props']>();
 const emits = defineEmits<{
-    (e: 'update:ref', elem: App.ModuleBase.Component.InputElement): void;
+    (e: 'update:ref', elem: App.ModuleBase.Component.TypeInputElement): void;
     (e: 'update:model-value', value: string): void;
 }>();
 defineSlots<VOtpInput['$slots']>();
 
-const inputRef = useTemplateRef<App.ModuleBase.Component.InputElement>('input-ref');
+const inputRef = useTemplateRef<App.ModuleBase.Component.TypeInputElement>('input-ref');
 
 onMounted(() => emits('update:ref', inputRef.value));
 </script>

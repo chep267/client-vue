@@ -61,42 +61,15 @@ export default ({ mode }: ConfigEnv) => {
                 ...resolveAlias(),
                 vue: 'vue/dist/vue.esm-bundler.js',
             },
-            extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
-        },
-        esbuild: {
-            target: 'esnext', // Target modern browsers that support ES Modules
-            treeShaking: true, // Remove unnecessary code
-            minifySyntax: true, // Minify syntax while preserving ES Modules
-            legalComments: 'none', // Remove comments
-            format: 'esm',
         },
         build: {
-            outDir: 'dist', // Output directory
-            target: 'esnext', // Target modern browsers
-            minify: 'esbuild', // Enable minification
-            sourcemap: false, // Generate sourcemaps (optional, disable for smaller builds)
-            chunkSizeWarningLimit: 500, // Set the maximum chunk size (in bytes)
+            outDir: 'dist',
+            target: 'esnext',
+            minify: 'esbuild',
+            sourcemap: false,
+            chunkSizeWarningLimit: 500,
             assetsInlineLimit: 4096,
-            cssCodeSplit: true, // Enable CSS code splitting
-            commonjsOptions: {
-                transformMixedEsModules: true, // Enable tree-shaking
-            },
-            rollupOptions: {
-                output: {
-                    minifyInternalExports: true, // Minify output
-                    compact: true, // Compact output
-                    manualChunks: {
-                        'vite-chunks-vue-core': ['vue', 'vue-router', 'pinia', 'vue-i18n'],
-                        'vite-chunks-vuetify-core': ['vuetify', 'vuetify/directives'],
-                        'vite-chunks-vuetify-components': ['vuetify/components'],
-                        'vite-chunks-lib-components': ['v-calendar'],
-                        'vite-chunks-vendor': ['@vueuse/core', '@tanstack/vue-query', 'axios', 'dayjs', 'js-cookie'],
-                        'vite-chunks-validation': ['vee-validate'],
-                        'vite-chunks-icons': ['@mdi/js'],
-                        'vite-chunks-particles': ['@tsparticles/vue3', '@tsparticles/slim'],
-                    },
-                },
-            },
+            cssCodeSplit: true,
         },
         server: {
             host: config.host,
@@ -104,7 +77,13 @@ export default ({ mode }: ConfigEnv) => {
             open: config.isDevMode,
         },
         optimizeDeps: {
-            esbuildOptions: { target: 'esnext', treeShaking: true },
+            include: ['vue', 'vuetify'],
+            rolldownOptions: {
+                treeshake: true,
+                output: {
+                    minifyInternalExports: true,
+                },
+            },
         },
     });
 };

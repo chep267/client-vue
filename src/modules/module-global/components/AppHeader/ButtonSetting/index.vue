@@ -26,7 +26,7 @@ const isOpenMenu = ref(false);
                     <v-app-bar-nav-icon
                         v-bind="{ ...MenuProps, ...ToolTipProps }"
                         aria-label="setting"
-                        :class="clsx('cursor-pointer', { 'text-tw-primary': isOpenMenu })"
+                        :class="clsx('cursor-pointer', { 'text-main': isOpenMenu })"
                     />
                 </template>
             </v-tooltip>

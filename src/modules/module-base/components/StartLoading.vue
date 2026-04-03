@@ -54,8 +54,8 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
         left: 0;
         width: 100%;
         height: 100%;
-        border-top: 3px solid var(--color-tw-start);
-        border-right: 3px solid var(--color-tw-start);
+        border-top: 3px solid var(--color-warning);
+        border-right: 3px solid var(--color-warning);
         border-left: 3px solid transparent;
         border-bottom: 3px solid transparent;
         border-radius: 50%;
@@ -68,8 +68,8 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
     line-height: 150px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    text-shadow: 0 0 10px var(--color-tw-start);
-    color: var(--color-tw-start);
+    text-shadow: 0 0 10px var(--color-warning);
+    color: var(--color-warning);
 }
 .text-loading {
     display: block;
@@ -87,10 +87,10 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        background: var(--color-tw-start);
+        background: var(--color-warning);
         top: -6px;
         right: -8px;
-        box-shadow: 0 0 20px var(--color-tw-start);
+        box-shadow: 0 0 20px var(--color-warning);
     }
 }
 </style>

@@ -41,7 +41,7 @@ type TypeFormData = {
 type TypeFormFields = {
     [Field in TypeFormFieldsName]: {
         name: Field;
-        elem: App.ModuleBase.Component.InputElement;
+        elem: App.ModuleBase.Component.TypeInputElement;
     };
 };
 

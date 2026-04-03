@@ -20,17 +20,16 @@
         "skipLibCheck": true,
         "moduleResolution": "bundler",
 
-        "baseUrl": ".",
         "paths": {
-            "@src/*": ["src/*"],
-            "@root/*": ["src/root/*"],
-            "@langs/*": ["src/langs/*"],
-            "@modules/*": ["src/modules/*"],
-            "@module-base/*": ["src/modules/module-base/*"],
-            "@module-global/*": ["src/modules/module-global/*"],
-            "@module-user/*": ["src/modules/module-user/*"],
-            "@module-auth/*": ["src/modules/module-auth/*"],
-            "@module-calendar/*": ["src/modules/module-calendar/*"]
+            "@src/*": ["./src/*"],
+            "@root/*": ["./src/root/*"],
+            "@langs/*": ["./src/langs/*"],
+            "@modules/*": ["./src/modules/*"],
+            "@module-base/*": ["./src/modules/module-base/*"],
+            "@module-global/*": ["./src/modules/module-global/*"],
+            "@module-user/*": ["./src/modules/module-user/*"],
+            "@module-auth/*": ["./src/modules/module-auth/*"],
+            "@module-calendar/*": ["./src/modules/module-calendar/*"]
         }
     }
 }

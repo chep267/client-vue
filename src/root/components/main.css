@@ -4,9 +4,14 @@
  *
  */
 
-@import 'tailwindcss' important;
+@import 'vuetify/styles';
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant hover (&:hover);
+
+@layer vuetify,tailwind-base, tailwind-utilities;
 
 @theme {
     --breakpoint-xs: 30rem; /* 480px */
@@ -17,40 +22,46 @@
 }
 
 @theme inline {
-    --color-tw-primary: var(--color-custom-primary);
-    --color-tw-start: var(--color-custom-start);
+    --color-main: var(--color-custom-main);
+    --color-danger: var(--color-custom-danger);
+    --color-warning: var(--color-custom-warning);
+    --color-success: var(--color-custom-success);
+    --color-info: var(--color-custom-info);
+    --muted-foreground: oklch(0.556 0 0);
 }
 
 @layer base {
+    --color-custom-main: theme(colors.blue.800);
+    --color-custom-danger: theme(colors.red.500);
+    --color-custom-warning: theme(colors.amber.500);
+    --color-custom-success: theme(colors.green.500);
+    --color-custom-info: theme(colors.blue.500);
+    --color-scrollbar-thumb: var(--muted-foreground);
+    --color-scrollbar-track: transparent;
+
     :root {
-        --color-custom-primary: var(--color-blue-500);
         --color-custom-start: var(--color-blue-500);
     }
     /* Theme dark */
     [data-theme='dark'],
     .dark {
-        --color-custom-primary: var(--color-blue-400);
-        --color-custom-start: var(--color-amber-500);
+        --color-custom-main: theme(colors.blue.400);
+        --muted-foreground: oklch(0.708 0 0);
     }
 
     * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
+        @apply m-0 box-border p-0;
+    }
+    button {
+        @apply select-none;
     }
     body {
+        @apply overscroll-none scroll-smooth;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        overscroll-behavior: none;
-        scroll-behavior: smooth;
     }
     html {
-        overflow: hidden auto;
-        overscroll-behavior: none;
-        scroll-behavior: smooth;
-        -webkit-user-select: none; /* Safari */
-        -ms-user-select: none; /* IE 10 and IE 11 */
-        user-select: none; /* Standard syntax */
+        @apply overflow-x-hidden overflow-y-auto overscroll-none scroll-smooth;
         font-size: 16px; /* 1rem */
     }
     :root {
@@ -68,6 +79,23 @@
 }
 
 @layer utilities {
+    /*.scrollbar-thin {*/
+    /*    scrollbar-width: thin;*/
+    /*}*/
+    /*.scrollbar-thin::-webkit-scrollbar {*/
+    /*    width: 6px;*/
+    /*    height: 6px;*/
+    /*}*/
+    /*.scrollbar-hidden {*/
+    /*    scrollbar-width: none; !* Firefox *!*/
+    /*}*/
+    /*.scrollbar-hidden::-webkit-scrollbar-track {*/
+    /*    display: none; !* Chrome, Edge, Safari *!*/
+    /*}*/
+    /*.scrollbar-custom {*/
+    /*    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);*/
+    /*}*/
+
     /* Theme light */
     .scrollbar-thin {
         scrollbar-width: thin;

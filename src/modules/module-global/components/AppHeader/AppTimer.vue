@@ -18,8 +18,8 @@ const formattedDate = computed(() => dayjs().locale(locale.value).format('dddd, 
 
 <template>
     <div :class="clsx('flex flex-row items-center justify-center', 'gap-2')">
-        <div :class="clsx('h-2 w-2 rounded-full', 'bg-tw-primary', 'dark:bg-white')" />
+        <div :class="clsx('h-2 w-2 rounded-full', 'bg-main', 'dark:bg-white')" />
         <span :class="clsx('text-sm', 'capitalize')">{{ formattedDate }}</span>
-        <div :class="clsx('h-2 w-2 rounded-full', 'bg-tw-primary', 'dark:bg-white')" />
+        <div :class="clsx('h-2 w-2 rounded-full', 'bg-main', 'dark:bg-white')" />
     </div>
 </template>

@@ -16,11 +16,14 @@ import { getDeviceLanguage } from '@module-base/utils/getDeviceLanguage';
 /** lang default */
 import { en } from '@src/langs/en';
 
-type TypeMessageModule = Record<App.ModuleBase.Data.Locale, App.ModuleBase.Data.Messages>;
+type TypeMessageModule = Record<App.ModuleBase.Data.TypeLocale, App.ModuleBase.Data.TypeMessages>;
 
 const localeLoaders = import.meta.glob<TypeMessageModule>('/src/langs/*.ts', { eager: false });
 const messagesCache = { en } as TypeMessageModule;
-const pendingPromises = {} as Record<App.ModuleBase.Data.Locale, Promise<App.ModuleBase.Data.Messages> | undefined>;
+const pendingPromises = {} as Record<
+    App.ModuleBase.Data.TypeLocale,
+    Promise<App.ModuleBase.Data.TypeMessages> | undefined
+>;
 
 const defaultLocale = getDeviceLanguage();
 
@@ -35,8 +38,8 @@ export const i18n = createI18n({
     warnHtmlMessage: false,
 });
 
-export async function getMessage(locale: App.ModuleBase.Data.Locale): Promise<any> {
-    const updateMessage = (data: App.ModuleBase.Data.Messages) => {
+export async function getMessage(locale: App.ModuleBase.Data.TypeLocale): Promise<any> {
+    const updateMessage = (data: App.ModuleBase.Data.TypeMessages) => {
         i18n.global.setLocaleMessage(locale, data);
         i18n.global.locale.value = locale;
         document.querySelector('html')?.setAttribute('lang', locale);

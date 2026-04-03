@@ -5,4 +5,4 @@
  */
 
 /** type */
-export type TypeInputElem = HTMLInputElement | null;
+export type TypeInputElement = HTMLInputElement | null;

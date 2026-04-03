@@ -12,9 +12,9 @@ import { AppEnv } from '@module-base/constants/AppEnv';
 import { AppKey } from '@module-base/constants/AppKey';
 import { LocaleObject } from '@module-base/constants/LocaleObject';
 
-export const getDeviceLanguage = (): App.ModuleBase.Data.Locale => {
+export const getDeviceLanguage = (): App.ModuleBase.Data.TypeLocale => {
     // get from cookie
-    let locale = Cookies.get(AppKey.locale) as App.ModuleBase.Data.Locale;
+    let locale = Cookies.get(AppKey.locale) as App.ModuleBase.Data.TypeLocale;
     if (locale in LocaleObject) {
         return locale;
     }
@@ -27,7 +27,7 @@ export const getDeviceLanguage = (): App.ModuleBase.Data.Locale => {
     const deviceLanguage =
         navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
     // vi_VN | en_UK | en_US | ...
-    locale = `${deviceLanguage}`.slice(0, 2) as App.ModuleBase.Data.Locale;
+    locale = `${deviceLanguage}`.slice(0, 2) as App.ModuleBase.Data.TypeLocale;
     if (locale in LocaleObject) {
         return locale;
     }

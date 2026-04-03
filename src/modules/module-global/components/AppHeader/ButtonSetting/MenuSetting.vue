@@ -212,12 +212,12 @@ const menuAuth = computed<TypeMenuData[]>(() => {
     ];
 });
 
-const setTheme = (value: App.ModuleBase.Data.Theme) => {
+const setTheme = (value: App.ModuleBase.Data.TypeTheme) => {
     Cookies.set(AppKey.theme, value);
     theme.change(value);
 };
 
-const setLocale = async (value: App.ModuleBase.Data.Locale) => {
+const setLocale = async (value: App.ModuleBase.Data.TypeLocale) => {
     await getMessage(value);
     Cookies.set(AppKey.locale, value);
     current.value = value;

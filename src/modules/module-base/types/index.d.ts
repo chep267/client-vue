@@ -18,20 +18,9 @@ declare global {
                 metadata: { timestamp: number } & Metadata;
             };
         }
-        namespace Data {
-            type Theme = TypeData.TypeTheme;
-            type Locale = TypeData.TypeLocale;
-            type Messages = TypeData.TypeMessages;
-            type ItemIds = TypeData.TypeItemIds;
-            type Items<Data = any> = TypeData.TypeItems<Data>;
-            type StorageName = TypeData.TypeStorageName;
-            type StorageValue = TypeData.TypeStorageValue;
-        }
-        namespace Store {
-            type NotifyStore = TypeStore.TypeNotifyStore;
-        }
-        namespace Component {
-            type InputElement = TypeComponent.TypeInputElem;
-        }
+
+        export import Data = TypeData;
+        export import Store = TypeStore;
+        export import Component = TypeComponent;
     }
 }

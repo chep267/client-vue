@@ -12,7 +12,7 @@ import Cookies from 'js-cookie';
 import { AppKey } from '@module-base/constants/AppKey';
 
 export const useAuthStore = defineStore('auth-store', {
-    state: (): App.ModuleAuth.Store.AuthStore => {
+    state: (): App.ModuleAuth.Store.TypeAuthStore => {
         return {
             prePath: '/',
             user: null,
@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth-store', {
         setPath(path: string) {
             this.prePath = path || this.prePath;
         },
-        signin(payload: App.ModuleAuth.Api.Signin['Response']) {
+        signin(payload: App.ModuleAuth.Api.TypeApiAuth['Signin']['Response']) {
             const { user } = payload.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, user.email || '');
