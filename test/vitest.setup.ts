@@ -10,13 +10,13 @@ import { config } from '@vue/test-utils';
 import '@testing-library/jest-dom/vitest';
 
 /** utils */
-import { i18n } from '@module-base/utils/i18n';
-import { vueComponents } from '@root/vuetify';
+import { i18n } from '@src/plugins/i18n';
+import { vuetify } from '@src/plugins/vuetify';
 
 const app = document.createElement('div');
 app.setAttribute('data-app', 'true');
 document.body.appendChild(app);
 
 beforeEach(() => {
-    config.global.plugins = [vueComponents, i18n];
+    config.global.plugins = [vuetify, i18n];
 });

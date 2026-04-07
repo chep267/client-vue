@@ -1,3 +1,9 @@
+/**
+ *
+ * @author dongntd267@gmail.com
+ *
+ */
+
 @import 'tailwindcss/theme' layer(tailwind-theme);
 /*@import "tailwindcss/preflight" layer(tailwind-reset);*/
 @import 'tailwindcss/utilities' layer(tailwind-utilities);
@@ -5,6 +11,7 @@
 
 @custom-variant light (&:where(.v-theme--light, .v-theme--light *));
 @custom-variant dark (&:where(.v-theme--dark, .v-theme--dark *));
+@custom-variant hover (&:hover);
 
 @theme {
     --breakpoint-xs: 30rem; /* 480px */
@@ -24,16 +31,24 @@
 }
 
 @layer base {
-    --color-custom-main: theme(colors.blue.800);
-    --color-custom-danger: theme(colors.red.500);
-    --color-custom-warning: theme(colors.amber.500);
-    --color-custom-success: theme(colors.green.500);
-    --color-custom-info: theme(colors.blue.500);
-    --color-scrollbar-thumb: var(--muted-foreground);
-    --color-scrollbar-track: transparent;
-
     :root {
-        --color-custom-start: var(--color-blue-500);
+        --color-custom-main: theme(colors.blue.800);
+        --color-custom-danger: theme(colors.red.500);
+        --color-custom-warning: theme(colors.amber.500);
+        --color-custom-success: theme(colors.green.500);
+        --color-custom-info: theme(colors.blue.500);
+        --color-scrollbar-thumb: var(--muted-foreground);
+        --color-scrollbar-track: transparent;
+
+        --app-size-height-header: calc(var(--spacing) * 16); /* 64px */
+        --app-size-height-sidebar: calc(100dvh - var(--app-size-height-header));
+        --app-size-height-sidebar-mini: calc(var(--spacing) * 12); /* 48px */
+        --app-size-width-sidebar-collapse: 48px;
+        --app-size-width-sidebar-expand: 256px;
+        --app-size-breakpoint-sidebar-collapse: 1030px;
+        --app-size-breakpoint-sidebar-hidden: 600px;
+
+        --z-index-header: theme(zIndex.50);
     }
     /* Theme dark */
     [data-theme='dark'],
@@ -73,26 +88,12 @@
 }
 
 @layer utilities {
-    /*.scrollbar-thin {*/
-    /*    scrollbar-width: thin;*/
-    /*}*/
-    /*.scrollbar-thin::-webkit-scrollbar {*/
-    /*    width: 6px;*/
-    /*    height: 6px;*/
-    /*}*/
-    /*.scrollbar-hidden {*/
-    /*    scrollbar-width: none; !* Firefox *!*/
-    /*}*/
-    /*.scrollbar-hidden::-webkit-scrollbar-track {*/
-    /*    display: none; !* Chrome, Edge, Safari *!*/
-    /*}*/
-    /*.scrollbar-custom {*/
-    /*    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);*/
-    /*}*/
-
-    /* Theme light */
     .scrollbar-thin {
         scrollbar-width: thin;
+    }
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
     }
     .scrollbar-hidden {
         scrollbar-width: none; /* Firefox */
@@ -100,32 +101,7 @@
     .scrollbar-hidden::-webkit-scrollbar-track {
         display: none; /* Chrome, Edge, Safari */
     }
-    .scrollbar-custom::-webkit-scrollbar-track {
-        background: var(--color-gray-200);
-        border-radius: calc(var(--spacing) * 2.5);
-    }
-    .scrollbar-custom::-webkit-scrollbar-thumb {
-        background: var(--color-gray-500);
-        border-radius: calc(var(--spacing) * 2.5);
-    }
-    .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-        background: var(--color-gray-600);
-    }
-    .scrollbar-custom::-webkit-scrollbar-thumb:active {
-        background: var(--color-gray-600);
-    }
-
-    /* Theme dark */
-    [data-theme='dark'],
-    .dark {
-        .scrollbar-custom::-webkit-scrollbar-track {
-            background: var(--color-gray-800);
-        }
-        .scrollbar-custom::-webkit-scrollbar-thumb {
-            background: var(--color-gray-600);
-        }
-        .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-            background: var(--color-gray-400);
-        }
+    .scrollbar-custom {
+        scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
     }
 }
