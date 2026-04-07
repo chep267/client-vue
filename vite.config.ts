@@ -42,10 +42,15 @@ export default ({ mode }: ConfigEnv) => {
 
     return defineConfig({
         plugins: [
+            pluginTailwindcss(),
             pluginVue(),
             pluginBasicSsl(),
-            pluginVuetify({ autoImport: false }),
-            pluginTailwindcss(),
+            pluginVuetify({
+                autoImport: true,
+                styles: {
+                    configFile: './src/styles/settings.scss',
+                },
+            }),
             config.isGzip
                 ? pluginViteCompression({
                       algorithm: 'gzip', // Use gzip compression

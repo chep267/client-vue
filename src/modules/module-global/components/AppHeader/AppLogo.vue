@@ -6,11 +6,11 @@
  */
 
 /** logo */
-import Logo from '@root/assets/favicon.svg';
+import Logo from '@module-base/assets/favicon.svg';
 </script>
 
 <template>
-    <router-link v-once aria-label="home" to="/">
+    <router-link v-once aria-label="home" to="/" class="hover:animate-spin">
         <img alt="" :src="Logo" width="40" height="40" rel="preload" loading="lazy" />
     </router-link>
 </template>

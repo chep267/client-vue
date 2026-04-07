@@ -1,17 +1,10 @@
-/**
- *
- * @author dongntd267@gmail.com
- *
- */
-
-@import 'vuetify/styles';
-@import 'tailwindcss';
+@import 'tailwindcss/theme' layer(tailwind-theme);
+/*@import "tailwindcss/preflight" layer(tailwind-reset);*/
+@import 'tailwindcss/utilities' layer(tailwind-utilities);
 @import 'tw-animate-css';
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-@custom-variant hover (&:hover);
-
-@layer vuetify,tailwind-base, tailwind-utilities;
+@custom-variant light (&:where(.v-theme--light, .v-theme--light *));
+@custom-variant dark (&:where(.v-theme--dark, .v-theme--dark *));
 
 @theme {
     --breakpoint-xs: 30rem; /* 480px */
@@ -49,8 +42,9 @@
         --muted-foreground: oklch(0.708 0 0);
     }
 
-    * {
-        @apply m-0 box-border p-0;
+    a {
+        color: inherit;
+        text-decoration: none;
     }
     button {
         @apply select-none;
@@ -61,7 +55,7 @@
         -moz-osx-font-smoothing: grayscale;
     }
     html {
-        @apply overflow-x-hidden overflow-y-auto overscroll-none scroll-smooth;
+        @apply overflow-x-hidden overflow-y-auto overscroll-none scroll-smooth leading-none;
         font-size: 16px; /* 1rem */
     }
     :root {

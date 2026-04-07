@@ -25,7 +25,7 @@ const FeedScreen = () => import('@module-global/screens/FeedScreen.vue');
 const MessengerScreen = () => import('@module-global/screens/MessengerScreen.vue');
 const CalendarScreen = () => import('@module-calendar/screens/CalendarScreen.vue');
 
-export const routers = createRouter({
+export const router = createRouter({
     history: createWebHistory(),
     scrollBehavior: (_to, _from, savedPosition) => {
         return savedPosition || { top: 0 };
@@ -90,7 +90,7 @@ export const routers = createRouter({
     ],
 });
 
-routers.beforeEach((to) => {
+router.beforeEach((to) => {
     const uid = Cookies.get(AppKey.uid);
     const authStore = useAuthStore();
     const accountState = authStore.isAuthentication

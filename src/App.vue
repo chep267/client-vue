@@ -25,9 +25,6 @@ import LanguageProvider from '@module-base/components/LanguageProvider.vue';
 /** screens */
 import MainScreen from '@module-global/screens/MainScreen.vue';
 
-/** styles */
-import '@root/components/main.css';
-
 const authStore = useAuthStore();
 const siderStore = useSiderStore();
 const { isAuthentication } = storeToRefs(authStore);

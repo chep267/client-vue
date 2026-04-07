@@ -13,20 +13,23 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 import { setupCalendar } from 'v-calendar';
 
 /** utils */
-import { i18n } from '@module-base/utils/i18n';
-import { vueComponents } from '@root/vuetify';
-import { routers } from '@root/router';
+import { i18n } from '@src/plugins/i18n';
+import { vuetify } from '@src/plugins/vuetify';
+import { router } from '@src/plugins/router';
 
 /** components */
-import App from '@root/components/App.vue';
+import App from '@src/App.vue';
+
+/** styles */
+import '@src/styles/main.scss';
 
 const pinia = createPinia();
 const app = createApp(App);
 
 app.use(pinia);
-app.use(routers);
+app.use(router);
 app.use(VueQueryPlugin);
-app.use(vueComponents);
+app.use(vuetify);
 app.use(i18n);
 app.use(Particles, {
     init: async (engine: any) => {
